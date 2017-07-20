@@ -1,17 +1,17 @@
 WebContent
-�ؿ��ٰ� ÷�ε� �͵� �� �־��ּ���
-(css, page ����, basic.jsp)
+밑에다가 첨부된 것들 다 넣어주세염
+(css, page 폴더, basic.jsp)
 
-css�� ���߿� �׸� ���� �ϰ� �ɰ�� ���� ���̰�,
-page �ȿ� template�� header�� footer�� ��� �־
+css는 나중에 테마 적용 하게 될경우 쓰일 것이고,
+page 안에 template는 header와 footer가 들어 있어염
 
-�ٸ��е� ���� �ڱ� ������ �ٹж����� ÷�ε� basic.jsp ������
-�⺻���� ������ֽø� �˴ϴ�.
+다른분들 각자 자기 페이지 꾸밀때에는 첨부된 basic.jsp 파일을
+기본으로 만들어주시면 됩니다.
 
-�׸��� div�±׷� ������ �ֽǶ�
-<div class="col-sm-3"> �̷������� 
-sm�� ��� ���ּ��� md, lg, ��� �ȵǿ�
-�츮���� sm���� ���� �ϱ�� �޾
-�׷��ٸ�.. �̸�...
+그리고 div태그로 사이즈 주실때
+<div class="col-sm-3"> 이런식으로 
+sm만 사용 해주세염 md, lg, 등등 안되염
+우리조는 sm으로 통일 하기로 햇어염
+그렇다면.. 이만...
 
-�� ������ ȣ�̴ϰ� ���� �길��... ���� �����Ͻö󱸿���	
+뭐 어차피 호미니가 지금 깃만들어서... 허허 참고하시라구염ㅎ	
