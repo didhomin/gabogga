@@ -43,8 +43,8 @@
 								<input class="btn btn-lg btn-register btn-block" type="submit"
 									value="Register"> 
 								<center>
-									<img src="/tmap/img/facebook-ios-logo.png" onclick="login()" width="75px" />
-									<img src="/tmap/img/kakaolink_btn_medium.png" onclick="loginWithKakao()" />
+									<img src="${root }/page/member/img/facebook.png" onclick="login()" width="75px" />
+									<img src="${root }/page//member/img/kakao.png" onclick="loginWithKakao()" />
 								</center>
 							
 							</div>
