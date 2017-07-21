@@ -57,7 +57,10 @@ local.properties
 .classpath
 .settings/
 .loadpath
+<<<<<<< HEAD
 .properties
+=======
+>>>>>>> branch 'master' of https://github.com/didhomin/gabogga.git
 /src/main/resources/rebel.xml
 # External tool builders
 .externalToolBuilders/
