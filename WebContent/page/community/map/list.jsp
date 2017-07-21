@@ -11,8 +11,6 @@
 		<div class="col-sm-9 main">			
 			<div class="row">
 			
-			
-			
 				<div class="col-sm-11"></div>
 				<div class="col-sm-1" style="float:right;">	
 					<button type="button" class="btn btn-primary btn-sm">글쓰기</button>

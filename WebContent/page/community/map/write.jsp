@@ -11,8 +11,6 @@
 		<div class="col-sm-9 main">			
 			<div class="row">
 			
-			
-			
 				<div class="col-sm-5" style="background-color:pink;">
 					<div class="row form-group">
 						<div class="col-sm-4">제목</div>
