@@ -122,10 +122,12 @@
 								<form accept-charset="UTF-8" role="form" method="post" action="">
 									<fieldset>
 										<div class="form-group">
+											<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 											<input class="form-control"
 												placeholder="yourmail@example.com" name="email" type="email" required>
 										</div>
 										<div class="form-group">
+										 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
 											<input class="form-control" placeholder="Password"
 												name="password" type="password" value=""  required>
 										</div>
