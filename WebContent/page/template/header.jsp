@@ -41,6 +41,7 @@
 						<li class=""><a href="">공지사항</a></li>
 						<li class=""><a href="">인기순</a></li>
 						<li class=""><a href="">가격순</a></li>
+						<li class=""><a href="${root}/page/house/house.jsp">house</a>
 
 					</ul>
 					<!--  <form class="navbar-form navbar-right">
@@ -55,7 +56,7 @@
 			    </form> -->
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown"><a class="dropdown-toggle" href="#"
-							data-toggle="dropdown">예약하기 <strong class="caret"></strong></a>
+							data-toggle="dropdown">커뮤니티 <strong class="caret"></strong></a>
 							<ul class="dropdown-menu">
 								<li><a href="">내일로</a></li>
 								<li><a href="">제주도</a></li>

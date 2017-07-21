@@ -1,5 +1,7 @@
 package com.gbg.member.service;
 
+import com.gbg.member.model.UsersDto;
+
 public interface MemberService {
-	int idCheck(String id);
+	int register(UsersDto usersDto);
 }

@@ -3,6 +3,7 @@ package com.gbg.member.service;
 import org.springframework.stereotype.Service;
 
 import com.gbg.member.dao.MemberDao;
+import com.gbg.member.model.UsersDto;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -13,8 +14,8 @@ public class MemberServiceImpl implements MemberService {
 		this.memberDao = memberDao;
 	}
 	@Override
-	public int idCheck(String id) {
-		return memberDao.idCheck(id);
+	public int register(UsersDto usersDto) {
+		return memberDao.register(usersDto);
 	}
 
 	

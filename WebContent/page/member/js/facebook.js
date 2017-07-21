@@ -11,6 +11,14 @@
 		});
 	}
 	
+	function register() {
+		$('#modalLogin').modal({
+			show : false
+		});
+		$('#modalRegister').modal({
+			show : true
+		});
+	}
 	  window.fbAsyncInit = function() {
 	    FB.init({
 	      appId      : '796491983864394',
