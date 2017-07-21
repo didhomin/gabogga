@@ -41,6 +41,7 @@
 						<li class=""><a href="">공지사항</a></li>
 						<li class=""><a href="">인기순</a></li>
 						<li class=""><a href="">가격순</a></li>
+						<li class=""><a href="${root}/page/house/house.jsp">house</a>
 
 					</ul>
 					<!--  <form class="navbar-form navbar-right">
