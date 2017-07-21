@@ -18,6 +18,11 @@
 </head>
 
 <body>
+ <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+ <script src="${root }/page/member/js/kakao.js"></script>
+ <script src="${root }/page/member/js/facebook.js"></script>
+ <%@ include file="/page/member/registerModal.jsp" %>	
+ <%@ include file="/page/member/loginModal.jsp" %>	
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
 			<div class="container-fluid">
@@ -56,10 +61,10 @@
 								<li><a href="">제주도</a></li>
 							</ul></li>
 
-						<li id="loginM"><a href="#"><span
+						<li id="loginM"><a href="javascript:modalLogin();"><span
 								class="glyphicon glyphicon-log-in"></span> Login</a></li>
-						<li id="loginM"><a href="#"><span
-								class="glyphicon glyphicon-user"></span> Login</a></li>
+						<li id="loginM"><a href="javascript:modalRegister();"><span
+								class="glyphicon glyphicon-user"></span> Register</a></li>
 
 
 					</ul>
