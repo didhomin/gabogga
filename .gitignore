@@ -1,6 +1,9 @@
+<<<<<<< HEAD
 # Created by https://www.gitignore.io/api/java,maven,eclipse,windows
 
 ### Eclipse ###
+=======
+>>>>>>> branch 'master' of https://github.com/didhomin/gabogga.git
 
 .metadata
 bin/
@@ -12,8 +15,17 @@ tmp/
 local.properties
 .settings/
 .loadpath
+<<<<<<< HEAD
 .recommenders
 
+=======
+<<<<<<< HEAD
+.recommenders
+
+=======
+/src/main/resources/rebel.xml
+>>>>>>> branch 'master' of https://github.com/didhomin/gabogga.git
+>>>>>>> branch 'master' of https://github.com/didhomin/gabogga.git
 # External tool builders
 .externalToolBuilders/
 
@@ -50,6 +62,7 @@ local.properties
 # Scala IDE specific (Scala & Java development for Eclipse)
 .cache-main
 .scala_dependencies
+<<<<<<< HEAD
 .worksheet
 
 ### Eclipse Patch ###
@@ -120,3 +133,6 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/java,maven,eclipse,windows
+=======
+.worksheet
+>>>>>>> branch 'master' of https://github.com/didhomin/gabogga.git
