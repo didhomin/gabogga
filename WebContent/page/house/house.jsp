@@ -166,32 +166,19 @@
             width: 100%;
           }
         </style>
-        <h3>My Google Maps Demo</h3>
-        <div id="map"></div>
-        <script>
-          function initMap() {
-            var uluru = {
-              lat: -25.363,
-              lng: 131.044
-            };
-            var map = new google.maps.Map(document.getElementById('map'), {
-              zoom: 4,
-              center: uluru
-            });
-            var marker = new google.maps.Marker({
-              position: uluru,
-              map: map
-            });
-          }
-        </script>
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2R_I-sRCjMzcwoNATRfbvIe_kNcA9LHQ&callback=initMap">
-        </script>
+        <h3>Daum 지도 시작하기</h3>
+        <div id="map" style="width:500px;height:400px;"></div>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=발급받은 APP KEY를 넣으시면 됩니다."></script>
+	<script>
+		var container = document.getElementById('map');
+		var options = {
+			center: new daum.maps.LatLng(33.450701, 126.570667),
+			level: 3
+		};
 
-
-	
-	
-	
-	
+		var map = new daum.maps.Map(container, options);
+	</script>
+        </script>
 <!-- 여기까지가 우리가 꾸밀부분 -->
 <!-- 푸터 -->
 <%@ include file="/page/template/footer.jsp" %>	
