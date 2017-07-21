@@ -59,14 +59,13 @@
 							<ul class="dropdown-menu">
 								<li><a href="">내일로</a></li>
 								<li><a href="">제주도</a></li>
-							</ul></li>
-
+							</ul>
+						</li>
+						<li class=""><a href="">커뮤니티</a></li>
 						<li id="loginM"><a href="javascript:modalLogin();"><span
 								class="glyphicon glyphicon-log-in"></span> Login</a></li>
 						<li id="loginM"><a href="javascript:modalRegister();"><span
 								class="glyphicon glyphicon-user"></span> Register</a></li>
-
-
 					</ul>
 				</div>
 			</div>
