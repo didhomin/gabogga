@@ -9,8 +9,12 @@ tmp/
 local.properties
 .settings/
 .loadpath
+<<<<<<< HEAD
 .recommenders
 
+=======
+/src/main/resources/rebel.xml
+>>>>>>> branch 'master' of https://github.com/didhomin/gabogga.git
 # External tool builders
 .externalToolBuilders/
 
