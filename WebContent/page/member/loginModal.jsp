@@ -8,7 +8,7 @@
 
 			<div class="modal-body">
 				<div class="row">
-					<div class="col-md-12">
+					<div class="col-sm-12">
 						<div class="panel">
 							<div>
 								<h3>
@@ -53,12 +53,12 @@
 										다른 계정으로도 로그인하실수있습니다.!
 									</div>
 									<div class="row" align="center">
-										<div class="col-md-3"></div>
-										<div align="center" class="col-md-6">
+										<div class="col-sm-3"></div>
+										<div align="center" class="col-sm-6">
 											<img src="${root }/page/member/img/facebook.png" onclick="login()" width="75px" />
 											<img src="${root }/page//member/img/kakao.png" onclick="loginWithKakao()" />
 										</div>
-										<div class="col-md-3"></div>
+										<div class="col-sm-3"></div>
 									</div>
 								</div>
 							</div>

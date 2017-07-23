@@ -63,7 +63,7 @@ $(document).ready(function() {
 
 			<div class="modal-body">
 				<div class="row">
-					<div class="col-md-12">
+					<div class="col-sm-12">
 						<div class="panel">
 							<div>
 								<h3>
@@ -82,7 +82,7 @@ $(document).ready(function() {
 												placeholder="yourmail@example.com" name="email" type="email" required autofocus>
 												
 										</div>
-										<p class="col-md-offset-1" id="result"></p>
+										<p class="col-sm-offset-1" id="result"></p>
 										<!-- <div class="input-group form-group">
 										<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 											<input class="form-control" id="name"
@@ -98,7 +98,7 @@ $(document).ready(function() {
 											<input class="form-control" placeholder="Password-Check" id="passwordCheck"
 												name="passwordCheck" type="password" value="" required>
 										</div>
-										<p class="col-md-offset-1" id="resultpass"></p>
+										<p class="col-sm-offset-1" id="resultpass"></p>
 										 <div class="input-group form-group">
 								       <span class="input-group-addon"><i class="glyphicon glyphicon-heart"></i></span>
 								          	<div class="form-control">
@@ -115,7 +115,7 @@ $(document).ready(function() {
 											<input class="form-control" placeholder="Enter your Primary contact no."
 												id="tel" name="tel" type="tel" value="" required>
 										</div>
-										<div class="input-group form-group col-md-offset-2" >
+										<div class="input-group form-group col-sm-offset-2" >
 												
 										            <div class="form-inline">생년월일
 										              <div class="form-group" >
