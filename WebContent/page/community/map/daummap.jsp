@@ -13,11 +13,8 @@
 .distanceInfo:after {content:none;}
 </style>
 
-<div id="map" style="width:100%;height:250px;"></div>  
-<p>
-    <em>지도를 마우스로 클릭하면 선 그리기가 시작되고<br>오른쪽 마우스를 클릭하면 선 그리기가 종료됩니다</em>
-</p>
-
+<div id="map" style="width:100%;height:270px;"></div>  
+<p></p>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a10b55340969923033a4eb61fd837e6e"></script>
 <script>
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
