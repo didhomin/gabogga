@@ -15,7 +15,7 @@
     />
     
     
-    <typeAlias alias="memberDto" type="com.gbg.member.model.UserDto"/>
+    <typeAlias alias="usersDto" type="com.gbg.member.model.UsersDto"/>
 
     
     <sqlMap resource="com/gbg/config/sqlmap/register.xml"/>

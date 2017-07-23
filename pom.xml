@@ -30,7 +30,8 @@
      <spring-framework.version>3.2.3.RELEASE</spring-framework.version>
      <ibatis.version>2.3.4.726</ibatis.version>
      <jstl.version>1.2</jstl.version>
-     <json.version>1.1.1</json.version>   
+     <json.version>1.1.1</json.version>
+     <mail.version>1.5.5</mail.version>
   </properties>
    <dependencies>
    <dependency>
@@ -73,6 +74,12 @@
        <artifactId>json-simple</artifactId>
        <version>${json.version}</version>
    </dependency>
+    <!-- https://mvnrepository.com/artifact/javax.mail/javax.mail-api -->
+<dependency>
+    <groupId>com.sun.mail</groupId>
+	<artifactId>javax.mail</artifactId>
+	<version>1.5.5</version>
+</dependency>
     
   </dependencies>
 </project>
