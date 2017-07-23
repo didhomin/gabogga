@@ -36,15 +36,39 @@ $(document).ready(function() {
 </script>
 </c:if>
 <!-- 여기서부터 우리가 꾸미기 -->
-<h1><font color="red">가보까!</font> 에서 </h1>
-<div>
-<h2> 게스트하우스를 예약해보세요.</h2>
-</div> 	
 
-	
-	
-	
-	
+<div class="jumbotron" style="">
+	<h1>
+		<font color="red"><b>가보까?</b></font> 에서
+	</h1>
+	<h2>게스트하우스를 예약해보세요.</h2>
+	<div class="input-group-lg">
+	 <form class="form-inline" role="form">
+        <div class="form-group input-group-lg">
+        	
+          <input type="text" class="form-control" id="" placeholder="위치">
+        </div>
+        <div class="form-group input-group-lg">
+        	
+          <input type="date" class="form-control" id="" placeholder="날짜">
+        </div>
+      	<div class="form-group input-group-lg">
+        	
+        </div>
+        <div class="form-group input-group-lg">
+          <input type="text" class="form-control " id="" placeholder="인원">
+      		 <a href="#" class="btn btn-info btn-lg">
+             	<span class="glyphicon glyphicon-search"></span> Search 
+             </a>
+        </div>
+      </form>
+	</div>
+		
+</div>
+
+
+
+
 <!-- 여기까지가 우리가 꾸밀부분 -->
 <!-- 푸터 -->
 <%@ include file="/page/template/footer.jsp" %>	

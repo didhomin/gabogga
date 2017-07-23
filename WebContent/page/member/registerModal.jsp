@@ -124,7 +124,7 @@ $(document).ready(function() {
 												placeholder="Enter your Primary contact no." id="tel"
 												name="tel" type="tel" value="" required>
 										</div>
-										<div class="input-group form-group col-sm-offset-2">
+										<%-- <div class="input-group form-group col-sm-offset-2">
 
 											<div class="form-inline">
 												생년월일
@@ -194,7 +194,7 @@ $(document).ready(function() {
 													</select>
 												</div>
 											</div>
-										</div>
+										</div> --%>
 										<hr />
 										<input id="registerBtn"
 											class="btn btn-lg btn-success btn-block" type="submit"

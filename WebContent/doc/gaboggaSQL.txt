@@ -34,7 +34,7 @@ ALTER TABLE map
 		CASCADE
 		KEEP INDEX;
 
-ALTER TABLE comment
+ALTER TABLE reply
 	DROP
 		PRIMARY KEY
 		CASCADE
@@ -94,7 +94,7 @@ DROP INDEX PK_users;
 
 DROP INDEX PK_map;
 
-DROP INDEX PK_comment;
+DROP INDEX PK_reply;
 
 DROP INDEX PK_board;
 
@@ -138,8 +138,8 @@ DROP TABLE users
 DROP TABLE map 
 	CASCADE CONSTRAINTS;
 
-/* comment */
-DROP TABLE comment 
+/* reply */
+DROP TABLE reply 
 	CASCADE CONSTRAINTS;
 
 /* board */
@@ -397,7 +397,6 @@ CREATE TABLE users (
 	password VARCHAR2(300), /* password */
 	tel VARCHAR2(30), /* tel */
 	gender NUMBER, /* gender */
-	age NUMBER, /* age */
 	type NUMBER(3), /* type */
 	reg_date DATE, /* reg_date */
 	state number(1) /* state */
@@ -412,8 +411,6 @@ COMMENT ON COLUMN users.password IS '비밀번호';
 COMMENT ON COLUMN users.tel IS '전화번호';
 
 COMMENT ON COLUMN users.gender IS '성별';
-
-COMMENT ON COLUMN users.age IS '나이';
 
 COMMENT ON COLUMN users.type IS '회원타입';
 
@@ -467,35 +464,35 @@ ALTER TABLE map
 			map_seq
 		);
 
-/* comment */
-CREATE TABLE comment (
-	comment_id NUMBER NOT NULL, /* comment_id */
+/* reply */
+CREATE TABLE reply (
+	reply_id NUMBER NOT NULL, /* reply_id */
 	guesthouse_id NUMBER, /* guesthouse_id */
 	user_id NUMBER, /* user_id */
 	reg_date DATE, /* reg_date */
 	content varchar2(3000) /* content */
 );
 
-COMMENT ON COLUMN comment.comment_id IS '리뷰 댓글 고유번호';
+COMMENT ON COLUMN reply.reply_id IS '리뷰 댓글 고유번호';
 
-COMMENT ON COLUMN comment.guesthouse_id IS '객실 고유번호';
+COMMENT ON COLUMN reply.guesthouse_id IS '객실 고유번호';
 
-COMMENT ON COLUMN comment.user_id IS '회원 고유번호';
+COMMENT ON COLUMN reply.user_id IS '회원 고유번호';
 
-COMMENT ON COLUMN comment.reg_date IS '댓글 등록 날짜';
+COMMENT ON COLUMN reply.reg_date IS '댓글 등록 날짜';
 
-COMMENT ON COLUMN comment.content IS '댓글 내용';
+COMMENT ON COLUMN reply.content IS '댓글 내용';
 
-CREATE UNIQUE INDEX PK_comment
-	ON comment (
-		comment_id ASC
+CREATE UNIQUE INDEX PK_reply
+	ON reply (
+		reply_id ASC
 	);
 
-ALTER TABLE comment
+ALTER TABLE reply
 	ADD
-		CONSTRAINT PK_comment
+		CONSTRAINT PK_reply
 		PRIMARY KEY (
-			comment_id
+			reply_id
 		);
 
 /* board */
