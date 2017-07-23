@@ -34,7 +34,7 @@ body{
 
 	<div class="col-sm-6">
 		<div class="rightside">
-			<img src="/gabogga/img/guest.jpg"
+			<img src="${root}/img/guest.jpg"
 				style="opacity: 0.6; width: 100%; height: 60%;">
 		</div>
 		<br>
