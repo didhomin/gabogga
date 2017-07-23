@@ -2,10 +2,13 @@
     pageEncoding="UTF-8"%>
 
 <!-- 헤더 -->
-<%@ include file="/page/template/header.jsp" %>
-<%@ include file="/page/house/reservationModal.jsp" %>
 
 <!-- 여기서부터 우리가 꾸미기 -->
+  <%@ include file="/page/template/header.jsp" %>
+  <%@ include file="/page/house/reservationModal.jsp" %>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel='stylesheet prefetch' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
+  <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
 <script type="text/javascript">
 $(document).ready(function() {
 	$("#Reservation").click(function(){
@@ -14,7 +17,7 @@ $(document).ready(function() {
 });
 </script>
 	<!-- Blog Post Content Column -->
-    <div class="col-sm-8">
+    <div class="col-sm-9">
        <!-- Blog Post -->
        		<!-- Title -->
        		<h1>This Guest House Title</h1>
@@ -133,7 +136,7 @@ $(document).ready(function() {
       </div>
 
       <!-- Blog Sidebar Widgets Column -->
-      <div class="col-md-4">
+      <div class="col-md-3">
 
         <!-- Blog Search Well -->
          <div class="well">
@@ -160,14 +163,18 @@ $(document).ready(function() {
           <h4>Check In/out</h4>
           <div class="row">
             <div class="col-md-12">
-              <ul class="list-unstyled">
-                <li>
-                  <label>Check In</label>
-                  <input type="date" class="form-control">
-                  <label>Check Out</label>
-                  <input type="date" class="form-control">
-                </li>
-              </ul>
+                <div class="control-group">
+          			<label class="control-label" for="from">From</label>
+          			<div class="controls">
+            			<input type="text" id="from"/>
+          			</div>
+        		</div>
+              	<div class="control-group">
+          			<label class="control-label" for="to">To</label>
+          			<div class="controls">
+            			<input type="text" id='to'/>
+          			</div>
+        		</div>
             </div>
             <!-- <div class="col-md-5">
               <ul class="list-unstyled">
@@ -179,6 +186,7 @@ $(document).ready(function() {
           </div>
           <!-- /.row -->
         </div>
+        <script src="${root }/page/house/js/index.js"></script>
 
         <!-- Side Widget Well -->
         <div class="well">
