@@ -27,7 +27,7 @@ $(document).ready(function() {
 
 			<div class="modal-body">
 				<div class="row">
-					<div class="col-md-12">
+					<div class="col-sm-12">
 						<div class="panel">
 							<div>
 								<h3>
@@ -53,7 +53,7 @@ $(document).ready(function() {
 											<input class="form-control" placeholder="Password-Check" id="passModi"
 												name="passModi" type="password" value="" required>
 										</div>
-										<p class="col-md-offset-1" id="resultpassModi"></p>
+										<p class="col-sm-offset-1" id="resultpassModi"></p>
 										<hr/>	
 										<input id="modifyBtn" class="btn btn-lg btn-success btn-block" type="submit"
 											value="Password modify">
