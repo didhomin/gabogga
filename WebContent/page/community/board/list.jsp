@@ -85,23 +85,6 @@ for(int i=1; i<=5; i++) {
 					</div>
 				</div>
 			</form>
-			<br><br><br><br>
-			<div class="form-group row">
-				<div class="col-sm-3">
-				    <input class="form-control" id="ex1" type="text" placeholder="체크인">
-				</div>
-				<div class="col-sm-3">
-			   	 <input class="form-control" id="ex2" type="text" placeholder="체크아웃">
-				</div>
-				<div class="col-sm-3">
-			    	<input class="form-control" id="ex3" type="text" placeholder="인원">
-				</div>
-				<div class="col-sm-3">
-					<a href="#" class="btn btn-info">
-				          <span class="glyphicon glyphicon-search"></span> Search 
-				    </a>
-				</div>
-			</div>
 		</div>
 
 	
