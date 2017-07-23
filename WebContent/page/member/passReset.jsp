@@ -5,19 +5,19 @@
 	aria-labelledby="myModalLabel">
 	<div class="modal-dialog">
 		<div class="modal-content">
-
+			<div class="panel-warning ">
+				<div class="panel-heading">
+					<h3>
+						Password Reset
+						<button class="close" aria-hidden="true" type="button"
+							data-dismiss="modal">×</button>
+					</h3>
+				</div>
+			</div>
 			<div class="modal-body">
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="panel">
-							<div>
-								<h3>
-									Password Reset
-									<button class="close" aria-hidden="true" type="button"
-										data-dismiss="modal">×</button>
-								</h3>
-							</div>
-							<hr/>
 							<div class="panel-body">
 								<font size="5">비밀번호를 잊어버리셨나요?</font><br>
 								비밀 번호 변경 절차를 위해 이메일 주소를 입력해주세요.<br>
@@ -31,7 +31,7 @@
 												placeholder="yourmail@example.com" name="email" type="email" required autofocus>
 										</div>
 										<hr/>	
-										<input class="btn btn-lg btn-success btn-block" type="submit"
+										<input class="btn btn-lg btn-warning btn-block" type="submit"
 											value="Pass Reset">
 									</fieldset>
 								</form>

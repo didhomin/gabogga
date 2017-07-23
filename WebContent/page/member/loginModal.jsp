@@ -5,20 +5,19 @@
 	aria-labelledby="myModalLabel">
 	<div class="modal-dialog">
 		<div class="modal-content">
-
+			<div class="panel-info ">
+				<div class="panel-heading">
+					<h3>
+						Login
+						<button class="close" aria-hidden="true" type="button" data-dismiss="modal">×</button>
+					</h3>
+								
+				</div>
+			</div>
 			<div class="modal-body">
 				<div class="row">
-					<div class="col-sm-12">
-						<div class="panel">
-							<div>
-								<h3>
-									Login
-									<button class="close" aria-hidden="true" type="button"
-										data-dismiss="modal">×</button>
-								</h3>
-								
-							</div>
-							<hr/>
+					<div class="panel col-sm-12">
+						<div class="panel-primary ">
 							<div class="panel-body">
 								<form class="" accept-charset="UTF-8" role="form" method="post" action="${root }/login.gbg">
 									<fieldset>
@@ -39,7 +38,7 @@
 											<a class="pull-right" href="javascript:passReset();">비밀번호 찾기</a>
 										</div>
 										<hr/>
-										<input class="btn btn-lg btn-success btn-block" type="submit"
+										<input class="btn btn-lg btn-info btn-block" type="submit"
 											value="Login">
 									</fieldset>
 								</form>

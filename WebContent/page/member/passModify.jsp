@@ -24,43 +24,45 @@ $(document).ready(function() {
 	aria-labelledby="myModalLabel">
 	<div class="modal-dialog">
 		<div class="modal-content">
-
+			<div class="panel-danger ">
+				<div class="panel-heading">
+					<h3>Password Modify</h3>
+				</div>
+			</div>
 			<div class="modal-body">
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="panel">
-							<div>
-								<h3>
-									Password Modify
-									
-								</h3>
-							</div>
-							<hr/>
+
 							<div class="panel-body">
-								
-								임시비밀번호로 로그인하셨습니다.<br>
-								비밀번호 변경 하십시오.<br>
-								<hr/>
-								<form accept-charset="UTF-8" role="form"  method="post" action="${root }/passModify.gbg">
+
+								임시비밀번호로 로그인하셨습니다.<br> 비밀번호 변경 하십시오.<br>
+								<hr />
+								<form accept-charset="UTF-8" role="form" method="post"
+									action="${root }/passModify.gbg">
 									<fieldset>
 										<div class="input-group form-group">
-											<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-											<input class="form-control" placeholder="Password (8자리이상)" id="passwordModi"
-												name="passwordModi" type="password" value="" required>
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-lock"></i></span> <input
+												class="form-control" placeholder="Password (8자리이상)"
+												id="passwordModi" name="passwordModi" type="password"
+												value="" required>
 										</div>
 										<div class="input-group form-group">
-											<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-											<input class="form-control" placeholder="Password-Check" id="passModi"
-												name="passModi" type="password" value="" required>
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-lock"></i></span> <input
+												class="form-control" placeholder="Password-Check"
+												id="passModi" name="passModi" type="password" value=""
+												required>
 										</div>
 										<p class="col-sm-offset-1" id="resultpassModi"></p>
-										<hr/>	
-										<input id="modifyBtn" class="btn btn-lg btn-success btn-block" type="submit"
-											value="Password modify">
+										<hr />
+										<input id="modifyBtn" class="btn btn-lg btn-danger btn-block"
+											type="submit" value="Password modify">
 									</fieldset>
 								</form>
-								
-								
+
+
 							</div>
 						</div>
 					</div>
