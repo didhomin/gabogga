@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <!-- ModalLogin -->
 <div class="modal fade" id="modalLogin" role="dialog" aria-hidden="true"
 	aria-labelledby="myModalLabel">
@@ -17,14 +16,16 @@
 									<button class="close" aria-hidden="true" type="button"
 										data-dismiss="modal">×</button>
 								</h3>
+								
 							</div>
+							<hr/>
 							<div class="panel-body">
-								<form class="" accept-charset="UTF-8" role="form" method="post" action="">
+								<form class="" accept-charset="UTF-8" role="form" method="post" action="${root }/login.gbg">
 									<fieldset>
 										<div class="input-group form-group">
 											<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 											<input class="form-control"
-												placeholder="yourmail@example.com" name="email" type="email" required>
+												placeholder="yourmail@example.com" name="email" type="email" value="" required>
 										</div>
 										<div class="input-group">
 											<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
@@ -33,17 +34,19 @@
 										</div>
 										<div class="checkbox">
 											<label> <input name="remember" type="checkbox"
-												value="Remember Me"> Remember Me
+												value=""> Remember Me
 											</label>
+											<a class="pull-right" href="javascript:passReset();">비밀번호 찾기</a>
 										</div>
+										<hr/>
 										<input class="btn btn-lg btn-success btn-block" type="submit"
 											value="Login">
 									</fieldset>
 								</form>
 								<hr />
 								<div>
-									<div align="center">
-										아직 회원가입을 안하셨나요?! <a href="javascript:register();" class="">지금 가입하세요!!</a>
+									<div id="" align="center">
+										아직 회원가입을 안하셨나요?! <a href="javascript:mvregister();">여기로 오시면 회원가입할수있어요!!</a>
 									</div>
 									<hr />
 									<div align="center">
@@ -51,10 +54,8 @@
 									</div>
 									<div class="row" align="center">
 										<div class="col-md-3"></div>
-										<div align="center" class="col-md-3">
+										<div align="center" class="col-md-6">
 											<img src="${root }/page/member/img/facebook.png" onclick="login()" width="75px" />
-										</div>
-										<div align="center" class="col-md-3">
 											<img src="${root }/page//member/img/kakao.png" onclick="loginWithKakao()" />
 										</div>
 										<div class="col-md-3"></div>

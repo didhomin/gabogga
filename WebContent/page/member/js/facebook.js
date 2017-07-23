@@ -10,15 +10,20 @@
 			show : true
 		});
 	}
-	
-	function register() {
-		$('#modalLogin').modal({
-			show : false
-		});
-		$('#modalRegister').modal({
-			show : true
-		});
-	}
+
+function passReset() {
+	$('#modalLogin').modal("hide");
+	$('#modalPassReset').modal("show")
+}
+function mvregister() {
+	$('#modalLogin').modal("hide");
+	modalRegister();
+}
+function mvlogin() {
+	$('#modalRegister').modal("hide");
+	modalLogin();
+}
+
 	  window.fbAsyncInit = function() {
 	    FB.init({
 	      appId      : '796491983864394',
