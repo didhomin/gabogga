@@ -23,6 +23,8 @@
  <script src="${root }/page/member/js/facebook.js"></script>
  <%@ include file="/page/member/registerModal.jsp" %>	
  <%@ include file="/page/member/loginModal.jsp" %>	
+ <%@ include file="/page/member/passReset.jsp" %>	
+ <%@ include file="/page/member/passModify.jsp" %>	
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
 			<div class="container-fluid">
@@ -62,11 +64,18 @@
 								<li><a href="">제주도</a></li>
 							</ul>
 						</li>
-						<li class=""><a href="">커뮤니티</a></li>
-						<li id="loginM"><a href="javascript:modalLogin();"><span
-								class="glyphicon glyphicon-log-in"></span> Login</a></li>
-						<li id="loginM"><a href="javascript:modalRegister();"><span
-								class="glyphicon glyphicon-user"></span> Register</a></li>
+						<c:choose>
+						<c:when test="${empty user }">
+							<li id="loginM"><a href="javascript:modalLogin();"><span
+									class="glyphicon glyphicon-log-in"></span> Login</a></li>
+							<li id="loginM"><a href="javascript:modalRegister();"><span
+									class="glyphicon glyphicon-user"></span> Register</a></li>
+						</c:when>
+						<c:otherwise>
+	 						<li><a href="${root }/logout.gbg">로그아웃</a></li>
+	 					</c:otherwise>
+						</c:choose>
+	 			
 					</ul>
 				</div>
 			</div>
