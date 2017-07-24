@@ -4,7 +4,7 @@
   
   <context-param>
     <param-name>contextConfigLocation</param-name>
-    <param-value>classpath:com/gbg/config/spring/*-app.xml</param-value>
+    <param-value>classpath:com/gbg/*/config/spring/*-app.xml</param-value>
   </context-param>
   
   <listener>
@@ -30,7 +30,7 @@
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
     <init-param>
       <param-name>contextConfigLocation</param-name>
-      <param-value>classpath:com/gbg/config/spring/*-web.xml</param-value>
+      <param-value>classpath:com/gbg/*/config/spring/*-web.xml</param-value>
     </init-param>
   </servlet>
   
