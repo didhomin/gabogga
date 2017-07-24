@@ -13,6 +13,8 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gbg.member.dao.MemberDao;
@@ -21,19 +23,16 @@ import com.gbg.member.model.UsersDto;
 
 @Service
 public class MemberServiceImpl implements MemberService {
+	@Autowired
+	private SqlSession sqlSession;
 
-	private MemberDao memberDao;
-
-	public void setMemberDao(MemberDao memberDao) {
-		this.memberDao = memberDao;
-	}
 	@Override
 	public int register(UsersDto usersDto) {
-		return memberDao.register(usersDto);
+		return sqlSession.getMapper(MemberDao.class).register(usersDto);
 	}
 	@Override
 	public int emailCheck(String email) {
-		return memberDao.emailCheck(email);
+		return sqlSession.getMapper(MemberDao.class).emailCheck(email);
 	}
 	@Override
 	public void mailsend(String email) {
@@ -127,12 +126,12 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int emailAuth(String email) {
 		
-		return memberDao.emailAuth(email);
+		return sqlSession.getMapper(MemberDao.class).emailAuth(email);
 	}
 	@Override
 	public UsersDto login(Map<String, String> map) {
 		
-		return memberDao.login(map);
+		return sqlSession.getMapper(MemberDao.class).login(map);
 	}
 	@Override
 	public void passReset(String email) {
@@ -140,12 +139,12 @@ public class MemberServiceImpl implements MemberService {
 		String password = (int) (Math.random() * 100000000)+"";
 		map.put("email", email);
 		map.put("password", password);
-		memberDao.passResert(map);
+		sqlSession.getMapper(MemberDao.class).passReset(map);
 		mailsend(map);
 	}
 	@Override
 	public void passModify(Map<String, String> map) {
-		memberDao.passModefiy(map);
+		sqlSession.getMapper(MemberDao.class).passModify(map);
 		
 	}
 

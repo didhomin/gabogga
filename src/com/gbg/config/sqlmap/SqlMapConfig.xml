@@ -1,24 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN"
-"http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
-
-<sqlMapConfig>
-    <settings
-        cacheModelsEnabled="true"
-        enhancementEnabled="true"
-        lazyLoadingEnabled="true"
-        maxRequests="32"
-        maxSessions="10"
-        maxTransactions="5"
-        useStatementNamespaces="true"
-    />
-    
-    
-    <typeAlias alias="usersDto" type="com.gbg.member.model.UsersDto"/>
-
-    
-    <sqlMap resource="com/gbg/config/sqlmap/register.xml"/>
+<!DOCTYPE configuration
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-config.dtd">
  
-
-</sqlMapConfig>
+<configuration>
+    <properties resource="com/gbg/config/sqlmap/dbinfo.properties"/>
+    
+    <typeAliases>
+        <typeAlias alias="usersDto" type="com.gbg.member.model.UsersDto"/>
+    </typeAliases>
+    
+    <mappers>
+        <mapper resource="com/gbg/config/sqlmap/users.xml"/>
+    </mappers>
+    
+    
+</configuration>

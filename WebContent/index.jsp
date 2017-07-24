@@ -3,6 +3,8 @@
 
 <!-- 헤더 -->
 <%@ include file="/page/template/header.jsp" %>	
+  <link rel='stylesheet prefetch' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
+  <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
 <c:if test="${not empty emailAuth }">
 <script type="text/javascript">
 $(document).ready(function() {
@@ -32,10 +34,11 @@ $(document).ready(function() {
 <script type="text/javascript">	
 $(document).ready(function() {
 	$('#modalPassModify').modal({backdrop: "static"});
-});
+});s
 </script>
 </c:if>
 <!-- 여기서부터 우리가 꾸미기 -->
+
 
 <div class="jumbotron" style="">
 	<h1>
@@ -49,11 +52,9 @@ $(document).ready(function() {
           <input type="text" class="form-control" id="" placeholder="위치">
         </div>
         <div class="form-group input-group-lg">
-        	
-          <input type="date" class="form-control" id="" placeholder="날짜">
+          <input type="text" class="form-control" style="background-color:#fff; " id="from" placeholder="날짜" readonly="readonly">
         </div>
       	<div class="form-group input-group-lg">
-        	
         </div>
         <div class="form-group input-group-lg">
           <input type="text" class="form-control " id="" placeholder="인원">
@@ -68,6 +69,7 @@ $(document).ready(function() {
 
 
 
+<script src="${root }/page/house/js/index.js"></script>
 
 <!-- 여기까지가 우리가 꾸밀부분 -->
 <!-- 푸터 -->

@@ -10,7 +10,7 @@ public interface MemberDao {
 	int emailCheck(String email);
 	int emailAuth(String email);
 	UsersDto login(Map<String, String> map);
-	void passResert(Map<String,String> map);
-	void passModefiy(Map<String, String> map);
+	void passReset(Map<String,String> map);
+	void passModify(Map<String, String> map);
 
 }

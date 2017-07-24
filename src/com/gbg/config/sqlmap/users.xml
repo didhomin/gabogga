@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gbg.member.dao.MemberDao">
+    
+    <select id="emailCheck" parameterType="String" resultType="int">
+        select count(email)
+        from users
+        where email=#{email}
+    </select>
+    <insert id="register" parameterType="usersDto">
+        insert into users (user_id, email, password, tel, gender, type, reg_date, state)
+        values (SEQ_USERS_USERS_ID.nextval, #{email}, #{password}, #{tel}, #{gender}, '1', sysdate, '1')
+    </insert>
+    <insert id="emailAuth" parameterType="String">
+        update users
+        set state=2
+        where email=#email#
+    </insert>
+    <select id="login" parameterType="java.util.Map" resultType="usersDto">
+        select user_id userId, email, password, tel, gender, type, reg_date regDate, state
+        from users
+        where email=#{email} and password=#{password}
+    </select>
+    <update id="passReset" parameterType="java.util.Map">
+        update users
+        set password=#{password},state=3
+        where email=#{email}
+    </update>
+    <update id="passModify" parameterType="java.util.Map">
+        update users
+        set password=#{password},state=2
+        where email=#{email}
+    </update>
+</mapper>

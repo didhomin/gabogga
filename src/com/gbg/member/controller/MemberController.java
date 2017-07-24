@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.PageContext;
 
 import org.json.simple.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,14 +25,8 @@ import com.gbg.member.service.MemberService;
 
 @Controller
 public class MemberController {
-
+	@Autowired
 	private MemberService memberService;
-	
-	
-	public void setMemberService(MemberService memberService) {
-		this.memberService = memberService;
-	}
-
 
 	@RequestMapping("/register.gbg")
 	public ModelAndView register(UsersDto usersDto) {
