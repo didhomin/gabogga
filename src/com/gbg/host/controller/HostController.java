@@ -14,8 +14,46 @@ public class HostController {
 		
 		@RequestMapping(value="/register.gbg", method=RequestMethod.GET)
 		public String register(){
-			System.out.println("들어왓니");
 			return "/page/host/first";
 		}
-
+		
+		@RequestMapping("/second.gbg")
+		public String second(){
+			return "/page/host/second";
+		}
+		
+		@RequestMapping("/third.gbg")
+		public String third(){
+			return "/page/host/third";
+		}
+		
+		@RequestMapping("/fourth.gbg")
+		public String fourth(){
+			return "/page/host/fourth";
+		}
+		
+		@RequestMapping("/fifth.gbg")
+		public String fifth(){
+			return "/page/host/fifth";
+		}
+		
+		@RequestMapping("/sixth.gbg")
+		public String sixth(){
+			return "/page/host/sixth";
+		}
+		
+		@RequestMapping("/seventh.gbg")
+		public String seventh(){
+			return "/page/host/seventh";
+		}
+		
+		@RequestMapping("/eighth.gbg")
+		public String eighth(){
+			return "/page/host/eighth";
+		}
+		
+		@RequestMapping("/ninth.gbg")
+		public String ninth(){
+			return "/page/host/ninth";
+		}
 }

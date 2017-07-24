@@ -1,7 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/page/template/header.jsp" %>	
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$('#progressBtn').click(function(){
+		$(location).attr('href', '${root}/host/fifth.gbg');
+	});
+	
+	$('#backBtn').click(function(){
+		window.history.back();
+	});
+	
+});
+</script>
 <style>
 .basic {
 	margin: 20px;
@@ -109,9 +122,9 @@
 				<div class="col-sm-1 col-sm-push-1"></div>
 				<div class="col-sm-6"></div>
 				<div class="col-sm-12">
-								<button type="button" class="btn btn-info"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true">뒤로</span></button>
+								<button id="backBtn" type="button" class="btn btn-info"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true">뒤로</span></button>
 					<br><br>
-					<button type="button" class="btn btn-primary btn-lg btn-block">진행</button>
+					<button id="progressBtn" type="button" class="btn btn-primary btn-lg btn-block">진행</button>
 				</div>
 			</div>
 		</div>

@@ -3,6 +3,20 @@
 <%@ include file="/page/template/header.jsp" %>	
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0cc58507d96bb54372ac861c953ed175"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$('#progressBtn').click(function(){
+		$(location).attr('href', '${root}/host/fourth.gbg');
+	});
+	
+	$('#backBtn').click(function(){
+		window.history.back();
+	});
+	
+});
+</script>
 <style>
 .basic {
 	margin: 20px;
@@ -45,9 +59,9 @@
 				</div>
 			</div>
 			<div class="col-sm-12">
-							<button type="button" class="btn btn-info"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true">뒤로</span></button>
+							<button id="backBtn" type="button" class="btn btn-info"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true">뒤로</span></button>
 					<br><br>
-				<button type="button" class="btn btn-primary btn-lg btn-block">진행</button>
+				<button id="progressBtn" type="button" class="btn btn-primary btn-lg btn-block">진행</button>
 			</div>
 		</div>
 	</div>
