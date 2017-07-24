@@ -17,8 +17,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </insert>
     <insert id="emailAuth" parameterType="String">
         update users
-        set state=2
-        where email=#email#
+        set state='2'
+        where email=#{email}
     </insert>
     <select id="login" parameterType="java.util.Map" resultType="usersDto">
         select user_id userId, email, password, tel, gender, type, reg_date regDate, state
@@ -27,12 +27,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
     <update id="passReset" parameterType="java.util.Map">
         update users
-        set password=#{password},state=3
+        set password=#{password},state='3'
         where email=#{email}
     </update>
     <update id="passModify" parameterType="java.util.Map">
         update users
-        set password=#{password},state=2
+        set password=#{password},state='2'
         where email=#{email}
     </update>
 </mapper>

@@ -35,7 +35,7 @@ public class MemberController {
 		if(cnt!=0){
 			memberService.mailsend(usersDto.getEmail());
 			mav.addObject(usersDto);
-			mav.setViewName("/page/member/register");			
+			mav.setViewName("/index");			
 		}
 		return mav;
 	}
@@ -53,7 +53,7 @@ public class MemberController {
 	public String emailAuth(@RequestParam("email") String email,ModelMap map) {
 		int cnt = memberService.emailAuth(email);
 		map.put("emailAuth", email);
-		return "index";
+		return "/index";
 	}
 	@RequestMapping(value="/login.gbg", method=RequestMethod.POST)
 	public String login(@RequestParam Map<String,String> map,HttpSession session,ModelMap modelmap) {
@@ -72,12 +72,12 @@ public class MemberController {
 		} else {
 			modelmap.put("loginresult", "아이디 비밀번호를 확인하세요!");
 		}
-		return "index";
+		return "/index";
 	}
 	@RequestMapping(value="/login.gbg", method=RequestMethod.GET)
 	public String login(ModelMap map) {
 		map.put("mvlogin", "mvlogin");
-		return "index";
+		return "/index";
 	}
 	
 	@RequestMapping(value="/logout.gbg")
