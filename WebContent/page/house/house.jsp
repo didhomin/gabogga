@@ -25,9 +25,9 @@ $(document).ready(function() {
         	<p class="lead">by <a href="#">Start Bootstrap</a></p>
 			<hr>
         <!-- Date/Time -->
-        <p><span class="glyphicon glyphicon-time"></span>
-        Posted on August 24, 2013 at 9:00 PM</p>
-        <hr>
+    	<!-- <p><span class="glyphicon glyphicon-time"></span>
+        Posted on August 24, 2013 at 9:00 PM</p> 
+        <hr> -->
         <!-- Preview Image -->
         <img class="img-responsive" src="http://placehold.it/900x300" alt="">
         <hr>
@@ -76,24 +76,13 @@ $(document).ready(function() {
 
 		<!-- 라이브리 시티 설치 코드 -->
 	    <div id="lv-container" data-id="city" data-uid="MTAyMC8yOTY4Ny82MjU1">
-	    <script type="text/javascript">
-	       (function(d, s) {
-	           var j, e = d.getElementsByTagName(s)[0];
-	
-	           if (typeof LivereTower === 'function') { return; }
-	
-	           j = d.createElement(s);
-	           j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-	           j.async = true;
-	
-	           e.parentNode.insertBefore(j, e);
-	       })(document, 'script');
-	    </script>
-	    <noscript>라이브리 댓글 작성을 위해 JavaScript를 활성화 해주세요</noscript>
+	    <script src="${root }/page/house/js/reply.js"></script>
 	    </div>
 
         <hr>
 
+		<h3>Guset 하우스 위치</h3>
+		<div id=map></div>
         <!-- Posted Comments -->
 
         <!-- Comment -->
@@ -136,45 +125,46 @@ $(document).ready(function() {
       </div>
 
       <!-- Blog Sidebar Widgets Column -->
-      <div class="col-md-3">
-
+      <div class="col-md-3" >
+		<div class= "well" data-spy="affix" data-offset-top="150"> 
         <!-- Blog Search Well -->
-         <div class="well">
+         <div class="well" >
           <h4>Room Search</h4>
-          `<div class="input-group">
-
-            <select neme="roomnumber">
-            <option value="---">------</option>
-            <option value="101호">101호</option>
-            <option value="102호">102호</option>
-            <option value="103호">103호</option>
-            <option value="104호">104호</option>
-          </select>
+          <!-- 	<div class="input-group"> -->
+            <select neme="roomnumber" class="form-control">
+	            <option value="---">------</option>
+	            <option value="101호">101호</option>
+	            <option value="102호">102호</option>
+	            <option value="103호">103호</option>
+	            <option value="104호">104호</option>
+	         </select>
             <!-- <span class="input-group-btn">
                             <button class="btn btn-default" type="button">
                                 <span class="glyphicon glyphicon-search"></span>
             </button>
             </span> -->
           </div>
-        </div>
+   
 
         <!-- Blog Categories Well -->
         <div class="well">
           <h4>Check In/out</h4>
           <div class="row">
             <div class="col-md-12">
+            	<form name="dateform" method="post" action="${root }/house/date.gbg">
                 <div class="control-group">
           			<label class="control-label" for="from">From</label>
           			<div class="controls">
-            			<input type="text" id="from"/>
+            			<input type="text" id="from" readonly="readonly" class="form-control" style="background-color:#fff"/>
           			</div>
         		</div>
               	<div class="control-group">
           			<label class="control-label" for="to">To</label>
           			<div class="controls">
-            			<input type="text" id='to'/>
+            			<input type="text" id='to' readonly="readonly" class="form-control" style="background-color:#fff"/>
           			</div>
         		</div>
+        		</form>
             </div>
             <!-- <div class="col-md-5">
               <ul class="list-unstyled">
@@ -194,7 +184,8 @@ $(document).ready(function() {
           <p>Before booking <br> Please check again</p>
           <button type="button" class="btn btn-primary" id=Reservation>Reservation</button>
         </div>
-
+      </div>
+</div>
 
 
 <!-- -------------------- Map --------------------- -->
@@ -204,7 +195,7 @@ $(document).ready(function() {
             width: 100%;
           }
         </style>
-        <h3>Guset 하우스 위치</h3>
+        <!-- <h3>Guset 하우스 위치</h3> -->
         <div id="map">
         <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a10b55340969923033a4eb61fd837e6e"></script>
 		<script>
@@ -258,10 +249,6 @@ $(document).ready(function() {
 		</script>
 		</div>
 	</div>
-
-
-
-
 
 <!-- 여기까지가 우리가 꾸밀부분 -->
 <!-- 푸터 -->
