@@ -64,6 +64,15 @@
 								<li><a href="">제주도</a></li>
 							</ul>
 						</li>
+						<li class="dropdown"><a class="dropdown-toggle" href="#"
+							data-toggle="dropdown">호스팅하기 <strong class="caret"></strong></a>
+							<ul class="dropdown-menu">
+								<li><a href="${root}/host/register.gbg">숙소등록</a></li>
+								<li><a href="">숙소관리</a></li>
+								<li><a href="">예약관리</a></li>
+								
+							</ul>
+						</li>
 						<c:choose>
 						<c:when test="${empty user }">
 							<li id="loginM"><a href="javascript:modalLogin();"><span

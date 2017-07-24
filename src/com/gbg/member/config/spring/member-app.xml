@@ -21,7 +21,7 @@
       <property name="jndiName" value="java:comp/env/jdbc/kitri"/>
    </bean>
 -->   <bean id="ssfb" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="configLocation" value="classpath:com/gbg/config/sqlmap/SqlMapConfig.xml"/>
+		<property name="configLocation" value="classpath:com/gbg/member/config/sqlmap/SqlMapConfig.xml"/>
 		<property name="dataSource" ref="ds"/>
 	</bean>
 	
