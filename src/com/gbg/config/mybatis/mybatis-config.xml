@@ -8,6 +8,7 @@
     
     <typeAliases>
         <typeAlias alias="usersDto" type="com.gbg.member.model.UsersDto"/>
+        <typeAlias alias="hostDo" type="com.gbg.host.model.HostDto"/>
     </typeAliases>
     
     <mappers>
@@ -15,8 +16,8 @@
        <!-- <mapper resource="com/gbg/config/mybatis/sangkuk.xml"/>
         <mapper resource="com/gbg/config/mybatis/jieun.xml"/>
         <mapper resource="com/gbg/config/mybatis/juhee.xml"/>
-        <mapper resource="com/gbg/config/mybatis/insueng.xml"/>
-        <mapper resource="com/gbg/config/mybatis/sungjun.xml"/>-->
+        <mapper resource="com/gbg/config/mybatis/insueng.xml"/>-->
+        <mapper resource="com/gbg/config/mybatis/sungjun.xml"/>
     </mappers>
     
     
