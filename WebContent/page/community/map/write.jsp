@@ -22,56 +22,49 @@
 </script>
 		<div class="col-sm-9 main">			
 			<div class="row">
-				<div class="col-sm-6 text-center">
-					<div class="row form-group">
-						<div class="col-sm-2"><label for="subject">제목 :</label></div>
+				<div class="col-sm-6">
+					<label for="subject">제목 :</label>
+					<input type="subject" class="form-control" id="subject" name="subject" placeholder="제목을 입력해주세요."><br>
+
+					<label for="subject">경로 :</label>
+					<div class="row">
 						<div class="col-sm-10">
-							<input type="subject" class="form-control" id="subject" name="subject" placeholder="제목을 입력해주세요.">
-						</div>
-					</div>
-					<div class="row form-group">
-						<div class="col-sm-2"><label for="subject">경로 :</label></div>
-						<div class="col-sm-8">
 							<input type="subject" class="form-control" id="subject" name="subject">
 						</div>
 						<div class="col-sm-2">
-							<button type="button" class="btn btn-default btn-sm">+</button>
+							<button type="button" class="btn btn-warning btn-sm">+</button>
 						</div>
 					</div>
-					<div class="row form-group">
-						<div class="col-sm-2"></div>
-						<div class="col-sm-8">
+					<div class="row">
+						<div class="col-sm-10">
 							<input type="subject" class="form-control" id="subject" name="subject">
 						</div>
 						<div class="col-sm-2">
-							<button type="button" class="btn btn-default btn-sm">+</button>
+							<button type="button" class="btn btn-warning btn-sm">+</button>
 						</div>
 					</div>
-					<div class="row form-group">
-						<div class="col-sm-2"></div>
-						<div class="col-sm-8">
+					<div class="row">
+						<div class="col-sm-10">
 							<input type="subject" class="form-control" id="subject" name="subject">
 						</div>
 						<div class="col-sm-2">
-							<button type="button" class="btn btn-default btn-sm">+</button>
+							<button type="button" class="btn btn-warning btn-sm">+</button>
 						</div>
 					</div>
-					<div class="row form-group">
-						<div class="col-sm-2"></div>
-						<div class="col-sm-8">
+					<div class="row">
+						<div class="col-sm-10">
 							<input type="subject" class="form-control" id="subject" name="subject">
 						</div>
 						<div class="col-sm-2">
-							<button type="button" class="btn btn-default btn-sm">+</button>
+							<button type="button" class="btn btn-warning btn-sm">+</button>
 						</div>
 					</div>
-					<div class="row form-group">
-						<div class="col-sm-2"></div>
-						<div class="col-sm-8">
+					<div class="row">
+						<div class="col-sm-10">
 							<input type="subject" class="form-control" id="subject" name="subject">
 						</div>
 						<div class="col-sm-2">
-							<button type="button" class="btn btn-default btn-sm">확인</button>
+							<button type="button" class="btn btn-info btn-sm">확인</button>
 						</div>
 					</div>
 				</div>
@@ -88,7 +81,6 @@
 				</div>
 			</div>
 		</div>
-	
 	
 	
 <!-- 여기까지가 우리가 꾸밀부분 -->

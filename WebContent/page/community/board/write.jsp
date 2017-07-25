@@ -22,21 +22,19 @@
 </script>
 	<div class="col-sm-9 main">			
 		<div class="col-sm-11 row">
-			<div class="row form-group">
-				<div class="col-sm-2 text-center"><label for="subject">제목 :</label></div>
-				<div class="col-sm-10">
-					<input type="subject" class="form-control" id="subject" name="subject" placeholder="제목을 입력해주세요.">
-				</div>
-			</div>
-			<div class="form-group">
-			  <label for="content"></label>
-			  <textarea class="form-control summernote" id="content"></textarea>
-			</div>
+			<label for="subject">제목 :</label></div>
+			<input type="subject" class="form-control" id="subject" name="subject" placeholder="제목을 입력해주세요."><br>
+			
+			<label for="content">내용</label>
+			<textarea class="form-control summernote" id="content"></textarea>
+
 			<div class="col-sm-11"></div>
 			<div class="col-sm-1"> 
 				<button type="button" class="btn btn-primary">확인</button>
 			</div>
+			
 		</div>
+		
 	
 	
 	
