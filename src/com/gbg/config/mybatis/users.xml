@@ -13,7 +13,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
     <insert id="register" parameterType="usersDto">
         insert into users (user_id, email, password, tel, gender, type, reg_date, state)
-        values (SEQ_USERS_USERS_ID.nextval, #{email}, #{password}, #{tel}, #{gender}, '1', sysdate, '1')
+        values (SEQ_USERS_USERS_ID.nextval, #{email}, #{password}, #{tel}, #{gender}, '1', sysdate, ${state})
+    </insert>
+    <insert id="snsRegister" parameterType="usersDto">
+        insert into users (user_id, email, password, tel, gender, type, reg_date, state)
+        values (SEQ_USERS_USERS_ID.nextval, #{email}, '0', '없음', '0', '1', sysdate, ${state})
     </insert>
     <insert id="emailAuth" parameterType="String">
         update users

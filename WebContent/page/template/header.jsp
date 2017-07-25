@@ -82,7 +82,7 @@
 						</c:when>
 						<c:otherwise>
 	 						<li><a href="#">회원정보수정</a></li>
-	 						<li><a href="${root }/logout.gbg">로그아웃</a></li>
+	 						<li><a href="${root }/member/logout.gbg">로그아웃</a></li>
 	 					</c:otherwise>
 						</c:choose>
 	 			

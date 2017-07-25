@@ -39,7 +39,7 @@ $(document).ready(function() {
 								임시비밀번호로 로그인하셨습니다.<br> 비밀번호 변경 하십시오.<br>
 								<hr />
 								<form accept-charset="UTF-8" role="form" method="post"
-									action="${root }/passModify.gbg">
+									action="${root }/member/passModify.gbg">
 									<fieldset>
 										<div class="input-group form-group">
 											<span class="input-group-addon"><i

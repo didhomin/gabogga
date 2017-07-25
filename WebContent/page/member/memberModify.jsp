@@ -32,7 +32,7 @@ $(document).ready(function() {
 	<div class="row">
                 <div class="col-sm-7 col-sm-offset-1">
                   <form accept-charset="UTF-8" role="form" method="post"
-									action="${root }/passModify.gbg">
+									action="${root }/member/passModify.gbg">
 									<fieldset>
 										<div class="input-group form-group">
 											<span class="input-group-addon"><i

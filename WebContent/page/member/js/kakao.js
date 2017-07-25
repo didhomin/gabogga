@@ -8,10 +8,9 @@
 	            Kakao.API.request({
 	              url: '/v1/user/me',
 	              success: function(res) {
-	            	  alert(res.properties.nickname+"님 환영합니다.!!!");
-	            	  document.location.href="/gabogga/page/member/register.jsp";
-	 //               alert(JSON.stringify(res));
-	               // document.write(res.properties.nickname+"님 환영합니다. email:"+res.kaccount_email);
+//	            	   document.write(res.properties.nickname+"님 환영합니다. email:"+res.kaccount_email);
+	            	  document.location.href="/gabogga/member/kakao.gbg?email="+res.kaccount_email;
+//	            	  alert(res.properties.nickname+"님 환영합니다.!!!");
 	              },
 	              fail: function(error) {
 	                alert(JSON.stringify(error));

@@ -23,7 +23,7 @@
 								비밀 번호 변경 절차를 위해 이메일 주소를 입력해주세요.<br>
 								임시 비밀번호가 해당 이메일로 발송됩니다.<br>
 								<hr/>
-								<form accept-charset="UTF-8" role="form"  method="post" action="${root }/passReset.gbg">
+								<form accept-charset="UTF-8" role="form"  method="post" action="${root }/member/passReset.gbg">
 									<fieldset>
 										<div class="input-group form-group">
 											<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>

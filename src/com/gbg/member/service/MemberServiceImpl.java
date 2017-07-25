@@ -28,6 +28,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int register(UsersDto usersDto) {
+		usersDto.setState("1");
 		return sqlSession.getMapper(MemberDao.class).register(usersDto);
 	}
 	@Override
@@ -40,7 +41,7 @@ public class MemberServiceImpl implements MemberService {
 		String to = email;
 		String from = "didhomin@gmail.com";
 		String subject = "가보까!에서 보낸 인증 메일입니다.";
-		String content = "오른쪽 버튼을 클릭하면 인증이 완료됩니다.<a href='http://localhost/gabogga/mail.gbg?email="+to+"'>인증</a>";
+		String content = "오른쪽 버튼을 클릭하면 인증이 완료됩니다.<a href='http://localhost/gabogga/member/mail.gbg?email="+to+"'>인증</a>";
 		Properties p = new Properties();
 
 		p.put("mail.smtp.host", "smtp.gmail.com"); 
@@ -146,6 +147,17 @@ public class MemberServiceImpl implements MemberService {
 	public void passModify(Map<String, String> map) {
 		sqlSession.getMapper(MemberDao.class).passModify(map);
 		
+	}
+	@Override
+	public int kakaoRegister(String email) {
+		UsersDto usersDto = new UsersDto();
+		usersDto.setEmail(email);
+		usersDto.setState("4");
+		if(emailCheck(email)==1) {
+			return 0;	
+		} else {
+			return sqlSession.getMapper(MemberDao.class).snsRegister(usersDto);
+		}
 	}
 
 	

@@ -37,6 +37,22 @@ $(document).ready(function() {
 });s
 </script>
 </c:if>
+<c:if test="${not empty passReset}">
+<script type="text/javascript">	
+$(document).ready(function() {
+	alert("${passReset}로 임시비밀번호가 발송되었습니다.");	
+});
+</script>
+</c:if>
+<c:if test="${not empty kakaologin}">
+<script type="text/javascript">	
+$(document).ready(function() {
+	alert("${kakaologin}님 안녕하세요.");	
+});
+</script>
+</c:if>
+
+
 <!-- 여기서부터 우리가 꾸미기 -->
 
 

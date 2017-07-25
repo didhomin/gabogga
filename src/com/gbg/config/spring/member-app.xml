@@ -8,6 +8,6 @@
 	<context:annotation-config/>
 	<context:component-scan base-package="com.gbg.member.service"/>
 	<context:component-scan base-package="com.gbg.member.dao"/>
-	
+
 
 </beans>

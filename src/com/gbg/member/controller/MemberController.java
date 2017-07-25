@@ -3,12 +3,7 @@ package com.gbg.member.controller;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.jsp.PageContext;
 
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +19,7 @@ import com.gbg.member.model.UsersDto;
 import com.gbg.member.service.MemberService;
 
 @Controller
+@RequestMapping("/member")
 public class MemberController {
 	@Autowired
 	private MemberService memberService;
@@ -59,16 +55,17 @@ public class MemberController {
 	public String login(@RequestParam Map<String,String> map,HttpSession session,ModelMap modelmap) {
 		UsersDto usersDto = memberService.login(map);
 		if(usersDto!=null){
-			if(Integer.parseInt(usersDto.getState())==2) {
-				session.setAttribute("user",usersDto);				
-			} else if(Integer.parseInt(usersDto.getState())==3){
-				session.setAttribute("user",usersDto);
-				
-				modelmap.put("passModify", "passModify");
-			} else {
+			if(Integer.parseInt(usersDto.getState())==1) {
 				memberService.mailsend(usersDto.getEmail());
-				modelmap.put("loginresult", "미인증 회원입니다.이메일 인증 로그인 하세요!");
-			}
+				modelmap.put("loginresult", "미인증 회원입니다.이메일 인증 로그인 하세요!");				
+			} else if(Integer.parseInt(usersDto.getState())==2){
+				session.setAttribute("user",usersDto);
+			} else if(Integer.parseInt(usersDto.getState())==3) {
+				session.setAttribute("user",usersDto);
+				modelmap.put("passModify", "passModify");
+			} 
+				
+			
 		} else {
 			modelmap.put("loginresult", "아이디 비밀번호를 확인하세요!");
 		}
@@ -86,7 +83,8 @@ public class MemberController {
 		return "/index";
 	}
 	@RequestMapping(value="/passReset.gbg")
-	public String passReset(@RequestParam("email") String email) {
+	public String passReset(@RequestParam("email") String email,ModelMap modelmap) {
+		modelmap.put("passReset", email);
 		memberService.passReset(email);
 		return "/index";
 	}
@@ -97,6 +95,19 @@ public class MemberController {
 		map.put("email", usersDto.getEmail());
 		map.put("password", password);
 		memberService.passModify(map);
+		return "/index";
+	}
+	@RequestMapping(value="/kakao.gbg")
+	public String kakaoLogin(@RequestParam("email") String email,ModelMap modelmap,HttpSession session) {
+		int cnt = memberService.emailCheck(email);
+		modelmap.put("kakaologin", email);
+		UsersDto usersDto = new UsersDto();
+		usersDto.setEmail(email);
+		usersDto.setState("4");
+		if(cnt==0) {
+		memberService.kakaoRegister(email);
+		}
+		session.setAttribute("user",usersDto);
 		return "/index";
 	}
 }

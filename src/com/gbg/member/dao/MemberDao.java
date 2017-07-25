@@ -7,6 +7,7 @@ import com.gbg.member.model.UsersDto;
 public interface MemberDao {
 	
 	int register(UsersDto usersDto);
+	int snsRegister(UsersDto usersDto);
 	int emailCheck(String email);
 	int emailAuth(String email);
 	UsersDto login(Map<String, String> map);

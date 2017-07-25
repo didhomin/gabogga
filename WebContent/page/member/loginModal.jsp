@@ -19,7 +19,7 @@
 					<div class="panel col-sm-12">
 						<div class="panel-primary ">
 							<div class="panel-body">
-								<form class="" accept-charset="UTF-8" role="form" method="post" action="${root }/login.gbg">
+								<form class="" accept-charset="UTF-8" role="form" method="post" action="${root }/member/login.gbg">
 									<fieldset>
 										<div class="input-group form-group">
 											<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>

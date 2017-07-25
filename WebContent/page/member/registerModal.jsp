@@ -33,7 +33,7 @@ $(document).ready(function() {
 		$.ajax({
 			type : 'GET',
 			dataType : 'json',
-			url : '${root}/emailCheck.gbg',
+			url : '${root}/member/emailCheck.gbg',
 			data : {'email' : email},
 			success : function(data) {
 				if(data.count==0) {			
@@ -77,7 +77,7 @@ $(document).ready(function() {
 							<hr />
 							<div class="panel-body">
 								<form accept-charset="UTF-8" role="form" method="post"
-									action="${root }/register.gbg">
+									action="${root }/member/register.gbg">
 									<fieldset>
 										<div class="input-group form-group">
 											<span class="input-group-addon"><i
