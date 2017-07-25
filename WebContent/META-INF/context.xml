@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context>
-	<Resource name="jdbc/kitri" auth="Container"
+	<Resource name="jdbc/gbg" auth="Container"
       type="javax.sql.DataSource"
       factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
       driverClassName="oracle.jdbc.driver.OracleDriver"

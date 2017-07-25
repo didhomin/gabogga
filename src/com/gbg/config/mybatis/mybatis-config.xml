@@ -5,14 +5,13 @@
  "http://mybatis.org/dtd/mybatis-3-config.dtd">
  
 <configuration>
-    <properties resource="com/gbg/member/config/sqlmap/dbinfo.properties"/>
     
     <typeAliases>
         <typeAlias alias="usersDto" type="com.gbg.member.model.UsersDto"/>
     </typeAliases>
     
     <mappers>
-        <mapper resource="com/gbg/member/config/sqlmap/users.xml"/>
+        <mapper resource="com/gbg/config/mybatis/users.xml"/>
     </mappers>
     
     
