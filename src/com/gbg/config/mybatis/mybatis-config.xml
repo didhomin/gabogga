@@ -12,6 +12,11 @@
     
     <mappers>
         <mapper resource="com/gbg/config/mybatis/users.xml"/>
+       <!-- <mapper resource="com/gbg/config/mybatis/sangkuk.xml"/>
+        <mapper resource="com/gbg/config/mybatis/jieun.xml"/>
+        <mapper resource="com/gbg/config/mybatis/juhee.xml"/>
+        <mapper resource="com/gbg/config/mybatis/insueng.xml"/>
+        <mapper resource="com/gbg/config/mybatis/sungjun.xml"/>-->
     </mappers>
     
     
