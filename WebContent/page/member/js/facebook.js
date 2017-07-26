@@ -13,7 +13,7 @@
 
 function passReset() {
 	$('#modalLogin').modal("hide");
-	$('#modalPassReset').modal("show")
+	$('#modalPassReset').modal("show");
 }
 function mvregister() {
 	$('#modalLogin').modal("hide");
@@ -23,23 +23,19 @@ function mvlogin() {
 	$('#modalRegister').modal("hide");
 	modalLogin();
 }
-
-	  window.fbAsyncInit = function() {
+function memberModify() {
+	$('#modalMemberModify').modal("show");
+}
+	window.fbAsyncInit = function() {
 	    FB.init({
 	      appId      : '796491983864394',
 	      status 	 : true,
-	      cookie     : false,
+	      cookie     : true,
 	      xfbml      : true,
+	      oauth 	 : true,
 	      version    : 'v2.8'
 	    });
 	    FB.AppEvents.logPageView();   
-	    FB.getLoginStatus(function(response) {
-			  if (response.status === 'connected') {
-			    console.log('Logged in.');
-			    FB.logout();
-			   
-			  }
-			});
 	  };
 
 	  (function(d, s, id) {
@@ -49,15 +45,42 @@ function mvlogin() {
 		  js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v2.9&appId=796491983864394";
 		  fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));
-	  
-	  var finished_rendering = function() {
-	  console.log("finished rendering plugins");
-	  var spinner = document.getElementById("spinner");
-	  spinner.removeAttribute("style");
-	  spinner.removeChild(spinner.childNodes[0]);
-	  }
-	  FB.Event.subscribe('xfbml.render', finished_rendering);
+/*	 function api() {
+	  FB.api('/me', { locale: 'ko_KR', fields: 'name, email' },
+			  function(response) {
+		  			alert(response.name+"님 안녕하세요"+response.email);
+			  }
+			)
+	 };
 	function login() {
-		  FB.getLoginStatus();
-		  FB.login();	  
-	}
+			FB.login();
+			 FB.api('/me', { locale: 'ko_KR', fields: 'name, email' },
+					  function(response) {
+				  			alert(response.name+"님 안녕하세요"+response.email);
+					  }
+					)
+	}*/
+	  FB.getLoginStatus(function(response) {
+	       if (response.status == 'connected') {
+	         getCurrentUserInfo(response)
+	       } else {
+	         FB.login(function(response) {
+	           if (response.authResponse){
+	             getCurrentUserInfo(response)
+	           } else {
+	             console.log('Auth cancelled.')
+	           }
+	         }, { scope: 'publish_actions' });
+	       }
+	  });
+	     function getCurrentUserInfo() {
+	       FB.api('/me', { locale: 'ko_KR', fields: 'name, email' },function(userInfo) {
+//	       alert(userInfo.name + ': ' + userInfo.email);
+	       document.location.href="/gabogga/member/facebook.gbg?email="+userInfo.email;
+	       });
+	     }
+	 
+	    function login() {
+	       getCurrentUserInfo();
+	        FB.login();     
+	   } 

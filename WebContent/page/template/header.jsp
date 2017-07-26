@@ -25,6 +25,7 @@
  <%@ include file="/page/member/loginModal.jsp" %>	
  <%@ include file="/page/member/passReset.jsp" %>	
  <%@ include file="/page/member/passModify.jsp" %>	
+ <%@ include file="/page/member/memberModify.jsp" %>	
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
 			<div class="container-fluid">
@@ -81,7 +82,7 @@
 									class="glyphicon glyphicon-user"></span> Register</a></li>
 						</c:when>
 						<c:otherwise>
-	 						<li><a href="#">회원정보수정</a></li>
+	 						<li><a href="javascript:memberModify();">회원정보수정</a></li>
 	 						<li><a href="${root }/member/logout.gbg">로그아웃</a></li>
 	 					</c:otherwise>
 						</c:choose>

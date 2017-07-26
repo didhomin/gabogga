@@ -149,7 +149,7 @@ public class MemberServiceImpl implements MemberService {
 		
 	}
 	@Override
-	public int kakaoRegister(String email) {
+	public int snsRegister(String email) {
 		UsersDto usersDto = new UsersDto();
 		usersDto.setEmail(email);
 		usersDto.setState("4");
@@ -158,6 +158,10 @@ public class MemberServiceImpl implements MemberService {
 		} else {
 			return sqlSession.getMapper(MemberDao.class).snsRegister(usersDto);
 		}
+	}
+	@Override
+	public int memberModify(UsersDto usersDto) {
+		return sqlSession.getMapper(MemberDao.class).memberModify(usersDto);
 	}
 
 	

@@ -34,7 +34,7 @@ $(document).ready(function() {
 <script type="text/javascript">	
 $(document).ready(function() {
 	$('#modalPassModify').modal({backdrop: "static"});
-});s
+});
 </script>
 </c:if>
 <c:if test="${not empty passReset}">
@@ -44,10 +44,10 @@ $(document).ready(function() {
 });
 </script>
 </c:if>
-<c:if test="${not empty kakaologin}">
+<c:if test="${not empty snslogin}">
 <script type="text/javascript">	
 $(document).ready(function() {
-	alert("${kakaologin}님 안녕하세요.");	
+	alert("${snslogin}님 안녕하세요.");	
 });
 </script>
 </c:if>
