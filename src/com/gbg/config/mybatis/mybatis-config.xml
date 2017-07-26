@@ -8,7 +8,7 @@
     
     <typeAliases>
         <typeAlias alias="usersDto" type="com.gbg.member.model.UsersDto"/>
-        <typeAlias alias="hostDo" type="com.gbg.host.model.HostDto"/>
+        <typeAlias alias="guestHouseDto" type="com.gbg.host.model.GuestHouseDto"/>
     </typeAliases>
     
     <mappers>
