@@ -14,23 +14,23 @@
 	<hr/>
 	</div>
 	<div class="row">
-                <div class="col-sm-7 col-sm-offset-1">
-                  <form class="">
+                <div class="col-sm-7 col-sm-offset-2">
+                  <form class="" method="post" action="${root }/admin/qna.gbg">
                     <div class="form-group">
                       <label for="">Name</label>
-                      <input type="text" class="form-control" id="" placeholder="YangHomin">
+                      <input type="text" class="form-control" id="name" name="name" placeholder="YangHomin">
                     </div>
                     <div class="form-group">
                       <label for="">Email</label>
-                      <input type="email" class="form-control" id="exampleInputEmail2" placeholder="yourmail@example.com">
+                      <input type="email" class="form-control" id="from" name="from" value="${user.email }" readonly="readonly">
                     </div>
                     <div class="form-group">
                       <label for="">Subject</label>
-                      <input type="text" class="form-control" id="exampleInputEmail2" placeholder="Subject">
+                      <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject">
                     </div>
                     <div class="form-group ">
                       <label for="">Content</label>
-                     <textarea class="form-control" placeholder="Content" rows="10"></textarea> 
+                     <textarea class="form-control" id="content" name="content" placeholder="Content" rows="10"></textarea> 
                     </div>
                     <button type="submit" class="btn btn-default btn-lg pull-right">Send Mail</button>
                   </form>

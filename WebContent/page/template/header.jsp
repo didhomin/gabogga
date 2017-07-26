@@ -36,14 +36,14 @@
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href=""><strong>가보까?</strong></a>
+					<a class="navbar-brand" href="${root }/index.jsp"><strong>가보까?</strong></a>
 				</div>
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav ">
-						<li class=""><a href="">공지사항</a></li>
-						<li class=""><a href="">인기순</a></li>
-						<li class=""><a href="">가격순</a></li>
+						<li class=""><a href="#">공지사항</a></li>
+						<li class=""><a href="#">인기순</a></li>
+						<li class=""><a href="#">가격순</a></li>
 						<li class=""><a href="${root}/page/house/house.jsp">house</a>
 
 					</ul>
@@ -61,16 +61,16 @@
 						<li class="dropdown"><a class="dropdown-toggle" href="#"
 							data-toggle="dropdown">커뮤니티 <strong class="caret"></strong></a>
 							<ul class="dropdown-menu">
-								<li><a href="">내일로</a></li>
-								<li><a href="">제주도</a></li>
+								<li><a href="#">내일로</a></li>
+								<li><a href="#">제주도</a></li>
 							</ul>
 						</li>
 						<li class="dropdown"><a class="dropdown-toggle" href="#"
 							data-toggle="dropdown">호스팅하기 <strong class="caret"></strong></a>
 							<ul class="dropdown-menu">
 								<li><a href="${root}/host/register.gbg">숙소등록</a></li>
-								<li><a href="">숙소관리</a></li>
-								<li><a href="">예약관리</a></li>
+								<li><a href="#">숙소관리</a></li>
+								<li><a href="#">예약관리</a></li>
 								
 							</ul>
 						</li>
