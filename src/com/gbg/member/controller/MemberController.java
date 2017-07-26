@@ -100,14 +100,38 @@ public class MemberController {
 	@RequestMapping(value="/kakao.gbg")
 	public String kakaoLogin(@RequestParam("email") String email,ModelMap modelmap,HttpSession session) {
 		int cnt = memberService.emailCheck(email);
-		modelmap.put("kakaologin", email);
+		modelmap.put("snslogin", email);
 		UsersDto usersDto = new UsersDto();
 		usersDto.setEmail(email);
 		usersDto.setState("4");
 		if(cnt==0) {
-		memberService.kakaoRegister(email);
+		memberService.snsRegister(email);
 		}
 		session.setAttribute("user",usersDto);
 		return "/index";
+	}
+	@RequestMapping(value="/facebook.gbg")
+	public String facebookLogin(@RequestParam("email") String email,ModelMap modelmap,HttpSession session) {
+		int cnt = memberService.emailCheck(email);
+		modelmap.put("snslogin", email);
+		UsersDto usersDto = new UsersDto();
+		usersDto.setEmail(email);
+		usersDto.setState("4");
+		if(cnt==0) {
+			memberService.snsRegister(email);
+		}
+		session.setAttribute("user",usersDto);
+		return "/index";
+	}
+	@RequestMapping("/modify.gbg")
+	public ModelAndView memberModify(UsersDto usersDto,HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		int cnt = memberService.memberModify(usersDto);
+		if(cnt!=0){
+			session.setAttribute("user",usersDto);
+			mav.addObject(usersDto);
+			mav.setViewName("/index");			
+		}
+		return mav;
 	}
 }

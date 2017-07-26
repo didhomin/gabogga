@@ -12,5 +12,6 @@ public interface MemberService {
 	UsersDto login(Map<String, String> map);
 	void passReset(String email);
 	void passModify(Map<String, String> map);
-	int kakaoRegister(String email);
+	int snsRegister(String email);
+	int memberModify(UsersDto usersDto);
 }

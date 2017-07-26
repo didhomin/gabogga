@@ -13,5 +13,6 @@ public interface MemberDao {
 	UsersDto login(Map<String, String> map);
 	void passReset(Map<String,String> map);
 	void passModify(Map<String, String> map);
+	int memberModify(UsersDto usersDto);
 
 }

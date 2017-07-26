@@ -11,19 +11,16 @@
 //	            	   document.write(res.properties.nickname+"님 환영합니다. email:"+res.kaccount_email);
 	            	  document.location.href="/gabogga/member/kakao.gbg?email="+res.kaccount_email;
 //	            	  alert(res.properties.nickname+"님 환영합니다.!!!");
-	              },
-	              fail: function(error) {
-	                alert(JSON.stringify(error));
 	              }
+	              
 	            });
-	          },
-	          fail: function(err) {
-	            alert(JSON.stringify(err));
 	          }
+	          
 	      });
 	    };
 	  //]]>
 	   function kakaologout() {
-			Kakao.Auth.logout()	   
+			Kakao.Auth.logout();   
 	   }
+	  
 	 
