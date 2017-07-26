@@ -100,7 +100,7 @@
         $('.thumbnail').css()
       }) */
 
-      $('.thumbnail').on('mouseover', function() {
+      $('.thumbnail').on('mouseover', function() {x
          var x = $(this).data('x');
          var y = $(this).data('y');
          // alert('x = ' + x + ' y = ' + y);

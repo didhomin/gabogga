@@ -3,20 +3,98 @@
 <%@ include file="/page/template/header.jsp"%>
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0cc58507d96bb54372ac861c953ed175&libraries=services"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<script type="text/javascript">
-	$(document).ready(function() {
+<script>
+	$(document)
+			.ready(
+					function() {
+						var address = '제주특별자치도 제주시 첨단로 242';
+						var mapContainer = document
+						.getElementById('map'), // 지도를 표시할 div 
+				mapOption = {
+					center : new daum.maps.LatLng(
+							33.450701, 126.570667), // 지도의 중심좌표
+					level : 3
+				// 지도의 확대 레벨
+				};
+						// 지도를 생성합니다    
+						var map = new daum.maps.Map(
+								mapContainer, mapOption);
 
-		$('#progressBtn').click(function() {
-			$(location).attr('href', '${root}/host/fourth.gbg');
-		});
+						// 주소-좌표 변환 객체를 생성합니다
+						var geocoder = new daum.maps.services.Geocoder();
+						$('#progressBtn').click(
+								function() {
+									$(location).attr('href',
+											'${root}/host/fourth.gbg');
+								});
 
-		$('#backBtn').click(function() {
-			window.history.back();
-		});
+						$('#backBtn').click(function() {
+							window.history.back();
+						});
 
-	});
+						$('#checkBtn')
+								.click(
+										function() {
+											address = $('#houseAddr1').val();
+											alert(address);
+											var mapContainer = document
+													.getElementById('map'), // 지도를 표시할 div 
+											mapOption = {
+												center : new daum.maps.LatLng(
+														33.450701, 126.570667), // 지도의 중심좌표
+												level : 3
+											// 지도의 확대 레벨
+											};
+
+											// 지도를 생성합니다    
+											var map = new daum.maps.Map(
+													mapContainer, mapOption);
+
+											// 주소-좌표 변환 객체를 생성합니다
+											var geocoder = new daum.maps.services.Geocoder();
+
+											// 주소로 좌표를 검색합니다
+											geocoder
+													.addressSearch(
+															address,
+															function(result,
+																	status) {
+
+																// 정상적으로 검색이 완료됐으면 
+																if (status === daum.maps.services.Status.OK) {
+
+																	var coords = new daum.maps.LatLng(
+																			result[0].y,
+																			result[0].x);
+
+																	// 결과값으로 받은 위치를 마커로 표시합니다
+																	var marker = new daum.maps.Marker(
+																			{
+																				map : map,
+																				position : coords
+																			});
+
+																	// 인포윈도우로 장소에 대한 설명을 표시합니다
+																	var infowindow = new daum.maps.InfoWindow(
+																			{
+																				content : '<div style="width:150px;text-align:center;padding:6px 0;">게스트 하우스 좌표 확인을 위함입니다. 위치가 맞으면 확인을 눌러주세요.</div>'
+																			});
+																	infowindow
+																			.open(
+																					map,
+																					marker);
+
+																	// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+																	map
+																			.setCenter(coords);
+																}
+															});
+										});
+
+						$('#lastBtn').click(function() {
+							window.history.back();
+						});
+					});
 </script>
 <style>
 .basic {
@@ -36,14 +114,21 @@
 			<div class="row" style="padding-bottom: 50px;">
 				<div class="col-sm-5 col-sm-push-1" style="padding-top: 30px;">
 					<h2>기본사항</h2>
-					<font size="3px" color="black"> <strong>숙박 시설 주소</strong></font> <br>
-					<br> <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-					<font size="3px" color="blue"> <strong>도로명 주소 </strong></font><br>
-					<input type="text" class="form-control" placeholder="내용을 입력해주세요.">
-					<br> <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-					<font size="3px" color="blue"><strong>세부주소</strong> </font><br>
-					<input type="text" class="form-control" placeholder="내용을 입력해주세요.">
-					<br>
+					<form name="hostform" method="post">
+						<font size="3px" color="black"> <strong>숙박 시설 주소<br>
+								: 도로명 주소를 입력 후 지도에서 확인 버튼을 눌러주세요.
+						</strong></font> <br> <br> <span class="glyphicon glyphicon-star"
+							aria-hidden="true"></span> <font size="3px" color="blue">
+							<strong>도로명 주소 </strong>
+						</font><br> <input id="houseAddr1" name="houseAddr1" type="text"
+							class="form-control" placeholder="주소를 입력해주세요.">
+						<button id="checkBtn" type="button"
+							class="btn btn-warning pull-right">지도에서 확인</button>
+						<br> <span class="glyphicon glyphicon-star"
+							aria-hidden="true"></span> <font size="3px" color="blue"><strong>세부주소</strong>
+						</font><br> <input id="houseAddr2" name="houseAddr2" type="text"
+							class="form-control" placeholder="내용을 입력해주세요."> <br>
+					</form>
 				</div>
 				<div class="col-sm-1 col-sm-push-1"></div>
 				<div class="col-sm-6">
@@ -53,46 +138,11 @@
 								혹시 주소 결과가 잘못 나오는 경우에는 여기에 제보해주세요. </a>
 						</em>
 					</p>
+					※게스트 하우스 좌표 확인을 위함입니다. 아래 지도를 꼭 확인해주세요.
 					<div id="map" style="width: 100%; height: 350px;"></div>
+					<br>
+					<button id="lastBtn" type="button" class="btn btn-danger">확인</button>
 				</div>
-				<script>
-				var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-			    mapOption = {
-			        center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-			        level: 3 // 지도의 확대 레벨
-			    };  
-
-			// 지도를 생성합니다    
-			var map = new daum.maps.Map(mapContainer, mapOption); 
-
-			// 주소-좌표 변환 객체를 생성합니다
-			var geocoder = new daum.maps.services.Geocoder();
-
-			// 주소로 좌표를 검색합니다
-			geocoder.addressSearch('제주특별자치도 제주시 첨단로 242', function(result, status) {
-
-			    // 정상적으로 검색이 완료됐으면 
-			     if (status === daum.maps.services.Status.OK) {
-
-			        var coords = new daum.maps.LatLng(result[0].y, result[0].x);
-
-			        // 결과값으로 받은 위치를 마커로 표시합니다
-			        var marker = new daum.maps.Marker({
-			            map: map,
-			            position: coords
-			        });
-
-			        // 인포윈도우로 장소에 대한 설명을 표시합니다
-			        var infowindow = new daum.maps.InfoWindow({
-			            content: '<div style="width:150px;text-align:center;padding:6px 0;">위치가 맞으면 확인버튼을 눌러주세요.</div>'
-			        });
-			        infowindow.open(map, marker);
-
-			        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-			        map.setCenter(coords);
-			    } 
-			});    
-			</script>
 			</div>
 		</div>
 		<div class="col-sm-12">

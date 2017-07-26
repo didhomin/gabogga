@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/page/template/header.jsp" %>	
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	
 	$('#progressBtn').click(function(){
-		$(location).attr('href', '${root}/host/third.gbg');
+		document.hostform.action = "${root}/host/second.gbg";
+		document.hostform.submit();
 	});
 	
 	$('#backBtn').click(function(){
@@ -35,28 +35,31 @@ body{
 			
 			<div class="row" style="padding-bottom: 50px;">
 				<div class="col-sm-3 col-sm-push-1" style="padding-top:30px;">
+				<form name="hostform" method="post">
 				<h2>기본사항</h2>
 			<br>
 					<span class="glyphicon glyphicon-star" aria-hidden="true"></span> <font
 						size="3px" color="blue" ><strong>숙박 시설 이름</strong> </font><br> <input
-						type="text" class="form-control" placeholder="내용을 입력해주세요.">
+						id="houseName" name="houseName" type="text" class="form-control" placeholder="내용을 입력해주세요.">
 					<br> <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
 					<font size="3px" color="blue"><strong>전체 객실 수</strong> </font><br>
 					<div class="row">
 						<div class="col-sm-6">
-							<input type="text" class="form-control" placeholder="내용을 입력해주세요."
+							<input id="houseTotal" name="houseTotal" type="text" class="form-control" placeholder="내용을 입력해주세요."
 								size="1px">
 						</div>
 						<div class="col-sm-6"></div>
 					</div>
 					<br> <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 					<font size="3px" color="blue"><strong>웹 사이트 (선택사항)</strong> </font><br> <input
-						type="text" class="form-control" placeholder="내용을 입력해주세요.">
+						id="houseSite" name="houseSite" type="text" class="form-control" placeholder="내용을 입력해주세요.">
 					<br> <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 					<font size="3px" color="blue"><strong>연락처 </strong></font><br> <input
-						type="text" class="form-control" placeholder="내용을 입력해주세요.">
+						id="housePhone" name="housePhone" type="text" class="form-control" placeholder="내용을 입력해주세요.">
 					<br>
+					</form>
 				</div>
+				
 				<div class="col-sm-2 col-sm-push-1"></div>
 				<div class="col-sm-7">
 					<div class="rightside">
