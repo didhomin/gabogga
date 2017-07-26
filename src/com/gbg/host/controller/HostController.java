@@ -1,8 +1,15 @@
 package com.gbg.host.controller;
 
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
 
 
 @Controller
@@ -17,14 +24,19 @@ public class HostController {
 			return "/page/host/first";
 		}
 		
-		@RequestMapping("/second.gbg")
+		@RequestMapping("/first.gbg")
 		public String second(){
 			return "/page/host/second";
 		}
 		
-		@RequestMapping("/third.gbg")
-		public String third(){
-			return "/page/host/third";
+		@RequestMapping("/second.gbg")
+		public ModelAndView third(@RequestParam Map<String, String> map, HttpSession session){
+			ModelAndView mav= new ModelAndView();
+			if(map != null){
+				session.setAttribute("host", map);
+				mav.setViewName("/page/host/third");
+			}
+			return mav;
 		}
 		
 		@RequestMapping("/fourth.gbg")

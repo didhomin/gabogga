@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/page/template/header.jsp" %>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	
 	$('#startBtn').click(function(){
-		$(location).attr('href', '${root}/host/second.gbg');
+		$(location).attr('href', '${root}/host/first.gbg');
 	});
 	
 	$('#backBtn').click(function(){

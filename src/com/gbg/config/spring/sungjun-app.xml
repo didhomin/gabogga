@@ -9,17 +9,4 @@
 	<context:component-scan base-package="com.gbg.host.service"/>
 	<context:component-scan base-package="com.gbg.host.dao"/>
 	
-   <bean id="ds" class="org.springframework.jndi.JndiObjectFactoryBean">
-      <property name="jndiName" value="java:comp/env/jdbc/gbg"/>
-   </bean>
-   
-	<bean id="ssfb" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="configLocation" value="classpath:com/gbg/config/mybatis/mybatis-config.xml"/>
-		<property name="dataSource" ref="ds"/>
-	</bean>
-	
-	<bean id="ss" class="org.mybatis.spring.SqlSessionTemplate">
-		<constructor-arg ref="ssfb"/>
-	</bean>
-
 </beans>
