@@ -4,32 +4,48 @@
 <!-- 헤더 -->
 
 <!-- 여기서부터 우리가 꾸미기 -->
-  <%@ include file="/page/template/header.jsp" %>
-  <%@ include file="/page/house/reservationModal.jsp" %>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-  <link rel='stylesheet prefetch' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
-  <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
+  	<%@ include file="/page/template/header.jsp" %>
+ 	<%@ include file="/page/house/reservationModal.jsp" %>
+  
+  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  	<link rel='stylesheet prefetch' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
+     <!-- fotorama.css & fotorama.js. -->
+	<link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet"> <!-- 3 KB -->
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script> <!-- 16 KB -->
+  	<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
+<c:if test="${not empty user }">
 <script type="text/javascript">
-$(document).ready(function() {
-	$("#Reservation").click(function(){
-		$("#modalReservation").modal();
-	})
-});
+function reservationmodal() {
+	$("#userId").val($("${user.userId}"));
+	$("#tel").val($("${user.tel}"));
+	$("#People").val($("#people").val());
+	$("#roomInfo").val($("#roominfo").val());
+	$("#checkIn").val($("#from").val());
+	$("#checkOut").val($("#to").val());
+	$("#modalReservation").modal();
+}
+
+
 </script>
+</c:if>
 	<!-- Blog Post Content Column -->
     <div class="col-sm-9">
        <!-- Blog Post -->
        		<!-- Title -->
        		<h1>This Guest House Title</h1>
-        	<!-- Author -->
-        	<p class="lead">by <a href="#">Start Bootstrap</a></p>
 			<hr>
-        <!-- Date/Time -->
-    	<!-- <p><span class="glyphicon glyphicon-time"></span>
-        Posted on August 24, 2013 at 9:00 PM</p> 
-        <hr> -->
         <!-- Preview Image -->
-        <img class="img-responsive" src="http://placehold.it/900x300" alt="">
+      <!--   <img class="img-responsive" src="http://placehold.it/900x300" alt=""> -->
+      
+		
+		
+		<!-- 2. Add images to <div class="fotorama"></div>. -->
+		<div class="fotorama">
+		  <img src="http://s.fotorama.io/1.jpg">
+		  <img src="http://s.fotorama.io/2.jpg">
+		</div>
+		      
+      
         <hr>
         <!-- Post Content -->
         <p class="lead">Reservation Host Information</p>
@@ -126,12 +142,12 @@ $(document).ready(function() {
 
       <!-- Blog Sidebar Widgets Column -->
       <div class="col-md-3" >
-		<div class= "well" data-spy="affix" data-offset-top="150"> 
+		<div class= "well" data-spy="affix" data-offset-top="150">
         <!-- Blog Search Well -->
          <div class="well" >
-          <h4>Room Search</h4>
+          <h4>[객실선택]</h4>
           <!-- 	<div class="input-group"> -->
-            <select neme="roomnumber" class="form-control">
+            <select name="roominfo" id="roominfo" class="form-control">
 	            <option value="---">------</option>
 	            <option value="101호">101호</option>
 	            <option value="102호">102호</option>
@@ -144,27 +160,42 @@ $(document).ready(function() {
             </button>
             </span> -->
           </div>
-   
+          <div class="well" >
+          <h4>[객실인원]</h4>
+          <!-- 	<div class="input-group"> -->
+            <select name="people" id="people" class="form-control">
+	            <option value="---">------</option>
+	            <option value="1명">1명</option>
+	            <option value="2명">2명</option>
+	            <option value="3명">3명</option>
+	            <option value="4명">4명</option>
+	            <option value="5명">5명</option>
+	            <option value="6명">6명</option>
+	            <option value="7명">7명</option>
+	            <option value="8명">8명</option>
+	            <option value="9명">9명</option>
+	            <option value="10명">10명</option>
+	         </select>
+          </div>
+
 
         <!-- Blog Categories Well -->
         <div class="well">
-          <h4>Check In/out</h4>
+          <h4>[체크인/아웃 날짜]</h4>
           <div class="row">
             <div class="col-md-12">
-            	<form name="dateform" method="post" action="${root }/house/date.gbg">
                 <div class="control-group">
-          			<label class="control-label" for="from">From</label>
+          			<label class="control-label" for="from">checkIn</label>
           			<div class="controls">
             			<input type="text" id="from" readonly="readonly" class="form-control" style="background-color:#fff"/>
           			</div>
         		</div>
               	<div class="control-group">
-          			<label class="control-label" for="to">To</label>
+          			<label class="control-label" for="to">CheckOut</label>
           			<div class="controls">
             			<input type="text" id='to' readonly="readonly" class="form-control" style="background-color:#fff"/>
           			</div>
         		</div>
-        		</form>
             </div>
             <!-- <div class="col-md-5">
               <ul class="list-unstyled">
@@ -182,7 +213,15 @@ $(document).ready(function() {
         <div class="well">
           <h4>Reservation State</h4>
           <p>Before booking <br> Please check again</p>
-          <button type="button" class="btn btn-primary" id=Reservation>Reservation</button>
+          <c:choose>
+          	<c:when test="${empty user}">
+          		<c:set var="modal" value="modalLogin()"></c:set>
+          	</c:when>
+            <c:otherwise>
+              <c:set var="modal" value="reservationmodal()"></c:set>
+          	</c:otherwise>
+          </c:choose>
+          <button type="button" class="btn btn-primary" onclick="javascript=${modal}">Reservation</button>
         </div>
       </div>
 </div>
@@ -249,6 +288,7 @@ $(document).ready(function() {
 		</script>
 		</div>
 	</div>
+
 
 <!-- 여기까지가 우리가 꾸밀부분 -->
 <!-- 푸터 -->
