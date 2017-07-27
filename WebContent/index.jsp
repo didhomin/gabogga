@@ -82,8 +82,22 @@ $(document).ready(function() {
 	</div>
 		
 </div>
-
-
+	<link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet"> <!-- 3 KB -->
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script> <!-- 16 KB -->
+<div class="row">
+	<div class="fotorama col-sm-4">
+		<img src="http://s.fotorama.io/1.jpg">
+		<img src="http://s.fotorama.io/2.jpg">
+	</div>
+	<div class="fotorama col-sm-4">
+		<img src="http://s.fotorama.io/1.jpg">
+		<img src="http://s.fotorama.io/2.jpg">
+	</div>
+	<div class="fotorama col-sm-4">
+		<img src="http://s.fotorama.io/1.jpg">
+		<img src="http://s.fotorama.io/2.jpg">
+	</div>
+</div>
 
 <script src="${root }/page/house/js/index.js"></script>
 
