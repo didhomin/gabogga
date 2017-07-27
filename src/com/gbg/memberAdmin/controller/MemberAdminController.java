@@ -50,15 +50,17 @@ public class MemberAdminController {
 	}
 	
 	@RequestMapping("/delete.gbg")
-	public String delete(@RequestParam("id") String id){
+	public String delete(@RequestParam("id") String userId){
+	//	System.out.println("지금 딜리트에 욌어요");
 		int cnt=0;
-		cnt = memberAdminService.memberAdminDelete(id);
+		cnt = memberAdminService.memberAdminDelete(userId);
+		
 		if(cnt !=0){
 			System.out.println("성공했습니다");
 		}else{
 			System.out.println("실패했습니다");
 		}
 		//일단 이렇게 하고 수정할 가능성이 매우 높다.
-		return "redirect:/memberAdmin/list.gbg";
+		return "redirect:/memberAdmin/list.gbg?pg=1";
 	}
 }

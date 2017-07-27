@@ -16,9 +16,9 @@ public class MemberAdminServiceImpl implements MemberAdminService {
 	private SqlSession sqlSession;
 	
 	@Override
-	public int memberAdminDelete(String id) {
+	public int memberAdminDelete(String userId) {
+		return sqlSession.getMapper(MemberAdminDao.class).memberAdmindelete(userId);
 		
-		return sqlSession.getMapper(MemberAdminDao.class).memberAdminDelete(id);
 	}
 
 	@Override

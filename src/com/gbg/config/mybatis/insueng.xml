@@ -5,7 +5,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.gbg.memberAdmin.dao.MemberAdminDao">
-      <delete id="memberAdmindelete" parameterType="String" >
+
+      <delete id="memberAdmindelete" parameterType="String"  >
      delete users
      where user_Id=#{userId}
     </delete>

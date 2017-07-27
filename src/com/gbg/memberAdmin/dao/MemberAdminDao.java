@@ -6,7 +6,7 @@ import com.gbg.member.model.UsersDto;
 
 public interface MemberAdminDao {
 	
-	int memberAdminDelete(String id);
+	int memberAdmindelete(String id);
 	
 	List<UsersDto> listMemberAdmin();
 	

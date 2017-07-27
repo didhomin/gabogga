@@ -61,6 +61,11 @@ $(document).ready(function(){
 			}
 			})
 		});
+    $(document).on('click','#delBt', function () {
+		var delet =$('#mid').val();
+		document.location.href = "${root}/memberAdmin/delete.gbg?id="+delet;
+		
+    } );
 	
 });
 
@@ -107,9 +112,10 @@ $(document).ready(function(){
 					<input id="mname2" value="" readonly="readonly" style="border: none; background-color: transparent;"><br>
 					<input id="mname3" value="" readonly="readonly" style="border: none; background-color: transparent;"><br>
 				
-					
 				</div>
+	
 				<div class="modal-footer">
+					<button type="button" id="delBt" class="btn btn-default" value="">삭제</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				</div>
 			</div>
