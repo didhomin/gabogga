@@ -149,9 +149,10 @@ public class MemberServiceImpl implements MemberService {
 		
 	}
 	@Override
-	public int snsRegister(String email) {
+	public int snsRegister(String email,String name) {
 		UsersDto usersDto = new UsersDto();
 		usersDto.setEmail(email);
+		usersDto.setName(name);
 		usersDto.setState("4");
 		if(emailCheck(email)==1) {
 			return 0;	

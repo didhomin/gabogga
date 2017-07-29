@@ -87,6 +87,14 @@ $(document).ready(function() {
 												required autofocus>
 
 										</div>
+										<div class="input-group form-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-user"></i></span> <input
+												class="form-control" id="name"
+												placeholder="homin" name="name" type="text"
+												required autofocus>
+
+										</div>
 										<p class="col-sm-offset-1" id="result"></p>
 										<!-- <div class="input-group form-group">
 										<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -98,14 +106,14 @@ $(document).ready(function() {
 												class="glyphicon glyphicon-lock"></i></span> <input
 												class="form-control" placeholder="Password (8자리이상)"
 												id="password" name="password" type="password" value=""
-												required>
+												required autofocus>
 										</div>
 										<div class="input-group form-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-lock"></i></span> <input
 												class="form-control" placeholder="Password-Check"
 												id="passwordCheck" name="passwordCheck" type="password"
-												value="" required>
+												value="" required autofocus>
 										</div>
 										<p class="col-sm-offset-1" id="resultpass"></p>
 										<div class="input-group form-group">

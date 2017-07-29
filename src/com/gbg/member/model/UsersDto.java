@@ -3,6 +3,7 @@ package com.gbg.member.model;
 public class UsersDto {
 	private String userId;
 	private String email;
+	private String name;
 	private String password;
 	private String tel;
 	private String gender;
@@ -17,6 +18,14 @@ public class UsersDto {
 
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getEmail() {
