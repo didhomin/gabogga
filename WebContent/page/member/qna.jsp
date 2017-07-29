@@ -19,12 +19,12 @@
                   <c:when test="${not empty user }">
 	                  <form class="" method="post" action="${root }/admin/qna.gbg">
 	                    <div class="form-group">
-	                      <label for="">Name</label>
-	                      <input type="text" class="form-control" id="name" name="name" placeholder="YangHomin">
-	                    </div>
-	                    <div class="form-group">
 	                      <label for="">Email</label>
 	                      <input type="email" class="form-control" id="from" name="from" value="${user.email }" readonly="readonly">
+	                    </div>
+	                    <div class="form-group">
+	                      <label for="">Name</label>
+	                      <input type="text" class="form-control" id="name" name="name" value="${user.name }">
 	                    </div>
 	                    <div class="form-group">
 	                      <label for="">Subject</label>

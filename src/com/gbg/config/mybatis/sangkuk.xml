@@ -4,7 +4,11 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="">
-    
+<mapper namespace="com.gbg.house.dao.HouseDao">
+    <insert id="reservation" parameterType="houseDto">
+        insert into reservation
+        (RESERVATION_ID, ROOM_ID, CHECKIN, CHECKOUT, PRICE, RESERVATION_DATE, PERSON, OKSIGN)
+        values (SEQ_reservation_RESERVATION_ID.nextval, 1, #{checkIn}, #{checkOut}, #{price}, sysdate, #{person}, 0)
+    </insert>
     
 </mapper>

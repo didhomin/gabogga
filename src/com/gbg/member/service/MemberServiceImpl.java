@@ -32,7 +32,7 @@ public class MemberServiceImpl implements MemberService {
 		return sqlSession.getMapper(MemberDao.class).register(usersDto);
 	}
 	@Override
-	public int emailCheck(String email) {
+	public UsersDto emailCheck(String email) {
 		return sqlSession.getMapper(MemberDao.class).emailCheck(email);
 	}
 	@Override
@@ -149,11 +149,12 @@ public class MemberServiceImpl implements MemberService {
 		
 	}
 	@Override
-	public int snsRegister(String email) {
+	public int snsRegister(String email,String name) {
 		UsersDto usersDto = new UsersDto();
 		usersDto.setEmail(email);
+		usersDto.setName(name);
 		usersDto.setState("4");
-		if(emailCheck(email)==1) {
+		if(emailCheck(email)!=null) {
 			return 0;	
 		} else {
 			return sqlSession.getMapper(MemberDao.class).snsRegister(usersDto);
