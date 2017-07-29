@@ -41,7 +41,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </update>
     <update id="memberModify" parameterType="usersDto">
         update users
-        set name=${name},password=#{password},tel=#{tel},gender=#{gender},state='2'
+        set name=#{name},password=#{password},tel=#{tel},gender=#{gender},state='2'
         where email=#{email}
     </update>
 </mapper>
