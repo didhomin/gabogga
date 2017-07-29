@@ -57,6 +57,13 @@ $(document).ready(function() {
 												readonly="readonly">
 
 										</div>
+										<div class="input-group form-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-user"></i></span> <input
+												class="form-control" id="name" value="${user.name }"
+												name="name" type="text">
+
+										</div>
 										<p class="col-sm-offset-1" id="result"></p>
 									
 										<div class="input-group form-group">

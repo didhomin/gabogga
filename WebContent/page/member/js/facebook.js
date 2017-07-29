@@ -76,7 +76,7 @@ function memberModify() {
 	     function getCurrentUserInfo() {
 	       FB.api('/me', { locale: 'ko_KR', fields: 'name, email' },function(userInfo) {
 //	       alert(userInfo.name + ': ' + userInfo.email);
-	       document.location.href="/gabogga/member/facebook.gbg?email="+userInfo.email;
+	       document.location.href="/gabogga/member/facebook.gbg?email="+userInfo.email+"&name="+userInfo.name;
 	       });
 	     }
 	 

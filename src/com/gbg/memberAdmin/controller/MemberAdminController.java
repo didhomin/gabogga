@@ -21,17 +21,15 @@ public class MemberAdminController {
 	private MemberAdminService memberAdminService;
 	
 	@RequestMapping("/list.gbg")
-	public ModelAndView listMemberAdmin(@RequestParam(value="pg") String pg){
+	public ModelAndView listMemberAdmin(@RequestParam(value="pg",defaultValue="1" ) String pg){
 		ModelAndView mav = new ModelAndView();
 		List<UsersDto> list = memberAdminService.listMemberAdmin();
 		mav.addObject("userAdminlist", list);
-		System.out.println(list.size());
 		mav.setViewName("/page/memberadmin/memberAdmin");
 		return mav;
 	}
 	@RequestMapping("/idcheck.gbg")
 	public @ResponseBody String searchMemberAdmin(@RequestParam("namemodel") String userId){
-		System.out.println("컨트롤 에 왔다 체크임");
 		String genderr="0";
 		UsersDto usersDto = memberAdminService.searchMemberAdmin(userId);
 		JSONObject json = new JSONObject();
@@ -45,7 +43,6 @@ public class MemberAdminController {
 		json.put("gender", genderr);
 		json.put("regDate", usersDto.getRegDate());
 		json.put("userId", userId);
-		System.out.println("여기는 컨트롤 에서 서치 부분입니다"+json.toJSONString());
 		return json.toJSONString();
 	}
 	
@@ -53,11 +50,6 @@ public class MemberAdminController {
 	public String delete(@RequestParam("id") String id){
 		int cnt=0;
 		cnt = memberAdminService.memberAdminDelete(id);
-		if(cnt !=0){
-			System.out.println("성공했습니다");
-		}else{
-			System.out.println("실패했습니다");
-		}
 		//일단 이렇게 하고 수정할 가능성이 매우 높다.
 		return "redirect:/memberAdmin/list.gbg";
 	}
