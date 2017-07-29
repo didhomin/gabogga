@@ -6,8 +6,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.gbg.member.dao.MemberDao">
     
-    <select id="emailCheck" parameterType="String" resultType="int">
-        select count(email)
+    <select id="emailCheck" parameterType="String" resultType="usersDto">
+        select *
         from users
         where email=#{email}
     </select>

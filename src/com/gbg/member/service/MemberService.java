@@ -6,7 +6,7 @@ import com.gbg.member.model.UsersDto;
 
 public interface MemberService {
 	int register(UsersDto usersDto);
-	int emailCheck(String email);
+	UsersDto emailCheck(String email);
 	void mailsend(String email);
 	int emailAuth(String email);
 	UsersDto login(Map<String, String> map);

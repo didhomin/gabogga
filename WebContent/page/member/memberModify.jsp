@@ -33,7 +33,7 @@ $(document).ready(function() {
 			<div class="panel-success ">
 				<div class="panel-heading">
 					<h3>
-						Register
+						Modify
 						<button class="close" aria-hidden="true" type="button"
 							data-dismiss="modal">×</button>
 					</h3>

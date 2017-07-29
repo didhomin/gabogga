@@ -37,9 +37,10 @@ public class MemberController {
 	}
 	@RequestMapping("/emailCheck.gbg")
 	public @ResponseBody String emailCheck(@RequestParam("email") String email) {
-		int cnt = memberService.emailCheck(email);
+		UsersDto usersDto =memberService.emailCheck(email);
 		JSONObject json = new JSONObject();
-		json.put("count", cnt);
+		
+		json.put("count", (usersDto == null ? "0" : "1"));
 		json.put("email", email);
 //		System.out.println(json.toJSONString());
 		return json.toJSONString();
@@ -99,29 +100,21 @@ public class MemberController {
 	}
 	@RequestMapping(value="/kakao.gbg")
 	public String kakaoLogin(@RequestParam("email") String email,@RequestParam("name") String name,ModelMap modelmap,HttpSession session) {
-		int cnt = memberService.emailCheck(email);
-		modelmap.put("snslogin", email);
-		UsersDto usersDto = new UsersDto();
-		usersDto.setEmail(email);
-		usersDto.setName(name);
-		usersDto.setState("4");
-		if(cnt==0) {
-		memberService.snsRegister(email,name);
+		UsersDto usersDto = memberService.emailCheck(email);
+		if(usersDto==null) {
+			memberService.snsRegister(email,name);
 		}
 		session.setAttribute("user",usersDto);
+		modelmap.put("snslogin", email);
 		return "/index";
 	}
 	@RequestMapping(value="/facebook.gbg")
 	public String facebookLogin(@RequestParam("email") String email,@RequestParam("name") String name,ModelMap modelmap,HttpSession session) {
-		int cnt = memberService.emailCheck(email);
-		modelmap.put("snslogin", email);
-		UsersDto usersDto = new UsersDto();
-		usersDto.setEmail(email);
-		usersDto.setName(name);
-		usersDto.setState("4");
-		if(cnt==0) {
+		UsersDto usersDto = memberService.emailCheck(email);
+		if(usersDto==null) {
 			memberService.snsRegister(email,name);
 		}
+		modelmap.put("snslogin", email);
 		session.setAttribute("user",usersDto);
 		return "/index";
 	}

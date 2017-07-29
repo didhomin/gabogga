@@ -87,6 +87,7 @@ $(document).ready(function() {
 												required autofocus>
 
 										</div>
+										<p class="col-sm-offset-1" id="result"></p>
 										<div class="input-group form-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-user"></i></span> <input
@@ -95,7 +96,7 @@ $(document).ready(function() {
 												required autofocus>
 
 										</div>
-										<p class="col-sm-offset-1" id="result"></p>
+										
 										<!-- <div class="input-group form-group">
 										<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 											<input class="form-control" id="name"
