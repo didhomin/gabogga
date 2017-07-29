@@ -5,5 +5,5 @@ import java.util.List;
 import com.gbg.list.model.ListDto;
 
 public interface ListService {
-	List<ListDto> photoList(int ghId);
+	List<ListDto> photoList(String address1);
 }

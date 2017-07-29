@@ -1,25 +1,26 @@
 package com.gbg.list.model;
 
 public class ListDto {
-	private int ghId;
-	private String name;
+	private String ghId;
+	private String gname;
 	private String roomCount;
 	private String roomPay;
 	private String introduce;
-	private int lat;
-	private int lng;
+	private double lat;
+	private double lng;
+	private String address1;
 	
-	public int getGhId() {
+	public String getGhId() {
 		return ghId;
 	}
-	public void setGhId(int ghId) {
+	public void setGhId(String ghId) {
 		this.ghId = ghId;
 	}
-	public String getName() {
-		return name;
+	public String getGname() {
+		return gname;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setGname(String gname) {
+		this.gname = gname;
 	}
 	public String getRoomCount() {
 		return roomCount;
@@ -39,16 +40,24 @@ public class ListDto {
 	public void setIntroduce(String introduce) {
 		this.introduce = introduce;
 	}
-	public int getLat() {
+	
+	public double getLat() {
 		return lat;
 	}
-	public void setLat(int lat) {
+	public void setLat(double lat) {
 		this.lat = lat;
 	}
-	public int getLng() {
+	public double getLng() {
 		return lng;
 	}
-	public void setLng(int lng) {
+	public void setLng(double lng) {
 		this.lng = lng;
 	}
+	public String getAddress1() {
+		return address1;
+	}
+	public void setAddress1(String address1) {
+		this.address1 = address1;
+	}
+	
 }

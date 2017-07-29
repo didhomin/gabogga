@@ -4,7 +4,11 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="">
+<mapper namespace="com.gbg.list.dao.ListDao">
     
-    
+    <select id="photoList" parameterType="String" resultType="ListDto">
+        select guesthouse_id ghId, name gname, room_count roomCount, room_pay roomPay, introduce, lat, lng
+        from guesthouse
+        where address1 like '%' || #{address1} || '%'
+    </select>
 </mapper>
