@@ -10,7 +10,6 @@
 </div>
 </div>
 <!-- 여기서부터 게시판 메인 꾸미기 -->
-		
 		<div class="col-sm-9 main">			
 			<div class="row">
 			
@@ -20,23 +19,32 @@
 				</div>
 			</div><br>
 			
+			<table class="table table-striped table-hover">
+			    <thead>
+			      <tr>
+			        <th width="10%"></th>
+			        <th width="50%">제목</th>
+			        <th width="15%">아이디</th>
+			        <th width="15%">날짜</th>
+			        <th width="10%">조회수</th>
+			      </tr>
+			    </thead>
+			    <tbody>
 <%
-for(int i=1; i<=8; i++) {
-%>
-				<div class="col-sm-3">
-		            <div class="thumbnail">
-		                <img src="http://placehold.it/300x200" alt="">
-		                <div class="caption">
-		                    <h5 class="pull-right">조회수</h5>
-		                    <h5><a href="#">제목</a></h5>
-		                    <h5><a href="#">아이디</a></h5>
-		                    <h5><a href="#">날짜</a></h5>
-		                </div>
-		            </div>
-		        </div>
+for(int i=1; i<=5; i++) {
+%>			    
+			      <tr>
+			        <td>1004</td>
+			        <td>커뮤티니 임시 메인 입니다.</td>
+			        <td>jieun</td>
+			        <td>2017.07.23</td>
+			        <td>1000</td>
+			      </tr>
 <%
 }
 %>
+			    </tbody>
+			</table>
 			<!-- 하단 페이징 -->
 			<div class="row">
 				<div class="col-sm-3">	
@@ -79,9 +87,9 @@ for(int i=1; i<=8; i++) {
 				        </a>
 					</div>
 				</div>
-			</form>		
+			</form>
 		</div>
-	
+	</div>
 	
 	
 <!-- 여기까지가 우리가 꾸밀부분 -->

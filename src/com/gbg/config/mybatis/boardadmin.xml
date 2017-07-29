@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gbg.admin.board.dao.BoardAdminDao">
+    
+    <select id="boardList" resultType="boardListDto">
+        select bl.bcode, c.cname , bl.bname, bl.btype, bl.ccode,
+        decode(bl.btype, 1, 'reboard',
+        'mapboard') control
+        from board_list bl, category c
+        where bl.ccode = c.ccode 
+    </select>
+    
+</mapper>

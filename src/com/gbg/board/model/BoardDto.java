@@ -3,14 +3,14 @@ package com.gbg.board.model;
 public class BoardDto {
 
 	private int seq;
-	private String id;
+	private String userId;
+	private int bcode;
 	private String name;
 	private String email;
 	private String subject;
 	private String content;
-	private int hit; //��ȸ��
-	private String logtime; //�Խñ۾��ð�
-	private int bcode; //�Խ��ǹ�ȣ
+	private int hit;
+	private String logtime;
 	
 	public int getSeq() {
 		return seq;
@@ -18,11 +18,17 @@ public class BoardDto {
 	public void setSeq(int seq) {
 		this.seq = seq;
 	}
-	public String getId() {
-		return id;
+	public String getUserId() {
+		return userId;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	public int getBcode() {
+		return bcode;
+	}
+	public void setBcode(int bcode) {
+		this.bcode = bcode;
 	}
 	public String getName() {
 		return name;
@@ -59,12 +65,6 @@ public class BoardDto {
 	}
 	public void setLogtime(String logtime) {
 		this.logtime = logtime;
-	}
-	public int getBcode() {
-		return bcode;
-	}
-	public void setBcode(int bcode) {
-		this.bcode = bcode;
 	}
 	
 }

@@ -17,7 +17,8 @@ public class ListController {
 	@RequestMapping("list.html")
 	public ModelAndView photoList() {
 		ModelAndView mav = new ModelAndView();
-		listService.photoList(ghId);
+//		listService.photoList(ghId);
 		mav.setViewName("/photolist");
 		return mav;
+}
 }
