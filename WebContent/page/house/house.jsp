@@ -16,14 +16,30 @@
 <c:if test="${not empty user }">
 <script type="text/javascript">
 function reservationmodal() {
-	$("#userId").val($("${user.userId}"));
-	$("#tel").val($("${user.tel}"));
-	$("#People").val($("#people").val());
+	$("#userId").val("${user.email}");
+	$("#tel").val("${user.tel}");
+	$("#Person").val($("#person").val());
 	$("#roomInfo").val($("#roominfo").val());
 	$("#checkIn").val($("#from").val());
 	$("#checkOut").val($("#to").val());
 	$("#modalReservation").modal();
 }
+/* $(document).ready(function() {
+	$("#reservationBtn").on('submit', funtion(e) {
+		 alert("예약되었습니다.");
+		$(location).attr('href', "${root}/index.jsp"); 
+		if ($('#tel').val()== "") {
+			alert("휴대전화번호를 입력해주세요");
+			return
+		} else {
+			$("#resrervationform").attr('action', '${root}/house/reservation.gbg').submit();
+		}
+	});
+});  */
+/* $('#addTag').click(function(e) {
+    e.preventDefault();
+    $('#mymodal').modal();
+}); */
 
 
 </script>
@@ -40,12 +56,11 @@ function reservationmodal() {
 		
 		
 		<!-- 2. Add images to <div class="fotorama"></div>. -->
-		<div class="fotorama">
+		<div class='fotorama' data-click='false' data-swipe='false'  data-autoplay="true">
 		  <img src="http://s.fotorama.io/1.jpg">
 		  <img src="http://s.fotorama.io/2.jpg">
 		</div>
-		      
-      
+
         <hr>
         <!-- Post Content -->
         <p class="lead">Reservation Host Information</p>
@@ -147,12 +162,12 @@ function reservationmodal() {
          <div class="well" >
           <h4>[객실선택]</h4>
           <!-- 	<div class="input-group"> -->
-            <select name="roominfo" id="roominfo" class="form-control">
+            <select name="roominfo" id="roominfo" class="form-control" >
 	            <option value="---">------</option>
-	            <option value="101호">101호</option>
-	            <option value="102호">102호</option>
+	            <option value="${room.roomID }">101</option>
+	            <!-- <option value="102호">102호</option>
 	            <option value="103호">103호</option>
-	            <option value="104호">104호</option>
+	            <option value="104호">104호</option> -->
 	         </select>
             <!-- <span class="input-group-btn">
                             <button class="btn btn-default" type="button">
@@ -163,18 +178,18 @@ function reservationmodal() {
           <div class="well" >
           <h4>[객실인원]</h4>
           <!-- 	<div class="input-group"> -->
-            <select name="people" id="people" class="form-control">
+            <select name="person" id="person" class="form-control">
 	            <option value="---">------</option>
-	            <option value="1명">1명</option>
-	            <option value="2명">2명</option>
-	            <option value="3명">3명</option>
-	            <option value="4명">4명</option>
-	            <option value="5명">5명</option>
-	            <option value="6명">6명</option>
-	            <option value="7명">7명</option>
-	            <option value="8명">8명</option>
-	            <option value="9명">9명</option>
-	            <option value="10명">10명</option>
+	            <option value="1">1</option>
+	            <option value="2">2</option>
+	            <option value="3">3</option>
+	            <option value="4">4</option>
+	            <option value="5">5</option>
+	            <option value="6">6</option>
+	            <option value="7">7</option>
+	            <option value="8">8</option>
+	            <option value="9">9</option>
+	            <option value="10">10</option>
 	         </select>
           </div>
 
