@@ -22,11 +22,10 @@ public class MemberAdminController {
 	private MemberAdminService memberAdminService;
 	
 	@RequestMapping("/list.gbg")
-	public ModelAndView listMemberAdmin(@RequestParam(value="pg") String pg){
+	public ModelAndView listMemberAdmin(@RequestParam(value="pg",defaultValue="1" ) String pg){
 		ModelAndView mav = new ModelAndView();
 		List<UsersDto> list = memberAdminService.listMemberAdmin();
 		mav.addObject("userAdminlist", list);
-		System.out.println(list.size());
 		mav.setViewName("/page/memberadmin/memberAdmin");
 		return mav;
 	}
@@ -41,7 +40,6 @@ public class MemberAdminController {
 	}
 	@RequestMapping("/idcheck.gbg")
 	public @ResponseBody String searchMemberAdmin(@RequestParam("namemodel") String userId){
-		System.out.println("컨트롤 에 왔다 체크임");
 		String genderr="0";
 		UsersDto usersDto = memberAdminService.searchMemberAdmin(userId);
 		JSONObject json = new JSONObject();
@@ -55,7 +53,6 @@ public class MemberAdminController {
 		json.put("gender", genderr);
 		json.put("regDate", usersDto.getRegDate());
 		json.put("userId", userId);
-		System.out.println("여기는 컨트롤 에서 서치 부분입니다"+json.toJSONString());
 		return json.toJSONString();
 	}
 	
@@ -63,6 +60,7 @@ public class MemberAdminController {
 	public String delete(@RequestParam("id") String userId){
 	//	System.out.println("지금 딜리트에 욌어요");
 		int cnt=0;
+<<<<<<< HEAD
 		cnt = memberAdminService.memberAdminDelete(userId);
 		
 		if(cnt !=0){
@@ -70,6 +68,9 @@ public class MemberAdminController {
 		}else{
 			System.out.println("실패했습니다");
 		}
+=======
+		cnt = memberAdminService.memberAdminDelete(id);
+>>>>>>> branch 'master' of https://github.com/didhomin/gabogga.git
 		//일단 이렇게 하고 수정할 가능성이 매우 높다.
 		return "redirect:/memberAdmin/list.gbg?pg=1";
 	}

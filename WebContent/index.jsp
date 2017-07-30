@@ -53,6 +53,18 @@ $(document).ready(function() {
 </c:if>
 
 
+<script>
+function searchUser() {
+   if (document.searchForm.address1.value == "") {
+      alert("검색어 입력!!!!!");
+   } else {
+      document.searchForm.action = "${root}/list/list.gbg";
+      document.searchForm.submit();
+   }
+}
+</script>
+
+
 <!-- 여기서부터 우리가 꾸미기 -->
 
 
@@ -62,10 +74,10 @@ $(document).ready(function() {
 	</h1>
 	<h2>게스트하우스를 예약해보세요.</h2>
 	<div class="input-group-lg">
-	 <form class="form-inline" role="form">
+	 <form class="form-inline" role="form" name="searchForm" method="get">
         <div class="form-group input-group-lg">
         	
-          <input type="text" class="form-control" id="" placeholder="위치">
+          <input type="text" class="form-control" name="address1" id="" placeholder="위치">
         </div>
         <div class="form-group input-group-lg">
           <input type="text" class="form-control" style="background-color:#fff; " id="from" placeholder="날짜" readonly="readonly">
@@ -74,7 +86,7 @@ $(document).ready(function() {
         </div>
         <div class="form-group input-group-lg">
           <input type="text" class="form-control " id="" placeholder="인원">
-      		 <a href="#" class="btn btn-info btn-lg">
+      		 <a href="#" class="btn btn-info btn-lg" onclick="javascript:searchUser();">
              	<span class="glyphicon glyphicon-search"></span> Search 
              </a>
         </div>
@@ -82,8 +94,20 @@ $(document).ready(function() {
 	</div>
 		
 </div>
-
-
+	<link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet"> <!-- 3 KB -->
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script> <!-- 16 KB -->
+<div><h3>[부산]</h3></div>
+<div class="row">
+	<div class="fotorama col-sm-4">
+		<img src="http://s.fotorama.io/1.jpg">
+	</div>
+	<div class="fotorama col-sm-4">
+		<img src="http://s.fotorama.io/4.jpg">	
+	</div>
+	<div class="fotorama col-sm-4">
+		<img src="http://s.fotorama.io/5.jpg">
+	</div>
+</div>
 
 <script src="${root }/page/house/js/index.js"></script>
 

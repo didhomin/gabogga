@@ -15,25 +15,32 @@
 	</div>
 	<div class="row">
                 <div class="col-sm-7 col-sm-offset-2">
-                  <form class="" method="post" action="${root }/admin/qna.gbg">
-                    <div class="form-group">
-                      <label for="">Name</label>
-                      <input type="text" class="form-control" id="name" name="name" placeholder="YangHomin">
-                    </div>
-                    <div class="form-group">
-                      <label for="">Email</label>
-                      <input type="email" class="form-control" id="from" name="from" value="${user.email }" readonly="readonly">
-                    </div>
-                    <div class="form-group">
-                      <label for="">Subject</label>
-                      <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject">
-                    </div>
-                    <div class="form-group ">
-                      <label for="">Content</label>
-                     <textarea class="form-control" id="content" name="content" placeholder="Content" rows="10"></textarea> 
-                    </div>
-                    <button type="submit" class="btn btn-default btn-lg pull-right">Send Mail</button>
-                  </form>
+                  <c:choose>
+                  <c:when test="${not empty user }">
+	                  <form class="" method="post" action="${root }/admin/qna.gbg">
+	                    <div class="form-group">
+	                      <label for="">Email</label>
+	                      <input type="email" class="form-control" id="from" name="from" value="${user.email }" readonly="readonly">
+	                    </div>
+	                    <div class="form-group">
+	                      <label for="">Name</label>
+	                      <input type="text" class="form-control" id="name" name="name" value="${user.name }">
+	                    </div>
+	                    <div class="form-group">
+	                      <label for="">Subject</label>
+	                      <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject">
+	                    </div>
+	                    <div class="form-group ">
+	                      <label for="">Content</label>
+	                     <textarea class="form-control" id="content" name="content" placeholder="Content" rows="10"></textarea> 
+	                    </div>
+	                    <button type="submit" class="btn btn-default btn-lg pull-right">Send Mail</button>
+	                  </form>
+                  </c:when>
+                  <c:otherwise>
+                  <h3>로그인 후 이용가능합니다.</h3>
+                  </c:otherwise>
+                  </c:choose>
                   </div>
 	</div>
 

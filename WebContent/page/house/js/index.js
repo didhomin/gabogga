@@ -1,8 +1,8 @@
 $("#from").datepicker({
-  dateFormat: 'dd/mm/yy',
+  dateFormat: 'yy/mm/dd',
   minDate: '1',//min date set to next day
   onClose: function(dateStr) {
-    var d = $.datepicker.parseDate('dd/mm/yy', dateStr), //get selected date
+    var d = $.datepicker.parseDate('yy/mm/dd', dateStr), //get selected date
         date2 = $('#from').datepicker('getDate'),//get selected date
         years = 1 //how many years add to selected date
     d.setFullYear(d.getFullYear() + years); //add x years to selected date 
@@ -14,7 +14,7 @@ $("#from").datepicker({
 $("#from").datepicker("setDate", "1");//Set date x day(s) from current date and display it in input field. Needs to be done after initialization of datepicker.
   
 $("#to").datepicker({
-  dateFormat: 'dd/mm/yy',
+  dateFormat: 'yy/mm/dd',
   minDate: '+2d',//Set date x days from today
   maxDate: '+1y +1d'//max date x year + 1 day
 });

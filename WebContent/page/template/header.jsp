@@ -84,9 +84,19 @@
 						<c:otherwise>
 	 						<li><a href="javascript:memberModify();">회원정보수정</a></li>
 	 						<li><a href="${root }/member/logout.gbg">로그아웃</a></li>
+	 						<c:if test="${user.type==2 }">
+	 							<li class="dropdown"><a class="dropdown-toggle" href="#"
+									data-toggle="dropdown">관리자 <strong class="caret"></strong></a>
+									<ul class="dropdown-menu">
+										<li><a href="${root}/memberAdmin/list.gbg">회원관리</a></li>
+										<li><a href="#">통계</a></li>
+									</ul>
+								</li>
+	 						</c:if>
 	 					</c:otherwise>
 						</c:choose>
-	 			
+	 					
+	 					
 					</ul>
 				</div>
 			</div>

@@ -33,7 +33,7 @@ $(document).ready(function() {
 			<div class="panel-success ">
 				<div class="panel-heading">
 					<h3>
-						Register
+						Modify
 						<button class="close" aria-hidden="true" type="button"
 							data-dismiss="modal">×</button>
 					</h3>
@@ -55,6 +55,13 @@ $(document).ready(function() {
 												class="form-control" id="email" value="${user.email }"
 												placeholder="yourmail@example.com" name="email" type="email"
 												readonly="readonly">
+
+										</div>
+										<div class="input-group form-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-user"></i></span> <input
+												class="form-control" id="name" value="${user.name }"
+												name="name" type="text">
 
 										</div>
 										<p class="col-sm-offset-1" id="result"></p>

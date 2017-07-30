@@ -5,9 +5,7 @@
 		<footer>
   			<p>가보까?</p>
   			<p>Made by : 상국, 인승, 성준, 호민, 지은, 주희</p>
-  			<c:if test="${not empty user }">
   				<div class="pull-right"><a href="${root }/admin/qna.gbg">문의하기</a></div>
-			</c:if>
 		</footer>
 		
 </div>
