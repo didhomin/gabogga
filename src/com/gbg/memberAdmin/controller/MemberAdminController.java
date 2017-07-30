@@ -64,24 +64,21 @@ public class MemberAdminController {
 		cnt = memberAdminService.memberAdminDelete(userId);
 		
 		if(cnt !=0){
-			System.out.println("성공했습니다");
+	
 		}else{
-			System.out.println("실패했습니다");
+		
 		}
 		//일단 이렇게 하고 수정할 가능성이 매우 높다.
 		return "redirect:/memberAdmin/list.gbg?pg=1";
 	}
 	@RequestMapping("/black.gbg")
 	public String black(@RequestParam("id") String valueArr){
-		System.out.println(valueArr+"컨틀로 ");
 		String blackck = null;
 		int cnt=0;
 		//여기 Tokenizer 을 이용해서 배열에 있는 것을 분리 시킬 예정 입니다
 		StringTokenizer st = new StringTokenizer(valueArr, ",");
-		System.out.println(st);
 		while(st.hasMoreTokens()){
 			blackck= st.nextToken();
-			System.out.println(blackck);
 		  cnt +=memberAdminService.memberAdminBlack( blackck);
 			
 		}
@@ -90,7 +87,6 @@ public class MemberAdminController {
 	}
 	@RequestMapping("/soso.gbg")
 	public String soso(@RequestParam("id") String valueArr){
-		System.out.println(valueArr+"컨틀로 ");
 		String soso = null;
 		int cnt=0;
 		//여기 Tokenizer 을 이용해서 배열에 있는 것을 분리 시킬 예정 입니다
@@ -98,10 +94,8 @@ public class MemberAdminController {
 		System.out.println(st);
 		while(st.hasMoreTokens()){
 			soso= st.nextToken();
-			System.out.println(soso);
 		  cnt +=memberAdminService.memberAdminSoso(soso);
 		}
-		System.out.println(cnt);
 		return "redirect:/memberAdmin/blacklist.gbg?pg=1";
 	}
 }
