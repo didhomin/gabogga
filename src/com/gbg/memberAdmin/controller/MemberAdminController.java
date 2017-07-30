@@ -60,7 +60,6 @@ public class MemberAdminController {
 	public String delete(@RequestParam("id") String userId){
 	//	System.out.println("지금 딜리트에 욌어요");
 		int cnt=0;
-<<<<<<< HEAD
 		cnt = memberAdminService.memberAdminDelete(userId);
 		
 		if(cnt !=0){
@@ -68,9 +67,6 @@ public class MemberAdminController {
 		}else{
 			System.out.println("실패했습니다");
 		}
-=======
-		cnt = memberAdminService.memberAdminDelete(id);
->>>>>>> branch 'master' of https://github.com/didhomin/gabogga.git
 		//일단 이렇게 하고 수정할 가능성이 매우 높다.
 		return "redirect:/memberAdmin/list.gbg?pg=1";
 	}
