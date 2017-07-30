@@ -12,6 +12,7 @@
 <!-- 여기서부터 게시판 메인 꾸미기 -->
 	<div class="col-sm-9 main">			
 		<div class="row">
+		
 			<br><br><br><br><br>
 			<br><br><br><br><br>
 			<br><br><br><br><br>
