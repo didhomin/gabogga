@@ -18,9 +18,9 @@
 			</div>
 			<div class="modal-body">
 				<form name="resrervationform" role="form"  method="post" action="${root}/house/reservation.gbg">					
-					 <c:forEach var="room" items="${list }">
+					<c:forEach var="room" items="${room }">
 					<input type="hidden" name="userId" value="${user.userId }" id="userId">
-					<input type="hidden" name="reservationId" value="" id="reservationId">
+					<input type="hidden" name="reservationId" value="${house.reservationId }" id="reservationId">
 					<input type="hidden" name="oksign" value="" id="oksign">
 					<input type="hidden" name="guesthouseId" value="150" id="guesthouseId">
 					<input type="hidden" name="roomId" id="roomId" value="${room.roomId }" >

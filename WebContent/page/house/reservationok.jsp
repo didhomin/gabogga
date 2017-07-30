@@ -10,13 +10,16 @@
 </head>
 <body>
 <center>
+<c:forEach var="room" items="${room }">
 예약완료<br>
 체크 인  : ${house.checkIn }<br>
 체크 아웃: ${house.checkOut }<br>
 예약일자 : ${house.reservationDate }<br>
 예약 인원 : ${house.person }<br>
 Room Id : ${room.roomId }<br>
+<%-- Reservation Id : ${house.reservationId }<br> --%>
 <a href="${root }/index.jsp">메인화면</a>
+</c:forEach>
 </center>
 </body>
 </html>
