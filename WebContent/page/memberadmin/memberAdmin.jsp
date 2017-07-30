@@ -50,6 +50,7 @@ $(document).ready(function(){
 			success : function( data){
 			//	alert("성공 출력>>>");
 				$("#mid").val(data.userId);
+				$("#mname4").val(data.name);
 				$("#mname").val(data.gemail);
 				$("#mname1").val(data.gender);
 				$("#mname2").val(data.regDate);
@@ -93,6 +94,7 @@ $(document).ready(function(){
 				<tr><input type="button" value="블랙리스트확인" id="blacklistBt" class="btn btn-success" width="3"></tr>
 				<tr>	
 					<th>계정번호</th>
+					<th>이름	</th>
 					<th>Email</th>
 					<th>전화번호</th>
 				</tr>
@@ -102,8 +104,9 @@ $(document).ready(function(){
 				<tr>
 					<td >
 					<input type="checkbox" id="chBt" value="${userAdminlist1.userId}">		
-					<input id="tt" value="${userAdminlist1.userId}" readonly="readonly" style="border: none; background-color: transparent;">					
+					<input id="tt" value="${userAdminlist1.userId}" readonly="readonly" style="border: none; background-color: transparent;" width="2">					
 					</td>
+					<td>${userAdminlist1.name}</td>
 					<td>${userAdminlist1.email } </td>
 					<td>${userAdminlist1.tel }</td>
 				</tr>
@@ -123,6 +126,7 @@ $(document).ready(function(){
 				<h3>회원번호 :<input id="mid" value="" readonly="readonly" style="border: none; background-color: transparent;" ></h4></h3>
 				</div>
 				<div class="modal-body">
+				<h3>이름	:<input id="mname4" value="" readonly="readonly" style="border: none; background-color: transparent;"><br></h3>
 				<h3>Email :	<input id="mname" value="" readonly="readonly" style="border: none; background-color: transparent;"><br></h3>
 				<h3>성별 	  :	<input id="mname1" value="" readonly="readonly" style="border: none; background-color: transparent;"><br></h3>
 				<h3>가입날짜 :	<input id="mname2" value="" readonly="readonly" style="border: none; background-color: transparent;"><br></h3>
@@ -131,8 +135,8 @@ $(document).ready(function(){
 				</div>
 	
 				<div class="modal-footer">
-					<button type="button" id="delBt" class="btn btn-default" value="">삭제</button>
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" id="delBt" class="btn btn-info" value="">삭제</button>
+					<button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
 				</div>
 			</div>
 		</div>

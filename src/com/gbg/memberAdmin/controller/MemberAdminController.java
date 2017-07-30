@@ -50,6 +50,7 @@ public class MemberAdminController {
 		}else{
 			genderr="여자";
 		}
+		json.put("name",usersDto.getName());
 		json.put("gender", genderr);
 		json.put("regDate", usersDto.getRegDate());
 		json.put("userId", userId);
