@@ -31,7 +31,6 @@ public class MemberAdminController {
 	}
 	@RequestMapping("/blacklist.gbg")
 	public ModelAndView blacklist(@RequestParam(value="pg") String pg){
-		System.out.println("블랙리스트에 왔니");
 		ModelAndView mav = new ModelAndView();
 		List<UsersDto> list = memberAdminService.blacklist();
 		mav.addObject("userAdminlist", list);
@@ -59,7 +58,6 @@ public class MemberAdminController {
 	
 	@RequestMapping("/delete.gbg")
 	public String delete(@RequestParam("id") String userId){
-	//	System.out.println("지금 딜리트에 욌어요");
 		int cnt=0;
 		cnt = memberAdminService.memberAdminDelete(userId);
 		
@@ -82,7 +80,7 @@ public class MemberAdminController {
 		  cnt +=memberAdminService.memberAdminBlack( blackck);
 			
 		}
-		System.out.println(cnt);
+		
 		return "redirect:/memberAdmin/list.gbg?pg=1";
 	}
 	@RequestMapping("/soso.gbg")
@@ -91,7 +89,6 @@ public class MemberAdminController {
 		int cnt=0;
 		//여기 Tokenizer 을 이용해서 배열에 있는 것을 분리 시킬 예정 입니다
 		StringTokenizer st = new StringTokenizer(valueArr, ",");
-		System.out.println(st);
 		while(st.hasMoreTokens()){
 			soso= st.nextToken();
 		  cnt +=memberAdminService.memberAdminSoso(soso);
