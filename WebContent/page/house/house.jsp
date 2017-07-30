@@ -44,6 +44,8 @@ function reservationmodal() {
 
 </script>
 </c:if>
+<%-- <input type="hidden" name="roomId" id="roomId" value="${room.roomId }" > --%>
+<!-- <input type="hidden" name="guesthouseId" value="150" id="guesthouseId"> -->
 	<!-- Blog Post Content Column -->
     <div class="col-sm-9">
        <!-- Blog Post -->
@@ -162,13 +164,16 @@ function reservationmodal() {
          <div class="well" >
           <h4>[객실선택]</h4>
           <!-- 	<div class="input-group"> -->
-            <select name="roominfo" id="roominfo" class="form-control" >
-	            <option value="---">------</option>
-	            <option value="${room.roomname }">${room.roomname }</option>
+			    <c:forEach var="room" items="${list }">
+                <select name="roominfo" id="roominfo" class="form-control" >
+		            <option value="---">------</option>
+		            <option value="${room.roomName }">${room.roomName }</option>
 	            <!-- <option value="102호">102호</option>
 	            <option value="103호">103호</option>
 	            <option value="104호">104호</option> -->
-	         </select>
+	    		     </select>
+		         	 </c:forEach>
+	         
             <!-- <span class="input-group-btn">
                             <button class="btn btn-default" type="button">
                                 <span class="glyphicon glyphicon-search"></span>

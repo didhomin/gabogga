@@ -15,6 +15,7 @@
 체크 아웃: ${house.checkOut }<br>
 예약일자 : ${house.reservationDate }<br>
 예약 인원 : ${house.person }<br>
+Room Id : ${room.roomId }<br>
 <a href="${root }/index.jsp">메인화면</a>
 </center>
 </body>

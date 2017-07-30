@@ -18,11 +18,13 @@
 			</div>
 			<div class="modal-body">
 				<form name="resrervationform" role="form"  method="post" action="${root}/house/reservation.gbg">					
+					 <c:forEach var="room" items="${list }">
 					<input type="hidden" name="userId" value="${user.userId }" id="userId">
-					<input type="hidden" name="roomId" value="1" id="roomId">
-					<input type="hidden" name="reservationId" value="1" id="reservationId">
-					<input type="hidden" name="oksign" value="0" id="oksign">
-
+					<input type="hidden" name="reservationId" value="" id="reservationId">
+					<input type="hidden" name="oksign" value="" id="oksign">
+					<input type="hidden" name="guesthouseId" value="150" id="guesthouseId">
+					<input type="hidden" name="roomId" id="roomId" value="${room.roomId }" >
+					</c:forEach>
 					<!-- Sign Form -->
 					<div class="form-group">
 						<label> 이용자 정보 </label> <input type="text" class="form-control"

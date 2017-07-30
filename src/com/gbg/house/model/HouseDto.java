@@ -1,28 +1,18 @@
 package com.gbg.house.model;
 
-public class HouseDto {
+import com.gbg.host.model.RoomDto;
+
+public class HouseDto extends RoomDto{
 	
-	private String reservationId;
-	private int roomId;
-	private String userId;
+//	private String reservationId;
+//	private int roomId;
+//	private String userId;
 	private String checkIn;
 	private String checkOut;
 	private String price;
 	private String reservationDate;
 	private String person;
 	private String oksign;
-	public String getReservationId() {
-		return reservationId;
-	}
-	public void setReservationId(String reservationId) {
-		this.reservationId = reservationId;
-	}
-	public int getRoomId() {
-		return roomId;
-	}
-	public void setRoomId(int i) {
-		this.roomId = i;
-	}
 	public String getCheckIn() {
 		return checkIn;
 	}
@@ -58,12 +48,6 @@ public class HouseDto {
 	}
 	public void setOksign(String oksign) {
 		this.oksign = oksign;
-	}
-	public String getUserId() {
-		return userId;
-	}
-	public void setUserId(String userId) {
-		this.userId = userId;
 	}
 	
 	

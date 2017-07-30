@@ -1,5 +1,7 @@
 package com.gbg.house.service;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,13 +32,14 @@ public class HouseServiceImpl implements HouseService{
 	}
 
 	@Override
-	public int hostInfo(GuestHouseDto gusethouseDto) {
-		return sqlSession.getMapper(HouseDao.class).hostInfo(gusethouseDto);
+	public int hostInfo(GuestHouseDto guesthouseDto) {
+		return sqlSession.getMapper(HouseDao.class).hostInfo(guesthouseDto);
 	}
 
 	@Override
-	public int room (RoomDto roomDto) {
-		return sqlSession.getMapper(HouseDao.class).room(roomDto);
+	public List<RoomDto> room(int guesthouseId) {
+		return sqlSession.getMapper(HouseDao.class).room(guesthouseId);
 	}
+
 
 }

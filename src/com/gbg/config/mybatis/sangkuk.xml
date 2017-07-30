@@ -8,7 +8,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <insert id="reservation" parameterType="houseDto">
         insert into reservation
         (RESERVATION_ID, user_id, ROOM_ID,  CHECKIN, CHECKOUT, PRICE, RESERVATION_DATE, PERSON, OKSIGN)
-        values (SEQ_reservation_RESERVATION_ID.nextval, #{userId}, 1, #{checkIn}, #{checkOut}, #{price}, sysdate, #{person}, 0)
+        values (SEQ_reservation_RESERVATION_ID.nextval, #{userId}, #{roomId}, #{checkIn}, #{checkOut}, #{price}, sysdate, #{person}, 0)
     </insert>
-    
+    <select id="room" parameterType="int" resultType="roomDto">
+        select room_id roomId, guesthouse_id guesthouseId, room_type roomType, room_name roomName, 
+        room_num roomNum, bed_type bedType, bed_num bedNum, bed_capacity bedCapacity
+        from room
+        where GUESTHOUSE_ID = #{guesthouseId}
+    </select>    
 </mapper>
