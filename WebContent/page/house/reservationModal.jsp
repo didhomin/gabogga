@@ -18,7 +18,7 @@
 			</div>
 			<div class="modal-body">
 				<form name="resrervationform" role="form"  method="post" action="${root}/house/reservation.gbg">					
-					<input type="hidden" name="userid" value="hello" id="userid">
+					<input type="hidden" name="userId" value="${user.userId }" id="userId">
 					<input type="hidden" name="roomId" value="1" id="roomId">
 					<input type="hidden" name="reservationId" value="1" id="reservationId">
 					<input type="hidden" name="oksign" value="0" id="oksign">
@@ -26,12 +26,12 @@
 					<!-- Sign Form -->
 					<div class="form-group">
 						<label> 이용자 정보 </label> <input type="text" class="form-control"
-							name="userId" id="userId" placeholder="E-mail" >
+							name="user" id="user" placeholder="E-mail" >
 					</div>
 					<label> 휴대폰 </label>
 					<div class="form-group">
 						<input type="tel" class="form-control" placeholder="연락처"
-							name="tel" id="tel" value="" maxlength="20">
+							name="Tel" id="Tel" value="" maxlength="20">
 					</div>
 					<label> 객실정보확인 </label>
 					<div class="form-group">

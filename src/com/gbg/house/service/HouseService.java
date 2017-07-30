@@ -9,6 +9,6 @@ public interface HouseService {
 	int reservation(HouseDto houseDto);
 	GuestHouseDto houseInfo(String guesthouseId);
 	int hostInfo(GuestHouseDto gusethouseDto);
-	int reservation(RoomDto roomDto);
+	int room(RoomDto roomDto);
 	
 }

@@ -11,7 +11,10 @@
 <body>
 <center>
 예약완료<br>
-${house.checkIn }<br>
+체크 인  : ${house.checkIn }<br>
+체크 아웃: ${house.checkOut }<br>
+예약일자 : ${house.reservationDate }<br>
+예약 인원 : ${house.person }<br>
 <a href="${root }/index.jsp">메인화면</a>
 </center>
 </body>
