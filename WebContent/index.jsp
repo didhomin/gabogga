@@ -63,81 +63,11 @@ function searchUser() {
    }
 }
 </script>
-
-
+<script src="${root }/page/member/js/main.js"></script>
+<link rel="stylesheet"
+	href="${root }/page/member/css/main.css">
 <!-- 여기서부터 우리가 꾸미기 -->
 
-<script type="text/javascript">
-$(document).ready(function() {
-	$('#address').keyup(function() {	
-	var address = $(this).val();
-   	var resultView = $('#resultaddress');
-		$.ajax({
-			type : 'GET',
-			dataType : 'json',
-			url : '${root}/admin/address.gbg',
-			data : {'address' : address},
-			success : function(data) {
-				 if(data.size==0 || address=="") {
-					$('#resultaddress').empty();
-					$('#resultaddress').hide();
-				 } else{
-					makeList(data);
-					 
-				 }
-			}
-		});
-	});
-	function makeList(data) {
-		var output ='<table>';
-		var zsize = data.ziplist.length;
-		for(var i=0;i<zsize;i++) {
-			output += '<tr>';		
-			output += 	'<td class="address">';
-			output += '<span>'+data.ziplist[i].address+'</span>';
-			output += 	'</td>';		
-			output += '</tr>';
-		}
-		output += '</table>';	
-		$('#resultaddress').empty();
-		$('#resultaddress').show();
-		$('#resultaddress').append(output);
-	}
-	$(document).on('click','.address',function() {
-		$('#address').val($(this).children('span').text());
-		$('#resultaddress').empty();
-		$('#resultaddress').hide();
-	});
-});
-
-
-</script>
-<style>
-/* #resultaddress {
-	position:absolute; 
-	display:none;
-	background-color: white;
-	left:426px;
-	top:316px; 
-	z-index: 2; 
-	border: 1px solid #ccc; 
-	width:770px;
-	font-size: 18px;
-	border-radius:6px;
-	padding: 10px 16px;
-} */
- #resultaddress {
-	position:absolute; 
-	display:none;
-	background-color: white;
-	z-index: 2; 
-	border: 1px solid #ccc; 
-	font-size: 18px;
-	border-radius:6px;
-	padding: 10px 16px;
-	width:770px;
-} 
-</style>
 <div class="jumbotron" style="">
 	<h1>
 		<font color="red"><b>가보까?</b></font> 에서
@@ -155,13 +85,30 @@ $(document).ready(function() {
       	<div class="form-group input-group-lg">
         </div>
         <div class="form-group input-group-lg">
-          <input type="text" class="form-control " id="" placeholder="인원">
+          <input type="text" class="form-control" style="background-color:#fff;" id="person" value="성인1명" readonly="readonly">
       		 <a href="#" class="btn btn-info btn-lg" onclick="javascript:searchUser();">
              	<span class="glyphicon glyphicon-search"></span> Search 
              </a>
+             <div id="resultperson" class="">
+             	<div class="col-sm-6">성인</div>
+             	<div class="col-sm-6">
+             		<input type="image" src="${root }/page/member/img/minus.png"  id="adultminus" width="30px;" onclick="adultminus();return false;" >
+             		<span>1</span> 
+             		<input type="image" src="${root }/page/member/img/plus.png" id="adultplus" width="30px;" onclick="adultplus();return false;" >
+             	</div>
+             	<div class="col-sm-6">어린이</div>
+             	<div class="col-sm-6">
+             		<input type="image" src="${root }/page/member/img/minus.png"  id="childminus"  width="30px;" onclick="childminus();return false;">
+             		<span>0</span>
+             		<input type="image" src="${root }/page/member/img/plus.png" id="childplus" width="30px;" onclick="childplus();return false;" >
+             	</div>
+             	<div class="col-sm-6"><a href="javascript:personcancel();">취소</a></div>
+             	<div class="col-sm-offset-8"><a href="javascript:personok();">적용</a></div>
+             </div>
         </div>
       </form>
           <div id="resultaddress" class=""></div>
+          
       
 	</div>
 		
@@ -170,8 +117,8 @@ $(document).ready(function() {
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script> <!-- 16 KB -->
 
 <ul class="nav nav-tabs">
-  <li role="presentation" class="active"><a href="#">제주도</a></li>
-  <li role="presentation"><a href="#">내일로</a></li>
+  <li role="presentation" class="active"><a href="#">인기순</a></li>
+  <li role="presentation"><a href="#">가격순</a></li>
 </ul>
 <div><h3> </h3></div>
 

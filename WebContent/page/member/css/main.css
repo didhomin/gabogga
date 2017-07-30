@@ -1,0 +1,23 @@
+
+ #resultaddress {
+	position:absolute; 
+	display:none;
+	background-color: white;
+	z-index: 2; 
+	border: 1px solid #ccc; 
+	font-size: 18px;
+	border-radius:6px;
+	padding: 10px 16px;
+	width:770px;
+} 
+ #resultperson {
+	position:absolute; 
+	display:none;
+	background-color: white;
+	z-index: 2; 
+	border: 1px solid #ccc; 
+	font-size: 18px;
+	border-radius:6px;
+	padding: 10px 16px;
+	width : 300px;
+} 

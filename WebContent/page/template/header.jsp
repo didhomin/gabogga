@@ -42,8 +42,6 @@
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav ">
 						<li class=""><a href="#">공지사항</a></li>
-						<li class=""><a href="#">인기순</a></li>
-						<li class=""><a href="#">가격순</a></li>
 						<li class=""><a href="${root}/house/reservation.gbg?guesthouseId=150">house</a>
 
 					</ul>
