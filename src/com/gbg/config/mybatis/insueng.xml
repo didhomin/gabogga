@@ -10,9 +10,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      delete users
      where user_Id=#{userId}
     </delete>
+    <update id="memberAdminBlack" parameterType="String">
+     update users
+		set type='2' 
+		where user_id =#{id} 
+    </update>
+       <update id="memberAdminSoso" parameterType="String">
+     update users
+		set type='1' 
+		where user_id =#{id} 
+    </update>
     
     <select id="listMemberAdmin" resultType="com.gbg.member.model.UsersDto">
     select tel ,user_id userId,email from users
+    where type='1'
+    </select>
+     <select id="blacklist" resultType="com.gbg.member.model.UsersDto">
+    select tel ,user_id userId,email from users
+    where type='2'
     </select>
     
     <select id="searchMemberAdmin" parameterType="String" resultType="com.gbg.member.model.UsersDto">

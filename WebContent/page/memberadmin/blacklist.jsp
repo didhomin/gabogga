@@ -72,14 +72,14 @@ $(document).ready(function(){
 		console.log("valueArr는"+valueArr);
 		
 	});
-    $(document).on('click','#blackBt', function() {
+    $(document).on('click','#sosoBt', function() {
     	console.log("버튼 클릭 했을 때 "+valueArr);
-    	document.location.href = "${root}/memberAdmin/black.gbg?id="+valueArr;
+    	document.location.href = "${root}/memberAdmin/soso.gbg?id="+valueArr;
     	
 	})
-	$(document).on('click','#blacklistBt' ,function() {
-		document.location.href = "${root}/memberAdmin/blacklist.gbg?pg=1";
-	});
+	$(document).on('click','#sosolistBt', function () {
+		document.location.href = "${root}/memberAdmin/list.gbg?pg=1";
+	})
 	
 });
 </script>
@@ -89,8 +89,8 @@ $(document).ready(function(){
 		<table class="table table-striped">
 			
 			<thead>
-				<tr><input type="button" value="블랙리스트" id="blackBt" class="btn btn-danger" width="3"></tr>
-				<tr><input type="button" value="블랙리스트확인" id="blacklistBt" class="btn btn-success" width="3"></tr>
+				<tr><input type="button" value="일반회원으로 전환" id="sosoBt" class="btn btn-success" width="3" ></tr>
+				<tr><input type="button" value="일반리스트확인" id="sosolistBt" class="btn btn-success" width="3" ></tr>
 				<tr>	
 					<th>계정번호</th>
 					<th>Email</th>

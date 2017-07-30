@@ -33,4 +33,22 @@ public class MemberAdminServiceImpl implements MemberAdminService {
 		return sqlSession.getMapper(MemberAdminDao.class).searchMemberAdmin(userId);
 	}
 
+	@Override
+	public int memberAdminBlack(String userId) {
+		
+		return sqlSession.getMapper(MemberAdminDao.class).memberAdminBlack(userId);
+	}
+
+	@Override
+	public List<UsersDto> blacklist() {
+	
+		return sqlSession.getMapper(MemberAdminDao.class).blacklist();
+	}
+
+	@Override
+	public int memberAdminSoso(String userId) {
+		// TODO Auto-generated method stub
+		return sqlSession.getMapper(MemberAdminDao.class).memberAdminSoso(userId);
+	}
+
 }

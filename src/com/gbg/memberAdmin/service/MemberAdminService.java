@@ -11,4 +11,10 @@ public interface MemberAdminService {
 	List<UsersDto> listMemberAdmin();
 	
 	UsersDto searchMemberAdmin(String id);
+	
+	int memberAdminBlack(String id);
+	int memberAdminSoso(String id);
+	
+	List<UsersDto> blacklist();
+	
 }
