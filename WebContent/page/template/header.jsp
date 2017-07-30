@@ -90,7 +90,7 @@
 									data-toggle="dropdown">관리자 <strong class="caret"></strong></a>
 									<ul class="dropdown-menu">
 										<li><a href="${root}/memberAdmin/list.gbg">회원관리</a></li>
-										<li><a href="#">통계</a></li>
+										<li><a href="${root}/admin/statistics.gbg">통계</a></li>
 									</ul>
 								</li>
 	 						</c:if>

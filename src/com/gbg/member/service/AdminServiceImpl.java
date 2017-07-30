@@ -1,5 +1,6 @@
 package com.gbg.member.service;
 
+import java.util.List;
 import java.util.Properties;
 
 import javax.mail.Address;
@@ -14,6 +15,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.gbg.list.model.ListDto;
+import com.gbg.member.dao.AdminDao;
 import com.gbg.member.mail.SMTPAuthenticatior;
 import com.gbg.member.model.QnaDto;
 
@@ -64,6 +67,11 @@ public class AdminServiceImpl implements AdminService {
 			e.printStackTrace();
 			return;
 		}
+	}
+
+	@Override
+	public List<ListDto> address(String address) {
+		return sqlSession.getMapper(AdminDao.class).address(address);
 	}
 
 }

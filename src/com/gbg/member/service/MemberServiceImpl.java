@@ -2,6 +2,7 @@ package com.gbg.member.service;
 
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
@@ -17,6 +18,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.gbg.list.model.ListDto;
 import com.gbg.member.dao.MemberDao;
 import com.gbg.member.mail.SMTPAuthenticatior;
 import com.gbg.member.model.UsersDto;
