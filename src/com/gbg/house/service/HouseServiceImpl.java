@@ -35,8 +35,8 @@ public class HouseServiceImpl implements HouseService{
 	}
 
 	@Override
-	public int reservation(RoomDto roomDto) {
-		return sqlSession.getMapper(HouseDao.class).reservation(roomDto);
+	public int room (RoomDto roomDto) {
+		return sqlSession.getMapper(HouseDao.class).room(roomDto);
 	}
 
 }

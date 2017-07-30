@@ -9,6 +9,7 @@
     <typeAliases>
         <typeAlias alias="usersDto" type="com.gbg.member.model.UsersDto"/>
         <typeAlias alias="guestHouseDto" type="com.gbg.host.model.GuestHouseDto"/>
+        <typeAlias alias="ListDto" type="com.gbg.list.model.ListDto"/>
         <typeAlias alias="houseDto" type="com.gbg.house.model.HouseDto"/>
         <typeAlias alias="boardListDto" type="com.gbg.admin.board.model.BoardListDto"/>
         <typeAlias alias="reboardDto" type="com.gbg.board.model.ReboardDto" />
@@ -20,8 +21,8 @@
         <mapper resource="com/gbg/config/mybatis/sangkuk.xml"/>
         <mapper resource="com/gbg/config/mybatis/boardadmin.xml"/>
         <mapper resource="com/gbg/config/mybatis/reboard.xml"/>
-        <!-- <<mapper resource="com/gbg/config/mybatis/mapboard.xml"/>-->
-        <!-- <mapper resource="com/gbg/config/mybatis/juhee.xml"/>-->
+        <!-- <mapper resource="com/gbg/config/mybatis/mapboard.xml"/>-->
+        <mapper resource="com/gbg/config/mybatis/juhee.xml"/>
         <mapper resource="com/gbg/config/mybatis/insueng.xml"/>
         <mapper resource="com/gbg/config/mybatis/sungjun.xml"/>
     </mappers>

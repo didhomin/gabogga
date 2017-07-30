@@ -7,8 +7,8 @@ import com.gbg.house.model.HouseDto;
 public interface HouseDao {
 
 	int reservation(HouseDto houseDto);
+	int room (RoomDto roomDto);
 	GuestHouseDto houseInfo(String guesthouseId);
 	int hostInfo(GuestHouseDto guesthouseDto);
-	int reservation(RoomDto roomDto);
 	
 }

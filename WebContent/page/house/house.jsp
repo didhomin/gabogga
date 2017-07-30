@@ -16,8 +16,8 @@
 <c:if test="${not empty user }">
 <script type="text/javascript">
 function reservationmodal() {
-	$("#userId").val("${user.email}");
-	$("#tel").val("${user.tel}");
+	$("#user").val("${user.email}");
+	$("#Tel").val("${user.tel}");
 	$("#Person").val($("#person").val());
 	$("#roomInfo").val($("#roominfo").val());
 	$("#checkIn").val($("#from").val());
@@ -164,7 +164,7 @@ function reservationmodal() {
           <!-- 	<div class="input-group"> -->
             <select name="roominfo" id="roominfo" class="form-control" >
 	            <option value="---">------</option>
-	            <option value="${room.roomID }">101</option>
+	            <option value="${room.roomname }">${room.roomname }</option>
 	            <!-- <option value="102호">102호</option>
 	            <option value="103호">103호</option>
 	            <option value="104호">104호</option> -->

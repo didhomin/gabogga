@@ -3,7 +3,8 @@ package com.gbg.house.model;
 public class HouseDto {
 	
 	private String reservationId;
-	private String roomId;
+	private int roomId;
+	private String userId;
 	private String checkIn;
 	private String checkOut;
 	private String price;
@@ -16,11 +17,11 @@ public class HouseDto {
 	public void setReservationId(String reservationId) {
 		this.reservationId = reservationId;
 	}
-	public String getRoomId() {
+	public int getRoomId() {
 		return roomId;
 	}
-	public void setRoomId(String roomId) {
-		this.roomId = roomId;
+	public void setRoomId(int i) {
+		this.roomId = i;
 	}
 	public String getCheckIn() {
 		return checkIn;
@@ -57,6 +58,12 @@ public class HouseDto {
 	}
 	public void setOksign(String oksign) {
 		this.oksign = oksign;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	
 	

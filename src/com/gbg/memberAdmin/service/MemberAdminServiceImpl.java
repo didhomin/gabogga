@@ -16,9 +16,9 @@ public class MemberAdminServiceImpl implements MemberAdminService {
 	private SqlSession sqlSession;
 	
 	@Override
-	public int memberAdminDelete(String id) {
+	public int memberAdminDelete(String userId) {
+		return sqlSession.getMapper(MemberAdminDao.class).memberAdmindelete(userId);
 		
-		return sqlSession.getMapper(MemberAdminDao.class).memberAdminDelete(id);
 	}
 
 	@Override
@@ -31,6 +31,24 @@ public class MemberAdminServiceImpl implements MemberAdminService {
 	public UsersDto searchMemberAdmin(String userId) {
 		// TODO Auto-generated method stub
 		return sqlSession.getMapper(MemberAdminDao.class).searchMemberAdmin(userId);
+	}
+
+	@Override
+	public int memberAdminBlack(String userId) {
+		
+		return sqlSession.getMapper(MemberAdminDao.class).memberAdminBlack(userId);
+	}
+
+	@Override
+	public List<UsersDto> blacklist() {
+	
+		return sqlSession.getMapper(MemberAdminDao.class).blacklist();
+	}
+
+	@Override
+	public int memberAdminSoso(String userId) {
+		// TODO Auto-generated method stub
+		return sqlSession.getMapper(MemberAdminDao.class).memberAdminSoso(userId);
 	}
 
 }

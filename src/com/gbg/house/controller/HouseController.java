@@ -25,20 +25,21 @@ public class HouseController {
 	public ModelAndView reservation(@RequestParam("roomId") String roomId,
 									@RequestParam("reservationId") String reservationId,
 									@RequestParam("oksign") String oksign,
-									@RequestParam("userid") String userid,
-			HouseDto houseDto, HttpSession session){
+									@RequestParam("userId") String userId,
+									HouseDto houseDto, HttpSession session){
 		ModelAndView mav = new ModelAndView();
 //		System.out.println(houseDto);
 //		RoomDto roomDto = new RoomDto();
 		UsersDto usersDto = (UsersDto) session.getAttribute("user");
 		if (usersDto != null) {
 			int cnt = houseservice.reservation(houseDto);
-//			cnt += houseservice.reservation(roomDto); 
+//			cnt += houseservice.room(roomDto); 
 //			mav.addObject("room", roomDto);
+//			houseDto.setRoomId(roomDto.getRoomId());
 			mav.addObject("house", houseDto);
 			mav.setViewName("/page/house/reservationok");
 		}
 		return mav;
-		
+
 	}
 }
