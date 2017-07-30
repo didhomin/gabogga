@@ -2,6 +2,8 @@ package com.gbg.admin.board.service;
 
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gbg.admin.board.dao.BoardAdminDao;
@@ -10,12 +12,12 @@ import com.gbg.admin.board.model.*;
 @Service
 public class BoardAdminServiceImpl implements BoardAdminService {
 
-	private BoardAdminDao boardAdminDao;
+	@Autowired
+	private SqlSession sqlSession;
 	
 	@Override
 	public List<BoardListDto> boardList() {
-		System.out.println("서비스까지 왓다아아아ㅏㅏㅏ");
-		return null;
+		return sqlSession.getMapper(BoardAdminDao.class).boardList();
 	}
 
 	@Override

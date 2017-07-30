@@ -1,7 +1,9 @@
 package com.gbg.member.service;
 
+import java.util.List;
 import java.util.Map;
 
+import com.gbg.list.model.ListDto;
 import com.gbg.member.model.UsersDto;
 
 public interface MemberService {
@@ -14,4 +16,5 @@ public interface MemberService {
 	void passModify(Map<String, String> map);
 	int snsRegister(String email,String name);
 	int memberModify(UsersDto usersDto);
+	
 }

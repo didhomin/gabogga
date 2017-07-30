@@ -2,20 +2,22 @@ package com.gbg.board.service;
 
 import java.util.*;
 
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gbg.board.dao.ReboardDao;
 import com.gbg.board.model.ReboardDto;
-import com.gbg.util.BoardConstance;
 
 @Service
 public class ReboardServiceImpl implements ReboardService {
 
-	private ReboardDao reboardDao;
+	@Autowired
+	private SqlSession sqlSession;
 	
 	@Override
 	public int writeArticle(ReboardDto reboardDto) {
-		return 0;
+		return sqlSession.getMapper(ReboardDao.class).writeArticle(reboardDto);
 	}
 
 	@Override

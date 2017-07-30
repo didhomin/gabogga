@@ -33,13 +33,18 @@
 			      </tr>
 			    </thead>
 			    <tbody>
-			      <tr>
-			        <td colspan="2">
-			        	여기는 <br>
-			        	글쓰는 <br>
-			        	자리 입니다.
-			        </td>
-			      </tr>
+					<tr>
+					   <td colspan="2">
+					   <%@ include file="/page/community/map/daummap.jsp" %>
+					   </td>
+					</tr>
+					<tr>
+					  <td colspan="2">
+					  	여기는 <br>
+					  	글쓰는 <br>
+					  	자리 입니다.
+					  </td>
+					</tr>
 			    </tbody>
 			</table>
 <!-- 댓글 리스트 -->

@@ -4,8 +4,11 @@
 <!-- 헤더 -->
 <%@ include file="/page/template/header.jsp" %>	
 <!-- 여기서부터 우리가 꾸미기-->
-
+<div class="row">
+<div class="col-sm-3 sidenav">
 <%@ include file="/page/community/boardmenu.jsp" %>
+</div>
+</div>
 <!-- 여기서부터 게시판 메인 꾸미기 -->
 		<div class="col-sm-9 main">			
 			<div class="row">
@@ -86,7 +89,6 @@ for(int i=1; i<=5; i++) {
 				</div>
 			</form>
 		</div>
-
 	
 	
 	
