@@ -1,6 +1,6 @@
 package com.gbg.board.model;
 
-public class ReboardDto extends BoardDto {
+public class MapboardDto extends BoardDto {
 
 	private int rseq;
 	private int ref;

@@ -25,7 +25,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where email=#{email}
     </insert>
     <select id="login" parameterType="java.util.Map" resultType="usersDto">
-        select user_id userId,name, email, password, tel, gender, type, reg_date regDate, state
+        select user_id userId, name, email, password, tel, gender, type, reg_date regDate, state
         from users
         where email=#{email} and password=#{password}
     </select>

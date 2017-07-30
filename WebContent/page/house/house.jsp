@@ -164,15 +164,15 @@ function reservationmodal() {
          <div class="well" >
           <h4>[객실선택]</h4>
           <!-- 	<div class="input-group"> -->
-			    <c:forEach var="room" items="${list }">
                 <select name="roominfo" id="roominfo" class="form-control" >
+			    <c:forEach var="room" items="${room }">
 		            <option value="---">------</option>
 		            <option value="${room.roomName }">${room.roomName }</option>
 	            <!-- <option value="102호">102호</option>
 	            <option value="103호">103호</option>
 	            <option value="104호">104호</option> -->
-	    		     </select>
 		         	 </c:forEach>
+	    		     </select>
 	         
             <!-- <span class="input-group-btn">
                             <button class="btn btn-default" type="button">

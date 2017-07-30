@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper     
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"     
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+
+<mapper namespace="com.kitri.board.dao.ReboardDao">
+    
+    <insert id="writeArticle" parameterType="reboardDto">
+        insert all
+        into board (seq, name, id, email, subject, content, hit, logtime, bcode)
+        values(#{seq}, #{name}, #{id}, #{email}, #{subject}, #{content}, 0, sysdate, #{bcode})
+        into reboard (rseq, seq, ref, lev, step, pseq, reply)
+        values (reboard_rseq.nextval, #{seq}, #{ref}, 0, 0, 0, 0)
+        select * from dual
+    </insert>
+    
+</mapper>

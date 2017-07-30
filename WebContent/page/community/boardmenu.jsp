@@ -48,34 +48,26 @@ body {
     
 </style>
 
-<div class="col-sm-3 sidenav">
-	<div class="board_list" id="boardmenu">
-		<p class="category_name">동행게시판</p>
-			<div class="board_name">
-				<a href="">* 안전한 동행공지</a>
-				<a href="">- 동행 대중교통</a>
-				<a href="">- 동행 내일로</a>
-				<a href="">- 동행 제주도</a>
-				<a href="">- 동행 여행중/현지</a>
-				<a href="">- 동행 택시/같이타기</a>
-			</div>
-		<p class="category_name">내일로</p>
-			<div class="board_name">
-				<a href="">이야기</a>
-				<a href="">질문/답변</a>
-				<a href="">코스상담</a>
-				<a href="">코스뽐내기</a>
-				<a href="">여행후기</a>
-				<a href="">여행팁</a>
-			</div>
-		<p class="category_name">제주도</p>
-			<div class="board_name">
-				<a href="">이야기</a>
-				<a href="">질문/답변</a>
-				<a href="">코스상담</a>
-				<a href="">코스뽐내기</a>
-				<a href="">여행후기</a>
-				<a href="">여행팁</a>
-			</div>
-	</div>
+
+<div class="board_list" id="boardmenu">
+	
+<c:set var="ccode" value="0"/>
+<c:forEach varStatus="i" var="boardListDto" items="${boardmenu}">
+	<c:if test="${ccode != boardListDto.ccode}">
+		<c:set var="ccode" value="${boardListDto.ccode}"/>
+		<p class="category_name">${boardListDto.cname}</p>
+		<div class="board_name">
+	</c:if>
+	<a href="${root}/${boardListDto.control}/write.gbg?bcode=${boardListDto.bcode}&pg=1&key=&word=">
+		${boardListDto.bname}
+	</a>
+	<c:if test="${i.index < boardmenu.size() -1 }">
+		<c:if test="${ccode != boardmenu.get(i.index + 1).ccode}">
+		
+</div>
+	
+		</c:if>
+	</c:if>
+</c:forEach>
+
 </div>

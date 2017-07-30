@@ -58,13 +58,14 @@
 				    </div>
 			    </form> -->
 					<ul class="nav navbar-nav navbar-right">
-						<li class="dropdown"><a class="dropdown-toggle" href="#"
+						<li><a href="${root}/boardadmin/boardmenu.gbg">커뮤니티</a></li>
+						<!-- <li class="dropdown"><a class="dropdown-toggle" href="#"
 							data-toggle="dropdown">커뮤니티 <strong class="caret"></strong></a>
 							<ul class="dropdown-menu">
 								<li><a href="#">내일로</a></li>
 								<li><a href="#">제주도</a></li>
 							</ul>
-						</li>
+						</li> -->
 						<li class="dropdown"><a class="dropdown-toggle" href="#"
 							data-toggle="dropdown">호스팅하기 <strong class="caret"></strong></a>
 							<ul class="dropdown-menu">
@@ -89,7 +90,7 @@
 									data-toggle="dropdown">관리자 <strong class="caret"></strong></a>
 									<ul class="dropdown-menu">
 										<li><a href="${root}/memberAdmin/list.gbg">회원관리</a></li>
-										<li><a href="#">통계</a></li>
+										<li><a href="${root}/admin/statistics.gbg">통계</a></li>
 									</ul>
 								</li>
 	 						</c:if>
