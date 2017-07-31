@@ -60,7 +60,7 @@ $(document).ready(function() {
 	aria-labelledby="myModalLabel">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div class="panel-success ">
+			<div class="panel-primary ">
 				<div class="panel-heading">
 					<h3>
 						Register
@@ -206,7 +206,7 @@ $(document).ready(function() {
 										</div> --%>
 										<hr />
 										<input id="registerBtn"
-											class="btn btn-lg btn-success btn-block" type="submit"
+											class="btn btn-lg btn-primary btn-block" type="submit"
 											value="SIGN UP">
 									</fieldset>
 									<hr />

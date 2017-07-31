@@ -42,7 +42,6 @@ public class MemberController {
 		
 		json.put("count", (usersDto == null ? "0" : "1"));
 		json.put("email", email);
-//		System.out.println(json.toJSONString());
 		return json.toJSONString();
 	}
 	

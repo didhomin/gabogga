@@ -5,7 +5,7 @@ $(document).ready(function() {
 		$.ajax({
 			type : 'GET',
 			dataType : 'json',
-			url : '${root}/admin/address.gbg',
+			url : '/gabogga/admin/address.gbg',
 			data : {'address' : address},
 			success : function(data) {
 				 if(data.size==0 || address=="") {
