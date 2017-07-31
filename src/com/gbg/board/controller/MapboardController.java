@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.gbg.board.service.ReboardService;
 import com.gbg.board.model.MapboardDto;
 import com.gbg.board.model.ReboardDto;
+import com.gbg.board.model.StopbyDto;
 import com.gbg.board.service.CommonService;
 import com.gbg.board.service.MapboardService;
 import com.gbg.member.model.UsersDto;
@@ -45,19 +46,22 @@ public class MapboardController {
 	}
 	
 	@RequestMapping(value="/write.gbg", method=RequestMethod.POST)
-	public ModelAndView write(@RequestParam Map<String, String> queryString, MapboardDto mapboardDto, HttpSession session) {
+	public ModelAndView write(@RequestParam Map<String, String> queryString, StopbyDto stopbyDto, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		UsersDto usersDto = (UsersDto) session.getAttribute("user");
 		List<BoardListDto> list = boardAdminService.boardList();
 		mav.addObject("boardmenu", list);
+		
+		System.out.println("queryString >>> " + queryString);
+		
 		if(usersDto != null) {
 			int seq = commonService.getNextSeq();
-			mapboardDto.setSeq(seq);
-			mapboardDto.setUserId(usersDto.getUserId());
-			mapboardDto.setName(usersDto.getName());
-			mapboardDto.setEmail(usersDto.getEmail());
-			mapboardDto.setRef(seq);
-			int cnt = mapboardService.writeArticle(mapboardDto);
+			stopbyDto.setSeq(seq);
+			stopbyDto.setUserId(usersDto.getUserId());
+			stopbyDto.setName(usersDto.getName());
+			stopbyDto.setEmail(usersDto.getEmail());
+			stopbyDto.setMapseq(seq);
+			//int cnt = mapboardService.writeArticle(stopbyDto);
 			mav.addObject("seq", seq);
 			mav.addObject("qs", queryString);
 			mav.setViewName("/page/community/communitymain");

@@ -3,6 +3,7 @@
 
 <!-- 헤더 -->
 <%@ include file="/page/template/header.jsp" %>	
+<%@ include file="/page/community/logincheck.jsp" %>
 <!-- 여기서부터 우리가 꾸미기-->
 <div class="row">
 <div class="col-sm-3 sidenav">

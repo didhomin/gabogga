@@ -15,4 +15,41 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         select * from dual
     </insert>
     
+    <select id="getArticle" parameterType="int" resultType="reboardDto">
+        select b.seq, b.name, b.email, b.subject,
+            b.content, b.hit, b.logtime, b.bcode,
+            r.rseq, r.ref, r.lev, r.step, r.pseq, r.reply
+        from board b, reboard r
+        where b.seq = r.seq
+        and b.seq = #{seq}
+    </select>
+    
+    <select id="listArticle" parameterType="java.util.Map" resultType="reboardDto">
+        select b.*
+        from(
+            select rownum rn, a.*
+            from(
+            select b.seq, b.name, b.email, b.subject,
+            b.content, b.hit, b.bcode,
+            decode(to_char(sysdate,'yymmdd'), to_char(b.logtime, 'yymmdd'), 
+            to_char(b.logtime, 'hh24:mi:ss'), to_char(b.logtime, 'yy.mm.dd')) logtime,
+            r.rseq, r.ref, r.lev, r.step, r.pseq, r.reply
+            from board b, reboard r
+            where b.seq = r.seq
+            and b.bcode = #{bcode}
+    <if test="key!='' and word!=''">
+        <if test="key == 'subject'">
+            and b.subject like '%'||#{word}||'%'
+        </if>
+        <if test="key != 'subject'">
+            and b.${key} = #{word}
+        </if>
+    </if>
+            order by b.seq desc
+                ) a
+            where rownum &lt;= #{end}
+            ) b
+        where b.rn &gt; #{start}
+    </select>
+    
 </mapper>

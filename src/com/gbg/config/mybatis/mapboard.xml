@@ -4,14 +4,16 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"     
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
 
-<mapper namespace="com.kitri.board.dao.ReboardDao">
+<mapper namespace="com.kitri.board.dao.MapboardDao">
     
-    <insert id="writeArticle" parameterType="reboardDto">
+    <insert id="writeArticle" parameterType="stopbyDto">
         insert all
-        into board (seq, name, id, email, subject, content, hit, logtime, bcode)
-        values(#{seq}, #{name}, #{id}, #{email}, #{subject}, #{content}, 0, sysdate, #{bcode})
-        into reboard (rseq, seq, ref, lev, step, pseq, reply)
-        values (reboard_rseq.nextval, #{seq}, #{ref}, 0, 0, 0, 0)
+        into board (seq, user_id, bcode, name, email, subject, content, hit, logtime)
+        values(#{seq}, #{userId}, #{bcode}, #{name}, #{email}, #{subject}, #{content}, 0, sysdate)
+        into map (mapseq, seq, start_locx, start_locy, finish_locx, finish_locy)
+        values (seq_MAP_MAP_seq.nextval, #{seq}, #{}, #{}, #{}, #{})
+        into stopby (mapseq, seq, loc_x, loc_y)
+        values ()
         select * from dual
     </insert>
     

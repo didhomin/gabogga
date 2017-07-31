@@ -3,6 +3,7 @@
 
 <!-- 헤더 -->
 <%@ include file="/page/template/header.jsp" %>	
+<%@ include file="/page/community/logincheck.jsp" %>
 <!-- 여기서부터 우리가 꾸미기-->
 <div class="row">
 <div class="col-sm-3 sidenav">
@@ -13,15 +14,15 @@
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.6/summernote.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.6/summernote.js"></script>		
 <script type="text/javascript">
- $(function() {
-   $('.summernote').summernote({
-     height: 200,          // 기본 높이값
-     minHeight: null,      // 최소 높이값(null은 제한 없음)
-     maxHeight: null,      // 최대 높이값(null은 제한 없음)
-     focus: true,          // 페이지가 열릴때 포커스를 지정함
-     lang: 'ko-KR'         // 한국어 지정(기본값은 en-US)
-   });
- });
+$(function() {
+  $('.summernote').summernote({
+    height: 200,          // 기본 높이값
+    minHeight: null,      // 최소 높이값(null은 제한 없음)
+    maxHeight: null,      // 최대 높이값(null은 제한 없음)
+    focus: true,          // 페이지가 열릴때 포커스를 지정함
+    lang: 'ko-KR'         // 한국어 지정(기본값은 en-US)
+  });
+});
  
 $(document).ready(function() {
 	$('#writeBtn').click(function() {
@@ -39,7 +40,12 @@ $(document).ready(function() {
 
 </script>
 	<div class="col-sm-9 main">
-	<form id="writeForm" name="writeForm">			
+	<form id="writeForm" name="writeForm">
+	<input type="hidden" name="bcode" value="${qs.bcode}">
+	<input type="hidden" name="pg" value="1">
+	<input type="hidden" name="key" value="">
+	<input type="hidden" name="word" value="">
+	
 		<div class="col-sm-11 row">
 			<label for="subject">제목 :</label>
 		</div>

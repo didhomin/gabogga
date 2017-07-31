@@ -1,48 +1,56 @@
 package com.gbg.board.model;
 
 public class MapboardDto extends BoardDto {
-
-	private int rseq;
-	private int ref;
-	private int lev;
-	private int step; 
-	private int pseq; 
-	private int reply; 
 	
-	public int getRseq() {
-		return rseq;
+	private int mapseq;
+	private String startLocx;
+	private String startLocy;
+	private String finishLocx;
+	private String finishLocy;
+//	private String Locx;
+//	private String Locy;
+	
+	public int getMapseq() {
+		return mapseq;
 	}
-	public void setRseq(int rseq) {
-		this.rseq = rseq;
+	public void setMapseq(int mapseq) {
+		this.mapseq = mapseq;
 	}
-	public int getRef() {
-		return ref;
+	public String getStartLocx() {
+		return startLocx;
 	}
-	public void setRef(int ref) {
-		this.ref = ref;
+	public void setStartLocx(String startLocx) {
+		this.startLocx = startLocx;
 	}
-	public int getLev() {
-		return lev;
+	public String getStartLocy() {
+		return startLocy;
 	}
-	public void setLev(int lev) {
-		this.lev = lev;
+	public void setStartLocy(String startLocy) {
+		this.startLocy = startLocy;
 	}
-	public int getStep() {
-		return step;
+	public String getFinishLocx() {
+		return finishLocx;
 	}
-	public void setStep(int step) {
-		this.step = step;
+	public void setFinishLocx(String finishLocx) {
+		this.finishLocx = finishLocx;
 	}
-	public int getPseq() {
-		return pseq;
+	public String getFinishLocy() {
+		return finishLocy;
 	}
-	public void setPseq(int pseq) {
-		this.pseq = pseq;
+	public void setFinishLocy(String finishLocy) {
+		this.finishLocy = finishLocy;
 	}
-	public int getReply() {
-		return reply;
-	}
-	public void setReply(int reply) {
-		this.reply = reply;
-	}
+//	public String getLocx() {
+//		return Locx;
+//	}
+//	public void setLocx(String locx) {
+//		Locx = locx;
+//	}
+//	public String getLocy() {
+//		return Locy;
+//	}
+//	public void setLocy(String locy) {
+//		Locy = locy;
+//	}
+	
 }

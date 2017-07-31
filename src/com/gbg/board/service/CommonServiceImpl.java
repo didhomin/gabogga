@@ -3,6 +3,8 @@ package com.gbg.board.service;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gbg.board.dao.CommonDao;
@@ -12,34 +14,30 @@ import com.gbg.util.PageNavigation;
 @Service
 public class CommonServiceImpl implements CommonService {
 
-	private CommonDao commonDao;
+	@Autowired
+	private SqlSession sqlSession;
 	
 	@Override
 	public int getNextSeq() {
-		return 0;
+		return sqlSession.getMapper(CommonDao.class).getNextSeq();
 	}
 
 	@Override
-	public PageNavigation makePageNavigation(int bcode, int pg, String key, String word) {
-//		PageNavigation pageNavigation = new PageNavigation();
-//		
-////		pageNavigation.setRoot(root); //���⼭ ����  reboardlistaction���� �ؾߵ�
-//		int newArticleCount = CommonDaoImpl.getCommonDao().newArticleCount(bcode);
-//		pageNavigation.setNewArticleCount(newArticleCount);
-//		Map<String, String> map = new HashMap<String, String>();
-//		map.put("bcode", bcode + "");
-//		map.put("key", key);
-//		map.put("word", word);
-//		int totalArticleCount = CommonDaoImpl.getCommonDao().totalArticleCount(map);
-//		pageNavigation.setTotalArticleCount(totalArticleCount);
-////		int totalPageCount = totalArticleCount%BoardConstance.LIST_SIZE == 0 ? totalArticleCount/BoardConstance.LIST_SIZE : totalArticleCount/BoardConstance.LIST_SIZE+1;//����ؼ� ����  db���� �����°� �ƴ�
-//		int totalPageCount = (totalArticleCount - 1) / BoardConstance.LIST_SIZE + 1;
-//		pageNavigation.setTotalPageCount(totalPageCount);
-//		pageNavigation.setNowFirst(pg <= BoardConstance.PAGE_SIZE);
-//		pageNavigation.setNowEnd((totalPageCount - 1) / BoardConstance.PAGE_SIZE * BoardConstance.PAGE_SIZE < pg);
-//		pageNavigation.setPageNo(pg);
-////		pageNavigation.setNavigator(); //���� ���� ������ (��Ʈ ���� �Ѵ�����) �ؾߵ�
-		return null;
+	public PageNavigation makePageNavigation(Map<String, String> queryString) {
+		PageNavigation pageNavigation = new PageNavigation();
+		
+		int newArticleCount = sqlSession.getMapper(CommonDao.class).newArticleCount(Integer.parseInt(queryString.get("bcode")));
+		pageNavigation.setNewArticleCount(newArticleCount);
+		int totalArticleCount = sqlSession.getMapper(CommonDao.class).totalArticleCount(queryString);
+		pageNavigation.setTotalArticleCount(totalArticleCount);
+		int totalPageCount = (totalArticleCount - 1) / BoardConstance.LIST_SIZE + 1;
+		
+		int pg = Integer.parseInt(queryString.get("pg"));
+		
+		pageNavigation.setTotalPageCount(totalPageCount);
+		pageNavigation.setNowFirst(pg <= BoardConstance.PAGE_SIZE);
+		pageNavigation.setNowEnd((totalPageCount - 1) / BoardConstance.PAGE_SIZE * BoardConstance.PAGE_SIZE < pg);
+		pageNavigation.setPageNo(pg);
+		return pageNavigation;
 	}
-
 }

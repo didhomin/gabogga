@@ -33,10 +33,14 @@ var dots = {}; // 선이 그려지고 있을때 클릭할 때마다 클릭 지�
 
 var geocoder = new daum.maps.services.Geocoder();
 
-var starty, stopby1y, stopby2y, stopby3y, finishy;
+/* var starty, stopby1y, stopby2y, stopby3y, finishy;
 var startx, stopby1x, stopby2x, stopby3x, finishx;  	
-var start, stopby1, stopby2, stopby3, finish;  	
+var start, stopby1, stopby2, stopby3, finish;  	 */
 var pathline = new Array();
+
+var stopbyx = new Array();
+var stopbyy = new Array();
+var stopby = new Array();
 
 function searchAddress(address, cnt) {
 	geocoder.addressSearch(address, function(result, status) {
@@ -45,15 +49,45 @@ function searchAddress(address, cnt) {
 	     if (status === daum.maps.services.Status.OK) {
 
 	    	 
-	        var coords = new daum.maps.LatLng(result[0].y, result[0].x);
+	        /* var coords = new daum.maps.LatLng(result[0].y, result[0].x);
 	        console.log(coords);
 	        // 결과값으로 받은 위치를 마커로 표시합니다
 	        var marker = new daum.maps.Marker({
 	            map: map,
 	            position: coords
+	        }); */
+	      	
+        	stopbyy[cnt] = result[0].y;
+        	stopbyx[cnt] = result[0].x;
+        	stopby[cnt] = new daum.maps.LatLng(result[0].y, result[0].x);
+        	
+        	var marker = new daum.maps.Marker({
+	            map: map,
+	            position: stopby[cnt]
 	        });
+        	
+        	drawLine(stopby[cnt]);
+        	
+        	if(cnt == 0) {
+		       	// 인포윈도우로 장소에 대한 설명을 표시합니다
+		        var infowindow = new daum.maps.InfoWindow({
+		            content: '<div style="width:150px;text-align:center;padding:6px 0;">출발</div>'
+		        });
+		        infowindow.open(map, marker);
+        	}
+        	
+        	if(cnt == mapCnt) {
+		       	// 인포윈도우로 장소에 대한 설명을 표시합니다
+		        var infowindow = new daum.maps.InfoWindow({
+		            content: '<div style="width:150px;text-align:center;padding:6px 0;">도착</div>'
+		        });
+		        infowindow.open(map, marker);
+        	}
+
+            // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+            map.setCenter(stopby[cnt]);
 	        
-	        if(cnt == 0) {
+	        /* if(cnt == 0) {
 	        	starty = result[0].y;
 				startx = result[0].x;
 				start = new daum.maps.LatLng(result[0].y, result[0].x);
@@ -103,22 +137,21 @@ function searchAddress(address, cnt) {
 		            content: '<div style="width:150px;text-align:center;padding:6px 0;">도착</div>'
 		        });
 		        infowindow.open(map, marker);
-	        }
+	        } */
 		        
 	        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-	        map.setCenter(coords);
+	        //map.setCenter(coords);
 	    } 
 	});    
 }
 
+var sCnt=0;
+$(document).on('click','.searchBtn', function() {
+	var sAddr = $(this).parents('#mapPlusD').children('div').siblings().first().children().val();
+	searchAddress(sAddr, sCnt++);
+})
 
-
-$('.startBtn').on('click', function(){
-	//console.log(123123123);
-	searchAddress($('.start').val(), 0);
-});
-
-$('.stopby1Btn').on('click', function(){
+/* $('.stopby1Btn').on('click', function(){
 	searchAddress($('.stopby1').val(), 1);
 });
 
@@ -132,17 +165,19 @@ $('.stopby3Btn').on('click', function(){
 
 $('.finishBtn').on('click', function(){
 	searchAddress($('.finish').val(), 4);
-});
+}); */
 
 $('.mapfinishBtn').on('click', function(){
 	// 버튼을 클릭하면 아래 배열의 좌표들이 모두 보이게 지도 범위를 재설정합니다 
-	var points = [
-	    new daum.maps.LatLng(starty, startx),
+/* 	var points = [
+		new daum.maps.LatLng(starty, startx),
 	    new daum.maps.LatLng(stopby1y, stopby1x),
 	    new daum.maps.LatLng(stopby2y, stopby2x),
 	    new daum.maps.LatLng(stopby3y, stopby3x),
 	    new daum.maps.LatLng(finishy, finishx)
-	];
+	]; */
+	
+	var points = stopby;
 
 	// 지도를 재설정할 범위정보를 가지고 있을 LatLngBounds 객체를 생성합니다
 	var bounds = new daum.maps.LatLngBounds();    
@@ -226,9 +261,9 @@ function drawLine(addDraw) {
         displayCircleDot(addDraw, distance);
     }
     
-    if(addDraw == finish) {
+    /* if(addDraw == finish) {
     	drawLineEnd(finish);
-    }
+    } */
     
 };
     

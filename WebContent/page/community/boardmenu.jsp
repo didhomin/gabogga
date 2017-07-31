@@ -71,3 +71,11 @@ body {
 </c:forEach>
 
 </div>
+
+<form id="commonForm" name="commonForm" method="get" action="">
+	<input type="hidden" id="bcode" name="bcode">
+	<input type="hidden" id="pg" name="pg">
+	<input type="hidden" id="key" name="key">
+	<input type="hidden" id="word" name="word">
+	<input type="hidden" id="seq" name="seq">
+</form>

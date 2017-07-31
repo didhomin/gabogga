@@ -3,41 +3,64 @@
 
 <!-- 헤더 -->
 <%@ include file="/page/template/header.jsp" %>	
+<%@ include file="/page/community/logincheck.jsp" %>
 <!-- 여기서부터 우리가 꾸미기-->
 <div class="row">
 <div class="col-sm-3 sidenav">
 <%@ include file="/page/community/boardmenu.jsp" %>
 </div>
 </div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	
+	$(".newBtn").click(function() {
+		$('#bcode').val('${qs.bcode}');
+		$('#pg').val('1');
+		$('#key').val('');
+		$('#word').val('');
+		$('#commonForm').attr('action', '${root}/reboard/write.gbg').submit();
+	});
+	
+	$(".listArticle").click(function() {
+		$('#bcode').val('${qs.bcode}');
+		$('#pg').val('${qs.pg}');
+		$('#key').val('${qs.key}');
+		$('#word').val('${qs.word}');
+		$('#seq').val($(this).attr('data-seq'));
+		$('#commonForm').attr('action', '${root}/reboard/list.gbg').submit();
+	});
+	
+});
+</script>
+
 <!-- 여기서부터 게시판 메인 꾸미기 -->
 		<div class="col-sm-9 main">			
 			<div class="row">
 				<div class="col-sm-11">
 				</div>
 				<div class="col-sm-1">	
-					<button type="button" class="btn btn-success btn-sm">목록</button>
+					<button type="button" class="btn btn-success btn-sm listArticle">목록</button>
 				</div>
 			</div><br>
 			
 			<table class="table table-bordered">
 			    <thead>
 			      <tr class="info">
-			        <td width="80%"><b>제목이 나오는 자리</b></td>
-			        <td width="20%">2017.07.23</td>
+			        <td width="80%"><b>${article.subject}</b></td>
+			        <td width="20%">${article.logtime}</td>
 			      </tr>
 			    </thead>
 			    <thead>
 			      <tr class="warning">
-			        <td width="80%"><b>jieun</b></td>
-			        <td width="20%">조회수 : 1004</td>
+			        <td width="80%"><b>${article.name}</b></td>
+			        <td width="20%">조회수 : ${article.hit}</td>
 			      </tr>
 			    </thead>
 			    <tbody>
 			      <tr>
 			        <td colspan="2">
-			        	여기는 <br>
-			        	글쓰는 <br>
-			        	자리 입니다.
+			        	${article.content}
 			        </td>
 			      </tr>
 			    </tbody>
@@ -138,9 +161,9 @@
 				</div>
 				<div class="col-sm-2 input-group-btn">	
 					<a href="#" class="btn btn-primary btn-sm">
-			          <span class="glyphicon glyphicon-pencil"></span> 글쓰기
+			          <span class="glyphicon glyphicon-pencil newBtn"></span> 글쓰기
 			        </a>
-			        <button type="button" class="btn btn-success btn-sm">목록</button>
+			        <button type="button" class="btn btn-success btn-sm listArticle">목록</button>
 				</div>
 			</div>
 		</div>

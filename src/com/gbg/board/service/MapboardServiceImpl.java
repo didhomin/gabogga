@@ -6,9 +6,11 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.gbg.board.dao.MapboardDao;
 import com.gbg.board.dao.ReboardDao;
 import com.gbg.board.model.MapboardDto;
 import com.gbg.board.model.ReboardDto;
+import com.gbg.board.model.StopbyDto;
 
 @Service
 public class MapboardServiceImpl implements MapboardService {
@@ -17,31 +19,30 @@ public class MapboardServiceImpl implements MapboardService {
 	private SqlSession sqlSession;
 
 	@Override
-	public int writeArticle(MapboardDto mapboardDto) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int writeArticle(StopbyDto stopbyDto) {
+		return sqlSession.getMapper(MapboardDao.class).writeArticle(stopbyDto);
 	}
 
 	@Override
-	public MapboardDto getArticle(int seq) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<MapboardDto> listArticle(int bcode, int pg, String key, String word) {
+	public StopbyDto getArticle(int seq) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public int replyArticle(MapboardDto mapboardDto) {
+	public List<StopbyDto> listArticle(int bcode, int pg, String key, String word) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int replyArticle(StopbyDto stopbyDto) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int modifyArticle(MapboardDto mapboardDto) {
+	public int modifyArticle(StopbyDto stopbyDto) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -51,5 +52,7 @@ public class MapboardServiceImpl implements MapboardService {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+
 
 }

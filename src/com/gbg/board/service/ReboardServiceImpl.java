@@ -6,8 +6,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.gbg.board.dao.CommonDao;
 import com.gbg.board.dao.ReboardDao;
 import com.gbg.board.model.ReboardDto;
+import com.gbg.util.BoardConstance;
 
 @Service
 public class ReboardServiceImpl implements ReboardService {
@@ -22,12 +24,19 @@ public class ReboardServiceImpl implements ReboardService {
 
 	@Override
 	public ReboardDto getArticle(int seq) {
-		return null;
+		sqlSession.getMapper(CommonDao.class).updateHit(seq);
+		return sqlSession.getMapper(ReboardDao.class).getArticle(seq);
+		
 	}
 
 	@Override
-	public List<ReboardDto> listArticle(int bcode, int pg, String key, String word) {
-		return null;
+	public List<ReboardDto> listArticle(Map<String, String> queryString) {
+		int pg = Integer.parseInt(queryString.get("pg"));
+		int end = pg * BoardConstance.LIST_SIZE;
+		int start = end - BoardConstance.LIST_SIZE;
+		queryString.put("start", start+"");
+		queryString.put("end", end+"");
+		return sqlSession.getMapper(ReboardDao.class).listArticle(queryString);
 	}
 
 	@Override
