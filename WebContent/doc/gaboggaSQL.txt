@@ -628,17 +628,17 @@ ALTER TABLE memo
 CREATE TABLE stopby (
 	seq NUMBER, /* seq */
 	step NUMBER, /* step */
-	loc_x VARCHAR2(50), /* loc_x */
-	loc_y VARCHAR2(50) /* loc_y */
+	x VARCHAR2(50), /* loc_x */
+	y VARCHAR2(50) /* loc_y */
 );
 
 COMMENT ON COLUMN stopby.seq IS '글번호';
 
 COMMENT ON COLUMN stopby.step IS '경유지순서';
 
-COMMENT ON COLUMN stopby.loc_x IS '경유x좌표';
+COMMENT ON COLUMN stopby.x IS '경유x좌표';
 
-COMMENT ON COLUMN stopby.loc_y IS '경유y좌표';
+COMMENT ON COLUMN stopby.y IS '경유y좌표';
 
 /* room_picture2 */
 CREATE TABLE house_picture (
