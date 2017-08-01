@@ -4,6 +4,68 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.gbg.member.dao.MemberDao">
+<mapper namespace="com.gbg.host.dao.HostDao">
     
+    <select id="first" parameterType="java.util.Map" resultType="guestHouseDto">
+        select 
+        GUESTHOUSE_ID guesthouseId, USER_ID userId, NAME, ROOM_COUNT roomCount, HWEBSITE, ADDRESS1, ADDRESS2, PHONE, LAT, LNG, 
+        CHECKIN_START checkinStart, CHECKIN_END checkinEnd, CHECKOUT_START checkoutStart, CHECKOUT_END checkoutEnd, 
+        INTERNET, PARK, CHILD, PET, ROOM_PAY roomPay, INTRODUCE, PICTURE
+        from guesthouse where USER_ID = #{id}
+    </select>
+    
+    <insert id="secondInsert" parameterType="java.util.Map">
+        insert into guesthouse (GUESTHOUSE_ID, USER_ID, NAME, ROOM_COUNT, HWEBSITE, PHONE)
+        values (SEQ_GUESTHOUSE_GUESTHOUSE_ID.nextval, #{userid}, #{houseName}, #{houseTotal}, #{houseSite}, #{housePhone})
+    </insert>
+    
+    <update id="secondUpdate" parameterType="java.util.Map">
+        update guesthouse
+        set NAME=#{houseName}, ROOM_COUNT=#{houseTotal}, HWEBSITE=#{houseSite}, PHONE=#{housePhone}
+        where user_id=#{userid}
+    </update>
+    
+    <update id="thirdUpdate" parameterType="java.util.Map">
+        update guesthouse
+        set address1=#{houseAddr1}, address2=#{houseAddr2}, lat=#{lat}, lng=#{lng}
+        where user_id=#{userid}
+    </update>
+    
+    <update id="fourthUpdate" parameterType="java.util.Map">
+        update guesthouse
+        set CHECKIN_START=#{selectTime1}, CHECKIN_END=#{selectTime2}, CHECKOUT_START=#{selectTime3}, CHECKOUT_END=#{selectTime4},
+        INTERNET =#{selectInternet}, PARK=#{selectPark}, CHILD=#{selectChild}, PET=#{selectPet}
+        where user_id=#{userid}
+    </update>
+    
+    <select id="roomSelect" parameterType="java.util.Map" resultType="roomDto">
+        select * from ( 
+        select ROOM_ID roomId , GUESTHOUSE_ID guesthouseId, ROOM_TYPE roomType, ROOM_NAME roomName, ROOM_NUM roomNum,
+        BED_TYPE bedType, BED_NUM bedNum, BED_CAPACITY bedCapacity  
+        from room where GUESTHOUSE_ID = #{id})
+        where rownum=1
+    </select>
+    
+    <insert id="fifthInsert" parameterType="java.util.Map">
+        insert into room (ROOM_ID, GUESTHOUSE_ID, ROOM_TYPE, ROOM_NAME, ROOM_NUM, BED_TYPE, BED_NUM, BED_CAPACITY)
+        values (SEQ_ROOM_ROOM_ID.nextval, #{id}, #{roomType}, #{roomAlias},#{roomNum}, #{bedType}, #{bedNum}, #{roomPerson})
+    </insert>
+    
+    <update id="fifthUpdate" parameterType="java.util.Map">
+        update room
+        set ROOM_TYPE=#{roomType}, ROOM_NAME=#{roomAlias}, ROOM_NUM=#{roomNum},
+        BED_TYPE=#{bedType}, BED_NUM = #{bedNum}, BED_CAPACITY=#{roomPerson}
+        where GUESTHOUSE_ID = #{id}
+    </update>
+    
+    <insert id="sixthmodal" parameterType="java.util.Map">
+        insert into room (ROOM_ID, GUESTHOUSE_ID, ROOM_TYPE, ROOM_NAME, ROOM_NUM, BED_TYPE, BED_NUM, BED_CAPACITY)
+        values (SEQ_ROOM_ROOM_ID.nextval, #{id}, #{roomType}, #{roomAlias},#{roomNum}, #{bedType}, #{bedNum}, #{roomPerson})
+    </insert>
+    
+    <select id="roomSelectall" parameterType="java.util.Map" resultType="roomDto">
+        select ROOM_ID roomId , GUESTHOUSE_ID guesthouseId, ROOM_TYPE roomType, ROOM_NAME roomName, ROOM_NUM roomNum,
+        BED_TYPE bedType, BED_NUM bedNum, BED_CAPACITY bedCapacity  
+        from room where GUESTHOUSE_ID = #{id}
+    </select>
 </mapper>
