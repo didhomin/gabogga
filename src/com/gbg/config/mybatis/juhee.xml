@@ -7,8 +7,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.gbg.list.dao.ListDao">
     
     <select id="photoList" parameterType="String" resultType="ListDto">
-        select guesthouse_id ghId, name gname, room_count roomCount, room_pay roomPay, introduce, lat, lng
-        from guesthouse
+        <!--    select gh.guesthouse_id ghId, name gname, room_count roomCount, room_pay roomPay, introduce, lat, lng, picture pictureGh
+        from guesthouse gh
+        where address1 like '%' || #{address1} || '%'-->
+        select gh.guesthouse_id ghId, name gname, room_count roomCount, room_pay roomPay, introduce, lat, lng, picture pictureGh,a.good
+        from guesthouse gh
+        left outer join (select guesthouse_id,count(*) good
+        from house_check hc
+        group by guesthouse_id) a on a.guesthouse_id=gh.guesthouse_id
         where address1 like '%' || #{address1} || '%'
     </select>
+    
+    <select id="roomPicture" parameterType="String" resultType="ListDto">        
+        select rp.picture pictureRoom, gh.guesthouse_id ghId
+        from guesthouse gh, room r, room_picture rp
+        where address1 like '%' || #{address1} || '%' and gh.guesthouse_id = r.guesthouse_id and r.room_id = rp.room_id
+    </select> 
+    
+    <select id="goodpm" parameterType="Map" resultType="String">
+        select good_or_bad
+        from house_check 
+        where guesthouse_id = #{act1} and user_id = #{act2}
+    </select>
+    
+    <update id="change" parameterType="Map">
+        update house_check
+        set good_or_bad = #{good}
+        where guesthouse_id = #{act1} and user_id = #{act2}
+    </update>
 </mapper>
