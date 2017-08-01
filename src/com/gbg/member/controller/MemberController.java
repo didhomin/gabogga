@@ -103,7 +103,10 @@ public class MemberController {
 		if(usersDto==null) {
 			memberService.snsRegister(email,name);
 		}
-		usersDto = memberService.emailCheck(email);
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("email", email);
+		map.put("password", "0");
+		usersDto = memberService.login(map);
 		session.setAttribute("user",usersDto);
 		modelmap.put("snslogin", email);
 		return "/index";
@@ -114,6 +117,10 @@ public class MemberController {
 		if(usersDto==null) {
 			memberService.snsRegister(email,name);
 		}
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("email", email);
+		map.put("password", "0");
+		usersDto = memberService.login(map);
 		modelmap.put("snslogin", email);
 		session.setAttribute("user",usersDto);
 		return "/index";
