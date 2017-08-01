@@ -12,6 +12,7 @@
         <typeAlias alias="ListDto" type="com.gbg.list.model.ListDto"/>
         <typeAlias alias="houseDto" type="com.gbg.house.model.HouseDto"/>
         <typeAlias alias="roomDto" type="com.gbg.host.model.RoomDto"/>
+        <typeAlias alias="boardListDto" type="com.gbg.admin.board.model.BoardListDto"/>
     </typeAliases>
     
     <mappers>
@@ -21,6 +22,7 @@
         <mapper resource="com/gbg/config/mybatis/sangkuk.xml"/>
         <mapper resource="com/gbg/config/mybatis/juhee.xml"/>
         <mapper resource="com/gbg/config/mybatis/sungjun.xml"/>
+        <mapper resource="com/gbg/config/mybatis/boardadmin.xml"/>
     </mappers>
     
     
