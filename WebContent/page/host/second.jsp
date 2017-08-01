@@ -5,12 +5,23 @@
 $(document).ready(function(){
 	
 	$('#progressBtn').click(function(){
+		if(document.getElementById("houseName").value == ""){
+			alert("숙박 시설 이름 입력!");
+			return;
+		} else if(document.getElementById("houseTotal").value == ""){
+			alert("전체 객실 수 입력!");
+			return;
+		}else if(document.getElementById("housePhone").value == ""){
+			alert("연락처 입력!");
+			return;
+		}else{
 		document.hostform.action = "${root}/host/second.gbg";
 		document.hostform.submit();
+		}
 	});
-	
+		
 	$('#backBtn').click(function(){
-		window.history.back();
+		$(location).attr('href', '${root}/host/second.gbg');
 	});
 	
 });
@@ -36,27 +47,59 @@ body{
 			<div class="row" style="padding-bottom: 50px;">
 				<div class="col-sm-3 col-sm-push-1" style="padding-top:30px;">
 				<form name="hostform" method="post">
+				<input type="hidden" name="userid" value="${user.userId}">
 				<h2>기본사항</h2>
 			<br>
+			<c:choose>
+			<c:when test="${host2.name != null }">
 					<span class="glyphicon glyphicon-star" aria-hidden="true"></span> <font
 						size="3px" color="blue" ><strong>숙박 시설 이름</strong> </font><br> <input
-						id="houseName" name="houseName" type="text" class="form-control" placeholder="내용을 입력해주세요.">
+						id="houseName" name="houseName" type="text" class="form-control" placeholder="내용을 입력해주세요." value="${host2.name}">
 					<br> <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
 					<font size="3px" color="blue"><strong>전체 객실 수</strong> </font><br>
 					<div class="row">
 						<div class="col-sm-6">
 							<input id="houseTotal" name="houseTotal" type="text" class="form-control" placeholder="내용을 입력해주세요."
-								size="1px">
+								size="1px" value="${host2.roomCount}">
 						</div>
 						<div class="col-sm-6"></div>
 					</div>
 					<br> <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 					<font size="3px" color="blue"><strong>웹 사이트 (선택사항)</strong> </font><br> <input
-						id="houseSite" name="houseSite" type="text" class="form-control" placeholder="내용을 입력해주세요.">
+						id="houseSite" name="houseSite" type="text" class="form-control" placeholder="내용을 입력해주세요."
+						value="${host2.hwebsite}">
 					<br> <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 					<font size="3px" color="blue"><strong>연락처 </strong></font><br> <input
-						id="housePhone" name="housePhone" type="text" class="form-control" placeholder="내용을 입력해주세요.">
+						id="housePhone" name="housePhone" type="text" class="form-control" placeholder="내용을 입력해주세요."
+						value="${host2.phone}"
+						>
 					<br>
+					</c:when>
+					<c:otherwise> 
+					<span class="glyphicon glyphicon-star" aria-hidden="true"></span> <font
+						size="3px" color="blue" ><strong>숙박 시설 이름</strong> </font><br> <input
+						id="houseName" name="houseName" type="text" class="form-control" placeholder="내용을 입력해주세요." value="">
+					<br> <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+					<font size="3px" color="blue"><strong>전체 객실 수</strong> </font><br>
+					<div class="row">
+						<div class="col-sm-6">
+							<input id="houseTotal" name="houseTotal" type="text" class="form-control" placeholder="내용을 입력해주세요."
+								size="1px" value="">
+						</div>
+						<div class="col-sm-6"></div>
+					</div>
+					<br> <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+					<font size="3px" color="blue"><strong>웹 사이트 (선택사항)</strong> </font><br> <input
+						id="houseSite" name="houseSite" type="text" class="form-control" placeholder="내용을 입력해주세요."
+						value="">
+					<br> <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+					<font size="3px" color="blue"><strong>연락처 </strong></font><br> <input
+						id="housePhone" name="housePhone" type="text" class="form-control" placeholder="내용을 입력해주세요."
+						value=""
+						>
+					<br>
+					</c:otherwise> 
+					</c:choose>
 					</form>
 				</div>
 				
