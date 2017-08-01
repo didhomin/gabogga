@@ -110,59 +110,50 @@ function searchUser() {
       </form>
           <div id="resultaddress" class=""></div>
           
-      
 	</div>
-		
 </div>
 	<link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet"> <!-- 3 KB -->
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script> <!-- 16 KB -->
                  
-<!-- <div class="tabbable" id="tab" align="left" style="width: 100%; clear:both;">    
-<ul class="nav nav-tabs">
-  <li role="presentation" class="active"><a data-toggle="tab" href="#">인기순</a></li>
-  <li role="presentation"><a data-toggle="tab" href="#">가격순</a></li>
-</ul>
-</div> -->
-             <div class="tabbable" id="tabs-630325" align="left" style="width: 100%; clear:both;">
-                  <ul class="nav nav-tabs">
-                     <li class="active">
-                        <a href="#waiting" data-toggle="tab">인기순</a>
-                     </li>
-                     <li>
-                        <a href="#groupReal" data-toggle="tab">가격순</a>
-                     </li>
-                  </ul>
-                  <div class="tab-content">
-                     <div class="tab-pane active" id="waiting">
-                     	
-						<div class="row">
-							<div class="fotorama col-sm-4">
-								<img src="http://s.fotorama.io/1.jpg">
-							</div>
-							<div class="fotorama col-sm-4">
-								<img src="http://s.fotorama.io/4.jpg">	
-							</div>
-							<div class="fotorama col-sm-4">
-								<img src="http://s.fotorama.io/2.jpg">
-							</div>
-						</div>
-                     </div>
-                     <div class="tab-pane" id="groupReal">
-                     	
-						<div class="row">
-							<div class="fotorama col-sm-4">
-								<img src="http://s.fotorama.io/5.jpg">
-							</div>
-							<div class="fotorama col-sm-4">
-								<img src="http://s.fotorama.io/3.jpg">	
-							</div>
-							<div class="fotorama col-sm-4">
-								<img src="http://s.fotorama.io/1.jpg">
-							</div>
-						</div>
-                     </div>
-                  </div>
-                  </div>
+
+<div class="tabbable" id="tabs-630325" align="left" style="width: 100%; clear:both;">
+	<ul class="nav nav-tabs">
+		<li class="active">
+			<a href="#waiting" data-toggle="tab">인기순</a>
+   		</li>
+   		<li>
+      		<a href="#groupReal" data-toggle="tab">가격순</a>
+   		</li>
+	</ul>
+	<div class="tab-content">
+	   <div class="tab-pane active" id="waiting">
+			<div class="row">
+				<div class="fotorama col-sm-4">
+					<img src="http://s.fotorama.io/1.jpg">
+				</div>
+				<div class="fotorama col-sm-4">
+					<img src="http://s.fotorama.io/4.jpg">	
+				</div>
+				<div class="fotorama col-sm-4">
+					<img src="http://s.fotorama.io/2.jpg">
+				</div>
+			</div>
+		</div>
+		<div class="tab-pane" id="groupReal">
+			<div class="row">
+				<div class="fotorama col-sm-4">
+					<img src="http://s.fotorama.io/5.jpg">
+				</div>
+				<div class="fotorama col-sm-4">
+					<img src="http://s.fotorama.io/3.jpg">	
+				</div>
+				<div class="fotorama col-sm-4">
+					<img src="http://s.fotorama.io/1.jpg">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
 
 <script src="${root }/page/house/js/index.js"></script>
