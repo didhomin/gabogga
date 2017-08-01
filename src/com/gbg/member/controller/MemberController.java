@@ -31,7 +31,7 @@ public class MemberController {
 		if(cnt!=0){
 			memberService.mailsend(usersDto.getEmail());
 			mav.addObject(usersDto);
-			mav.setViewName("/index");			
+			mav.setViewName("/page/admin/main");			
 		}
 		return mav;
 	}
@@ -49,7 +49,7 @@ public class MemberController {
 	public String emailAuth(@RequestParam("email") String email,ModelMap map) {
 		int cnt = memberService.emailAuth(email);
 		map.put("emailAuth", email);
-		return "/index";
+		return "/page/admin/main";
 	}
 	@RequestMapping(value="/login.gbg", method=RequestMethod.POST)
 	public String login(@RequestParam Map<String,String> map,HttpSession session,ModelMap modelmap) {
@@ -69,24 +69,24 @@ public class MemberController {
 		} else {
 			modelmap.put("loginresult", "아이디 비밀번호를 확인하세요!");
 		}
-		return "/index";
+		return "/page/admin/main";
 	}
 	@RequestMapping(value="/login.gbg", method=RequestMethod.GET)
 	public String login(ModelMap map) {
 		map.put("mvlogin", "mvlogin");
-		return "/index";
+		return "/page/admin/main";
 	}
 	
 	@RequestMapping(value="/logout.gbg")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "/index";
+		return "/page/admin/main";
 	}
 	@RequestMapping(value="/passReset.gbg")
 	public String passReset(@RequestParam("email") String email,ModelMap modelmap) {
 		modelmap.put("passReset", email);
 		memberService.passReset(email);
-		return "/index";
+		return "/page/admin/main";
 	}
 	@RequestMapping(value="/passModify.gbg")
 	public String passModify(@RequestParam("passModi") String password,HttpSession session) {
@@ -95,7 +95,7 @@ public class MemberController {
 		map.put("email", usersDto.getEmail());
 		map.put("password", password);
 		memberService.passModify(map);
-		return "/index";
+		return "/page/admin/main";
 	}
 	@RequestMapping(value="/kakao.gbg")
 	public String kakaoLogin(@RequestParam("email") String email,@RequestParam("name") String name,ModelMap modelmap,HttpSession session) {
@@ -109,7 +109,7 @@ public class MemberController {
 		usersDto = memberService.login(map);
 		session.setAttribute("user",usersDto);
 		modelmap.put("snslogin", email);
-		return "/index";
+		return "/page/admin/main";
 	}
 	@RequestMapping(value="/facebook.gbg")
 	public String facebookLogin(@RequestParam("email") String email,@RequestParam("name") String name,ModelMap modelmap,HttpSession session) {
@@ -123,7 +123,7 @@ public class MemberController {
 		usersDto = memberService.login(map);
 		modelmap.put("snslogin", email);
 		session.setAttribute("user",usersDto);
-		return "/index";
+		return "/page/admin/main";
 	}
 	@RequestMapping("/modify.gbg")
 	public ModelAndView memberModify(UsersDto usersDto,HttpSession session) {
@@ -132,7 +132,7 @@ public class MemberController {
 		if(cnt!=0){
 			session.setAttribute("user",usersDto);
 			mav.addObject(usersDto);
-			mav.setViewName("/index");			
+			mav.setViewName("/page/admin/main");			
 		}
 		return mav;
 	}

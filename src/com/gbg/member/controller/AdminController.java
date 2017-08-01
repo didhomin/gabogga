@@ -2,6 +2,8 @@ package com.gbg.member.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.gbg.list.model.ListDto;
 import com.gbg.member.model.QnaDto;
@@ -24,6 +27,18 @@ public class AdminController {
 	@RequestMapping(value="/qna.gbg", method=RequestMethod.GET)
 	public String qna() {
 		return "/page/member/qna";
+	}
+	@RequestMapping(value="/main.gbg")
+	public ModelAndView main(HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		List<ListDto> list = adminService.main();
+		List<ListDto> listprice = adminService.mainprice();
+		session.setAttribute("main", list);
+		session.setAttribute("mainprice", listprice);
+//		mav.addObject("main", list);
+//		mav.addObject("mainprice", listprice);
+		mav.setViewName("/page/admin/main");
+		return mav;
 	}
 	@RequestMapping(value="/qna.gbg", method=RequestMethod.POST)
 	public String qna(QnaDto qnaDto) {
