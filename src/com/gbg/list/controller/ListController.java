@@ -34,22 +34,23 @@ public class ListController {
 	}
 	
 	@RequestMapping("/good.gbg")
-	public ModelAndView goodpm(@RequestParam Map<String, String> act) {
+	public ModelAndView goodpm(@RequestParam Map<String, String> act, @RequestParam("address1") String address1) {
 		ModelAndView mav = new ModelAndView();
 		String result = listService.goodpm(act);
 		if(result == "1") {
-			String good = null;
-			act.put(good, "0");
+			act.put("good", "0");
 			listService.change(act);
 			//서비스 가서 0으로 업데이트
 		} else if (result != "1") {
-			String good = null;
-			act.put(good, "1");
+			act.put("good", "1");
 			listService.change(act);
 			//서비스 가서 1로 업데이트해줌
 		}
-		
-		mav.addObject("goodchange", result);
+		List<ListDto> goodchange = listService.photoList(address1);
+		List<ListDto> goodchange2 = listService.roomPicture(address1);
+		System.out.println("address1 : " + address1);
+		mav.addObject("houselist", goodchange);
+		mav.addObject("roomPictures", goodchange2);
 		mav.setViewName("/page/photolist/photolist");
 		return mav;
 	}

@@ -110,6 +110,7 @@
 					
 								<input type="hidden" id="act1" name="act1" value="${listDto.ghId}">
 								<input type="hidden" id="act2" name="act2" value="${user.userId}">
+								<input type="hidden" id="act2" name="address1" value="${listDto.address1}">
 								
 								<button class="btn btn-default" id="goodBtn">
 									<img src="${root}/img/heart.png" width="20px">${listDto.good}</button>
