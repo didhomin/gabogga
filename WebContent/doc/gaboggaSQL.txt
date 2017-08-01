@@ -28,12 +28,6 @@ ALTER TABLE users
 		CASCADE
 		KEEP INDEX;
 
-ALTER TABLE map
-	DROP
-		PRIMARY KEY
-		CASCADE
-		KEEP INDEX;
-
 ALTER TABLE reply
 	DROP
 		PRIMARY KEY
@@ -98,8 +92,6 @@ DROP INDEX PK_reservation;
 
 DROP INDEX PK_users;
 
-DROP INDEX PK_map;
-
 DROP INDEX PK_reply;
 
 DROP INDEX PK_board;
@@ -140,10 +132,6 @@ DROP TABLE reservation
 
 /* users */
 DROP TABLE users 
-	CASCADE CONSTRAINTS;
-
-/* map */
-DROP TABLE map 
 	CASCADE CONSTRAINTS;
 
 /* reply */
@@ -450,40 +438,6 @@ ALTER TABLE users
 		CONSTRAINT PK_users
 		PRIMARY KEY (
 			user_id
-		);
-
-/* map */
-CREATE TABLE map (
-	map_seq NUMBER NOT NULL, /* mapseq */
-	seq NUMBER, /* seq */
-	start_loc_x VARCHAR(50), /* start_locx */
-	start_loc_y VARCHAR(50), /* start_locy */
-	finish_loc_x VARCHAR(50), /* finish_locx */
-	finish_loc_y VARCHAR(50) /* finish_locy */
-);
-
-COMMENT ON COLUMN map.map_seq IS '경유글번호';
-
-COMMENT ON COLUMN map.seq IS '글번호';
-
-COMMENT ON COLUMN map.start_loc_x IS '출발x좌표';
-
-COMMENT ON COLUMN map.start_loc_y IS '출발y좌표';
-
-COMMENT ON COLUMN map.finish_loc_x IS '도착x좌표';
-
-COMMENT ON COLUMN map.finish_loc_y IS '도착y좌표';
-
-CREATE UNIQUE INDEX PK_map
-	ON map (
-		map_seq ASC
-	);
-
-ALTER TABLE map
-	ADD
-		CONSTRAINT PK_map
-		PRIMARY KEY (
-			map_seq
 		);
 
 /* reply */
