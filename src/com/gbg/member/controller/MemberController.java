@@ -103,6 +103,7 @@ public class MemberController {
 		if(usersDto==null) {
 			memberService.snsRegister(email,name);
 		}
+		usersDto = memberService.emailCheck(email);
 		session.setAttribute("user",usersDto);
 		modelmap.put("snslogin", email);
 		return "/index";
