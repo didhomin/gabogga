@@ -5,15 +5,33 @@
 <%@ include file="/page/template/header.jsp"%>
 <!-- 여기서부터 우리가 꾸미기 -->
 <script type="text/javascript">
-
  $(document).ready(function(){
-	
-	 $('#goodBtn').click(function(){
-
-		 $('#goodghid').attr('action', '${root}/list/good.gbg').submit();
-	 });
+    $(document).on("click",'.goodBtn',function(){
+         var ghId = $(this).attr('data-ghId');
+         var userId = $(this).attr('data-userId');
+         var address1 = $('.address1').attr('value');
+         var ht = '<img src="${root}/img/heart.png" width="20px">'
+         if (userId == "") {
+            return;
+         } else {
+            $.ajax({
+               type : 'POST',
+               dataType : 'json',
+               url : '${root}/list/good.gbg',
+               data : {'ghId' : ghId, 'userId' : userId, 'address1' : address1},
+               success : function(data) {
+					$('#tt'+ghId).empty();
+					$("#tt"+ghId).append(ht);
+					$("#tt"+ghId).append(data.result); 
+				}
+			});
+		}
+	});
  });
 
+ 
+ 
+ 
 </script>
 
 
@@ -25,109 +43,104 @@
 		<c:if test="${ii.index%2 == 0}">
 			<div class="row">
 		</c:if>
-		<c:forEach var="i" begin="1" end="1" step="1">
-
-			<div class="col-sm-6 col-md-6">
-				<div class="thumbnail" data-x="${listDto.lat}"
-					data-y="${listDto.lng}" data-title="${listDto.gname}">
-					<c:set var="myCarousel" value="${myCarousel + 1}" />
-					<div id="${myCarousel}" class="carousel slide" data-ride="carousel">
-
-
+		<div class="col-sm-6 col-md-6">
+			<div class="thumbnail" data-x="${listDto.lat}"
+				data-y="${listDto.lng}" data-title="${listDto.gname}"
+				data-ghId="${listDto.ghId}" data-userId="${user.userId}"
+				data-good="${listDto.good}">
+				<c:set var="myCarousel" value="${myCarousel + 1}" />
+				<div id="${myCarousel}" class="carousel slide" data-ride="carousel">
 
 
 
-						<!-- Wrapper for slides -->
-						<div class="carousel-inner">
-							<div class="item active" id="0">
-								<img src="${root}/img/${listDto.pictureGh}.jpg"
-									style="width: 100%; height: 170px; opacity: 1"
-									onmouseover="this.style.opacity='0.5'"
-									onmouseout="this.style.opacity='1'">
-							</div>
+
+
+					<!-- Wrapper for slides -->
+					<div class="carousel-inner">
+						<div class="item active" id="0">
+							<img src="${root}/img/${listDto.pictureGh}.jpg"
+								style="width: 100%; height: 170px; opacity: 1"
+								onmouseover="this.style.opacity='0.5'"
+								onmouseout="this.style.opacity='1'">
+						</div>
 
 
 
+						<c:set var="count" value="0" />
+						<c:forEach var="pictureDto" items="${roomPictures}"
+							varStatus="iii">
+							<c:if test="${listDto.ghId eq pictureDto.ghId}">
+								<c:set var="count" value="${count + 1}" />
+								<div class="item">
+									<img src="${root}/img/${pictureDto.pictureRoom}.jpg"
+										style="width: 100%; height: 170px; opacity: 1"
+										onmouseover="this.style.opacity='0.5'"
+										onmouseout="this.style.opacity='1'">
+								</div>
+							</c:if>
+						</c:forEach>
+					</div>
+
+					<center>
+						<!-- Left and right controls -->
+						<p>
+							<a class="left carousel-control" href="#${myCarousel}"
+								data-slide="prev"> <span
+								class="glyphicon glyphicon-chevron-left"></span> <span
+								class="sr-only">Previous</span>
+							</a>
+						<ol class="carousel-indicators">
+							<li style="background-color: #81DAF5;"
+								data-target="#${myCarousel}" data-slide-to="0" class="active"></li>
 							<c:set var="count" value="0" />
 							<c:forEach var="pictureDto" items="${roomPictures}"
 								varStatus="iii">
 								<c:if test="${listDto.ghId eq pictureDto.ghId}">
 									<c:set var="count" value="${count + 1}" />
-									<div class="item">
-										<img src="${root}/img/${pictureDto.pictureRoom}.jpg"
-											style="width: 100%; height: 170px; opacity: 1"
-											onmouseover="this.style.opacity='0.5'"
-											onmouseout="this.style.opacity='1'">
-									</div>
+									<li style="background-color: #81DAF5;"
+										data-target="#${myCarousel}" data-slide-to="${count}"></li>
 								</c:if>
 							</c:forEach>
+						</ol>
 
 
+						<a class="right carousel-control" href="#${myCarousel}"
+							data-slide="next"> <span
+							class="glyphicon glyphicon-chevron-right"></span> <span
+							class="sr-only">Next</span>
+						</a>
+						<h3 id="thumbnail-label">
+							<a class="anchorjs-link" href="#thumbnail-label"><span
+								class="anchorjs-icon">${listDto.gname}</span></a>
+						</h3>
+						</p>
+
+						<p>${listDto.introduce}</p>
+
+						<div style="text-align: right">
+							<p>&#8361;${listDto.roomPay}&nbsp;&nbsp;</p>
 						</div>
 
-						<center>
-							<!-- Left and right controls -->
-							<p>
-								<a class="left carousel-control" href="#${myCarousel}"
-									data-slide="prev"> <span
-									class="glyphicon glyphicon-chevron-left"></span> <span
-									class="sr-only">Previous</span>
-								</a>
-							<ol class="carousel-indicators">
-								<li style="background-color: #81DAF5;"
-									data-target="#${myCarousel}" data-slide-to="0" class="active"></li>
-								<c:set var="count" value="0" />
-								<c:forEach var="pictureDto" items="${roomPictures}"
-									varStatus="iii">
-									<c:if test="${listDto.ghId eq pictureDto.ghId}">
-										<c:set var="count" value="${count + 1}" />
-										<li style="background-color: #81DAF5;"
-											data-target="#${myCarousel}" data-slide-to="${count}"></li>
-									</c:if>
-								</c:forEach>
-							</ol>
+						<p>
 
+							<input type="hidden" id="act1" name="act1"
+								value="${listDto.ghId}"> <input type="hidden" id="act2"
+								name="act2" value="${user.userId}"> <input
+								class="address1" type="hidden" id="act2" name="address1"
+								value="${listDto.address1}">
 
-							<a class="right carousel-control" href="#${myCarousel}"
-								data-slide="next"> <span
-								class="glyphicon glyphicon-chevron-right"></span> <span
-								class="sr-only">Next</span>
-							</a>
-							<h3 id="thumbnail-label">
-								<a class="anchorjs-link" href="#thumbnail-label"><span
-									class="anchorjs-icon">${listDto.gname}</span></a>
-							</h3>
-							</p>
+							<button id="tt${listDto.ghId}" data-ghId="${listDto.ghId}"
+								data-userId="${user.userId}" class="goodBtn btn btn-default">
+								<img src="${root}/img/heart.png" width="20px">${listDto.good}</button>
 
-							<p>${listDto.introduce}</p>
-
-							<div style="text-align: right">
-								<p>&#8361;${listDto.roomPay}&nbsp;&nbsp;</p>
-							</div>
-
-							<p>
-							<form id="goodghid" name="goodghid" method="post" action="">
-					
-								<input type="hidden" id="act1" name="act1" value="${listDto.ghId}">
-								<input type="hidden" id="act2" name="act2" value="${user.userId}">
-								<input type="hidden" id="act2" name="address1" value="${listDto.address1}">
-								
-								<button class="btn btn-default" id="goodBtn">
-									<img src="${root}/img/heart.png" width="20px">${listDto.good}</button>
-									
-							</form>
-							
-							
-							
-							
 
 							<a href="#" class="btn btn-info" role="button">예약하기</a>
-							</p>
-						</center>
-					</div>
+						</p>
+					</center>
 				</div>
 			</div>
-		</c:forEach>
+		</div>
+
 		<c:if test="${ii.index%2 != 0}">
 </div>
 </c:if>

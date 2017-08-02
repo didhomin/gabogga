@@ -1,12 +1,11 @@
 package com.gbg.list.controller;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.gbg.list.model.ListDto;
@@ -33,25 +32,30 @@ public class ListController {
 		return mav;
 	}
 	
-	@RequestMapping("/good.gbg")
-	public ModelAndView goodpm(@RequestParam Map<String, String> act, @RequestParam("address1") String address1) {
-		ModelAndView mav = new ModelAndView();
-		String result = listService.goodpm(act);
-		if(result == "1") {
-			act.put("good", "0");
-			listService.change(act);
+	@RequestMapping(value="/good.gbg", method=RequestMethod.POST)
+	public @ResponseBody String goodpm(@RequestParam("ghId") String ghId, @RequestParam("userId") String userId, @RequestParam("address1") String address1) {
+		Map<String, String> map =  new HashMap<String, String>();
+		map.put("ghId", ghId);
+	    map.put("userId", userId);
+	    map.put("address1", address1);
+		String result = null;
+		result = listService.goodpm(map);
+		System.out.println("ghid : " + ghId + " userId : " + userId);
+		System.out.println("result : " + result);
+		
+		int goodd = -1;
+		if(result.equals("1")) {
+			map.put("good", "0");
+			goodd = listService.change(map);
 			//서비스 가서 0으로 업데이트
-		} else if (result != "1") {
-			act.put("good", "1");
-			listService.change(act);
+		} else if (!result.equals("1")) {
+			map.put("good", "1");
+			goodd = listService.change(map);
 			//서비스 가서 1로 업데이트해줌
-		}
-		List<ListDto> goodchange = listService.photoList(address1);
-		List<ListDto> goodchange2 = listService.roomPicture(address1);
-		System.out.println("address1 : " + address1);
-		mav.addObject("houselist", goodchange);
-		mav.addObject("roomPictures", goodchange2);
-		mav.setViewName("/page/photolist/photolist");
-		return mav;
+		}		
+		String gnumber = listService.goodnumber(map);
+		JSONObject json = new JSONObject();
+		json.put("result", gnumber);
+		return json.toJSONString();
 	}
 }
