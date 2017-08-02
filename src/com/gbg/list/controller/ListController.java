@@ -40,22 +40,29 @@ public class ListController {
 	    map.put("address1", address1);
 		String result = null;
 		result = listService.goodpm(map);
-		System.out.println("ghid : " + ghId + " userId : " + userId);
-		System.out.println("result : " + result);
-		
-		int goodd = -1;
-		if(result.equals("1")) {
-			map.put("good", "0");
-			goodd = listService.change(map);
-			//서비스 가서 0으로 업데이트
-		} else if (!result.equals("1")) {
-			map.put("good", "1");
-			goodd = listService.change(map);
-			//서비스 가서 1로 업데이트해줌
-		}		
+//		System.out.println("ghid : " + ghId + " userId : " + userId);
+//		System.out.println("result : " + result);
+		int ig; //insertgood
+		if(result == null){
+			ig = listService.insertgood(map);
+			System.out.println("ig" + ig);
+		}
+		else {
+			int goodd = -1;
+			if(result.equals("1")) {
+				map.put("good", "0");
+				goodd = listService.change(map);
+				//서비스 가서 0으로 업데이트
+			} else if (!result.equals("1")) {
+				map.put("good", "1");
+				goodd = listService.change(map);
+				//서비스 가서 1로 업데이트해줌
+			}	
+		}	
 		String gnumber = listService.goodnumber(map);
 		JSONObject json = new JSONObject();
 		json.put("result", gnumber);
+		
 		return json.toJSONString();
 	}
 }

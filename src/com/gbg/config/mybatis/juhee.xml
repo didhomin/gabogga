@@ -45,4 +45,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where gh.GUESTHOUSE_ID = hc.GUESTHOUSE_ID and hc.GOOD_OR_BAD = '1' and gh.guesthouse_id = #{ghId}
     </select>
     
+    <insert id="insertgood" parameterType="java.util.Map">
+        insert into house_check (guesthouse_id, user_id, good_or_bad)
+        values (#{ghId}, #{userId}, 1)
+    </insert>
+    
 </mapper>
