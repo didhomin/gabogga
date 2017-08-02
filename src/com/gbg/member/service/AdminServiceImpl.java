@@ -15,6 +15,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.gbg.list.dao.ListDao;
 import com.gbg.list.model.ListDto;
 import com.gbg.member.dao.AdminDao;
 import com.gbg.member.mail.SMTPAuthenticatior;
@@ -73,5 +74,16 @@ public class AdminServiceImpl implements AdminService {
 	public List<ListDto> address(String address) {
 		return sqlSession.getMapper(AdminDao.class).address(address);
 	}
+
+	@Override
+	public List<ListDto> main() {
+		return sqlSession.getMapper(AdminDao.class).main();
+	}
+
+	@Override
+	public List<ListDto> mainprice() {
+		return sqlSession.getMapper(AdminDao.class).mainprice();
+	}
+
 
 }

@@ -9,4 +9,6 @@ import com.gbg.member.model.UsersDto;
 public interface AdminDao {
 	
 	List<ListDto> address(String address);
+	List<ListDto> main();
+	List<ListDto> mainprice();
 }
