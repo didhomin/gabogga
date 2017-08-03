@@ -21,11 +21,11 @@
  <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
  <script src="${root }/page/member/js/kakao.js"></script>
  <script src="${root }/page/member/js/facebook.js"></script>
- <%@ include file="/page/member/registerModal.jsp" %>	
- <%@ include file="/page/member/loginModal.jsp" %>	
- <%@ include file="/page/member/passReset.jsp" %>	
- <%@ include file="/page/member/passModify.jsp" %>	
- <%@ include file="/page/member/memberModify.jsp" %>	
+ <%@ include file="/WEB-INF/page/member/registerModal.jsp" %>	
+ <%@ include file="/WEB-INF/page/member/loginModal.jsp" %>	
+ <%@ include file="/WEB-INF/page/member/passReset.jsp" %>	
+ <%@ include file="/WEB-INF/page/member/passModify.jsp" %>	
+ <%@ include file="/WEB-INF/page/member/memberModify.jsp" %>	
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
 			<div class="container-fluid">

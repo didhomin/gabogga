@@ -55,7 +55,7 @@
 										<div class="col-sm-3"></div>
 										<div align="center" class="col-sm-6">
 											<img src="${root }/page/member/img/facebook.png" onclick="login()" width="75px" />
-											<img src="${root }/page//member/img/kakao.png" onclick="loginWithKakao()" />
+											<img src="${root }/page/member/img/kakao.png" onclick="loginWithKakao()" />
 										</div>
 										<div class="col-sm-3"></div>
 									</div>

@@ -29,7 +29,7 @@ public class AdminController extends MultiActionController{
 	
 	@RequestMapping(value="/qna.gbg", method=RequestMethod.GET)
 	public String qna() {
-		return "/page/member/qna";
+		return "/WEB-INF/page/member/qna";
 	}
 		 
 
@@ -47,7 +47,7 @@ public class AdminController extends MultiActionController{
 	@RequestMapping(value="/qna.gbg", method=RequestMethod.POST)
 	public String qna(QnaDto qnaDto) {
 		adminService.sendQnaMail(qnaDto);
-		return "/page/member/qna";
+		return "/WEB-INF/page/member/qna";
 	}
 	@RequestMapping(value="/statistics.gbg")
 	public String exhibition() {
