@@ -41,10 +41,12 @@ var pathline = new Array();
 var stopbyx = new Array();
 var stopbyy = new Array();
 var stopby = new Array();
+
 window.onload = function() {
 	searchAddress("애월", 0);
 	searchAddress("서귀포", 1);
 }
+
 function searchAddress(address, cnt) {
 
 	geocoder.addressSearch(address, function(result, status) {
