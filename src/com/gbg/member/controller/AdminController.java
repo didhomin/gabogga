@@ -1,13 +1,9 @@
 package com.gbg.member.controller;
 
-import java.util.Date;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.log4j.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,14 +23,12 @@ import com.gbg.member.service.AdminService;
 @RequestMapping("/admin")
 public class AdminController extends MultiActionController{
 	
-	private Logger log = Logger.getLogger(this.getClass());       
 	
 	@Autowired
 	private AdminService adminService;
 	
 	@RequestMapping(value="/qna.gbg", method=RequestMethod.GET)
 	public String qna() {
-		log.debug("Hello log4j.---------------------------------------------");
 		return "/page/member/qna";
 	}
 		 
@@ -47,9 +41,7 @@ public class AdminController extends MultiActionController{
 		List<ListDto> listprice = adminService.mainprice();
 		session.setAttribute("main", list);
 		session.setAttribute("mainprice", listprice); 
-//		mav.addObject("main", list);
-//		mav.addObject("mainprice", listprice);
-		mav.setViewName("/page/admin/main");
+		mav.setViewName("/WEB-INF/page/admin/main");
 		return mav;
 	}
 	@RequestMapping(value="/qna.gbg", method=RequestMethod.POST)
@@ -59,7 +51,7 @@ public class AdminController extends MultiActionController{
 	}
 	@RequestMapping(value="/statistics.gbg")
 	public String exhibition() {
-		return "/page/admin/statistics";
+		return "/WEB-INF/page/admin/statistics";
 	}
 	@RequestMapping(value="/address.gbg")
 	public @ResponseBody String address(@RequestParam("address") String address) {

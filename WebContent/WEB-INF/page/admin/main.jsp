@@ -44,10 +44,17 @@ $(document).ready(function() {
 });
 </script>
 </c:if>
-<c:if test="${not empty snslogin}">
+<c:if test="${not empty passReset}">
 <script type="text/javascript">	
 $(document).ready(function() {
-	alert("${snslogin}님 안녕하세요.");
+	alert("${passReset}로 임시비밀번호가 발송되었습니다.");	
+});
+</script>
+</c:if>
+<c:if test="${not empty register}">
+<script type="text/javascript">	
+$(document).ready(function() {
+	alert("인증 메일이 발송되었습니다. 메일 인증 후 이용해주세요.");	
 });
 </script>
 </c:if>

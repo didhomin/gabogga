@@ -65,7 +65,7 @@ public class AdminServiceImpl implements AdminService {
 
 			Transport.send(msg); 
 		} catch (Exception e) {
-			e.printStackTrace();
+			
 			return;
 		}
 	}
@@ -87,13 +87,11 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public int man() {
-		// TODO Auto-generated method stub
 		return sqlSession.getMapper(AdminDao.class).man();
 	}
 
 	@Override
 	public int woman() {
-		// TODO Auto-generated method stub
 		return sqlSession.getMapper(AdminDao.class).woman();
 	}
 

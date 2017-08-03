@@ -69,4 +69,8 @@
 		</div>
 	</div>
 </div>
+<form id="snsloginform" method="post" action="" name="snslogin">
+<input type="hidden" id="snsname" name="name" value="">
+<input type="hidden" id="snsemail" name="email" value="">
+</form>
 <!-- ModalLogin end -->
