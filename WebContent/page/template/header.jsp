@@ -42,7 +42,7 @@
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav ">
 						<li class=""><a href="#">공지사항</a></li>
-						<li class=""><a href="${root}/house/reservation.gbg?guesthouseId=150">house</a>
+						<li class=""><a href="${root}/house/reservation.gbg?guesthouseId=100">house</a>
 
 					</ul>
 					<!--  <form class="navbar-form navbar-right">
@@ -69,8 +69,14 @@
 							<ul class="dropdown-menu">
 								<li><a href="${root}/host/register.gbg">숙소등록</a></li>
 								<li><a href="#">숙소관리</a></li>
-								<li><a href="#">예약관리</a></li>
-								
+								<!-- <li class="divider"></li> -->
+								<c:if test="${not empty host }">
+								<li><a href="#">호스트 예약관리</a></li>
+								</c:if>
+								<c:if test="${not empty user }">
+								<li class="divider"></li>
+								<li><a href="#">고객 예약관리</a></li>
+								</c:if>
 							</ul>
 						</li>
 						<c:choose>
