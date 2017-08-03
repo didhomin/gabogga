@@ -9,8 +9,11 @@
 	              url: '/v1/user/me',
 	              success: function(res) {
 //	            	   document.write(res.properties.nickname+"님 환영합니다. email:"+res.kaccount_email);
-	            	  document.location.href="/gabogga/member/kakao.gbg?email="+res.kaccount_email+"&name="+res.properties.nickname;
-//	            	  alert(res.properties.nickname+"님 환영합니다.!!!");
+//	            	  document.location.href="/gabogga/member/kakao.gbg?email="+res.kaccount_email+"&name="+res.properties.nickname;
+	            	   $('#snsloginform').attr('action','/gabogga/member/kakao.gbg');
+	    	    	   $('#snsname').val(res.properties.nickname);
+	    	    	   $('#snsemail').val(res.kaccount_email);
+	    				$('form[name=snslogin]').submit();
 	              }
 	              
 	            });

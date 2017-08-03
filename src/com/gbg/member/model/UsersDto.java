@@ -11,6 +11,15 @@ public class UsersDto {
 	private String type;
 	private String regDate;
 	private String state;
+	private String host;
+	
+	public String getHost() {
+		return host;
+	}
+
+	public void setHost(String host) {
+		this.host = host;
+	}
 
 	public String getUserId() {
 		return userId;

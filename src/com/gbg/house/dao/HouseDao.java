@@ -10,7 +10,7 @@ public interface HouseDao {
 
 	int reservation(HouseDto houseDto);
 	List<RoomDto> room(int guesthouseId);
-	GuestHouseDto houseInfo(String guesthouseId);
+	GuestHouseDto houseInfo(int guesthouseId);
 	int hostInfo(GuestHouseDto guesthouseDto);
-	
+	List<HouseDto> reservationinfo(String userId);
 }

@@ -50,113 +50,61 @@ function reservationmodal() {
     <div class="col-sm-9">
        <!-- Blog Post -->
        		<!-- Title -->
-       		<h1>This Guest House Title</h1>
+       		<h1>${info.name }</h1>
 			<hr>
-        <!-- Preview Image -->
-      <!--   <img class="img-responsive" src="http://placehold.it/900x300" alt=""> -->
-      
-		
-		
-		<!-- 2. Add images to <div class="fotorama"></div>. -->
+	  <!-- 2. Add images to <div class="fotorama"></div>. -->
 		<div class='fotorama' data-click='false' data-swipe='false'  data-autoplay="true">
 		  <img src="http://s.fotorama.io/1.jpg">
 		  <img src="http://s.fotorama.io/2.jpg">
 		</div>
-
         <hr>
         <!-- Post Content -->
         <p class="lead">Reservation Host Information</p>
         <hr>
-        <div class="col-sm-4">
-          <label>Guest House</label>
+        <div class="col-sm-2">
+          <h4><label>Guest House</label></h4>
+      
+        <div class="col-sm-5">
+          <li>홈페이지 : <a href="https://${info.hwebsite }/">${info.hwebsite }</a></li>
+          <li>주소 : ${info.address1 }<br> 
+         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ${info.address2 }</li>
+         <li>연락처 : ${info.phone }</li>
         </div>
-        <div class="col-sm-4">
-          <li>숙박 가능인원 : 4</li>
-          <li>욕실 : 2.5</li>
+     
+        <div class="col-sm-5">
+          <li>체크인 시작시간 : ${info.checkinStart }</li>
+          <li>체크인 마감시간 : ${info.checkinEnd }</li>
+          <li>체크아웃 시작시간 : ${info.checkoutStart }</li>
+          <li>체크아웃 마감시간 : ${info.checkoutEnd }</li>
         </div>
-        <div class="col-sm-4">
-          <li>체크인 : 14:00 ~ 02:00(다음날)</li>
-          <li>체크아웃 : 12:00</li>
-        </div>
-        <div class="col-sm-4">
-          <label>시설</label>
-        </div>
+          </div>
         <hr>
-        <div class="col-sm-4">
+        <br><br><br>
+        
+         <div class="col-sm-2">
+          <h4><label>시설</label></h4>
+        </div>
+        <div class="col-sm-5">
           <li>난방</li>
           <li>에어컨</li>
         </div>
-        <div class="col-sm-4">
+        
+       
+        <div class="col-sm-5">
           <li>수영장</li>
           <li>옷걸이</li>
         </div>
         <p>예약을 다시한번 확인 해 주시기 바랍니다.</p>
-
         <hr>
-
-        <!-- Blog Comments -->
-
-        <!-- Comments Form -->
-        <!-- <div class="well">
-          <h4>Leave a Comment:</h4>
-          <form role="form">
-            <div class="form-group">
-              <textarea class="form-control" rows="3"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
-        </div> -->
-
 		<!-- 라이브리 시티 설치 코드 -->
 	    <div id="lv-container" data-id="city" data-uid="MTAyMC8yOTY4Ny82MjU1">
 	    <script src="${root }/page/house/js/reply.js"></script>
 	    </div>
-
         <hr>
-
 		<h3>Guset 하우스 위치</h3>
 		<div id=map></div>
-        <!-- Posted Comments -->
-
-        <!-- Comment -->
-        <!-- <div class="media">
-          <a class="pull-left" href="#">
-             <img class="media-object" src="http://placehold.it/64x64" alt=""></a>
-          <div class="media-body">
-            <h4 class="media-heading">Start Bootstrap
-               <small>August 25, 2014 at 9:30 PM</small>
-                 </h4> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
-                 Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia conguefelis in faucibus.
-          </div>
-        </div> -->
-
-        <!-- Comment -->
-        <!-- <div class="media">
-          <a class="pull-left" href="#">
-            <img class="media-object" src="http://placehold.it/64x64" alt=""></a>
-          <div class="media-body">
-            <h4 class="media-heading">Start Bootstrap
-               <small>August 25, 2014 at 9:30 PM</small>
-                </h4> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque
-                ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue
-            	felis in faucibus.
-            Nested Comment
-            <div class="media">
-              <a class="pull-left" href="#">
- 				<img class="media-object" src="http://placehold.it/64x64" alt=""></a>
-              <div class="media-body">
-                <h4 class="media-heading">Nested Start Bootstrap
-                   <small>August 25, 2014 at 9:30 PM</small>
-                     </h4> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum
-                     nunc ac nisi vulputate fringilla. Donec laciniacongue felis in faucibus.
-              </div>
-            </div>
-            End Nested Comment
-          </div>
-        </div> -->
-
       </div>
-
+      
       <!-- Blog Sidebar Widgets Column -->
       <div class="col-md-3" >
 		<div class= "well" data-spy="affix" data-offset-top="150">
@@ -168,36 +116,19 @@ function reservationmodal() {
 			    <c:forEach var="room" items="${room }">
 		            <option value="---">------</option>
 		            <option value="${room.roomName }">${room.roomName }</option>
-	            <!-- <option value="102호">102호</option>
-	            <option value="103호">103호</option>
-	            <option value="104호">104호</option> -->
 		         	 </c:forEach>
 	    		     </select>
-	         
-            <!-- <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">
-                                <span class="glyphicon glyphicon-search"></span>
-            </button>
-            </span> -->
           </div>
           <div class="well" >
           <h4>[객실인원]</h4>
           <!-- 	<div class="input-group"> -->
             <select name="person" id="person" class="form-control">
+            <c:forEach var="room" items="${room }">
 	            <option value="---">------</option>
-	            <option value="1">1</option>
-	            <option value="2">2</option>
-	            <option value="3">3</option>
-	            <option value="4">4</option>
-	            <option value="5">5</option>
-	            <option value="6">6</option>
-	            <option value="7">7</option>
-	            <option value="8">8</option>
-	            <option value="9">9</option>
-	            <option value="10">10</option>
+	            <option value="${room.roomNum }">${room.roomNum }</option>
+	             </c:forEach>
 	         </select>
           </div>
-
 
         <!-- Blog Categories Well -->
         <div class="well">
@@ -217,15 +148,7 @@ function reservationmodal() {
           			</div>
         		</div>
             </div>
-            <!-- <div class="col-md-5">
-              <ul class="list-unstyled">
-                <li>
-
-                </li>
-              </ul>
-            </div> -->
           </div>
-          <!-- /.row -->
         </div>
         <script src="${root }/page/house/js/index.js"></script>
 
@@ -258,8 +181,8 @@ function reservationmodal() {
         <div id="map">
         <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a10b55340969923033a4eb61fd837e6e"></script>
 		<script>
-		var locx = 33.450701;
-		var locy = 126.570667;
+		var locx = ${info.lat};
+		var locy = ${info.lng};
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 		    mapOption = {
 		        center: new daum.maps.LatLng(locx, locy), // 지도의 중심좌표

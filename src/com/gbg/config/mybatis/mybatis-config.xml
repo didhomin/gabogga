@@ -5,7 +5,7 @@
  "http://mybatis.org/dtd/mybatis-3-config.dtd">
  
 <configuration>
-        
+
         <typeAliases>
                 <typeAlias alias="usersDto" type="com.gbg.member.model.UsersDto"/>
                 <typeAlias alias="guestHouseDto" type="com.gbg.host.model.GuestHouseDto"/>
@@ -33,3 +33,4 @@
                 <mapper resource="com/gbg/config/mybatis/admin.xml"/>
         </mappers>
 </configuration>
+

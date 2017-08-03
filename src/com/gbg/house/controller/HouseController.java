@@ -1,23 +1,17 @@
 package com.gbg.house.controller;
 
 import java.util.List;
-import java.util.Map;
-
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.gbg.host.model.GuestHouseDto;
 import com.gbg.host.model.RoomDto;
 import com.gbg.house.model.HouseDto;
 import com.gbg.house.service.HouseService;
-import com.gbg.house.service.HouseServiceImpl;
 import com.gbg.member.model.UsersDto;
 
 @Controller
@@ -31,11 +25,22 @@ public class HouseController {
 	public ModelAndView room(@RequestParam("guesthouseId") int guesthouseId){
 		ModelAndView mav = new ModelAndView();
 		List<RoomDto> list = houseservice.room(guesthouseId);
+		RoomDto roomDto = (RoomDto) houseservice.houseInfo(guesthouseId);
+		mav.addObject("info", roomDto);
 		mav.addObject("room",list);
 		mav.setViewName("/page/house/house");
 		return mav;
 		
 	}
+	
+	/*@RequestMapping("/info.gbg")
+	public ModelAndView houseInfo(@RequestParam("guesthouseId")int guesthouseId) {
+		ModelAndView mav = new ModelAndView();
+		GuestHouseDto guestHouseDto = houseservice.houseInfo(guesthouseId);
+		mav.addObject("info", guestHouseDto);
+		mav.setViewName("/page/house/house");
+		return mav;
+	}*/
 	
 	
 //	
@@ -57,8 +62,9 @@ public class HouseController {
 		UsersDto usersDto = (UsersDto) session.getAttribute("user");
 		if (usersDto != null) {
 			int cnt = houseservice.reservation(houseDto);
-			List<RoomDto> list = houseservice.room(guesthouseId);
-			mav.addObject("room",list);
+//			System.out.println(">>>>>>>>>>>>>" + guesthouseId);
+//			List<RoomDto> list = houseservice.room(guesthouseId);
+//			mav.addObject("room",list);
 //			cnt += houseservice.room(roomDto); 
 //			mav.addObject("room", roomDto);
 //			houseDto.setRoomId(roomDto.getRoomId());
@@ -69,5 +75,15 @@ public class HouseController {
 
 	}
 	
+	
+	@RequestMapping(value="/reservationinfo.gbg", method=RequestMethod.GET)
+	public ModelAndView reservationinfo(@RequestParam(value= "userId", defaultValue="160") String userId){
+		ModelAndView mav = new ModelAndView();
+			List<HouseDto> list = houseservice.reservationinfo(userId);
+			mav.addObject("reservation", list.get(0));
+			mav.setViewName("/page/house/reservationinfo");
+		return mav;
+		
+	}
 	
 }

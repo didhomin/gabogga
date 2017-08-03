@@ -55,7 +55,7 @@
 										<div class="col-sm-3"></div>
 										<div align="center" class="col-sm-6">
 											<img src="${root }/page/member/img/facebook.png" onclick="login()" width="75px" />
-											<img src="${root }/page//member/img/kakao.png" onclick="loginWithKakao()" />
+											<img src="${root }/page/member/img/kakao.png" onclick="loginWithKakao()" />
 										</div>
 										<div class="col-sm-3"></div>
 									</div>
@@ -69,4 +69,8 @@
 		</div>
 	</div>
 </div>
+<form id="snsloginform" method="post" action="" name="snslogin">
+<input type="hidden" id="snsname" name="name" value="">
+<input type="hidden" id="snsemail" name="email" value="">
+</form>
 <!-- ModalLogin end -->

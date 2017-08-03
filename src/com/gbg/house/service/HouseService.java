@@ -9,8 +9,9 @@ import com.gbg.house.model.HouseDto;
 public interface HouseService {
 
 	int reservation(HouseDto houseDto);
-	GuestHouseDto houseInfo(String guesthouseId);
+	GuestHouseDto houseInfo(int guesthouseId);
 	int hostInfo(GuestHouseDto guesthouseDto);
 	List<RoomDto> room(int guesthouseId);
+	List<HouseDto> reservationinfo(String userId);
 	
 }

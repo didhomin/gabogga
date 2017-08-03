@@ -10,10 +10,43 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         (RESERVATION_ID, user_id, ROOM_ID,  CHECKIN, CHECKOUT, PRICE, RESERVATION_DATE, PERSON, OKSIGN)
         values (SEQ_reservation_RESERVATION_ID.nextval, #{userId}, #{roomId}, #{checkIn}, #{checkOut}, #{price}, sysdate, #{person}, 0)
     </insert>
+    
     <select id="room" parameterType="int" resultType="roomDto">
-        select room_id roomId, guesthouse_id guesthouseId, room_type roomType, room_name roomName, 
-        room_num roomNum, bed_type bedType, bed_num bedNum, bed_capacity bedCapacity
-        from room
-        where GUESTHOUSE_ID = #{guesthouseId}
+        select r.room_id roomId, r.guesthouse_id guesthouseId, r.room_type roomType, r.room_name roomName, 
+        r.room_num roomNum, r.bed_type bedType, r.bed_num bedNum, r.bed_capacity bedCapacity,
+        rp.picture_id pictureId, rp.picture
+        from room r, room_picture rp
+        where r.room_id = rp.room_id
+        and r.GUESTHOUSE_ID = #{guesthouseId}
     </select>    
+    
+    <select id="houseInfo" parameterType="int" resultType="roomDto">
+        select GUESTHOUSE_ID guesthouseId, user_id userId, name, room_count roomCount, hwebsite,
+        address1, address2, phone, lat, lng, checkin_start checkinStart, checkin_end checkinend, 
+        checkout_start checkoutStart, checkout_end checkoutend, internet, park, child, pet, 
+        room_pay roomPay, introduce
+        from GUESTHOUSE
+        where GUESTHOUSE_ID = #{guesthouseId}
+    </select> 
+    
+    <select id="reservationinfo" parameterType="String" resultType="houseDto">
+        select r.room_id roomId, r.guesthouse_id guesthouseId, r.room_type roomType, r.room_name roomName, 
+                r.room_num roomNum, r.bed_type bedType, r.bed_num bedNum, r.bed_capacity bedCapacity,
+                g.GUESTHOUSE_ID guesthouseId, g.user_id userId, g.name, g.room_count roomCount, g.hwebsite,
+                g.address1, g.address2, g.phone, g.lat, g.lng, g.checkin_start checkinStart, g.checkin_end checkinend, 
+                g.checkout_start checkoutStart, g.checkout_end checkoutend, g.internet, g.park, g.child, g.pet, 
+                g.room_pay roomPay, g.introduce,
+                res.RESERVATION_ID, res.user_id, res.ROOM_ID,  res.CHECKIN, res.CHECKOUT, res.PRICE, 
+                    decode(to_char(res.RESERVATION_DATE, 'yymmdd'), 
+                    to_char(sysdate, 'yymmdd'), to_char(res.RESERVATION_DATE, 'hh24:mi:ss'), 
+                    to_char(res.RESERVATION_DATE, 'yy.mm.dd')) 
+                    reservationDate, res.PERSON, res.OKSIGN
+                    FROM GUESTHOUSE g, room r, reservation res
+                        where g.guesthouse_Id= r.guesthouse_Id
+                        and r.ROOM_ID = res.room_ID
+                        and res.USER_ID=#{uesrId}
+                        and g.g.guesthouse_Id
+          ORDER BY res.RESERVATION_ID
+    </select>  
+    
 </mapper>

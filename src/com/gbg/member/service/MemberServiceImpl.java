@@ -76,7 +76,6 @@ public class MemberServiceImpl implements MemberService {
 
 			Transport.send(msg); 
 		} catch (Exception e) {
-			e.printStackTrace();
 			return;
 		}
 
@@ -120,7 +119,6 @@ public class MemberServiceImpl implements MemberService {
 			
 			Transport.send(msg); 
 		} catch (Exception e) {
-			e.printStackTrace();
 			return;
 		}
 		

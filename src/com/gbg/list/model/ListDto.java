@@ -9,7 +9,36 @@ public class ListDto {
 	private double lat;
 	private double lng;
 	private String address1;
+	private String pictureGh;
+	private String pictureRoom;
+	private String counts;
+	private String good;
+
 	
+	public String getGood() {
+		return good;
+	}
+	public void setGood(String good) {
+		this.good = good;
+	}
+	public String getCounts() {
+		return counts;
+	}
+	public void setCounts(String counts) {
+		this.counts = counts;
+	}
+	public String getPictureGh() {
+		return pictureGh;
+	}
+	public void setPictureGh(String pictureGh) {
+		this.pictureGh = pictureGh;
+	}
+	public String getPictureRoom() {
+		return pictureRoom;
+	}
+	public void setPictureRoom(String pictureRoom) {
+		this.pictureRoom = pictureRoom;
+	}
 	public String getGhId() {
 		return ghId;
 	}
