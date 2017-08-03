@@ -1,6 +1,7 @@
 package com.gbg.house.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.gbg.host.model.GuestHouseDto;
 import com.gbg.host.model.RoomDto;
@@ -12,6 +13,7 @@ public interface HouseService {
 	GuestHouseDto houseInfo(int guesthouseId);
 	int hostInfo(GuestHouseDto guesthouseDto);
 	List<RoomDto> room(int guesthouseId);
-	List<HouseDto> reservationinfo(String userId);
+	List<HouseDto> hostreservationinfo(HouseDto houseDto);
+	List<HouseDto> userreservationinfo(String userId);
 	
 }

@@ -70,12 +70,13 @@
 								<li><a href="${root}/host/register.gbg">숙소등록</a></li>
 								<li><a href="#">숙소관리</a></li>
 								<!-- <li class="divider"></li> -->
-								<c:if test="${not empty host }">
-								<li><a href="#">호스트 예약관리</a></li>
+								<c:if test="${not empty user.host }">
+								<li class="divider"></li>
+								<li><a href="${root}/house/hostresinfo.gbg?userId=123 & guesthouseId=100">호스트 예약관리</a></li>
 								</c:if>
 								<c:if test="${not empty user }">
 								<li class="divider"></li>
-								<li><a href="#">고객 예약관리</a></li>
+								<li><a href="${root}/house/userresinfo.gbg?userId=${user.userId}">예약확인</a></li>
 								</c:if>
 							</ul>
 						</li>
