@@ -41,8 +41,12 @@ var pathline = new Array();
 var stopbyx = new Array();
 var stopbyy = new Array();
 var stopby = new Array();
-
+window.onload = function() {
+	searchAddress("애월", 0);
+	searchAddress("서귀포", 1);
+}
 function searchAddress(address, cnt) {
+
 	geocoder.addressSearch(address, function(result, status) {
 
 	    // 정상적으로 검색이 완료됐으면 
@@ -60,7 +64,8 @@ function searchAddress(address, cnt) {
         	stopbyy[cnt] = result[0].y;
         	stopbyx[cnt] = result[0].x;
         	stopby[cnt] = new daum.maps.LatLng(result[0].y, result[0].x);
-        	
+        	//alert("searchAddress stopbyx[0] "+stopbyx[0]);
+        	//alert("searchAddress stopbyx[1] "+stopbyx[1]);
         	var marker = new daum.maps.Marker({
 	            map: map,
 	            position: stopby[cnt]
@@ -76,80 +81,23 @@ function searchAddress(address, cnt) {
 		        infowindow.open(map, marker);
         	}
         	
-        	if(cnt == mapCnt) {
+        	if(cnt == 1) {
 		       	// 인포윈도우로 장소에 대한 설명을 표시합니다
 		        var infowindow = new daum.maps.InfoWindow({
 		            content: '<div style="width:150px;text-align:center;padding:6px 0;">도착</div>'
 		        });
 		        infowindow.open(map, marker);
+		        mapfinish();
         	}
-
-            // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-            map.setCenter(stopby[cnt]);
-	        
-	        /* if(cnt == 0) {
-	        	starty = result[0].y;
-				startx = result[0].x;
-				start = new daum.maps.LatLng(result[0].y, result[0].x);
-	        	
-				pathline.push(start);
-	        	drawLine(start);
-				
-		        // 인포윈도우로 장소에 대한 설명을 표시합니다
-		        var infowindow = new daum.maps.InfoWindow({
-		            content: '<div style="width:150px;text-align:center;padding:6px 0;">출발</div>'
-		        });
-		        infowindow.open(map, marker);
-	        } else if(cnt == 1) {
-	        	stopby1y = result[0].y;
-	        	stopby1x = result[0].x;
-	        	stopby1 = new daum.maps.LatLng(result[0].y, result[0].x);
-	        	
-	        	pathline.push(stopby1);
-	        	drawLine(stopby1);
-	        	
-	        } else if(cnt == 2) {
-	        	stopby2y = result[0].y;
-	        	stopby2x = result[0].x;
-	        	stopby2 = new daum.maps.LatLng(result[0].y, result[0].x);
-	        	
-	        	pathline.push(stopby2);
-	        	drawLine(stopby2);
-	        	
-	        } else if(cnt == 3) {
-	        	stopby3y = result[0].y;
-	        	stopby3x = result[0].x;
-	        	stopby3 = new daum.maps.LatLng(result[0].y, result[0].x);
-	        	
-	        	pathline.push(stopby3);
-	        	drawLine(stopby3);
-	        	
-	        } else if(cnt == 4) {
-	        	finishy = result[0].y;
-	        	finishx = result[0].x;
-	        	finish = new daum.maps.LatLng(result[0].y, result[0].x);
-	        	
-	        	pathline.push(finish);
-	        	drawLine(finish);
-	        	
-	        	// 인포윈도우로 장소에 대한 설명을 표시합니다
-		        var infowindow = new daum.maps.InfoWindow({
-		            content: '<div style="width:150px;text-align:center;padding:6px 0;">도착</div>'
-		        });
-		        infowindow.open(map, marker);
-	        } */
-		        
-	        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-	        //map.setCenter(coords);
 	    } 
 	});    
 }
 
-var sCnt=0;
+/* var sCnt=0;
 $(document).on('click','.searchBtn', function() {
 	var sAddr = $(this).parents('#mapPlusD').children('div').siblings().first().children().val();
 	searchAddress(sAddr, sCnt++);
-})
+}) */
 
 /* $('.stopby1Btn').on('click', function(){
 	searchAddress($('.stopby1').val(), 1);
@@ -167,7 +115,7 @@ $('.finishBtn').on('click', function(){
 	searchAddress($('.finish').val(), 4);
 }); */
 
-$('.mapfinishBtn').on('click', function(){
+function mapfinish(){
 	// 버튼을 클릭하면 아래 배열의 좌표들이 모두 보이게 지도 범위를 재설정합니다 
 /* 	var points = [
 		new daum.maps.LatLng(starty, startx),
@@ -179,6 +127,8 @@ $('.mapfinishBtn').on('click', function(){
 	
 	var points = stopby;
 
+	//alert("mapfinish stopbyx[0] "+stopbyx[0]);
+	//alert("mapfinish stopbyx[1] "+stopbyx[1]);
 	// 지도를 재설정할 범위정보를 가지고 있을 LatLngBounds 객체를 생성합니다
 	var bounds = new daum.maps.LatLngBounds();    
 
@@ -199,7 +149,7 @@ $('.mapfinishBtn').on('click', function(){
 	    // 이때 지도의 중심좌표와 레벨이 변경될 수 있습니다
 	    map.setBounds(bounds);
 	}
-});
+};
 
 // 지도에 클릭 이벤트를 등록합니다
 // 지도를 클릭하면 선 그리기가 시작됩니다 그려진 선이 있으면 지우고 다시 그립니다

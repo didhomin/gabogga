@@ -11,7 +11,7 @@ public interface ReboardService {
 	ReboardDto getArticle(int seq);
 	List<ReboardDto> listArticle(Map<String, String> queryString);
 
-	int replyArticle(ReboardDto reboardDto);
+	void replyArticle(ReboardDto reboardDto);
 	
 	int modifyArticle(ReboardDto reboardDto);
 	int deleteArticle(int seq); 

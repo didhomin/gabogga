@@ -11,6 +11,8 @@ public interface ReboardDao {
 	ReboardDto getArticle(int seq);
 	List<ReboardDto> listArticle(Map<String, String> map);
 	int replyArticle(ReboardDto reboardDto);
+	void updateStep(ReboardDto reboardDto);
+	void updateReply(int pseq);
 	
 	int modifyArticle(ReboardDto reboardDto);
 	int deleteArticle(int seq);

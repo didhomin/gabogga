@@ -14,6 +14,8 @@
                 <typeAlias alias="roomDto" type="com.gbg.host.model.RoomDto"/>
                 <typeAlias alias="boardListDto" type="com.gbg.admin.board.model.BoardListDto"/>
                 <typeAlias alias="reboardDto" type="com.gbg.board.model.ReboardDto" />
+                <typeAlias alias="boardDto" type="com.gbg.board.model.BoardDto" />
+                <typeAlias alias="stopbyDto" type="com.gbg.board.model.StopbyDto" />
         </typeAliases>
         
         <mappers>
@@ -23,7 +25,7 @@
                 <mapper resource="com/gbg/config/mybatis/common.xml"/>
                 <mapper resource="com/gbg/config/mybatis/boardadmin.xml"/>
                 <mapper resource="com/gbg/config/mybatis/reboard.xml"/>
-                <!-- <mapper resource="com/gbg/config/mybatis/mapboard.xml"/>-->
+                <mapper resource="com/gbg/config/mybatis/mapboard.xml"/>
             
                 <mapper resource="com/gbg/config/mybatis/juhee.xml"/>
                 <mapper resource="com/gbg/config/mybatis/insueng.xml"/>
