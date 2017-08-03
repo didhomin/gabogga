@@ -85,5 +85,17 @@ public class AdminServiceImpl implements AdminService {
 		return sqlSession.getMapper(AdminDao.class).mainprice();
 	}
 
+	@Override
+	public int man() {
+		// TODO Auto-generated method stub
+		return sqlSession.getMapper(AdminDao.class).man();
+	}
+
+	@Override
+	public int woman() {
+		// TODO Auto-generated method stub
+		return sqlSession.getMapper(AdminDao.class).woman();
+	}
+
 
 }

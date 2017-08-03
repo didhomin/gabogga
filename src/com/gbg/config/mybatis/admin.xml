@@ -44,5 +44,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		group by guesthouse_id) a on a.guesthouse_id=gh.guesthouse_id
 		order by room_pay
 	</select>
+	<select id="man"  resultType="int">
+		select count(gender)
+		from users
+		where gender=1
+	</select>
+	<select id="woman"  resultType="int">
+		select count(gender)
+		from users
+		where gender=2
+	</select>
 	
 </mapper>

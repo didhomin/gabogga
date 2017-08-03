@@ -217,13 +217,7 @@ function reservationmodal() {
           			</div>
         		</div>
             </div>
-            <!-- <div class="col-md-5">
-              <ul class="list-unstyled">
-                <li>
-
-                </li>
-              </ul>
-            </div> -->
+          
           </div>
           <!-- /.row -->
         </div>

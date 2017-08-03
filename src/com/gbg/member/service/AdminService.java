@@ -11,5 +11,7 @@ public interface AdminService {
 	List<ListDto> address(String address);
 	List<ListDto> main();
 	List<ListDto> mainprice();
+	int man();
+	int woman();
 
 }

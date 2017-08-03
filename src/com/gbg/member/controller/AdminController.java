@@ -1,9 +1,13 @@
 package com.gbg.member.controller;
 
+import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
 import com.gbg.list.model.ListDto;
 import com.gbg.member.model.QnaDto;
@@ -20,21 +25,28 @@ import com.gbg.member.service.AdminService;
 
 @Controller
 @RequestMapping("/admin")
-public class AdminController {
+public class AdminController extends MultiActionController{
+	
+	private Logger log = Logger.getLogger(this.getClass());       
+	
 	@Autowired
 	private AdminService adminService;
 	
 	@RequestMapping(value="/qna.gbg", method=RequestMethod.GET)
 	public String qna() {
+		log.debug("Hello log4j.---------------------------------------------");
 		return "/page/member/qna";
 	}
+		 
+
+	  
 	@RequestMapping(value="/main.gbg")
 	public ModelAndView main(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		List<ListDto> list = adminService.main();
 		List<ListDto> listprice = adminService.mainprice();
 		session.setAttribute("main", list);
-		session.setAttribute("mainprice", listprice);
+		session.setAttribute("mainprice", listprice); 
 //		mav.addObject("main", list);
 //		mav.addObject("mainprice", listprice);
 		mav.setViewName("/page/admin/main");
@@ -63,6 +75,16 @@ public class AdminController {
 		}
 		json.put("ziplist", jarr);
 		json.put("size", list.size());
+		return json.toJSONString();
+	}
+	@RequestMapping(value="/gender.gbg")
+	public @ResponseBody String gender() {
+		String man = adminService.man()+"";
+		String woman = adminService.woman()+"";
+		
+		JSONObject json = new JSONObject();
+		json.put("woman", woman);
+		json.put("man", man);
 		return json.toJSONString();
 	}
 }
