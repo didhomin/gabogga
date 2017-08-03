@@ -9,8 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.gbg.list.dao.ListDao;
 import com.gbg.list.model.ListDto;
-import com.gbg.member.dao.MemberDao;
-import com.gbg.member.model.UsersDto;
 
 @Service
 public class ListServiceImpl implements ListService{
@@ -29,14 +27,24 @@ public class ListServiceImpl implements ListService{
 	}
 
 	@Override
-	public String goodpm(Map<String, String> act) {
-		return sqlSession.getMapper(ListDao.class).goodpm(act);
+	public String goodpm(Map<String, String> map) {
+		return sqlSession.getMapper(ListDao.class).goodpm(map);
 	}
 
 	@Override
-	public int change(Map<String, String> act) {
-		System.out.println("service들어오나" + act.get("act1") +" " + act.get("act2") + " " + act.get("good"));
-		return sqlSession.getMapper(ListDao.class).change(act);
+	public String goodnumber(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.getMapper(ListDao.class).goodnumber(map);
+	}
+
+	@Override
+	public int change(Map<String, String> map) {
+		return sqlSession.getMapper(ListDao.class).change(map);
+	}
+
+	@Override
+	public int insertgood(Map<String, String> map) {
+		return sqlSession.getMapper(ListDao.class).insertgood(map);
 	}
 
 	

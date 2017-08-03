@@ -9,7 +9,9 @@ public interface ListDao {
 	List<ListDto> photoList(String address1);
 	List<ListDto> roomPicture(String address1);
 	List<ListDto> goodFunc(String address1);
-	String goodpm(Map<String, String> act);
-	int change(Map<String, String> act);
+	String goodpm(Map<String, String> map);
+	int change(Map<String, String> map);
+	String goodnumber(Map<String, String> map);
+	int insertgood(Map<String, String> map);
 
 }
