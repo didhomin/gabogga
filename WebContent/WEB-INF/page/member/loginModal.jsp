@@ -24,16 +24,22 @@
 										<div class="input-group form-group">
 											<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 											<input class="form-control"
-												placeholder="yourmail@example.com" name="email" type="email" value="" required>
+												placeholder="yourmail@example.com" name="email" type="email" value="${cookie.kid_sid.value}" required>
 										</div>
 										<div class="input-group">
 											<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
 											<input class="form-control" placeholder="Password"
 												name="password" type="password" value=""  required>
 										</div>
+										
 										<div class="checkbox">
-											<label> <input name="remember" type="checkbox"
-												value=""> Remember Me
+											<label> 
+											<c:if test="${not empty cookie.kid_sid }">
+												<input name="remember" type="checkbox" value="remember" checked="checked"> Remember Me
+											</c:if>
+											<c:if test="${empty cookie.kid_sid }">
+												<input name="remember" type="checkbox" value="remember"> Remember Me
+											</c:if>
 											</label>
 											<a class="pull-right" href="javascript:passReset();">비밀번호 찾기</a>
 										</div>

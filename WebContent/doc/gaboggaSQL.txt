@@ -339,15 +339,12 @@ COMMENT ON COLUMN convenience.hair_dry IS '헤어드라이기';
 CREATE TABLE room_picture (
 	picture_id NUMBER NOT NULL, /* picture_id */
 	room_id NUMBER, /* room_id */
-	picture CLOB, /* picture */
-	guesthouse_id NUMBER /* guesthouse_id */
+	picture CLOB /* picture */
 );
 
 COMMENT ON COLUMN room_picture.picture_id IS '사진 번호';
 
 COMMENT ON COLUMN room_picture.picture IS '숙소사진';
-
-COMMENT ON COLUMN room_picture.guesthouse_id IS '객실 고유번호';
 
 CREATE UNIQUE INDEX PK_room_picture
 	ON room_picture (

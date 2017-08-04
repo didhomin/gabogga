@@ -41,9 +41,7 @@
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav ">
-						<li class=""><a href="#">공지사항</a></li>
-						<li class=""><a href="${root}/house/reservation.gbg?guesthouseId=100">house</a>
-
+						<li class=""><a href="${root }/admin/notice.gbg">공지사항</a></li>
 					</ul>
 					<!--  <form class="navbar-form navbar-right">
 			      	<div class="input-group">
