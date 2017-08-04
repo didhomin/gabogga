@@ -42,7 +42,7 @@ public class MemberAdminController {
 		mav.addObject("qs",queryString);
 		mav.addObject("navigationIn",navigationIn);
 		mav.addObject("userAdminlist", list);
-		mav.setViewName("/page/memberadmin/memberAdmin");
+		mav.setViewName("/WEB-INF/page/memberadmin/memberAdmin");
 		return mav;
 	}
 	@RequestMapping("/blacklist.gbg")
@@ -58,7 +58,7 @@ public class MemberAdminController {
 		mav.addObject("qs",queryString);
 		mav.addObject("navigationIn",navigationIn);
 		mav.addObject("userAdminlist", list);
-		mav.setViewName("/page/memberadmin/blacklist");
+		mav.setViewName("/WEB-INF/page/memberadmin/blacklist");
 		
 		return mav;
 	}
