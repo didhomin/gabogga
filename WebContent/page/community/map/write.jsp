@@ -3,7 +3,7 @@
 
 <!-- 헤더 -->
 <%@ include file="/page/template/header.jsp" %>	
-<%@ include file="/page/community/logincheck.jsp" %>
+
 <!-- 여기서부터 우리가 꾸미기-->
 <div class="row">
 <div class="col-sm-3 sidenav">
@@ -24,25 +24,25 @@ $(function() {
   });
 });
   
-var mapCnt = 0;  
+var step = 0;  
   
 $(document).ready(function() {
 	
 	$('#plusBtn').click(function() {
-		if(mapCnt < 4){
-			mapCnt++;
-			var inp = $('<div class="col-sm-10">').append('<input type="subject" class="form-control sMap">').append('<input type="hidden" id="stopbyx'+ mapCnt +'" name="stopbyx'+ mapCnt +'" value="">');
-			var btn = $('<div class="col-sm-2">').append('<button type="button" class="btn btn-info btn-sm searchBtn">검색</button>').append('<input type="hidden" id="stopbyy'+ mapCnt +'" name="stopbyy'+ mapCnt +'" value="">');
+		if(step < 4){
+			step++;
+			var inp = $('<div class="col-sm-10">').append('<input type="subject" class="form-control sMap">').append('<input type="hidden" name="step" id="step'+step+'" value="">').append('<input type="hidden" id="x'+step+'" name="x" value="">');
+			var btn = $('<div class="col-sm-2">').append('<button type="button" class="btn btn-info btn-sm searchBtn">검색</button>').append('<input type="hidden" id="y'+step+'" name="y" value="">');
 			$('<div id="mapPlusD">').append(inp).append(btn).appendTo('#mapPlusDiv');
-			$('.searchBtn').val(mapCnt);
+			$('.searchBtn').val(step);
 			
 		}
 	});
 	
 	$(document).on('click', '.minusBtn', function() {
-		if(mapCnt > 0){
+		if(step > 0){
 			$('#mapPlusD').remove();
-			mapCnt--;
+			step--;
 		}
 	});
 	
@@ -54,11 +54,11 @@ $(document).ready(function() {
 			alert("내용입력!");
 			return;
 		} else {
-			for(var i=0; i<=mapCnt; i++) {
-				$('#stopbyx'+i).val(stopbyx[i]);
-				$('#stopbyy'+i).val(stopbyy[i]);
+			for(var i=0; i<=step; i++) {
+				$('#x'+i).val(stopbyx[i]);
+				$('#y'+i).val(stopbyy[i]);
+				$('#step'+i).val(i);
 			}
-			$('#mapCnt').val(mapCnt);
 			
 			$('#writeForm').attr('method', 'post').attr('action', '${root}/mapboard/write.gbg').submit();
 		}
@@ -72,7 +72,9 @@ $(document).ready(function() {
 	<input type="hidden" name="pg" value="1">
 	<input type="hidden" name="key" value="">
 	<input type="hidden" name="word" value="">
-	<input type="hidden" name="mapCnt" id="mapCnt" value="">
+	<input type="hidden" id="step0" name="step" value="">
+	<input type="hidden" id="x0" name="x" value="">
+	<input type="hidden" id="y0" name="y" value="">
 <%-- <c:forEach var="i" begin="0" end="4" step="1">
 	<input type="hidden" id="stopbyx${i}" name="stopbyx${i}" value="">
 	<input type="hidden" id="stopbyy${i}" name="stopbyy${i}" value="">
@@ -147,7 +149,7 @@ $(document).ready(function() {
 				</div> -->
 			</div>
 			<div class="col-sm-6">
-				<%@ include file="/page/community/map/daummap.jsp" %>
+				<%@ include file="/page/community/map/daummap_write.jsp" %>
 			</div>
 			<div class="form-group">
 			  <label for="content"></label>

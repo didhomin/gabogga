@@ -1,7 +1,9 @@
 package com.gbg.member.controller;
 
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
@@ -13,41 +15,59 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
+import com.gbg.admin.board.model.BoardListDto;
+import com.gbg.admin.board.service.BoardAdminService;
+import com.gbg.board.model.BoardDto;
+import com.gbg.board.model.ReboardDto;
+import com.gbg.board.service.BoardService;
+import com.gbg.board.service.CommonService;
+import com.gbg.board.service.ReboardService;
 import com.gbg.list.model.ListDto;
 import com.gbg.member.model.QnaDto;
+import com.gbg.member.model.UsersDto;
 import com.gbg.member.service.AdminService;
+import com.gbg.util.PageNavigation;
 
 @Controller
 @RequestMapping("/admin")
-public class AdminController {
+public class AdminController extends MultiActionController{
+	
+	@Autowired
+	private BoardService boardService;
+	
+	@Autowired
+	private CommonService commonService;
+	
 	@Autowired
 	private AdminService adminService;
 	
+	
 	@RequestMapping(value="/qna.gbg", method=RequestMethod.GET)
 	public String qna() {
-		return "/page/member/qna";
+		return "/WEB-INF/page/member/qna";
 	}
+	  
 	@RequestMapping(value="/main.gbg")
 	public ModelAndView main(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		List<ListDto> list = adminService.main();
 		List<ListDto> listprice = adminService.mainprice();
 		session.setAttribute("main", list);
-		session.setAttribute("mainprice", listprice);
-//		mav.addObject("main", list);
-//		mav.addObject("mainprice", listprice);
-		mav.setViewName("/page/admin/main");
+		session.setAttribute("mainprice", listprice); 
+		mav.setViewName("/WEB-INF/page/admin/main");
 		return mav;
 	}
 	@RequestMapping(value="/qna.gbg", method=RequestMethod.POST)
 	public String qna(QnaDto qnaDto) {
 		adminService.sendQnaMail(qnaDto);
-		return "/page/member/qna";
+		
+		return "/WEB-INF/page/member/qna";
 	}
 	@RequestMapping(value="/statistics.gbg")
 	public String exhibition() {
-		return "/page/admin/statistics";
+		return "/WEB-INF/page/admin/statistics";
 	}
 	@RequestMapping(value="/address.gbg")
 	public @ResponseBody String address(@RequestParam("address") String address) {
@@ -65,4 +85,93 @@ public class AdminController {
 		json.put("size", list.size());
 		return json.toJSONString();
 	}
+	@RequestMapping(value="/gender.gbg")
+	public @ResponseBody String gender() {
+		String man = adminService.man()+"";
+		String woman = adminService.woman()+"";
+		
+		JSONObject json = new JSONObject();
+		json.put("woman", woman);
+		json.put("man", man);
+		return json.toJSONString();
+	}
+	
+
+/////////////////////////////////////////////////////////////////////////////	
+	@RequestMapping(value="/notice.gbg", method=RequestMethod.GET)
+	public ModelAndView notice(@RequestParam Map<String, String> queryString) {
+		ModelAndView mav = new ModelAndView();
+		List<BoardDto> list = boardService.listArticle(queryString);
+		mav.addObject("noticeList", list);
+		mav.setViewName("/page/member/noticelist");
+		return mav;
+	}
+
+	@RequestMapping(value="/write.gbg", method=RequestMethod.GET)
+	public String write() {
+		return "/page/member/noticewrite";
+	}
+	
+	@RequestMapping(value="/write.gbg", method=RequestMethod.POST)
+	public ModelAndView write(@RequestParam Map<String, String> queryString, BoardDto boardDto, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		UsersDto usersDto = (UsersDto) session.getAttribute("user");
+		List<BoardDto> list = boardService.listArticle(queryString);
+		mav.addObject("noticeList", list);
+			if(usersDto!=null) {
+				
+			int seq = commonService.getNextSeq();
+			boardDto.setSeq(seq);
+			boardDto.setUserId(usersDto.getUserId());
+			boardDto.setName(usersDto.getName());
+			boardDto.setEmail(usersDto.getEmail());
+			boardService.writeArticle(boardDto);
+			mav.addObject("qs", queryString);
+			mav.setViewName("/page/member/noticelist");
+			} else {
+				mav.setViewName("/index");
+			}
+		
+		return mav;
+	}
+//	@RequestMapping(value="/list.gbg", method=RequestMethod.GET)
+//	public ModelAndView list(@RequestParam Map<String, String> queryString, HttpSession session, HttpServletRequest request) {
+//		ModelAndView mav = new ModelAndView();
+//		
+//		
+//		//글목록
+//		List<ReboardDto> list = boardService.listArticle();
+//		
+//		mav.addObject("qs", queryString);
+//		mav.addObject("articleList", list);
+//		
+//		//페이징처리
+//		PageNavigation pageNavigation = commonService.makePageNavigation(queryString);
+//		pageNavigation.setRoot(request.getContextPath());
+//		pageNavigation.setNavigator();
+//		mav.addObject("navigator", pageNavigation);
+//		
+//		mav.setViewName("/page/community/board/list");
+//		return mav;
+//	}
+	/*@RequestMapping(value="/view.gbg", method=RequestMethod.GET)
+	public ModelAndView view(@RequestParam Map<String, String> queryString, @RequestParam("seq") int seq, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		
+		UsersDto usersDto = (UsersDto) session.getAttribute("user");
+		
+		List<BoardListDto> adminlist = boardAdminService.boardList();
+		mav.addObject("boardmenu", adminlist);
+		
+		ReboardDto reboardDto = null;
+		if(usersDto != null) {
+			reboardDto = boardService.getArticle(seq);
+		}
+		mav.addObject("qs", queryString);
+		mav.addObject("article", reboardDto);
+		mav.setViewName("/page/community/board/view");
+		return mav;
+	}
+	
+	*/
 }

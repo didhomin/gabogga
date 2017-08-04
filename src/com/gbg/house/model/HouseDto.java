@@ -13,6 +13,23 @@ public class HouseDto extends RoomDto{
 	private String reservationDate;
 	private String person;
 	private String oksign;
+	private String pictureId;
+	private String picture;
+	
+	
+	
+	public String getPictureId() {
+		return pictureId;
+	}
+	public void setPictureId(String pictureId) {
+		this.pictureId = pictureId;
+	}
+	public String getPicture() {
+		return picture;
+	}
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
 	public String getCheckIn() {
 		return checkIn;
 	}

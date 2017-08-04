@@ -65,7 +65,7 @@ public class AdminServiceImpl implements AdminService {
 
 			Transport.send(msg); 
 		} catch (Exception e) {
-			e.printStackTrace();
+			
 			return;
 		}
 	}
@@ -83,6 +83,16 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<ListDto> mainprice() {
 		return sqlSession.getMapper(AdminDao.class).mainprice();
+	}
+
+	@Override
+	public int man() {
+		return sqlSession.getMapper(AdminDao.class).man();
+	}
+
+	@Override
+	public int woman() {
+		return sqlSession.getMapper(AdminDao.class).woman();
 	}
 
 

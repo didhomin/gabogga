@@ -58,7 +58,7 @@ body {
 		<p class="category_name">${boardListDto.cname}</p>
 		<div class="board_name">
 	</c:if>
-	<a href="${root}/${boardListDto.control}/write.gbg?bcode=${boardListDto.bcode}&pg=1&key=&word=">
+	<a href="${root}/${boardListDto.control}/list.gbg?bcode=${boardListDto.bcode}&pg=1&key=&word=">
 		${boardListDto.bname}
 	</a>
 	<c:if test="${i.index < boardmenu.size() -1 }">

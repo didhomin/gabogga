@@ -11,5 +11,6 @@ public interface ListService {
 	String goodpm(Map<String, String> map);
 	int change(Map<String, String> map);
 	String goodnumber(Map<String, String> map);
+	int insertgood(Map<String, String> map);
 
 }

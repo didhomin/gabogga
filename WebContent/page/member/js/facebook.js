@@ -45,21 +45,7 @@ function memberModify() {
 		  js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v2.9&appId=796491983864394";
 		  fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));
-/*	 function api() {
-	  FB.api('/me', { locale: 'ko_KR', fields: 'name, email' },
-			  function(response) {
-		  			alert(response.name+"님 안녕하세요"+response.email);
-			  }
-			)
-	 };
-	function login() {
-			FB.login();
-			 FB.api('/me', { locale: 'ko_KR', fields: 'name, email' },
-					  function(response) {
-				  			alert(response.name+"님 안녕하세요"+response.email);
-					  }
-					)
-	}*/
+
 	  FB.getLoginStatus(function(response) {
 	       if (response.status == 'connected') {
 	         getCurrentUserInfo(response)
@@ -74,9 +60,12 @@ function memberModify() {
 	       }
 	  });
 	     function getCurrentUserInfo() {
-	       FB.api('/me', { locale: 'ko_KR', fields: 'name, email' },function(userInfo) {
-//	       alert(userInfo.name + ': ' + userInfo.email);
-	       document.location.href="/gabogga/member/facebook.gbg?email="+userInfo.email+"&name="+userInfo.name;
+	       FB.api('/me', { locale: 'ko_KR', fields: 'name, email' },function(userInfo) {/*
+	       document.location.href="/gabogga/member/facebook.gbg?email="+userInfo.email+"&name="+userInfo.name;*/
+	    	   $('#snsloginform').attr('action','/gabogga/member/facebook.gbg');
+	    	   $('#snsname').val(userInfo.name);
+	    	   $('#snsemail').val(userInfo.email);
+				$('form[name=snslogin]').submit();
 	       });
 	     }
 	 

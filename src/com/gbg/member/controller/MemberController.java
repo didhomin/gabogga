@@ -3,6 +3,9 @@ package com.gbg.member.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
@@ -30,8 +33,8 @@ public class MemberController {
 		int cnt = memberService.register(usersDto);
 		if(cnt!=0){
 			memberService.mailsend(usersDto.getEmail());
-			mav.addObject(usersDto);
-			mav.setViewName("/page/admin/main");			
+			mav.addObject("register",usersDto);
+			mav.setViewName("/WEB-INF/page/admin/main");			
 		}
 		return mav;
 	}
@@ -49,12 +52,37 @@ public class MemberController {
 	public String emailAuth(@RequestParam("email") String email,ModelMap map) {
 		int cnt = memberService.emailAuth(email);
 		map.put("emailAuth", email);
-		return "/page/admin/main";
+		return "/WEB-INF/page/admin/main";
 	}
 	@RequestMapping(value="/login.gbg", method=RequestMethod.POST)
-	public String login(@RequestParam Map<String,String> map,HttpSession session,ModelMap modelmap) {
+	public String login(@RequestParam Map<String,String> map,HttpSession session,ModelMap modelmap,
+			HttpServletRequest request, HttpServletResponse response) {
 		UsersDto usersDto = memberService.login(map);
 		if(usersDto!=null){
+			
+			String idsv = map.get("remember");
+			if("remember".equals(idsv)) {//아이디저장 체크
+				Cookie cookie = new Cookie("kid_sid", map.get("email"));
+				cookie.setMaxAge(60*60*24*365);
+				cookie.setPath(request.getContextPath());
+				response.addCookie(cookie);
+			} else {//아이디저장 체크X
+				Cookie cookie[] = request.getCookies();
+				if(cookie != null) {
+					int len = cookie.length;
+					for(int i=0;i<len;i++) {
+						if("kid_sid".equals(cookie[i].getName())) {
+							cookie[i].setMaxAge(0);
+							cookie[i].setPath(request.getContextPath());
+							response.addCookie(cookie[i]);
+							break;
+						}
+					}
+				}
+			}
+			
+			
+			
 			if(Integer.parseInt(usersDto.getState())==1) {
 				memberService.mailsend(usersDto.getEmail());
 				modelmap.put("loginresult", "미인증 회원입니다.이메일 인증 로그인 하세요!");				
@@ -64,29 +92,27 @@ public class MemberController {
 				session.setAttribute("user",usersDto);
 				modelmap.put("passModify", "passModify");
 			} 
-				
-			
 		} else {
 			modelmap.put("loginresult", "아이디 비밀번호를 확인하세요!");
 		}
-		return "/page/admin/main";
+		return "/WEB-INF/page/admin/main";
 	}
 	@RequestMapping(value="/login.gbg", method=RequestMethod.GET)
 	public String login(ModelMap map) {
 		map.put("mvlogin", "mvlogin");
-		return "/page/admin/main";
+		return "/WEB-INF/page/admin/main";
 	}
 	
 	@RequestMapping(value="/logout.gbg")
 	public String logout(HttpSession session) {
-		session.invalidate();
-		return "/page/admin/main";
+		session.removeAttribute("user");
+		return "/WEB-INF/page/admin/main";
 	}
 	@RequestMapping(value="/passReset.gbg")
 	public String passReset(@RequestParam("email") String email,ModelMap modelmap) {
 		modelmap.put("passReset", email);
 		memberService.passReset(email);
-		return "/page/admin/main";
+		return "/WEB-INF/page/admin/main";
 	}
 	@RequestMapping(value="/passModify.gbg")
 	public String passModify(@RequestParam("passModi") String password,HttpSession session) {
@@ -95,7 +121,7 @@ public class MemberController {
 		map.put("email", usersDto.getEmail());
 		map.put("password", password);
 		memberService.passModify(map);
-		return "/page/admin/main";
+		return "/WEB-INF/page/admin/main";
 	}
 	@RequestMapping(value="/kakao.gbg")
 	public String kakaoLogin(@RequestParam("email") String email,@RequestParam("name") String name,ModelMap modelmap,HttpSession session) {
@@ -103,13 +129,10 @@ public class MemberController {
 		if(usersDto==null) {
 			memberService.snsRegister(email,name);
 		}
-		Map<String,String> map = new HashMap<String,String>();
-		map.put("email", email);
-		map.put("password", "0");
-		usersDto = memberService.login(map);
+		usersDto = memberService.snslogin(email);
 		session.setAttribute("user",usersDto);
 		modelmap.put("snslogin", email);
-		return "/page/admin/main";
+		return "/WEB-INF/page/admin/main";
 	}
 	@RequestMapping(value="/facebook.gbg")
 	public String facebookLogin(@RequestParam("email") String email,@RequestParam("name") String name,ModelMap modelmap,HttpSession session) {
@@ -117,13 +140,10 @@ public class MemberController {
 		if(usersDto==null) {
 			memberService.snsRegister(email,name);
 		}
-		Map<String,String> map = new HashMap<String,String>();
-		map.put("email", email);
-		map.put("password", "0");
-		usersDto = memberService.login(map);
+		usersDto = memberService.snslogin(email);
 		modelmap.put("snslogin", email);
 		session.setAttribute("user",usersDto);
-		return "/page/admin/main";
+		return "/WEB-INF/page/admin/main";
 	}
 	@RequestMapping("/modify.gbg")
 	public ModelAndView memberModify(UsersDto usersDto,HttpSession session) {
@@ -132,7 +152,7 @@ public class MemberController {
 		if(cnt!=0){
 			session.setAttribute("user",usersDto);
 			mav.addObject(usersDto);
-			mav.setViewName("/page/admin/main");			
+			mav.setViewName("/WEB-INF/page/admin/main");			
 		}
 		return mav;
 	}

@@ -1,15 +1,17 @@
 package com.gbg.board.service;
 
 import java.util.List;
+import java.util.Map;
 
-import com.gbg.board.model.MapboardDto;
+import com.gbg.board.model.BoardDto;
 import com.gbg.board.model.StopbyDto;
 
 public interface MapboardService {
 
-	int writeArticle(StopbyDto stopbyDto); 
-	StopbyDto getArticle(int seq);
-	List<StopbyDto> listArticle(int bcode, int pg, String key, String word);
+	int writeArticle(Map<String, Object> map); 
+	BoardDto getArticle(int seq);
+	List<BoardDto> listArticle(Map<String, String> queryString);
+//	List<Map<String, Object>> listArticle(Map<String, String> queryString);
 
 	int replyArticle(StopbyDto stopbyDto);
 	

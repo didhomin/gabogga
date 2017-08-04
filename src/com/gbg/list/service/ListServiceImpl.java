@@ -39,8 +39,12 @@ public class ListServiceImpl implements ListService{
 
 	@Override
 	public int change(Map<String, String> map) {
-		System.out.println("여기도들어오니 여긴서비스야");
 		return sqlSession.getMapper(ListDao.class).change(map);
+	}
+
+	@Override
+	public int insertgood(Map<String, String> map) {
+		return sqlSession.getMapper(ListDao.class).insertgood(map);
 	}
 
 	

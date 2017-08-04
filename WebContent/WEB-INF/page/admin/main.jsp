@@ -44,16 +44,23 @@ $(document).ready(function() {
 });
 </script>
 </c:if>
-<c:if test="${not empty snslogin}">
+<c:if test="${not empty passReset}">
 <script type="text/javascript">	
 $(document).ready(function() {
-	alert("${snslogin}님 안녕하세요.");	
+	alert("${passReset}로 임시비밀번호가 발송되었습니다.");	
+});
+</script>
+</c:if>
+<c:if test="${not empty register}">
+<script type="text/javascript">	
+$(document).ready(function() {
+	alert("인증 메일이 발송되었습니다. 메일 인증 후 이용해주세요.");	
 });
 </script>
 </c:if>
 
 
-<script>
+<script type="text/javascript">
 function searchUser() {
    if (document.searchForm.address1.value == "") {
       alert("검색어 입력!!!!!");
@@ -126,11 +133,12 @@ function searchUser() {
 	<div class="tab-content">
 	   <div class="tab-pane active" id="waiting">
 			<div class="row">
-				<c:forEach items="${main }" var="aa" >
+				<c:forEach items="${main }" var="aa" varStatus="ii">
 					<div class="col-sm-4">
-						<a href="${root }/house/reservation.gbg?guesthouseId=${aa.ghId}"><img style="width:100%;" src="${root }/img/${aa.pictureGh }.jpg"></a>
+						<a href="${root }/house/reservation.gbg?guesthouseId=${aa.ghId}"><img style="width:360px; height: 250px;" src="${root }/img/${aa.pictureGh }.jpg"></a>
 						이름:${aa.gname } 가격:${aa.roomPay }
 					</div>
+					<c:if test="${ii.count%3==0 }"></div><div class="row"></c:if>
 				</c:forEach>
 			</div>
 		</div>
@@ -138,18 +146,17 @@ function searchUser() {
 			<div class="row">
 				<c:forEach items="${mainprice }" var="bb" varStatus="i">
 					<div class="col-sm-4">
-						<a href="${root }/house/reservation.gbg?guesthouseId=${aa.ghId}"><img style="width:100%;" src="${root }/img/${bb.pictureGh }.jpg"></a>
-						이름:${bb.gname } 가격:${bb.roomPay }
+						<a href="${root }/house/reservation.gbg?guesthouseId=${aa.ghId}"><img style="width:360px; height: 250px;" src="${root }/img/${bb.pictureGh }.jpg"></a>
+						<span>이름:${bb.gname } 가격:${bb.roomPay }</span>
 					</div>
+					<c:if test="${i.count%3==0 }"></div><div class="row"></c:if>
 				</c:forEach>
 			</div>
 		</div>
 	</div>
 </div>
 
-
 <script src="${root }/page/house/js/index.js"></script>
-
 <!-- 여기까지가 우리가 꾸밀부분 -->
 <!-- 푸터 -->
 <%@ include file="/page/template/footer.jsp" %>	

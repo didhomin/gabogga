@@ -22,7 +22,7 @@
 					<input type="hidden" name="userId" value="${user.userId }" id="userId">
 					<input type="hidden" name="reservationId" value="${house.reservationId }" id="reservationId">
 					<input type="hidden" name="oksign" value="" id="oksign">
-					<input type="hidden" name="guesthouseId" value="150" id="guesthouseId">
+					<input type="hidden" name="guesthouseId" value="${room.guesthouseId }" id="guesthouseId">
 					<input type="hidden" name="roomId" id="roomId" value="${room.roomId }" >
 					</c:forEach>
 					<!-- Sign Form -->
