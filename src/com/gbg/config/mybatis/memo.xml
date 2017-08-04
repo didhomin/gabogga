@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper     
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"     
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+
+<mapper namespace="com.gbg.board.dao.MemoDao">
+    <insert id="writeMemo" parameterType="memoDto">
+        insert into memo (mseq, seq, user_id, name, mcontent, mtime, secret)
+        values (seq_memo_mseq.nextval, #{seq}, #{userId}, #{name}, #{mcontent}, sysdate, #{secret})
+    </insert>
+    
+    <select id="listMemo" parameterType="int" resultType="memoDto">
+        select mseq, seq, user_id userId, name, mcontent, secret, 
+            case when (sysdate - mtime) * 24 &lt; 1
+                then round((sysdate - mtime) *24 * 60) || '분전'
+                when (sysdate - mtime) * 24 &lt; 24
+                then round((sysdate - mtime) *24) || '시간전'
+                else to_char(mtime, 'yy.mm.dd')
+            end mtime
+        from memo
+        where seq = #{seq}
+        order by mtime
+    </select>
+    
+    <update id="modifyMemo" parameterType="memoDto">
+        update memo
+        set mcontent = #{mcontent}
+        where mseq = #{mseq}
+    </update>
+    
+    <delete id="deleteMemo" parameterType="int">
+        delete memo
+        where mseq = #{mseq}
+    </delete>
+    
+</mapper>

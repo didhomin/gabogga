@@ -113,4 +113,44 @@ public class ReboardController {
 		return mav;
 	}
 	
+	@RequestMapping(value="/reply.gbg", method=RequestMethod.GET)
+	public ModelAndView reply(@RequestParam Map<String, String> queryString, @RequestParam("seq") int seq, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		List<BoardListDto> adminlist = boardAdminService.boardList();
+		mav.addObject("boardmenu", adminlist);
+		UsersDto usersDto = (UsersDto) session.getAttribute("user");
+		ReboardDto reboardDto = null;
+		if(usersDto != null) {
+			reboardDto = reboardService.getArticle(seq);
+		}
+		mav.addObject("qs", queryString);
+		mav.addObject("article", reboardDto);
+		mav.setViewName("/page/community/board/reply");
+		return mav;
+	}
+	
+	@RequestMapping(value="/reply.gbg", method=RequestMethod.POST)
+	public String reply(@RequestParam Map<String, String> queryString, ReboardDto reboardDto, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		UsersDto usersDto = (UsersDto) session.getAttribute("user");
+		
+		List<BoardListDto> adminlist = boardAdminService.boardList();
+		mav.addObject("boardmenu", adminlist);
+		
+		if(usersDto != null) {
+			int seq = commonService.getNextSeq();
+			reboardDto.setSeq(seq);
+			reboardDto.setUserId(usersDto.getUserId());
+			reboardDto.setName(usersDto.getName());
+			reboardDto.setEmail(usersDto.getEmail());
+			reboardService.replyArticle(reboardDto);
+			mav.addObject("seq", seq);
+			mav.addObject("qs", queryString);
+		} else {			
+			mav.setViewName("/index"); //나중ㅇㅔ login page로 이동하게 할것.
+			// /없으면 reboard로 가서 /있어야함 그래야 webcontent 밑으로감
+		}
+		return "redirect:/reboard/list.gbg?bcode="+queryString.get("bcode")+"&pg="+queryString.get("pg")+"&key="+queryString.get("key")+"&word="+queryString.get("word");
+	}
+	
 }

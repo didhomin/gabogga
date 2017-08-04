@@ -16,6 +16,7 @@
                 <typeAlias alias="reboardDto" type="com.gbg.board.model.ReboardDto" />
                 <typeAlias alias="boardDto" type="com.gbg.board.model.BoardDto" />
                 <typeAlias alias="stopbyDto" type="com.gbg.board.model.StopbyDto" />
+                <typeAlias alias="memoDto" type="com.gbg.board.model.MemoDto" />
         </typeAliases>
         
         <mappers>
@@ -26,6 +27,7 @@
                 <mapper resource="com/gbg/config/mybatis/boardadmin.xml"/>
                 <mapper resource="com/gbg/config/mybatis/reboard.xml"/>
                 <mapper resource="com/gbg/config/mybatis/mapboard.xml"/>
+                <mapper resource="com/gbg/config/mybatis/memo.xml"/>
             
                 <mapper resource="com/gbg/config/mybatis/juhee.xml"/>
                 <mapper resource="com/gbg/config/mybatis/insueng.xml"/>

@@ -22,6 +22,15 @@ $(document).ready(function() {
 		$('#commonForm').attr('action', '${root}/reboard/write.gbg').submit();
 	});
 	
+	$(".replyBtn").click(function() {
+		$('#bcode').val('${qs.bcode}');
+		$('#pg').val('1');
+		$('#key').val('');
+		$('#word').val('');
+		$('#seq').val('${article.seq}');
+		$('#commonForm').attr('action', '${root}/reboard/reply.gbg').submit();
+	});
+	
 	$(".listArticle").click(function() {
 		$('#bcode').val('${qs.bcode}');
 		$('#pg').val('${qs.pg}');
@@ -31,30 +40,176 @@ $(document).ready(function() {
 		$('#commonForm').attr('action', '${root}/reboard/list.gbg').submit();
 	});
 	
+	$('#memoWriteBtn').click(function() {
+		var content = $.trim($('#mcontent').val());
+		var check = document.memoForm.scheck.checked;
+        var scheck;
+        if(check){
+        	scheck = 1;
+        } else {
+        	scheck = 0;
+        }
+		
+		if(content != '') {
+			$.ajax({
+				type : 'POST', //get이냐 post냐
+				dataType : 'json',//넘어오는 datatype
+				url : '${root}/memo/write.gbg',//어디로 넘어갈껀지
+				data : {'seq' : '${article.seq}', 'mcontent' : content, 'secret' : scheck},//호출할 data
+				success : function(data) {
+					$('#mcontent').val('');
+					makeMemoList(data);
+				}//callback 설정 성공시? 에러시?(에러는 걍 안함)
+			}); //ajax 쓰겟다.
+		}
+	});
+	
+	$(document).on('click', '.memoModifyViewBtn', function() { //click되는 시점에서의  document
+		$('#modifyDiv'+$(this).attr('data-mseq')).css('display', '');
+	});
+	
+	$(document).on('click', '.memoModifyBtn', function() { //click되는 시점에서의  document
+		var mseq = $(this).attr('data-mseq');
+		var content = $.trim($('#mcontent' + mseq).val());
+		if(content != '') {
+			$.ajax({
+				type : 'POST', //get이냐 post냐
+				dataType : 'json',//넘어오는 datatype
+				url : '${root}/memo/modify.gbg',//어디로 넘어갈껀지
+				data : {'mseq' : mseq, 'mcontent' : content, 'seq' : '${article.seq}'},//호출할 data
+				success : function(data) {
+					//$('#mcontent').val('');
+					makeMemoList(data);
+				}//callback 설정 성공시? 에러시?(에러는 걍 안함)
+			}); //ajax 쓰겟다.
+		}
+	});
+	
+	$(document).on('click', '.memoCancelBtn', function() { //click되는 시점에서의  document
+		$('#modifyDiv'+$(this).attr('data-mseq')).css('display', 'none');
+	});
+	
+	$(document).on('click', '.memoDeleteBtn', function() { //click되는 시점에서의  document
+		var mseq = $(this).attr('data-mseq');
+		$.ajax({
+			type : 'GET', //get이냐 post냐
+			dataType : 'json',//넘어오는 datatype
+			url : '${root}/memo/delete.gbg',//어디로 넘어갈껀지
+			data : {'mseq' : mseq, 'seq' : '${article.seq}'},//호출할 data
+			success : function(data) {
+				//$('#mcontent').val('');
+				makeMemoList(data);
+			}//callback 설정 성공시? 에러시?(에러는 걍 안함)
+		}); //ajax 쓰겟다.
+	});
+	
 });
+
+$.ajax({
+	type : 'GET', //get이냐 post냐
+	dataType : 'json',//넘어오는 datatype
+	url : '${root}/memo/list.gbg',//어디로 넘어갈껀지
+	data : {'seq' : '${article.seq}'},//호출할 data
+	success : function(data) {
+		makeMemoList(data);
+	}//callback 설정 성공시? 에러시?(에러는 걍 안함)
+}); //ajax 쓰겟다.
+
+function makeMemoList(data) {
+	var output = '';
+	var len = data.memolist.length;
+	for(var i=0; i<len; i++) {
+		if((data.memolist[i].secret == 1 && '${user.userId}' != data.memolist[i].userId) || (data.memolist[i].secret == 1 && '${user.userId}' != '${article.userId}')) {
+			output += '<tr>';
+			output += '	<td>';
+			output += '		<table>';
+			output += '			<tr>';
+			output += '    			<td width="50%"> 비밀 댓글 입니다. </td>';
+			output += '    			<td width="20%">'+ data.memolist[i].mtime +'</td>';
+			output += '			</tr>';
+			output += '		</table>';
+			output += '	</td>';
+			output += '</tr>';
+			output += '<tr>';
+			output += '	<td>';
+		} else {
+			output += '<tr>';
+			output += '	<td>';
+			output += '		<table>';
+			output += '			<tr>';
+			output += '				<td width="20%"><b>'+ data.memolist[i].name +'</b>&nbsp;&nbsp;</td>';
+			output += '    			<td width="20%">'+ data.memolist[i].mtime +'</td>';
+			output += '    			<td width="50%"></td>';
+			output += '   			<td class="pull-right">';
+			if('${user.userId}' == data.memolist[i].userId) {
+			output += '        			<a href="#" class="memoModifyViewBtn" data-mseq="'+ data.memolist[i].mseq +'">수정</a>&nbsp;&nbsp;';
+			output += '        			<a href="#" class="memoDeleteBtn" data-mseq="'+ data.memolist[i].mseq +'">삭제</a>';
+			}
+			output += '    			</td>';
+			output += '			</tr>';
+			output += '			<tr>';
+			output += '				<td colspan="4" class="viewcontent">';
+			output += '				<br>';
+			output += ''+ data.memolist[i].mcontent +'';
+			output += '				</td>';
+			output += '			</tr>';
+			output += '		</table>';
+			output += '	</td>';
+			output += '</tr>';
+			output += '<tr>';
+			output += '	<td>';
+		}
+		output += '	<div id="modifyDiv'+ data.memolist[i].mseq +'" style="display: none;">';
+		output += '		<div class="row input-group-form">';
+		output += '			<div class="row col-sm-1">&nbsp&nbsp&nbsp&nbsp&nbsp';
+		output += '				<span class="glyphicon glyphicon-arrow-right"></span>';
+		output += '			</div>';
+		output += '			<div class="col-sm-9">';
+		output += '				<textarea class="form-control" rows="3" name="mcontent" id="mcontent'+ data.memolist[i].mseq +'">';
+		output += ''+ data.memolist[i].mcontent +'</textarea>';
+		output += '			</div>';
+		output += '			<div class="col-sm-2">';
+		output += '				<div>';
+		output += '				  <label></label>';
+		output += '				</div>';	
+		output += '				<button type="button" class="btn btn-warning btn-sm memoModifyBtn" data-mseq="'+ data.memolist[i].mseq +'">수정</button>';
+		output += '				<button type="button" class="btn btn-danger btn-sm memoCancelBtn" data-mseq="'+ data.memolist[i].mseq +'">취소</button>';
+		output += '			</div>';
+		output += '		</div><br>';
+		output += '	</div>';
+		output += '	</td>';
+		output += '</tr>';
+	}
+	$('#memobody').empty();
+	$('#memobody').append(output);
+}
 </script>
 
 <!-- 여기서부터 게시판 메인 꾸미기 -->
 		<div class="col-sm-9 main">			
 			<div class="row">
-				<div class="col-sm-11">
-				</div>
-				<div class="col-sm-1">	
+				<div class="col-sm-10">
 					<button type="button" class="btn btn-success btn-sm listArticle">목록</button>
+				</div>
+				<div class="col-sm-2 input-group-btn">	
+					<a href="#" class="btn btn-primary btn-sm">
+			          <span class="glyphicon glyphicon-pencil newBtn">글쓰기</span>
+			        </a>
+			        <button type="button" class="btn btn-info btn-sm replyBtn">답글</button>
 				</div>
 			</div><br>
 			
 			<table class="table table-bordered">
 			    <thead>
 			      <tr class="info">
-			        <td width="80%"><b>${article.subject}</b></td>
-			        <td width="20%">${article.logtime}</td>
+			        <td width="80%"><b>제목 : ${article.subject}</b></td>
+			        <td width="20%"><b>${article.logtime}</b></td>
 			      </tr>
 			    </thead>
 			    <thead>
 			      <tr class="warning">
-			        <td width="80%"><b>${article.name}</b></td>
-			        <td width="20%">조회수 : ${article.hit}</td>
+			        <td width="80%"><b>작성자 : ${article.name}</b></td>
+			        <td width="20%"><b>조회수 : ${article.hit}</b></td>
 			      </tr>
 			    </thead>
 			    <tbody>
@@ -65,105 +220,36 @@ $(document).ready(function() {
 			      </tr>
 			    </tbody>
 			</table>
-<!-- 댓글 리스트 -->
-			<table class="table table-striped">
-				<tr>
-					<td>
-						<table>
-							<tr>
-								<td width="20%"><b>jieun</b></td>
-			        			<td width="20%">2017.07.23</td>
-			        			<td width="50%"></td>
-			        			<td class="pull-right"><a href="">답글</a></td>
-							</tr>
-							<tr>
-								<td colspan="4">
-								<br>
-								동행 구하셧나염?
-								</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-<!-- 답글 입력 부분 -->
-				<tr>
-					<td>
-						<div class="row input-group-form">
-							<div class="row col-sm-1">&nbsp&nbsp&nbsp&nbsp&nbsp
-								<span class="glyphicon glyphicon-arrow-right"></span>
-							</div>
-							<div class="col-sm-9">
-								<textarea class="form-control" rows="3" id="comm" placeholder="댓글을 입력해주세요.">
-								</textarea>
-							</div>
-							<div class="col-sm-2">
-								<div class="checkbox">
-								  <label><input type="checkbox" value="">비밀로하기</label>
-								</div>	
-								<button type="button" class="btn btn-warning btn-sm">답글입력</button>
-							</div>
-						</div><br>
-					</td>
-				</tr>
-<!-- 답글 입력 부분 끝 -->
-				<tr>
-					<td>
-						<table>
-							<tr>
-								<td width="20%"><b>jieun</b></td>
-			        			<td width="20%">2017.07.23</td>
-			        			<td width="50%"></td>
-			        			<td class="pull-right"><a href="">답글</a></td>
-							</tr>
-							<tr>
-								<td colspan="4">
-								<br>
-								동행 구하셧나염?
-								</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<table>
-							<tr>
-								<td width="20%"><b>jieun</b></td>
-			        			<td width="20%">2017.07.23</td>
-			        			<td width="50%"></td>
-			        			<td class="pull-right"><a href="">답글</a></td>
-							</tr>
-							<tr>
-								<td colspan="4">
-								<br>
-								동행 구하셧나염?
-								</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-			</table>
+			<form name="memoForm" id="memoForm" action="">
 			<div class="row input-group-form">
 				<div class="col-sm-10">
-					<textarea class="form-control" rows="3" id="comm" placeholder="댓글을 입력해주세요.">
-					</textarea>
+					<textarea class="form-control" rows="3" name="mcontent" id="mcontent"></textarea>
 				</div>
 				<div class="col-sm-2">
 					<div class="checkbox">
-					  <label><input type="checkbox" value="">비밀로하기</label>
+					  <label><input type="checkbox" value="" id="scheck" name="scheck">비밀로하기</label>
 					</div>	
-					<button type="button" class="btn btn-warning btn-sm">댓글입력</button>
+					<button type="button" class="btn btn-warning btn-sm" id="memoWriteBtn">댓글쓰기</button>
 				</div>
 			</div><br>
+			</form>
+			<table class="table table-striped">
+<!-- 댓글 리스트 -->
+				
+<!-- 댓글 리스트 끝 -->
+				<tbody id="memobody"></tbody>
+			</table>
+			
 <!-- 글쓰기, 목록 -->
 			<div class="row">
 				<div class="col-sm-10">
+					<button type="button" class="btn btn-success btn-sm listArticle">목록</button>
 				</div>
 				<div class="col-sm-2 input-group-btn">	
 					<a href="#" class="btn btn-primary btn-sm">
-			          <span class="glyphicon glyphicon-pencil newBtn"></span> 글쓰기
+			          <span class="glyphicon glyphicon-pencil newBtn">글쓰기</span>
 			        </a>
-			        <button type="button" class="btn btn-success btn-sm listArticle">목록</button>
+			        <button type="button" class="btn btn-info btn-sm replyBtn">답글</button>
 				</div>
 			</div>
 		</div>

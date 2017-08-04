@@ -87,7 +87,12 @@ $(document).ready(function() {
 			      <tr>
 			        <td>${article.seq}</td>
 			        <td>
-			        	<a href="#" data-seq="${article.seq}" class="subject">${article.subject}
+			        	<a href="#" data-seq="${article.seq}" class="subject">
+			        	<img src="${root}/page/community/board/blank.gif" height="1" width="${article.lev * 15}">
+			        	${article.subject}&nbsp;&nbsp;
+			        	<c:if test="${article.memocnt != 0}">
+						<b>[${article.memocnt}]</b></a>
+						</c:if>
 						</a>
 					</td>
 			        <td>${article.name}</td>

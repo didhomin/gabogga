@@ -4,10 +4,11 @@ public class MemoDto {
 	
 	private int mseq;
 	private int seq;
-	private String id;
+	private String userId;
 	private String name;
 	private String mcontent;
 	private String mtime;
+	private int secret;
 	
 	public int getMseq() {
 		return mseq;
@@ -21,12 +22,14 @@ public class MemoDto {
 	public void setSeq(int seq) {
 		this.seq = seq;
 	}
-	public String getId() {
-		return id;
+
+	public String getUserId() {
+		return userId;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
+	
 	public String getName() {
 		return name;
 	}
@@ -44,5 +47,12 @@ public class MemoDto {
 	}
 	public void setMtime(String mtime) {
 		this.mtime = mtime;
+	}
+	
+	public int getSecret() {
+		return secret;
+	}
+	public void setSecret(int secret) {
+		this.secret = secret;
 	}
 }

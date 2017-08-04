@@ -16,8 +16,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </insert>
     
     <select id="getArticle" parameterType="int" resultType="reboardDto">
-        select b.seq, b.name, b.email, b.subject,
-            b.content, b.hit, b.logtime, b.bcode,
+        select b.seq, b.user_id userId, b.bcode, b.name, b.email, 
+            b.subject, b.content, b.hit, b.logtime,
             r.rseq, r.ref, r.lev, r.step, r.pseq, r.reply
         from board b, reboard r
         where b.seq = r.seq
@@ -27,29 +27,51 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="listArticle" parameterType="java.util.Map" resultType="reboardDto">
         select b.*
         from(
-            select rownum rn, a.*
+        select rownum rn, a.*, (select count(mseq) from memo where seq = a.seq) memocnt
             from(
-            select b.seq, b.name, b.email, b.subject,
-            b.content, b.hit, b.bcode,
+            select b.seq, b.user_id userId, b.bcode, b.name, b.email, 
+            b.subject, b.content, b.hit,
             decode(to_char(sysdate,'yymmdd'), to_char(b.logtime, 'yymmdd'), 
             to_char(b.logtime, 'hh24:mi:ss'), to_char(b.logtime, 'yy.mm.dd')) logtime,
             r.rseq, r.ref, r.lev, r.step, r.pseq, r.reply
             from board b, reboard r
             where b.seq = r.seq
             and b.bcode = #{bcode}
-    <if test="key!='' and word!=''">
-        <if test="key == 'subject'">
-            and b.subject like '%'||#{word}||'%'
-        </if>
-        <if test="key != 'subject'">
-            and b.${key} = #{word}
-        </if>
-    </if>
-            order by b.seq desc
-                ) a
+            <if test="key!='' and word!=''">
+                <if test="key == 'subject'">
+                    and b.subject like '%'||#{word}||'%'
+                </if>
+                <if test="key != 'subject'">
+                    and b.${key} = #{word}
+                </if>
+            </if>         
+            order by r.ref desc, r.step
+            ) a
             where rownum &lt;= #{end}
             ) b
-        where b.rn &gt; #{start}
+            where b.rn &gt; #{start}
     </select>
+    
+    <update id="updateStep" parameterType="reboardDto">
+        update reboard
+        set step = step + 1
+        where ref = #{ref}
+        and step > #{step}
+    </update>
+    
+    <insert id="replyArticle" parameterType="reboardDto">
+        insert all
+        into board (seq, user_id, bcode, name, email, subject, content, hit, logtime)
+        values(#{seq}, #{userId}, #{bcode}, #{name}, #{email}, #{subject}, #{content}, 0, sysdate)
+        into reboard (rseq, seq, ref, lev, step, pseq, reply)
+        values (seq_reboard_rseq.nextval, #{seq}, #{ref}, #{lev}+1, #{step}+1, #{pseq}, 0)
+        select * from dual
+    </insert>
+    
+    <update id="updateReply" parameterType="int">
+        update reboard
+        set reply = reply + 1
+        where seq = #{pseq}
+    </update>
     
 </mapper>

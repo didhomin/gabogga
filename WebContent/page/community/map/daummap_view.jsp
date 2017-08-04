@@ -43,56 +43,56 @@ var stopbyy = new Array();
 var stopby = new Array();
 
 window.onload = function() {
-	searchAddress("애월", 0);
-	searchAddress("서귀포", 1);
+	<c:forEach var="stopby" items="${stopbyXY}">
+		searchAddress("${stopby.y}", "${stopby.x}", "${stopby.step}");
+	</c:forEach>
+	/* searchAddress(35.179820052333426, 129.07508749216157, 0);
+	searchAddress(33.48891070818818, 126.4982334867384, 1);
+	searchAddress(35.82407315091001, 127.14814380062145, 2);
+	searchAddress(35.8562220628394, 129.2247818137997, 3); */
 }
 
-function searchAddress(address, cnt) {
+function searchAddress(y, x, step) {
 
-	geocoder.addressSearch(address, function(result, status) {
+ 	 
+     /* var coords = new daum.maps.LatLng(result[0].y, result[0].x);
+     console.log(coords);
+     // 결과값으로 받은 위치를 마커로 표시합니다
+     var marker = new daum.maps.Marker({
+         map: map,
+         position: coords
+     }); */
+   	
+    	/* stopbyy[step] = result[0].y;
+    	stopbyx[step] = result[0].x; */
+    	stopby[step] = new daum.maps.LatLng(y, x);
+    	//alert("searchAddress stopbyx[0] "+stopbyx[0]);
+    	//alert("searchAddress stopbyx[1] "+stopbyx[1]);
+    	var marker = new daum.maps.Marker({
+			 map: map,
+			 position: stopby[step]
+   	  	});
+    	
+    	drawLine(stopby[step]);
+    	
+    	if(step == 0) {
+     	// 인포윈도우로 장소에 대한 설명을 표시합니다
+	      var infowindow = new daum.maps.InfoWindow({
+	          content: '<div style="width:150px;text-align:center;padding:6px 0;">출발</div>'
+	      });
+	      infowindow.open(map, marker);
+    	}
+    	
+    	if(step == ${stopbyXY.size()}-1) {
+     	// 인포윈도우로 장소에 대한 설명을 표시합니다
+	      var infowindow = new daum.maps.InfoWindow({
+	          content: '<div style="width:150px;text-align:center;padding:6px 0;">도착</div>'
+	      });
+	      infowindow.open(map, marker);
+	      mapfinish();
+    	}
+	     
 
-	    // 정상적으로 검색이 완료됐으면 
-	     if (status === daum.maps.services.Status.OK) {
-
-	    	 
-	        /* var coords = new daum.maps.LatLng(result[0].y, result[0].x);
-	        console.log(coords);
-	        // 결과값으로 받은 위치를 마커로 표시합니다
-	        var marker = new daum.maps.Marker({
-	            map: map,
-	            position: coords
-	        }); */
-	      	
-        	stopbyy[cnt] = result[0].y;
-        	stopbyx[cnt] = result[0].x;
-        	stopby[cnt] = new daum.maps.LatLng(result[0].y, result[0].x);
-        	//alert("searchAddress stopbyx[0] "+stopbyx[0]);
-        	//alert("searchAddress stopbyx[1] "+stopbyx[1]);
-        	var marker = new daum.maps.Marker({
-	            map: map,
-	            position: stopby[cnt]
-	        });
-        	
-        	drawLine(stopby[cnt]);
-        	
-        	if(cnt == 0) {
-		       	// 인포윈도우로 장소에 대한 설명을 표시합니다
-		        var infowindow = new daum.maps.InfoWindow({
-		            content: '<div style="width:150px;text-align:center;padding:6px 0;">출발</div>'
-		        });
-		        infowindow.open(map, marker);
-        	}
-        	
-        	if(cnt == 1) {
-		       	// 인포윈도우로 장소에 대한 설명을 표시합니다
-		        var infowindow = new daum.maps.InfoWindow({
-		            content: '<div style="width:150px;text-align:center;padding:6px 0;">도착</div>'
-		        });
-		        infowindow.open(map, marker);
-		        mapfinish();
-        	}
-	    } 
-	});    
 }
 
 /* var sCnt=0;

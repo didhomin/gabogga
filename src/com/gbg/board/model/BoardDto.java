@@ -1,5 +1,7 @@
 package com.gbg.board.model;
 
+import java.util.List;
+
 public class BoardDto {
 
 	private int seq;
@@ -11,6 +13,8 @@ public class BoardDto {
 	private String content;
 	private int hit;
 	private String logtime;
+	private int memocnt;
+	private List<StopbyDto> stopbylist;
 	
 	public int getSeq() {
 		return seq;
@@ -66,5 +70,18 @@ public class BoardDto {
 	public void setLogtime(String logtime) {
 		this.logtime = logtime;
 	}
+	public int getMemocnt() {
+		return memocnt;
+	}
+	public void setMemocnt(int memocnt) {
+		this.memocnt = memocnt;
+	}
+	public List<StopbyDto> getStopbylist() {
+		return stopbylist;
+	}
+	public void setStopbylist(List<StopbyDto> stopbylist) {
+		this.stopbylist = stopbylist;
+	}
+	
 	
 }

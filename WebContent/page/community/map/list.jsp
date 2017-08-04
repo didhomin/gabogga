@@ -69,6 +69,7 @@ $(document).ready(function() {
 	});
 	
 });
+
 </script>
 
 <!-- 여기서부터 게시판 메인 꾸미기 -->
@@ -81,22 +82,35 @@ $(document).ready(function() {
 					<button type="button" class="btn btn-primary btn-sm newBtn">글쓰기</button>
 				</div>
 			</div><br>
-<c:forEach var="article" items="${articleList}">			
+<c:forEach var="article" items="${articleList}">		
 <%-- <c:forEach var="a" begin="1" end="4" step="1"> --%>
 	<div class="col-sm-6">
 		<div class="thumbnail">
 			<div class="newMap" style="width: 100%; height: 270px;"
-			 data-xy="[[33.450701, 126.570667, 0],[33.480701, 126.580667,1],[33.431701, 126.511667,2]]"></div>
+			 data-xy="[
+			 <c:forEach varStatus="i" var="info" items="${article.stopbylist}">
+			 [${info.y}, ${info.x}, ${info.step}]
+			 	<c:if test="${i.index != article.stopbylist.size() - 1}">,</c:if>
+			 </c:forEach>
+			 ]"></div>
+			<!-- <div class="newMap" style="width: 100%; height: 270px;"
+			 data-xy="[[33.450701, 126.570667, 0],[33.480701, 126.580667,1],[33.431701, 126.511667,2]]"></div> -->
 			<div class="caption">
-				<h5 class="pull-right">${article.hit}</h5>
+				<h5 class="pull-right"><b>조회수&nbsp;&nbsp;</b>  ${article.hit}</h5>
 				<h5>
-					<a href="#" data-seq="${article.seq}" class="subject">${article.subject}</a>
+					<b>제목&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b> 
+					<a href="#" data-seq="${article.seq}" class="subject">
+					${article.subject}&nbsp;&nbsp;
+			        	<c:if test="${article.memocnt != 0}">
+						<b>[${article.memocnt}]</b></a>
+						</c:if>
+					</a>
 				</h5>
 				<h5>
-					<a href="#">${article.name}</a>
+				<b>작성자&nbsp;&nbsp;</b> ${article.name}
 				</h5>
 				<h5>
-					<a href="#">${article.logtime}</a>
+				<b>날짜&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b> ${article.logtime}
 				</h5>
 			</div>
 		</div>

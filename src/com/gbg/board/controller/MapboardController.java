@@ -113,11 +113,14 @@ public class MapboardController {
 		mav.addObject("boardmenu", adminlist);
 		
 		BoardDto boardDto = null;
+		List<StopbyDto> xylist = null;
 		if(usersDto != null) {
 			boardDto = mapboardService.getArticle(seq);
+			xylist = mapboardService.getXY(seq);
 		}
 		mav.addObject("qs", queryString);
 		mav.addObject("article", boardDto);
+		mav.addObject("stopbyXY", xylist);
 		mav.setViewName("/page/community/map/view");
 		return mav;
 	}
@@ -130,11 +133,24 @@ public class MapboardController {
 		List<BoardListDto> adminlist = boardAdminService.boardList();
 		mav.addObject("boardmenu", adminlist);
 		
+//		Map<String, Object> allinfo = new HashMap<String, Object>();
 		//글목록
 		List<BoardDto> list = mapboardService.listArticle(queryString);
+		List<BoardDto> boardlist = new ArrayList<BoardDto>();
+		for (int i =0; i <list.size(); i++) {
+			BoardDto boardDto = list.get(i);
+			int seq = boardDto.getSeq();
+			List<StopbyDto> xylist = mapboardService.getXY(seq);
+			boardDto.setStopbylist(xylist);
+//			allinfo.put("xy"+seq, xylist);
+			
+			boardlist.add(boardDto);
+		}
 		
 		mav.addObject("qs", queryString);
-		mav.addObject("articleList", list);
+		mav.addObject("articleList", boardlist);
+		
+		
 		
 		//페이징처리
 		PageNavigation pageNavigation = commonService.makePageNavigation(queryString);

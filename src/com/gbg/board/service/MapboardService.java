@@ -9,9 +9,11 @@ import com.gbg.board.model.StopbyDto;
 public interface MapboardService {
 
 	int writeArticle(Map<String, Object> map); 
+	
 	BoardDto getArticle(int seq);
+	List<StopbyDto> getXY(int seq);
+	
 	List<BoardDto> listArticle(Map<String, String> queryString);
-//	List<Map<String, Object>> listArticle(Map<String, String> queryString);
 
 	int replyArticle(StopbyDto stopbyDto);
 	

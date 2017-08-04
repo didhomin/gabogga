@@ -25,11 +25,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where
         b.seq = #{seq}
     </select>
+    
+    <select id="getXY" parameterType="int" resultType="stopbyDto">
+        select step, x, y
+        from stopby
+        where seq = #{seq}
+    </select>
    
     <select id="listArticle" parameterType="java.util.Map" resultType="boardDto"> 
         select b.*
         from(
-        select rownum rn, a.*
+        select rownum rn, a.*, (select count(mseq) from memo where seq = a.seq) memocnt
         from(
         select b.seq, b.user_id, b.bcode, b.name, b.email, b.subject, b.content , b.hit,
         decode(to_char(sysdate,'yymmdd'), to_char(b.logtime, 'yymmdd'), 

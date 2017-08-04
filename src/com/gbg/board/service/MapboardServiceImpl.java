@@ -30,6 +30,11 @@ public class MapboardServiceImpl implements MapboardService {
 		sqlSession.getMapper(CommonDao.class).updateHit(seq);
 		return sqlSession.getMapper(MapboardDao.class).getArticle(seq);
 	}
+	
+	@Override
+	public List<StopbyDto> getXY(int seq) {
+		return sqlSession.getMapper(MapboardDao.class).getXY(seq);
+	}
 
 	@Override
 	public List<BoardDto> listArticle(Map<String, String> queryString) {
