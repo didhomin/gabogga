@@ -46,13 +46,11 @@ $(document).ready(function() {
 		$('#commonForm').attr('action', '${root}/reboard/write.gbg').submit();
 	});
 	 */
-	$(".subject").click(function() {
-		$('#bcode').val('${qs.bcode}');
-		$('#pg').val('${qs.pg}');
-		$('#key').val('${qs.key}');
-		$('#word').val('${qs.word}');
-		$('#seq').val($(this).attr('data-seq'));
-		$('#commonForm').attr('action', '${root}/reboard/view.gbg').submit();
+	$(".tr").click(function() {
+		/*$(this).parent().next("tr").slideDown(500);*/
+		$('.trtr').hide();
+		 var seq= $(this).attr('data-seq'); 
+		$('#'+seq).slideToggle("slow");
 	});
 	
 	$("#searchBtn").click(function() {
@@ -77,12 +75,20 @@ $(document).ready(function() {
 	뭐라고쓰지
 	<hr/>
 	</div>
+			<div class="">
+				<div class="pull-right">
+						<a id="writeBtn" role="button" class="btn btn-default">글쓰기</a>
+					<a class="btn btn-default" href="javascript:;" role="button">공지등록</a>
+					<a class="btn btn-default" id="" role="button">공지해제</a> <a
+						class="btn btn-default" role="button" id="">삭제</a>
+				</div>
+			</div>
 			<div class="row">
 			
 				<div class="col-sm-11"></div>
 				<div class="col-sm-1" style="float:right;">	
 					<c:if test="${user.type eq 2 }">
-						<button id="writeBtn" type="button" class="btn btn-primary btn-sm newBtn">글쓰기</button>
+						
 					</c:if>
 				</div>
 			</div><br>
@@ -90,21 +96,29 @@ $(document).ready(function() {
 			<table class="table table-striped table-hover">
 			    <thead>
 			      <tr>
-			        <th width="70%">제목</th>
+			        <th width="5%">순번</th>
+			        <th width="65%">제목</th>
 			        <th width="15%">작성자</th>
 			        <th width="15%">날짜</th>
 			      </tr>
 			    </thead>
 			    <tbody>
 <c:forEach var="article" items="${noticeList}">		    
-			      <tr>
+			      <tr class="tr" data-seq="${article.seq}">
+			        <td><input type="checkbox" name="" value=""></td>
 			        <td>
-			        	<a href="#" data-seq="${article.seq}" class="subject">${article.subject}
+			        	<a  class="subject">${article.subject}
 						</a>
 					</td>
 			        <td>[관리자] ${article.name}</td>
 			        <td>${article.logtime}</td>
 			      </tr>
+			      <tr class="trtr" id="${article.seq }" style="display: none;">
+			      <td>내용</td>
+			      <td colspan="3">${article.content}</td>
+				  	      
+			      </tr>
+
 </c:forEach>
 			    </tbody>
 			</table>
