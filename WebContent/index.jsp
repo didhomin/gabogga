@@ -9,7 +9,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	alert("${emailAuth}님 인증이 완료되었습니다. 로그인후 이용하세요");	
-	$('#modalLogin').modal('show');	
+	$('#modalLogin').modal('show');
 });
 </script>
 </c:if>
@@ -70,7 +70,7 @@ function searchUser() {
 <!-- 여기서부터 우리가 꾸미기 -->
 
 <div class="jumbotron" style="">
-	<h1>
+	<h1> 
 		<font color="red"><b>가보까?</b></font> 에서
 	</h1>
 	<h2>게스트하우스를 예약해보세요.</h2>
@@ -132,7 +132,7 @@ function searchUser() {
 					<img src="http://s.fotorama.io/1.jpg">
 				</div>
 				<div class="fotorama col-sm-4">
-					<img src="http://s.fotorama.io/4.jpg">	
+					<img src="http://s.fotorama.io/4.jpg">
 				</div>
 				<div class="fotorama col-sm-4">
 					<img src="http://s.fotorama.io/2.jpg">

@@ -20,8 +20,9 @@ public class GuestHouseDto {
 	private int park;
 	private int child;
 	private int pet;
-	private String roomPay;
+	private String housePay;
 	private String introduce;
+	private String picture;
 
 	public int getGuesthouseId() {
 		return guesthouseId;
@@ -167,14 +168,6 @@ public class GuestHouseDto {
 		this.pet = pet;
 	}
 
-	public String getRoomPay() {
-		return roomPay;
-	}
-
-	public void setRoomPay(String roomPay) {
-		this.roomPay = roomPay;
-	}
-
 	public String getIntroduce() {
 		return introduce;
 	}
@@ -183,4 +176,21 @@ public class GuestHouseDto {
 		this.introduce = introduce;
 	}
 
+	public String getHousePay() {
+		return housePay;
+	}
+
+	public void setHousePay(String housePay) {
+		this.housePay = housePay;
+	}
+
+	public String getPicture() {
+		return picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
+
+	
 }

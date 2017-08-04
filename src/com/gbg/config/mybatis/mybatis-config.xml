@@ -12,6 +12,8 @@
         <typeAlias alias="ListDto" type="com.gbg.list.model.ListDto"/>
         <typeAlias alias="houseDto" type="com.gbg.house.model.HouseDto"/>
         <typeAlias alias="roomDto" type="com.gbg.host.model.RoomDto"/>
+        <typeAlias alias="convenienceDto" type="com.gbg.host.model.ConvenienceDto"/>
+        <typeAlias alias="roomPictureDto" type="com.gbg.host.model.RoomPictureDto"/>
     </typeAliases>
     
     <mappers>

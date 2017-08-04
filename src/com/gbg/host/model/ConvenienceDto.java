@@ -1,6 +1,6 @@
 package com.gbg.host.model;
 
-public class ConvenienceDto extends RoomDto {
+public class ConvenienceDto extends GuestHouseDto {
 
 	private int essential;
 	private int wifi;

@@ -5,9 +5,13 @@ import java.net.URLEncoder;
 
 public class Encoding {
 	
+	public static String nullToZero(String tmp){
+		return tmp == null ? "0" : tmp;
+	}
+	
 	public static String nullToBlank(String tmp) {
 		return tmp == null ? "" : tmp;
-	} //���������ͼ��� ���ַ��� �ϴ°�
+	}
 	
 	public static String iosToEuc(String tmp) {
 		String euc = "";

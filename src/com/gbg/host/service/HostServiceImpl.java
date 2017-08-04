@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gbg.host.dao.HostDao;
+import com.gbg.host.model.ConvenienceDto;
 import com.gbg.host.model.GuestHouseDto;
 import com.gbg.host.model.RoomDto;
+import com.gbg.host.model.RoomPictureDto;
 
 @Service
 public class HostServiceImpl implements HostService {
@@ -48,23 +50,68 @@ public class HostServiceImpl implements HostService {
 	}
 
 	@Override
-	public int fifthUpdate(Map<String, String> map) {
+	public int fifthUpdate(Map<String, Object> map) {
 		return sqlSession.getMapper(HostDao.class).fifthUpdate(map);
 	}
 
 	@Override
-	public int fifthInsert(Map<String, String> map) {
+	public int fifthInsert(Map<String, Object> map) {
 		return sqlSession.getMapper(HostDao.class).fifthInsert(map);
-	}
-
-	@Override
-	public int sixthmodal(Map<String, String> map) {
-		return sqlSession.getMapper(HostDao.class).sixthmodal(map);
 	}
 
 	@Override
 	public List<RoomDto> roomSelectall(Map<String, String> map) {
 		return (List<RoomDto>) sqlSession.getMapper(HostDao.class).roomSelectall(map);
+	}
+
+	@Override
+	public List<RoomDto> roomSelectall2(Map<String, String> map) {
+		return (List<RoomDto>) sqlSession.getMapper(HostDao.class).roomSelectall2(map);
+	}
+
+	@Override
+	public RoomDto roomModifySelect(Map<String, String> map) {
+		return sqlSession.getMapper(HostDao.class).roomModifySelect(map);
+	}
+
+	@Override
+	public int roomDelete(Map<String, String> map) {
+		return sqlSession.getMapper(HostDao.class).roomDelete(map);
+	}
+
+	@Override
+	public int seventhUpdate(Map<String, String> map) {
+		return sqlSession.getMapper(HostDao.class).seventhUpdate(map);
+	}
+
+	@Override
+	public int seventhInsert(Map<String, String> map) {
+		return sqlSession.getMapper(HostDao.class).seventhInsert(map);
+	}
+
+	@Override
+	public ConvenienceDto conSelect(Map<String, String> map) {
+		return sqlSession.getMapper(HostDao.class).conSelect(map);
+	}
+
+	@Override
+	public RoomPictureDto pictrueSelect(Map<String, String> map) {
+		return sqlSession.getMapper(HostDao.class).pictrueSelect(map);
+	}
+
+	@Override
+	public int fifthInsert2(Map<String, Object> map) {
+		return sqlSession.getMapper(HostDao.class).fifthInsert2(map);
+	}
+
+	@Override
+	public int fifthPictureDelete(Map<String, Object> map) {
+		return sqlSession.getMapper(HostDao.class).fifthPictureDelete(map);
+	}
+
+	@Override
+	public int finalUpdate(Map<String, String> map) {
+		return sqlSession.getMapper(HostDao.class).finalUpdate(map);
 	}
 
 

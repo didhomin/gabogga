@@ -6,6 +6,7 @@ public class RoomDto extends GuestHouseDto {
 	private String roomType;
 	private String roomName;
 	private int roomNum;
+	private int roomPay;
 	private String bedType;
 	private int bedNum;
 	private int bedCapacity;
@@ -65,4 +66,14 @@ public class RoomDto extends GuestHouseDto {
 	public void setBedCapacity(int bedCapacity) {
 		this.bedCapacity = bedCapacity;
 	}
+
+	public int getRoomPay() {
+		return roomPay;
+	}
+
+	public void setRoomPay(int roomPay) {
+		this.roomPay = roomPay;
+	}
+	
+	
 }

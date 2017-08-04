@@ -4,13 +4,46 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	
+	var step = 0;
+	
 	$('#progressBtn').click(function(){
+		if('${total}' !=0){
+			alert("아직 ${total}개 객실 추가가 완료되지 않았습니다. 숙소관리에서 수정해주세요.");
+			
+		}
 		document.hostform.action = "${root}/host/sixth.gbg";
 		document.hostform.submit();
+		
+	});
+	
+	$(document).on('click','#plusBtn2',function() {
+	      if(step < 4){
+	         step++;
+	         $('<div id="mapPlusD" class="col-sm-8">').append('<input type="hidden" name="picture" id="picture'+step+'" value="">').append('<input type="file" id="picture'+step+'" name="picture">').appendTo('#mapPlusDiv');
+	      }
+	   });
+
+	$(document).on('click', '.minusBtn', function() {
+		      if(step > 0){
+		         $('#mapPlusD').remove();
+		         step--;
+		      }
+		});
+	
+	$('#registerBtn1').click(function(){
+		window.location.reload();
 	});
 	
 	$('#backBtn').click(function(){
 		$(location).attr('href', '${root}/host/sixth.gbg');
+	});
+	
+	$('.delete').click(function(){
+		$(location).attr('href', '${root}/host/sixthdelete.gbg?act='+$(this).attr('data-set'));
+	});
+	
+	$('.modify').click(function(){
+		$(location).attr('href', '${root}/host/sixthmodify.gbg?act='+$(this).attr('data-set'));
 	});
 	
 	$('#progressBtnmodal').click(function(){
@@ -24,9 +57,13 @@ $(document).ready(function(){
 		} else if(document.getElementById("roomPerson").value == ""){
 			alert("수용가능한 인원 입력!");
 			return;
+		}else if(document.getElementById("roomPay").value == ""){
+			alert("기본요금 입력!");
+			return;
 		}else{
 		document.hostform.action = "${root}/host/sixthmodal.gbg";
 		document.hostform.submit();
+		
 		}
 	});
 	
@@ -41,8 +78,8 @@ $(document).ready(function(){
 	<div class="container">
 		<div class="progress">
 			<div class="progress-bar progress-bar-striped active"
-				role="progressbar" aria-valuenow="60" aria-valuemin="0"
-				aria-valuemax="100" style="width: 60%">60%</div>
+				role="progressbar" aria-valuenow="75" aria-valuemin="0"
+				aria-valuemax="100" style="width: 75%">75%</div>
 		</div>
 		<div class="basic">
 
@@ -53,15 +90,31 @@ $(document).ready(function(){
 					귀하의 객실 등록 현황</font><br><br>
 					<div class="row" id="total">
 					<div id="card2">
-					<c:forEach var="host" items="host6">
+					<c:forEach var="hostroom1" items="${hostroom}">
 						<div id="card" class="col-sm-8"style="padding:20px; border:1px solid #ededed; box-shadow:1px 1px 0 rgba(0,0,0, .2);">
-						${host.roomName} (객실 별칭)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;이 유형의 객실 수 :${host.roomNum}
-						</div>
+					${hostroom1.roomName} (객실 별칭)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;이 유형의 객실 수 :${hostroom1.roomNum}
+
+ 						<button id="deleteBtn" type="button" class="delete btn btn-danger pull-right" data-set="${hostroom1.roomId}">삭제</button>
+ 						<button id="modifyBtn" type="button" class="modify btn btn-warning pull-right" data-set="${hostroom1.roomId}">수정</button>
+ 						
+ 						</div>
+ 						
 					</c:forEach>
+					<br><br><br>
 						</div>
+						<br><br><br>
 						<div class="col-sm-12" style="align:center">
+												<c:set var="totals" value="${host21.houseTotal}" scope="session"/>
+						<c:forEach var="i" items="${hostroom}" >
+						<c:set var="total" value="${totals=totals-i.roomNum}" scope="session" />
+						</c:forEach>
+						<br><br><br>
+								<font color="red"><strong>남은 객실수:${total}개</strong></font>
 						<br>
-						 <button id="plusBtn" name="plusBtn" type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal">+ 다른 객실 타입 추가</button>
+						 <button id="plusBtn" name="plusBtn" type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#myModal">+ 다른 객실 타입 추가</button>
+						<br><br>
+						 객실 등록을 확정 하시겠습니까?
+					<button id="registerBtn1" type="button" class="btn btn-success btn-lg">확정</button>
 						</div>
 					</div>
 					<br>
@@ -89,7 +142,7 @@ $(document).ready(function(){
           <div class="row" style="padding-bottom: 50px;">
 				<div class="col-sm-8 col-sm-push-1" style="padding-top: 30px;">
 					<h2>추가 객실 설정</h2> <br>
-					<form name="hostform" method="post">
+					<form name="hostform" method="post" enctype="multipart/form-data">
 						<input type="hidden" id="select1" name="select1" value="">
 						<input type="hidden" id="select2" name="select2" value="">
 						<input type="hidden" id="select3" name="select3" value="">
@@ -142,7 +195,10 @@ $(document).ready(function(){
 
 					<div class="row">
 						<div class="col-sm-8">
-						<c:set var="total" value="${host21.houseTotal-host6.roomNum}" scope="session" />
+						<c:set var="totals" value="${host21.houseTotal}" scope="session"/>
+						<c:forEach var="i" items="${hostroom}" >
+						<c:set var="total" value="${totals=totals-i.roomNum}" scope="session" />
+						</c:forEach>
 								<strong>남은 객실수:${total}개</strong>
 						</div>
 						<div class="col-sm-4"></div>
@@ -207,7 +263,29 @@ $(document).ready(function(){
 						</div>
 						<div class="col-sm-4"></div>
 					</div>
-					
+					<br>
+					<div class="row">
+						<div class="col-sm-8">
+							<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+							<font size="3px" color="blue"><strong>이 객실의 기본 요금은 얼마 인가요?</strong> </font><br>
+						<input type="text" name="roomPay" id="roomPay" class="form-control" placeholder="￦/박" style="width:100px">
+	
+						</div>
+						<div class="col-sm-4"></div>
+					</div>
+					<br>
+					<div class="row">
+					<div id="mapPlusDiv">
+						<div class="col-sm-10">
+							<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+							<font size="3px" color="blue"><strong>이 객실 사진을 등록해주세요.(최대 5개)</strong></font>	
+				 		 <button type="button" id="plusBtn2" class="btn btn-warning btn-sm">추가</button>
+	             	     <button type="button" class="minusBtn btn btn-danger btn-sm">삭제</button>	
+							<input type="file" id="picture0" name="picture">
+						</div>
+						<div class="col-sm-2"></div>
+					</div>
+					</div>
 					<br><br>
 					</form>
 				</div>

@@ -4,7 +4,7 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	
-	if(${host4.checkinStart != null}){ 
+	if('${host4}' != null){
 		$("#checkinS").val("${host4.checkinStart}").attr("selected", "selected");
 		$("#checkinE").val("${host4.checkinEnd}").attr("selected", "selected");
 		$("#checkoutS").val("${host4.checkoutStart}").attr("selected", "selected");
@@ -13,7 +13,7 @@ $(document).ready(function(){
 		$("#park").val("${host4.park}").attr("selected", "selected");
 		$("#child").val("${host4.child}").attr("selected", "selected");
 		$("#pet").val("${host4.pet}").attr("selected", "selected");
-	}
+	} 
 	$('#progressBtn').click(function(){
 		$('#selectTime1').val($("#checkinS option:selected").val());
 		$('#selectTime2').val($("#checkinE option:selected").val());
@@ -42,8 +42,8 @@ $(document).ready(function(){
 	<div class="container">
 		<div class="progress">
 			<div class="progress-bar progress-bar-striped active"
-				role="progressbar" aria-valuenow="30" aria-valuemin="0"
-				aria-valuemax="100" style="width: 30%">30%</div>
+				role="progressbar" aria-valuenow="45" aria-valuemin="0"
+				aria-valuemax="100" style="width: 45%">45%</div>
 		</div>
 		<div class="basic">
 			<div class="row" style="padding-bottom: 50px;">
