@@ -82,17 +82,15 @@ public class MemberAdminController {
 	}
 	
 	@RequestMapping("/delete.gbg")
-	public String delete(@RequestParam("id") String userId){
+	public String delete(@RequestParam Map<String, String> queryString){
 		int cnt=0;
-		cnt = memberAdminService.memberAdminDelete(userId);
+		cnt = memberAdminService.memberAdminDelete(queryString.get("id"));
 		
-		if(cnt !=0){
-	
-		}else{
-		
+		if(queryString.get("bcode").equals("1")){
+			return "redirect:/memberAdmin/list.gbg?pg=1&bcode=1&key=&word=";
 		}
-		//일단 이렇게 하고 수정할 가능성이 매우 높다.
-		return "redirect:/memberAdmin/list.gbg?pg=1";
+		else
+		return "redirect:/memberAdmin/blacklist.gbg?pg=1&bcode=3&key=&word=";
 	}
 	@RequestMapping("/black.gbg")
 	public String black(@RequestParam("id") String valueArr){
