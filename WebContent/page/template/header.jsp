@@ -66,7 +66,7 @@
 							data-toggle="dropdown">호스팅하기 <strong class="caret"></strong></a>
 							<ul class="dropdown-menu">
 								<li><a href="${root}/host/register.gbg">숙소등록</a></li>
-								<li><a href="#">숙소관리</a></li>
+								<li><a href="${root}/manage/list.gbg">숙소관리</a></li>
 								<!-- <li class="divider"></li> -->
 								<c:if test="${not empty user.host }">
 								<li class="divider"></li>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/page/template/header.jsp" %>	
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script type="text/javascript">
 $(document).ready(function(){
 	
@@ -114,7 +115,7 @@ $(document).ready(function(){
 						 <button id="plusBtn" name="plusBtn" type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#myModal">+ 다른 객실 타입 추가</button>
 						<br><br>
 						 객실 등록을 확정 하시겠습니까?
-					<button id="registerBtn1" type="button" class="btn btn-success btn-lg">확정</button>
+					<button id="registerBtn1" type="button" class="btn btn-success btn-lg"><i class="fa fa-hand-o-right" style="font-size:24px"></i>확정</button>
 						</div>
 					</div>
 					<br>
