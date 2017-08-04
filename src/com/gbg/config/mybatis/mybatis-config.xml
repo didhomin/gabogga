@@ -22,6 +22,7 @@
         <mapper resource="com/gbg/config/mybatis/sangkuk.xml"/>
         <mapper resource="com/gbg/config/mybatis/juhee.xml"/>
         <mapper resource="com/gbg/config/mybatis/sungjun.xml"/>
+        <mapper resource="com/gbg/config/mybatis/commonutil.xml" />
         <mapper resource="com/gbg/config/mybatis/boardadmin.xml"/>
     </mappers>
     

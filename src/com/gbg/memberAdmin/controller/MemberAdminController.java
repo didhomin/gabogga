@@ -1,7 +1,11 @@
 package com.gbg.memberAdmin.controller;
 
 import java.util.List;
+import java.util.Map;
 import java.util.StringTokenizer;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +17,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.gbg.member.model.UsersDto;
 import com.gbg.memberAdmin.service.MemberAdminService;
+import com.gbg.util.PageNavigationIn;
+import com.gbg.util.service.CommonPService;
 
 @Controller
 @RequestMapping("/memberAdmin")
@@ -21,20 +27,39 @@ public class MemberAdminController {
 	@Autowired
 	private MemberAdminService memberAdminService;
 	
+	@Autowired
+	private CommonPService commonPService;
+	
 	@RequestMapping("/list.gbg")
-	public ModelAndView listMemberAdmin(@RequestParam(value="pg",defaultValue="1" ) String pg){
+	public ModelAndView listMemberAdmin(@RequestParam Map<String, String> queryString ,HttpServletRequest request,HttpSession session){
 		ModelAndView mav = new ModelAndView();
-		List<UsersDto> list = memberAdminService.listMemberAdmin();
+		List<UsersDto> list = memberAdminService.listMemberAdmin(queryString);
+
+		PageNavigationIn navigationIn = commonPService.makePageNavigation(queryString);
+		navigationIn.setRoot(request.getContextPath());
+		navigationIn.setNavigator();
+		
+		mav.addObject("qs",queryString);
+		mav.addObject("navigationIn",navigationIn);
 		mav.addObject("userAdminlist", list);
 		mav.setViewName("/page/memberadmin/memberAdmin");
 		return mav;
 	}
 	@RequestMapping("/blacklist.gbg")
-	public ModelAndView blacklist(@RequestParam(value="pg") String pg){
+	public ModelAndView blacklist(@RequestParam Map<String, String> queryString ,HttpServletRequest request,HttpSession session){
 		ModelAndView mav = new ModelAndView();
-		List<UsersDto> list = memberAdminService.blacklist();
+		
+		PageNavigationIn navigationIn = commonPService.makePageNavigation(queryString);
+		navigationIn.setRoot(request.getContextPath());
+		navigationIn.setNavigator();
+		
+		List<UsersDto> list = memberAdminService.blacklist(queryString);
+		
+		mav.addObject("qs",queryString);
+		mav.addObject("navigationIn",navigationIn);
 		mav.addObject("userAdminlist", list);
 		mav.setViewName("/page/memberadmin/blacklist");
+		
 		return mav;
 	}
 	@RequestMapping("/idcheck.gbg")
@@ -81,7 +106,7 @@ public class MemberAdminController {
 			
 		}
 		
-		return "redirect:/memberAdmin/list.gbg?pg=1";
+		return "redirect:/memberAdmin/list.gbg?pg=1&bcode=1&key=&word=";
 	}
 	@RequestMapping("/soso.gbg")
 	public String soso(@RequestParam("id") String valueArr){
@@ -93,6 +118,6 @@ public class MemberAdminController {
 			soso= st.nextToken();
 		  cnt +=memberAdminService.memberAdminSoso(soso);
 		}
-		return "redirect:/memberAdmin/blacklist.gbg?pg=1";
+		return "redirect:/memberAdmin/blacklist.gbg?pg=1&bcode=3&key=&word=";
 	}
 }
