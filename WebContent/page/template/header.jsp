@@ -21,11 +21,11 @@
  <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
  <script src="${root }/page/member/js/kakao.js"></script>
  <script src="${root }/page/member/js/facebook.js"></script>
- <%@ include file="/page/member/registerModal.jsp" %>	
- <%@ include file="/page/member/loginModal.jsp" %>	
- <%@ include file="/page/member/passReset.jsp" %>	
- <%@ include file="/page/member/passModify.jsp" %>	
- <%@ include file="/page/member/memberModify.jsp" %>	
+ <%@ include file="/WEB-INF/page/member/registerModal.jsp" %>	
+ <%@ include file="/WEB-INF/page/member/loginModal.jsp" %>	
+ <%@ include file="/WEB-INF/page/member/passReset.jsp" %>	
+ <%@ include file="/WEB-INF/page/member/passModify.jsp" %>	
+ <%@ include file="/WEB-INF/page/member/memberModify.jsp" %>	
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
 			<div class="container-fluid">
@@ -41,9 +41,7 @@
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav ">
-						<li class=""><a href="#">공지사항</a></li>
-						<li class=""><a href="${root}/house/reservation.gbg?guesthouseId=150">house</a>
-
+						<li class=""><a href="${root }/admin/notice.gbg">공지사항</a></li>
 					</ul>
 					<!--  <form class="navbar-form navbar-right">
 			      	<div class="input-group">
@@ -69,8 +67,15 @@
 							<ul class="dropdown-menu">
 								<li><a href="${root}/host/register.gbg">숙소등록</a></li>
 								<li><a href="#">숙소관리</a></li>
-								<li><a href="#">예약관리</a></li>
-								
+								<!-- <li class="divider"></li> -->
+								<c:if test="${not empty user.host }">
+								<li class="divider"></li>
+								<li><a href="${root}/house/hostresinfo.gbg?userId=123 & guesthouseId=100">호스트 예약관리</a></li>
+								</c:if>
+								<c:if test="${not empty user }">
+								<li class="divider"></li>
+								<li><a href="${root}/house/userresinfo.gbg?userId=${user.userId}">예약확인</a></li>
+								</c:if>
 							</ul>
 						</li>
 						<c:choose>
@@ -87,7 +92,7 @@
 	 							<li class="dropdown"><a class="dropdown-toggle" href="#"
 									data-toggle="dropdown">관리자 <strong class="caret"></strong></a>
 									<ul class="dropdown-menu">
-										<li><a href="${root}/memberAdmin/list.gbg">회원관리</a></li>
+										<li><a href="${root}/memberAdmin/list.gbg?pg=1&bcode=1&key=&word=">회원관리</a></li>
 										<li><a href="${root}/admin/statistics.gbg">통계</a></li>
 									</ul>
 								</li>

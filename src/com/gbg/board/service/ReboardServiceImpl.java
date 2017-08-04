@@ -26,7 +26,6 @@ public class ReboardServiceImpl implements ReboardService {
 	public ReboardDto getArticle(int seq) {
 		sqlSession.getMapper(CommonDao.class).updateHit(seq);
 		return sqlSession.getMapper(ReboardDao.class).getArticle(seq);
-		
 	}
 
 	@Override
@@ -40,8 +39,11 @@ public class ReboardServiceImpl implements ReboardService {
 	}
 
 	@Override
-	public int replyArticle(ReboardDto reboardDto) {
-		return 0;
+	public void replyArticle(ReboardDto reboardDto) {
+		ReboardDao reboardDao = sqlSession.getMapper(ReboardDao.class);
+		sqlSession.getMapper(ReboardDao.class).updateStep(reboardDto);
+		sqlSession.getMapper(ReboardDao.class).replyArticle(reboardDto);
+		sqlSession.getMapper(ReboardDao.class).updateReply(reboardDto.getSeq());
 	}
 
 	@Override

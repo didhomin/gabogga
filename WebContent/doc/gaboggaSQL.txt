@@ -198,7 +198,7 @@ CREATE TABLE guesthouse (
 	park NUMBER, /* park */
 	child NUMBER, /* child */
 	pet NUMBER, /* pet */
-	room_pay VARCHAR(50), /* room_pay */
+	room_pay NUMBER, /* room_pay */
 	introduce VARCHAR2(2000), /* introduce */
 	picture CLOB /* picture */
 );
@@ -262,6 +262,7 @@ CREATE TABLE room (
 	room_type VARCHAR(20), /* room_type */
 	room_name VARCHAR(20), /* room_name */
 	room_num NUMBER, /* room_num */
+	room_price NUMBER, /* 새 컬럼 */
 	bed_type VARCHAR(50), /* bed_type */
 	bed_num NUMBER, /* bed_num */
 	bed_capacity NUMBER /* bed_capacity */
@@ -276,6 +277,8 @@ COMMENT ON COLUMN room.room_type IS '객실 유형';
 COMMENT ON COLUMN room.room_name IS '객실 별칭';
 
 COMMENT ON COLUMN room.room_num IS '해당 객실 수';
+
+COMMENT ON COLUMN room.room_price IS '객실 가격';
 
 COMMENT ON COLUMN room.bed_type IS '침대 종류';
 
@@ -297,7 +300,7 @@ ALTER TABLE room
 
 /* convenience */
 CREATE TABLE convenience (
-	room_id NUMBER, /* room_id */
+	guesthouse_id NUMBER, /* guesthouse_id */
 	essential NUMBER, /* essential */
 	wifi NUMBER, /* wifi */
 	shampo NUMBER, /* shampo */
@@ -309,6 +312,8 @@ CREATE TABLE convenience (
 	desk NUMBER, /* desk */
 	hair_dry NUMBER /* hair_dry */
 );
+
+COMMENT ON COLUMN convenience.guesthouse_id IS '숙박시설 고유번호';
 
 COMMENT ON COLUMN convenience.essential IS '필수품목';
 
@@ -334,15 +339,12 @@ COMMENT ON COLUMN convenience.hair_dry IS '헤어드라이기';
 CREATE TABLE room_picture (
 	picture_id NUMBER NOT NULL, /* picture_id */
 	room_id NUMBER, /* room_id */
-	picture CLOB, /* picture */
-	guesthouse_id NUMBER /* guesthouse_id */
+	picture CLOB /* picture */
 );
 
 COMMENT ON COLUMN room_picture.picture_id IS '사진 번호';
 
 COMMENT ON COLUMN room_picture.picture IS '숙소사진';
-
-COMMENT ON COLUMN room_picture.guesthouse_id IS '객실 고유번호';
 
 CREATE UNIQUE INDEX PK_room_picture
 	ON room_picture (

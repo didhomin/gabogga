@@ -4,17 +4,52 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"     
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
 
-<mapper namespace="com.kitri.board.dao.MapboardDao">
+<mapper namespace="com.gbg.board.dao.MapboardDao">
     
-    <insert id="writeArticle" parameterType="stopbyDto">
+    <insert id="writeArticle" parameterType="java.util.Map">
         insert all
-        into board (seq, user_id, bcode, name, email, subject, content, hit, logtime)
-        values(#{seq}, #{userId}, #{bcode}, #{name}, #{email}, #{subject}, #{content}, 0, sysdate)
-        into map (mapseq, seq, start_locx, start_locy, finish_locx, finish_locy)
-        values (seq_MAP_MAP_seq.nextval, #{seq}, #{}, #{}, #{}, #{})
-        into stopby (mapseq, seq, loc_x, loc_y)
-        values ()
+            into board (seq, user_id, bcode, name, email, subject, content, hit, logtime)
+            values(#{board.seq}, #{board.userId}, #{board.bcode}, #{board.name}, #{board.email}, #{board.subject}, #{board.content}, 0, sysdate)
+        <foreach item="item" collection="position">
+            into stopby (seq, step, x, y)
+            values (#{item.seq}, #{item.step}, #{item.x}, #{item.y})
+        </foreach>
         select * from dual
+        
     </insert>
+    
+    <select id="getArticle" parameterType="int" resultType="boardDto">
+        select b.seq, b.name, b.email, b.subject,
+        b.content, b.hit, b.logtime, b.bcode
+        from board b
+        where
+        b.seq = #{seq}
+    </select>
+   
+    <select id="listArticle" parameterType="java.util.Map" resultType="boardDto"> 
+        select b.*
+        from(
+        select rownum rn, a.*
+        from(
+        select b.seq, b.user_id, b.bcode, b.name, b.email, b.subject, b.content , b.hit,
+        decode(to_char(sysdate,'yymmdd'), to_char(b.logtime, 'yymmdd'), 
+        to_char(b.logtime, 'hh24:mi:ss'), to_char(b.logtime, 'yy.mm.dd')) logtime
+        from board b
+        where
+        b.bcode = #{bcode}
+        <if test="key!='' and word!=''">
+            <if test="key == 'subject'">
+                and b.subject like '%'||#{word}||'%'
+            </if>
+            <if test="key != 'subject'">
+                and b.${key} = #{word}
+            </if>
+        </if>
+        order by b.seq desc
+        ) a
+        where rownum &lt;= #{end}
+        ) b
+        where b.rn &gt; #{start}
+    </select>
     
 </mapper>

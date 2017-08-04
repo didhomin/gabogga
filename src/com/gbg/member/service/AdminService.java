@@ -9,4 +9,9 @@ public interface AdminService {
 
 	void sendQnaMail(QnaDto qnaDto);
 	List<ListDto> address(String address);
+	List<ListDto> main();
+	List<ListDto> mainprice();
+	int man();
+	int woman();
+
 }

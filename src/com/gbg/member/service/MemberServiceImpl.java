@@ -76,7 +76,6 @@ public class MemberServiceImpl implements MemberService {
 
 			Transport.send(msg); 
 		} catch (Exception e) {
-			e.printStackTrace();
 			return;
 		}
 
@@ -120,7 +119,6 @@ public class MemberServiceImpl implements MemberService {
 			
 			Transport.send(msg); 
 		} catch (Exception e) {
-			e.printStackTrace();
 			return;
 		}
 		
@@ -165,6 +163,10 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int memberModify(UsersDto usersDto) {
 		return sqlSession.getMapper(MemberDao.class).memberModify(usersDto);
+	}
+	@Override
+	public UsersDto snslogin(String email) {
+		return sqlSession.getMapper(MemberDao.class).snslogin(email);
 	}
 
 	

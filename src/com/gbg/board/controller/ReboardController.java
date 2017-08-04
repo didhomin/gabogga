@@ -90,7 +90,7 @@ public class ReboardController {
 	}
 	
 	@RequestMapping(value="/list.gbg", method=RequestMethod.GET)
-	public ModelAndView list(@RequestParam Map<String, String> queryString, HttpSession session) {
+	public ModelAndView list(@RequestParam Map<String, String> queryString, HttpSession session, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		
 		//게시판 메뉴 목록
@@ -105,7 +105,7 @@ public class ReboardController {
 		
 		//페이징처리
 		PageNavigation pageNavigation = commonService.makePageNavigation(queryString);
-		pageNavigation.setRoot("/gabogga");
+		pageNavigation.setRoot(request.getContextPath());
 		pageNavigation.setNavigator();
 		mav.addObject("navigator", pageNavigation);
 		
