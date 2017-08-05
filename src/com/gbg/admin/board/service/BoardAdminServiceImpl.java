@@ -22,22 +22,22 @@ public class BoardAdminServiceImpl implements BoardAdminService {
 
 	@Override
 	public List<CategoryDto> categoryList() {
-		return null;
+		return sqlSession.getMapper(BoardAdminDao.class).categoryList();
 	}
 
 	@Override
 	public void categoryMake(String cname) {
-		
+		sqlSession.getMapper(BoardAdminDao.class).categoryMake(cname);
 	}
 
 	@Override
 	public List<BoardTypeDto> boardTypeList() {
-		return null;
+		return sqlSession.getMapper(BoardAdminDao.class).boardTypeList();
 	}
 
 	@Override
 	public void boardMake(BoardListDto boardListDto) {
-		
+		sqlSession.getMapper(BoardAdminDao.class).boardMake(boardListDto);
 	}
 
 }

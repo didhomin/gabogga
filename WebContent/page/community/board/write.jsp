@@ -35,8 +35,8 @@ $(document).ready(function() {
 		} else {
 			$('#writeForm').attr('method', 'post').attr('action', '${root}/reboard/write.gbg').submit();
 		}
-	})
-})
+	});
+});
 
 </script>
 	<div class="col-sm-9 main">
