@@ -24,29 +24,19 @@
         <mappers>
                 <mapper resource="com/gbg/config/mybatis/users.xml"/>
                 <mapper resource="com/gbg/config/mybatis/sangkuk.xml"/>
+                
                 <mapper resource="com/gbg/config/mybatis/common.xml"/>
                 <mapper resource="com/gbg/config/mybatis/boardadmin.xml"/>
                 <mapper resource="com/gbg/config/mybatis/reboard.xml"/>
                 <mapper resource="com/gbg/config/mybatis/mapboard.xml"/>
-<<<<<<< HEAD
-=======
-                <mapper resource="com/gbg/config/mybatis/juhee.xml"/>
-                <mapper resource="com/gbg/config/mybatis/insueng.xml"/>
-                <mapper resource="com/gbg/config/mybatis/sungjun.xml"/>
-                <mapper resource="com/gbg/config/mybatis/admin.xml"/>
-                <mapper resource="com/gbg/config/mybatis/board.xml"/>
-                <mapper resource="com/gbg/config/mybatis/commonutil.xml"/>
->>>>>>> branch 'master' of https://github.com/didhomin/gabogga.git
                 <mapper resource="com/gbg/config/mybatis/memo.xml"/>
-<<<<<<< HEAD
+
                 <mapper resource="com/gbg/config/mybatis/juhee.xml"/>
                 <mapper resource="com/gbg/config/mybatis/insueng.xml"/>
                 <mapper resource="com/gbg/config/mybatis/sungjun.xml"/>
                 <mapper resource="com/gbg/config/mybatis/admin.xml"/>
                 <mapper resource="com/gbg/config/mybatis/board.xml"/>
                 <mapper resource="com/gbg/config/mybatis/commonutil.xml"/>
-=======
->>>>>>> branch 'master' of https://github.com/didhomin/gabogga.git
 
         </mappers>
 </configuration>
