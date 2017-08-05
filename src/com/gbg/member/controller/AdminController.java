@@ -102,9 +102,11 @@ public class AdminController extends MultiActionController{
 	@RequestMapping(value="/notice.gbg", method=RequestMethod.GET)
 	public ModelAndView notice(@RequestParam Map<String, String> queryString) {
 		ModelAndView mav = new ModelAndView();
+		
 		List<BoardDto> list = boardService.listArticle(queryString);
 		mav.addObject("noticeList", list);
 		mav.setViewName("/page/member/noticelist");
+		System.out.println(list);
 		return mav;
 	}
 
@@ -114,8 +116,11 @@ public class AdminController extends MultiActionController{
 	}
 	
 	@RequestMapping(value="/write.gbg", method=RequestMethod.POST)
-	public String write(@RequestParam Map<String, String> queryString, BoardDto boardDto, HttpSession session) {
+	public ModelAndView write(@RequestParam Map<String, String> queryString, BoardDto boardDto, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
 		UsersDto usersDto = (UsersDto) session.getAttribute("user");
+		List<BoardDto> list = boardService.listArticle(queryString);
+		mav.addObject("noticeList", list);
 			if(usersDto!=null) {
 				
 			int seq = commonService.getNextSeq();
@@ -124,19 +129,73 @@ public class AdminController extends MultiActionController{
 			boardDto.setName(usersDto.getName());
 			boardDto.setEmail(usersDto.getEmail());
 			boardService.writeArticle(boardDto);
-			} 
+			mav.addObject("qs", queryString);
+			mav.setViewName("/page/member/noticelist");
+			} else {
+				mav.setViewName("/index");
+			}
 		
-		return "redirect:/admin/notice.gbg";
+		return mav;
 	}
+	////////////////////inwin 구역 ////////////
 	@RequestMapping("/delete.gbg")
 	public String notidelete(@RequestParam("seq") String valueArr){
 		String notidelete=null;
+		int cnt=0;
 		StringTokenizer st = new StringTokenizer(valueArr, ",");
 		while(st.hasMoreTokens()){
 			notidelete=st.nextToken();
-			boardService.deleteArticle(notidelete);
+			cnt += boardService.deleteArticle(notidelete);
 		}
+		System.out.println(cnt);
+		System.out.println("컨트롤 딜리트 까지 정상적으로 옴");
 		return "redirect:/admin/notice.gbg";
 	}
 
+	
+	
+	
+	
+	
+	/////////////////inwin 구역 끝 /////////////
+//	@RequestMapping(value="/list.gbg", method=RequestMethod.GET)
+//	public ModelAndView list(@RequestParam Map<String, String> queryString, HttpSession session, HttpServletRequest request) {
+//		ModelAndView mav = new ModelAndView();
+//		
+//		
+//		//글목록
+//		List<ReboardDto> list = boardService.listArticle();
+//		
+//		mav.addObject("qs", queryString);
+//		mav.addObject("articleList", list);
+//		
+//		//페이징처리
+//		PageNavigation pageNavigation = commonService.makePageNavigation(queryString);
+//		pageNavigation.setRoot(request.getContextPath());
+//		pageNavigation.setNavigator();
+//		mav.addObject("navigator", pageNavigation);
+//		
+//		mav.setViewName("/page/community/board/list");
+//		return mav;
+//	}
+	/*@RequestMapping(value="/view.gbg", method=RequestMethod.GET)
+	public ModelAndView view(@RequestParam Map<String, String> queryString, @RequestParam("seq") int seq, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		
+		UsersDto usersDto = (UsersDto) session.getAttribute("user");
+		
+		List<BoardListDto> adminlist = boardAdminService.boardList();
+		mav.addObject("boardmenu", adminlist);
+		
+		ReboardDto reboardDto = null;
+		if(usersDto != null) {
+			reboardDto = boardService.getArticle(seq);
+		}
+		mav.addObject("qs", queryString);
+		mav.addObject("article", reboardDto);
+		mav.setViewName("/page/community/board/view");
+		return mav;
+	}
+	
+	*/
 }

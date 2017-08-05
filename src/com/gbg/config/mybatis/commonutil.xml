@@ -20,6 +20,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="newArticleCount" parameterType="int" resultType="int">
         select count(user_id)
         from users
+       
     </select>
     
     <select id="totalArticleCount" parameterType="java.util.Map" resultType="int">
