@@ -78,14 +78,14 @@ public class HouseController {
 		return mav;
 	}
 	
-	/*@RequestMapping(value="/oksign.gbg", method=RequestMethod.POST)
-	public ModelAndView oksign(HttpSession httpSession){
+	@RequestMapping(value="/oksign.gbg")
+	public ModelAndView oksign(@RequestParam("reservationId") String reservationId){
 		ModelAndView mav = new ModelAndView();
-		String oksign = houseservice.oksign(oksign);
-		mav.addObject("oksign", );
-		mav.setViewName("/page/house/hostresinfo");
-
+//		System.out.println(reservationId);
+		String oksign = houseservice.oksign(reservationId);
+//		mav.addObject("oksign", houseDto);
+		mav.setViewName("/page/house/hostresok");
 		return mav;
 
-	}*/
+	}
 }

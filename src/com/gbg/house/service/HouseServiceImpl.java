@@ -56,8 +56,8 @@ public class HouseServiceImpl implements HouseService {
 	}
 
 	@Override
-	public String oksign(String oksign) {
-		return sqlSession.getMapper(HouseDao.class).oksign(oksign);
+	public String oksign(String reservationId) {
+		return sqlSession.getMapper(HouseDao.class).oksign(reservationId);
 	}
 
 
