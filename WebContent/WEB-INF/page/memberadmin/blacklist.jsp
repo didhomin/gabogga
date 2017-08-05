@@ -64,7 +64,7 @@ $(document).ready(function(){
 		});
     $(document).on('click','#delBt', function () {
 		var delet =$('#mid').val();
-		document.location.href = "${root}/memberAdmin/delete.gbg?id="+delet;
+		document.location.href = "${root}/memberAdmin/delete.gbg?id="+delet+"&bcode=3&key=&word=";
 		
     } );
     var valueArr= new Array();
@@ -73,25 +73,47 @@ $(document).ready(function(){
 		console.log("valueArr는"+valueArr);
 		
 	});
-    $(document).on('click','#blackBt', function() {
+    $(document).on('click','#sosoBt', function() {
     	console.log("버튼 클릭 했을 때 "+valueArr);
-    	document.location.href = "${root}/memberAdmin/black.gbg?id="+valueArr;
+    	document.location.href = "${root}/memberAdmin/soso.gbg?id="+valueArr+"&bcode=3&key=&word=";
     	
-	})
-	$(document).on('click','#blacklistBt' ,function() {
-		document.location.href = "${root}/memberAdmin/blacklist.gbg?pg=1";
+	});
+	$(document).on('click','#sosolistBt', function () {
+		document.location.href = "${root}/memberAdmin/list.gbg?pg=1&bcode=1&key=&word=";
+	});
+	$('.listselect').click( function () {
+	
+		$('#bcode').val('${qs.bcode}');
+		$('#pg').val($(this).text());
+		$('#key').val('${qs.key}');
+		$('#word').val('${qs.word}');
+		$('#commonForm').attr('action','${root}/memberAdmin/blacklist.gbg').submit();
+	});
+	$('#searchBtn').click(function () {
+		$('#bcode').val('${qs.bcode}');
+		$('#pg').val('1');
+		$('#key').val($('#skey').val());
+		$('#word').val($('#sword').val());
+	//	alert("key와 word값" +$('#key').val() +"========"+$('#word').val());
+		$('#commonForm').attr('action','${root}/memberAdmin/blacklist.gbg').submit();
 	});
 	
 });
 </script>
 <div class="container">
-		<h2>회원정보</h2>	
+	<div class="jumbotron" style="">
+	<h3>
+		<i class="glyphicon glyphicon-bell"></i>회원정보
 		<p>회원정보 상세보기 하기 위해서는 클릭을 진행해 주세요 </p>
+	</h3>
+	</div>
+		
+		
 		<table class="table table-striped">
 			
 			<thead>
-				<tr><input type="button" value="블랙리스트" id="blackBt" class="btn btn-danger" width="3"></tr>
-				<tr><input type="button" value="블랙리스트확인" id="blacklistBt" class="btn btn-success" width="3"></tr>
+				<tr><input type="button" value="일반회원으로 전환" id="sosoBt" class="btn btn-success" width="3" ></tr>
+				<tr><input type="button" value="일반리스트확인" id="sosolistBt" class="btn btn-success" width="3" ></tr>
 				<tr>	
 					<th>계정번호</th>
 					<th>이름	</th>
@@ -104,17 +126,68 @@ $(document).ready(function(){
 				<tr>
 					<td >
 					<input type="checkbox" id="chBt" value="${userAdminlist1.userId}">		
-					<input id="tt" value="${userAdminlist1.userId}" readonly="readonly" style="border: none; background-color: transparent;" width="2">					
+					<input id="tt" value="${userAdminlist1.userId}" readonly="readonly" style="border: none; background-color: transparent;">					
 					</td>
-					<td>${userAdminlist1.name}</td>
-					<td>${userAdminlist1.email } </td>
-					<td>${userAdminlist1.tel }</td>
+					<td>${userAdminlist1.name} </td>
+					<td>${userAdminlist1.email} </td>
+					<td>${userAdminlist1.tel}</td>
 				</tr>
 			</tbody>
 			</c:forEach>
 		</table>
 	</div>
 	
+	<form action="" id="commonForm" name="commonForm" method="get">
+	<input type="hidden" id="bcode" name="bcode">
+	<input type="hidden" id="pg" name="pg">
+	<input type="hidden" id="key" name="key">
+	<input type="hidden" id="word" name="word">
+	<input type="hidden" id="seq" name="seq">
+
+
+	</form>
+	
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td colspan="3" height="5"></td>
+	</tr>
+	<tr valign="top">
+		<td nowrap><a href="#"></a></td>
+		<td width="100%" align="center"><!--PAGE--> ${navigationIn.navigator }</td>
+		<td nowrap class="stext"><b>${navigationIn.pageNo}</b> /  ${navigationIn.totalPageCount }
+		pages</td>
+	</tr>
+</table>	
+
+<br>
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td colspan="3" height="10"></td>
+	</tr>
+	<tr>
+		<td width="50%"></td>
+		<td nowrap><select name="skey" id="skey" class="inp">
+				<option value="name">유저이름
+				<option value="user_Id">유저 번호
+     
+		</select> <span id="sear1"> <input type="text" name="sword" id="sword"
+				size="22" class="inp" style="margin-top: -19px;"> </span> 
+   
+   <a href="#"><input type="button" value="검색"
+				id="searchBtn" width="32" height="18" border="0" align="absmiddle"
+				alt="검색"></a>
+    
+    <c:if test="${userInfo ==null }">
+   
+   </c:if>
+   <br>
+  </td>
+  <td width="50%" align="right"><a href="#"><input type="button" value="맨위로" width="24" height="11"
+				align="absmiddle" alt="TOP"></a><br>
+  </td>
+ </tr>
+</table>
+
 
 	<!-- Modal -->
 	<div class="modal fade" id="myModal" role="dialog">

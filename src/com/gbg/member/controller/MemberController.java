@@ -3,6 +3,9 @@ package com.gbg.member.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
@@ -52,9 +55,34 @@ public class MemberController {
 		return "/WEB-INF/page/admin/main";
 	}
 	@RequestMapping(value="/login.gbg", method=RequestMethod.POST)
-	public String login(@RequestParam Map<String,String> map,HttpSession session,ModelMap modelmap) {
+	public String login(@RequestParam Map<String,String> map,HttpSession session,ModelMap modelmap,
+			HttpServletRequest request, HttpServletResponse response) {
 		UsersDto usersDto = memberService.login(map);
 		if(usersDto!=null){
+			
+			String idsv = map.get("remember");
+			if("remember".equals(idsv)) {//아이디저장 체크
+				Cookie cookie = new Cookie("kid_sid", map.get("email"));
+				cookie.setMaxAge(60*60*24*365);
+				cookie.setPath(request.getContextPath());
+				response.addCookie(cookie);
+			} else {//아이디저장 체크X
+				Cookie cookie[] = request.getCookies();
+				if(cookie != null) {
+					int len = cookie.length;
+					for(int i=0;i<len;i++) {
+						if("kid_sid".equals(cookie[i].getName())) {
+							cookie[i].setMaxAge(0);
+							cookie[i].setPath(request.getContextPath());
+							response.addCookie(cookie[i]);
+							break;
+						}
+					}
+				}
+			}
+			
+			
+			
 			if(Integer.parseInt(usersDto.getState())==1) {
 				memberService.mailsend(usersDto.getEmail());
 				modelmap.put("loginresult", "미인증 회원입니다.이메일 인증 로그인 하세요!");				
@@ -64,8 +92,6 @@ public class MemberController {
 				session.setAttribute("user",usersDto);
 				modelmap.put("passModify", "passModify");
 			} 
-				
-			
 		} else {
 			modelmap.put("loginresult", "아이디 비밀번호를 확인하세요!");
 		}
@@ -103,10 +129,7 @@ public class MemberController {
 		if(usersDto==null) {
 			memberService.snsRegister(email,name);
 		}
-		Map<String,String> map = new HashMap<String,String>();
-		map.put("email", email);
-		map.put("password", "0");
-		usersDto = memberService.login(map);
+		usersDto = memberService.snslogin(email);
 		session.setAttribute("user",usersDto);
 		modelmap.put("snslogin", email);
 		return "/WEB-INF/page/admin/main";
@@ -117,10 +140,7 @@ public class MemberController {
 		if(usersDto==null) {
 			memberService.snsRegister(email,name);
 		}
-		Map<String,String> map = new HashMap<String,String>();
-		map.put("email", email);
-		map.put("password", "0");
-		usersDto = memberService.login(map);
+		usersDto = memberService.snslogin(email);
 		modelmap.put("snslogin", email);
 		session.setAttribute("user",usersDto);
 		return "/WEB-INF/page/admin/main";

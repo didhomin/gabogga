@@ -164,6 +164,10 @@ public class MemberServiceImpl implements MemberService {
 	public int memberModify(UsersDto usersDto) {
 		return sqlSession.getMapper(MemberDao.class).memberModify(usersDto);
 	}
+	@Override
+	public UsersDto snslogin(String email) {
+		return sqlSession.getMapper(MemberDao.class).snslogin(email);
+	}
 
 	
 }

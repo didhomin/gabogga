@@ -30,10 +30,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where bcode = #{bcode}
         <if test="key!='' and word!=''">
             <if test="key == 'subject'">
-                and b.subject like '%'||#{word}||'%'
+                and subject like '%'||#{word}||'%'
             </if>
             <if test="key != 'subject'">
-                and b.${key} = #{word}
+                and ${key} = #{word}
             </if>
         </if> 
     </select>

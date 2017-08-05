@@ -11,6 +11,7 @@ public interface MemberDao {
 	UsersDto emailCheck(String email);
 	int emailAuth(String email);
 	UsersDto login(Map<String, String> map);
+	UsersDto snslogin(String email);
 	void passReset(Map<String,String> map);
 	void passModify(Map<String, String> map);
 	int memberModify(UsersDto usersDto);

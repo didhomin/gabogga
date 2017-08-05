@@ -30,6 +30,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         left outer join (select user_id,count(*) host from guesthouse group by user_id) b on  b.user_id=u.user_id
         where email=#{email} and password=#{password}
     </select>
+    <select id="snslogin" parameterType="String" resultType="usersDto">
+        select u.user_id userId,u.email,u.name,u.password,u.tel,u.gender,u.type,u.reg_date regDate,u.state,b.host
+        from users u
+        left outer join (select user_id,count(*) host from guesthouse group by user_id) b on  b.user_id=u.user_id
+        where email=#{email}
+    </select>
     <update id="passReset" parameterType="java.util.Map">
         update users
         set password=#{password},state='3'

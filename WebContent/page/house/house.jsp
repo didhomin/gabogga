@@ -63,38 +63,46 @@ function reservationmodal() {
         <hr>
         <div class="col-sm-2">
           <h4><label>Guest House</label></h4>
-      
+        </div>
         <div class="col-sm-5">
           <li>홈페이지 : <a href="https://${info.hwebsite }/">${info.hwebsite }</a></li>
           <li>주소 : ${info.address1 }<br> 
          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ${info.address2 }</li>
          <li>연락처 : ${info.phone }</li>
+           <hr>
         </div>
-     
         <div class="col-sm-5">
           <li>체크인 시작시간 : ${info.checkinStart }</li>
           <li>체크인 마감시간 : ${info.checkinEnd }</li>
           <li>체크아웃 시작시간 : ${info.checkoutStart }</li>
           <li>체크아웃 마감시간 : ${info.checkoutEnd }</li>
+          <hr>
         </div>
-          </div>
-        <hr>
-        <br><br><br>
-        
+		
          <div class="col-sm-2">
           <h4><label>시설</label></h4>
         </div>
         <div class="col-sm-5">
-          <li>난방</li>
-          <li>에어컨</li>
+          <li>인터넷 : ${info.internet }</li>
+          <li>주차유무 : ${info.park }</li>
+          <hr>
         </div>
-        
-       
         <div class="col-sm-5">
-          <li>수영장</li>
-          <li>옷걸이</li>
+          <li>어린이 동반 : ${info.child }</li>
+          <li>반려동물 동반: ${info.pet }</li>
+          <hr>
         </div>
-        <p>예약을 다시한번 확인 해 주시기 바랍니다.</p>
+        <div class="col-sm-2">
+          <h4><label>가격</label></h4>
+        </div>
+        <div class="col-sm-10">
+          <li>가격 : ${info.roomPay }</li>
+          <hr>
+        </div>
+        <div class = "col-sm-12" style="text-align:center;">
+        	<h2> -  소  개  글 - </h2><br>
+        	${info.introduce }
+        </div>
         <hr>
 		<!-- 라이브리 시티 설치 코드 -->
 	    <div id="lv-container" data-id="city" data-uid="MTAyMC8yOTY4Ny82MjU1">

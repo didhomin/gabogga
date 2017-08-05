@@ -110,7 +110,7 @@
 							class="sr-only">Next</span>
 						</a>
 						<h3 id="thumbnail-label">
-							<a class="anchorjs-link" href="#thumbnail-label"><span
+							<a class="anchorjs-link" href="${root }/house/reservation.gbg?guesthouseId=${listDto.ghId}"><span
 								class="anchorjs-icon">${listDto.gname}</span></a>
 						</h3>
 						</p>
@@ -134,7 +134,7 @@
 								<img src="${root}/img/heart.png" width="20px">${listDto.good}</button>
 
 
-							<a href="#" class="btn btn-info" role="button">예약하기</a>
+							<a href="${root }/house/reservation.gbg?guesthouseId=${listDto.ghId}" class="btn btn-info" role="button">예약하기</a>
 						</p>
 					</center>
 				</div>

@@ -16,5 +16,6 @@ public interface MemberService {
 	void passModify(Map<String, String> map);
 	int snsRegister(String email,String name);
 	int memberModify(UsersDto usersDto);
+	UsersDto snslogin(String email);
 	
 }

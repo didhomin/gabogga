@@ -1,6 +1,7 @@
 package com.gbg.house.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import com.gbg.host.model.GuestHouseDto;
 import com.gbg.host.model.RoomDto;
 import com.gbg.house.dao.HouseDao;
 import com.gbg.house.model.HouseDto;
+import com.gbg.member.model.UsersDto;
 
 @Service
 public class HouseServiceImpl implements HouseService {
@@ -39,10 +41,18 @@ public class HouseServiceImpl implements HouseService {
 	public GuestHouseDto houseInfo(int guesthouseId) {
 		return sqlSession.getMapper(HouseDao.class).houseInfo(guesthouseId);
 	}
+	
+	@Override
+	public List<HouseDto> userreservationinfo(String userId) {
+		return sqlSession.getMapper(HouseDao.class).userreservationinfo(userId);
+	}
+
+
 
 	@Override
-	public List<HouseDto> reservationinfo(String userId) {
-		return sqlSession.getMapper(HouseDao.class).reservationinfo(userId);
+	public List<HouseDto> hostreservationinfo(HouseDto houseDto) {
+		return sqlSession.getMapper(HouseDao.class).hostreservationinfo(houseDto);
 	}
+
 
 }

@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/page/template/header.jsp" %>	
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script type="text/javascript">
 $(document).ready(function(){
 	
-	if(${host4.checkinStart != null}){ 
+	if('${host4}' != null){
 		$("#checkinS").val("${host4.checkinStart}").attr("selected", "selected");
 		$("#checkinE").val("${host4.checkinEnd}").attr("selected", "selected");
 		$("#checkoutS").val("${host4.checkoutStart}").attr("selected", "selected");
@@ -13,7 +14,7 @@ $(document).ready(function(){
 		$("#park").val("${host4.park}").attr("selected", "selected");
 		$("#child").val("${host4.child}").attr("selected", "selected");
 		$("#pet").val("${host4.pet}").attr("selected", "selected");
-	}
+	} 
 	$('#progressBtn').click(function(){
 		$('#selectTime1').val($("#checkinS option:selected").val());
 		$('#selectTime2').val($("#checkinE option:selected").val());
@@ -42,8 +43,8 @@ $(document).ready(function(){
 	<div class="container">
 		<div class="progress">
 			<div class="progress-bar progress-bar-striped active"
-				role="progressbar" aria-valuenow="30" aria-valuemin="0"
-				aria-valuemax="100" style="width: 30%">30%</div>
+				role="progressbar" aria-valuenow="45" aria-valuemin="0"
+				aria-valuemax="100" style="width: 45%">45%</div>
 		</div>
 		<div class="basic">
 			<div class="row" style="padding-bottom: 50px;">
@@ -64,7 +65,7 @@ $(document).ready(function(){
 						<input type="hidden" name="userid" value="${user.userId}">
 						
 						
-							<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+							<i class="fa fa-calendar"></i>
 							<font size="3px" color="blue"> <strong>체크인 시작</strong></font> 
 							<select class="form-control" name="checkinS" id="checkinS">
 								<option>07:00</option>
@@ -97,7 +98,7 @@ $(document).ready(function(){
 							</select>
 						</div>
 						<div class="col-sm-6">
-							<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+							<i class="fa fa-calendar"></i>
 							<font size="3px" color="blue"> <strong>체크인 마감</strong></font> 
 							<select class="form-control" name="checkinE" id="checkinE">
 								<option>12:00</option>
@@ -132,7 +133,7 @@ $(document).ready(function(){
 					<br>
 					<div class="row">
 						<div class="col-sm-6">
-							<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+							<i class="fa fa-calendar"></i>
 							<font size="3px" color="blue"> <strong>체크아웃 시작</strong></font> 
 							<select class="form-control" name="checkoutS" id="checkoutS">
 								<option>00:00</option>
@@ -167,7 +168,7 @@ $(document).ready(function(){
 							</select>
 						</div>
 						<div class="col-sm-6">
-							<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+							<i class="fa fa-calendar"></i>
 							<font size="3px" color="blue"> <strong>체크아웃 마감</strong></font> <select
 								class="form-control" name="checkoutE" id="checkoutE" >
 								<option>07:00</option>
@@ -204,7 +205,7 @@ $(document).ready(function(){
 
 					<div class="row">
 						<div class="col-sm-8">
-							<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+							<i class="fa fa-wifi"></i>
 							<font size="3px" color="blue"><strong>인터넷 이용이
 									가능한가요?</strong> </font><br>
 							<select class="form-control" name="internet" id="internet"  style="width:100px">
@@ -217,7 +218,7 @@ $(document).ready(function(){
 					<br>
 					<div class="row">
 						<div class="col-sm-8">
-							<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+							<i class="fa fa-car"></i>
 							<font size="3px" color="blue"><strong>주차 이용이
 									가능한가요?</strong> </font><br> 
 							<select class="form-control" name="park" id="park" style="width:100px">
@@ -230,7 +231,7 @@ $(document).ready(function(){
 					<br>
 					<div class="row">
 						<div class="col-sm-8">
-							<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+							<i class="fa fa-reddit-alien"></i>
 							<font size="3px" color="blue"><strong>어린이를 동반할 수
 									있나요?</strong> </font><br> 
 							<select class="form-control" name="child" id="child" style="width:100px">
@@ -243,7 +244,7 @@ $(document).ready(function(){
 					<br>
 					<div class="row">
 						<div class="col-sm-8">
-							<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+							<i class="fa fa-github-alt"></i>
 							<font size="3px" color="blue"><strong>반려동물 동반을 허용하시나요?</strong> </font><br> 
 							<select class="form-control" name="pet" id="pet" style="width:100px">
 								<option value="0">예.</option>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/page/template/header.jsp"%>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0cc58507d96bb54372ac861c953ed175&libraries=services"></script>
 <script>
@@ -138,8 +139,8 @@
 	<div class="container">
 		<div class="progress">
 			<div class="progress-bar progress-bar-striped active"
-				role="progressbar" aria-valuenow="15" aria-valuemin="0"
-				aria-valuemax="100" style="width: 15%">15%</div>
+				role="progressbar" aria-valuenow="30" aria-valuemin="0"
+				aria-valuemax="100" style="width: 30%">30%</div>
 		</div>
 		<div class="basic">
 			
@@ -158,7 +159,7 @@
 						</font><br> <input id="houseAddr1" name="houseAddr1" type="text"
 							class="form-control" placeholder="주소를 입력해주세요." value="${host3.address1}">
 						<button id="checkBtn" type="button"
-							class="btn btn-warning pull-right">지도에서 확인</button>
+							class="btn btn-warning pull-right"><i class="fa fa-star" style="font-size:24px"></i>&nbsp;지도에서 확인</button>
 						<br> <span class="glyphicon glyphicon-star"
 							aria-hidden="true"></span> <font size="3px" color="blue"><strong>세부주소</strong>
 						</font><br> <input id="houseAddr2" name="houseAddr2" type="text"

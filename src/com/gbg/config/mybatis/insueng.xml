@@ -22,12 +22,50 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </update>
     
     <select id="listMemberAdmin" resultType="com.gbg.member.model.UsersDto">
-    select tel ,user_id userId,email,name from users
-    where type='1'
+   select d.*
+	from(
+		select rownum rn, c.*
+		from(
+			select user_id userId ,name ,email,tel
+			from users
+			where type =#{bcode}
+
+		<if test="key!='' and word!=''">
+            <if test="key == 'name'">
+                and name like '%'||#{word}||'%'
+            </if>
+            <if test="key != 'name'">
+                and ${key} = #{word}
+            </if>
+        </if> 
+			order by user_id desc
+			) c
+		where rownum &lt;= #{end} 
+		) d
+	where rn &gt; #{start} 
     </select>
      <select id="blacklist" resultType="com.gbg.member.model.UsersDto">
-    select tel ,user_id userId,email,name from users
-    where type='3'
+    select d.*
+	from(
+		select rownum rn, c.*
+		from(
+			select user_id userId ,name ,email,tel
+			from users
+			where type =#{bcode}
+
+		<if test="key!='' and word!=''">
+            <if test="key == 'name'">
+                and name like '%'||#{word}||'%'
+            </if>
+            <if test="key != 'name'">
+                and ${key} = #{word}
+            </if>
+        </if> 
+			order by user_id desc
+			) c
+		where rownum &lt;= #{end} 
+		) d
+	where rn &gt; #{start} 
     </select>
     
     <select id="searchMemberAdmin" parameterType="String" resultType="com.gbg.member.model.UsersDto">
