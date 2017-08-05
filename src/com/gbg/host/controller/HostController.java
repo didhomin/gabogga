@@ -442,7 +442,7 @@ public class HostController {
 				}
 				
 				PictureDto pictureDto = new PictureDto();
-				pictureDto.setPicture(uploadDirectory+File.separator+filename);
+				pictureDto.setPicture(today+File.separator+filename);
 				list3.add(pictureDto);
 			}
 			}

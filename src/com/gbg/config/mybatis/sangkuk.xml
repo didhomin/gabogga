@@ -24,7 +24,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         select GUESTHOUSE_ID guesthouseId, user_id userId, name, room_count roomCount, hwebsite,
         address1, address2, phone, lat, lng, checkin_start checkinStart, checkin_end checkinend, 
         checkout_start checkoutStart, checkout_end checkoutend, internet, park, child, pet, 
-        room_pay roomPay, introduce
+        room_pay roomPay, introduce,picture
         from GUESTHOUSE
         where GUESTHOUSE_ID = #{guesthouseId}
     </select> 
