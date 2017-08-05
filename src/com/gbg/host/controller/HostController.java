@@ -1,5 +1,6 @@
 package com.gbg.host.controller;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -11,6 +12,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import javax.imageio.ImageIO;
 import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -43,7 +45,7 @@ public class HostController {
 
 	@RequestMapping(value = "/register.gbg", method = RequestMethod.GET)
 	public String register() {
-		return "/page/host/first";
+		return "/WEB-INF/page/host/first";
 	}
 
 	@RequestMapping("/first.gbg")
@@ -55,9 +57,9 @@ public class HostController {
 		GuestHouseDto guestHouseDto = hostrService.first(map);
 		if (guestHouseDto != null) {
 			mav.addObject("host2", guestHouseDto);
-			mav.setViewName("/page/host/second");
+			mav.setViewName("/WEB-INF/page/host/second");
 		} else {
-			mav.setViewName("/page/host/second");
+			mav.setViewName("/WEB-INF/page/host/second");
 		}
 		return mav;
 
@@ -65,7 +67,7 @@ public class HostController {
 
 	@RequestMapping(value = "/second.gbg", method = RequestMethod.GET)
 	public String second() {
-		return "/page/host/first";
+		return "/WEB-INF/page/host/first";
 	}
 
 	@RequestMapping(value = "/second.gbg", method = RequestMethod.POST)
@@ -96,21 +98,42 @@ public class HostController {
 				try {
 					picture.transferTo(new File(uploadDirectory, filename));
 					// uploadDirectory위치에 filename이름으로 옮겨라.
+					
+					String thumbDirectory = request.getServletContext().getRealPath("/thumb") + File.separator + today;
+					File dir2 = new File(thumbDirectory); // 파일 객체 얻어오고
+					if (!dir2.exists()) { // 존재 하지 않는다면.
+						dir2.mkdirs(); // 폴더 만들어라.
+					}
+					int width = 200;
+					int height = 100;
+					File SrcImgFile = new File(uploadDirectory+File.separator+filename);
+					BufferedImage srcImg = ImageIO.read(SrcImgFile);
+					BufferedImage thumbImg;
+
+					thumbImg = new BufferedImage(width, height, BufferedImage.TYPE_3BYTE_BGR);
+
+					java.awt.Graphics2D g = thumbImg.createGraphics();
+
+					g.drawImage(srcImg, 0, 0, width, height, null);
+
+					File outFile = new File(thumbDirectory + File.separator + filename);
+
+					ImageIO.write(thumbImg, "PNG", outFile);
+					
 				} catch (IllegalStateException e) {
-					e.printStackTrace();
 				} catch (IOException e) {
-					e.printStackTrace();
 				}
-			}
-			map.put("picture", filename);
+			map.put("picture", today+File.separator+filename);
+			map.put("userid", usersDto.getUserId());
+		}
 			if (guestHouseDto != null) {
 				hostrService.secondUpdate(map);
 				mav.addObject("host3", guestHouseDto);
-				mav.setViewName("/page/host/third");
+				mav.setViewName("/WEB-INF/page/host/third");
 			} else {
 				hostrService.secondInsert(map);
 				mav.addObject("host3", guestHouseDto);
-				mav.setViewName("/page/host/third");
+				mav.setViewName("/WEB-INF/page/host/third");
 			}
 		}
 		return mav;
@@ -124,7 +147,7 @@ public class HostController {
 		maps.put("id", usersDto.getUserId());
 		GuestHouseDto guestHouseDto = hostrService.first(maps);
 		mav.addObject("host2", guestHouseDto);
-		mav.setViewName("/page/host/second");
+		mav.setViewName("/WEB-INF/page/host/second");
 		return mav;
 	}
 
@@ -139,7 +162,7 @@ public class HostController {
 			if (guestHouseDto != null) {
 				hostrService.thirdUpdate(map);
 				mav.addObject("host4", guestHouseDto);
-				mav.setViewName("/page/host/fourth");
+				mav.setViewName("/WEB-INF/page/host/fourth");
 			}
 		}
 		return mav;
@@ -153,7 +176,7 @@ public class HostController {
 		maps.put("id", usersDto.getUserId());
 		GuestHouseDto guestHouseDto = hostrService.first(maps);
 		mav.addObject("host3", guestHouseDto);
-		mav.setViewName("/page/host/third");
+		mav.setViewName("/WEB-INF/page/host/third");
 		return mav;
 	}
 
@@ -170,10 +193,10 @@ public class HostController {
 			if (guestHouseDto != null) {
 				hostrService.fourthUpdate(map);
 				mav.addObject("host5", roomDto);
-				mav.setViewName("/page/host/fifth");
+				mav.setViewName("/WEB-INF/page/host/fifth");
 			} else {
 				hostrService.fourthUpdate(map);
-				mav.setViewName("/page/host/fifth");
+				mav.setViewName("/WEB-INF/page/host/fifth");
 			}
 		}
 		return mav;
@@ -187,7 +210,7 @@ public class HostController {
 		maps.put("id", usersDto.getUserId());
 		GuestHouseDto guestHouseDto = hostrService.first(maps);
 		mav.addObject("host4", guestHouseDto);
-		mav.setViewName("/page/host/fourth");
+		mav.setViewName("/WEB-INF/page/host/fourth");
 		return mav;
 	}
 
@@ -233,13 +256,11 @@ public class HostController {
 					a.transferTo(new File(uploadDirectory, filename));
 					// uploadDirectory위치에 filename이름으로 옮겨라.
 				} catch (IllegalStateException e) {
-					e.printStackTrace();
 				} catch (IOException e ) {
-					e.printStackTrace();
 				}
 				
 				PictureDto pictureDto = new PictureDto();
-				pictureDto.setPicture(filename);
+				pictureDto.setPicture(today+File.separator+filename);
 				list3.add(pictureDto);
 			}
 			}
@@ -267,7 +288,7 @@ public class HostController {
 				}
 				List<RoomDto> list2 = hostrService.roomSelectall(map);
 				mav.addObject("hostroom", list2);
-				mav.setViewName("/page/host/sixth");
+				mav.setViewName("/WEB-INF/page/host/sixth");
 			} else {
 				RoomDto roomDto = new RoomDto();
 				roomDto.setRoomType(map.get("roomType"));
@@ -291,7 +312,7 @@ public class HostController {
 				}
 				List<RoomDto> list2 = hostrService.roomSelectall(map);
 				mav.addObject("hostroom", list2);
-				mav.setViewName("/page/host/sixth");
+				mav.setViewName("/WEB-INF/page/host/sixth");
 			}
 		}
 //		}
@@ -309,7 +330,7 @@ public class HostController {
 		mapss.put("id", guestHouseDto.getGuesthouseId() + "");
 		RoomDto roomDto = hostrService.roomSelect(mapss);
 		mav.addObject("host5", roomDto);
-		mav.setViewName("/page/host/fifth");
+		mav.setViewName("/WEB-INF/page/host/fifth");
 		return mav;
 	}
 
@@ -323,7 +344,7 @@ public class HostController {
 		maps.put("gid", guestHouseDto.getGuesthouseId() + "");
 		List<RoomDto> list = hostrService.roomSelectall2(maps);
 		mav.addObject("hostroom", list);
-		mav.setViewName("/page/host/sixth");
+		mav.setViewName("/WEB-INF/page/host/sixth");
 		return mav;
 	}
 
@@ -339,7 +360,7 @@ public class HostController {
 		RoomDto roomDto = hostrService.roomModifySelect(maps);
 		if (roomDto != null) {
 			mav.addObject("host5", roomDto);
-			mav.setViewName("/page/host/fifth");
+			mav.setViewName("/WEB-INF/page/host/fifth");
 		}
 		return mav;
 	}
@@ -369,7 +390,7 @@ public class HostController {
 			map.put("gid", guestHouseDto.getGuesthouseId() + "");
 			ConvenienceDto convenienceDto = hostrService.conSelect(map);
 			mav.addObject("host7", convenienceDto);
-			mav.setViewName("/page/host/seventh");
+			mav.setViewName("/WEB-INF/page/host/seventh");
 		}
 		return mav;
 	}
@@ -417,13 +438,11 @@ public class HostController {
 					a.transferTo(new File(uploadDirectory, filename));
 					// uploadDirectory위치에 filename이름으로 옮겨라.
 				} catch (IllegalStateException e) {
-					e.printStackTrace();
 				} catch (IOException e ) {
-					e.printStackTrace();
 				}
 				
 				PictureDto pictureDto = new PictureDto();
-				pictureDto.setPicture(filename);
+				pictureDto.setPicture(uploadDirectory+File.separator+filename);
 				list3.add(pictureDto);
 			}
 			}
@@ -462,7 +481,7 @@ public class HostController {
 		map.put("id", guestHouseDto.getGuesthouseId() + "");
 		List<RoomDto> list = hostrService.roomSelectall(map);
 		mav.addObject("hostroom", list);
-		mav.setViewName("/page/host/sixth");
+		mav.setViewName("/WEB-INF/page/host/sixth");
 
 		return mav;
 	}
@@ -487,11 +506,11 @@ public class HostController {
 			if (convenienceDto != null) {
 				hostrService.seventhUpdate(map);
 				mav.addObject("host8", guestHouseDto);
-				mav.setViewName("/page/host/eighth");
+				mav.setViewName("/WEB-INF/page/host/eighth");
 			} else {
 				hostrService.seventhInsert(map);
 				mav.addObject("host8", guestHouseDto);
-				mav.setViewName("/page/host/eighth");
+				mav.setViewName("/WEB-INF/page/host/eighth");
 			}
 		}
 		return mav;
@@ -508,7 +527,7 @@ public class HostController {
 		map.put("gid", guestHouseDto.getGuesthouseId() + "");
 		ConvenienceDto convenienceDto = hostrService.conSelect(map);
 		mav.addObject("host7", convenienceDto);
-		mav.setViewName("/page/host/seventh");
+		mav.setViewName("/WEB-INF/page/host/seventh");
 		return mav;
 	}
 
@@ -539,7 +558,7 @@ public class HostController {
 			 guestHouseDto = hostrService.first(maps);
 			 map.put("gid", guestHouseDto.getGuesthouseId()+"");
 			 hostrService.finalUpdate(map);
-			mav.setViewName("/page/host/first");
+			mav.setViewName("/WEB-INF/page/host/first");
 			return mav;
 		}
 }

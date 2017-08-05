@@ -114,5 +114,25 @@ public class HostServiceImpl implements HostService {
 		return sqlSession.getMapper(HostDao.class).finalUpdate(map);
 	}
 
+	@Override
+	public List<GuestHouseDto> manageList(Map<String, String> map) {
+		return sqlSession.getMapper(HostDao.class).manageList(map);
+	}
+
+	@Override
+	public int deleteGuesthouse(Map<String, String> map) {
+		return  sqlSession.getMapper(HostDao.class).deleteGuesthouse(map);
+	}
+
+	@Override
+	public int deleteRoom(Map<String, String> map) {
+		return  sqlSession.getMapper(HostDao.class).deleteRoom(map);
+	}
+
+	@Override
+	public int deleteConvenience(Map<String, String> map) {
+		return  sqlSession.getMapper(HostDao.class).deleteConvenience(map);
+	}
+
 
 }
