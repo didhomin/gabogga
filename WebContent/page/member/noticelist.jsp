@@ -37,6 +37,17 @@ $(document).ready(function() {
 	$("#writeBtn").click(function() {
 		document.location.href="${root}/admin/write.gbg";
 	});
+	//선택 하고 삭제 하는 구역
+	var valueArr = new Array();
+	$(document).on('click','#seqId', function () {
+		valueArr.push($(this).val());	
+	//	console.log("valueArr는" + valueArr);
+	});
+	$('#noticDelBtn').click( function () {
+		document.location.href = "${root}/admin/delete.gbg?seq="+ valueArr;
+		
+	});
+	
 	
 	/* $(".newBtn").click(function() {
 		$('#bcode').val('${qs.bcode}');
@@ -78,9 +89,9 @@ $(document).ready(function() {
 			<div class="">
 				<div class="pull-right">
 						<a id="writeBtn" role="button" class="btn btn-default">글쓰기</a>
-					<a class="btn btn-default" href="javascript:;" role="button">공지등록</a>
-					<a class="btn btn-default" id="" role="button">공지해제</a> <a
-						class="btn btn-default" role="button" id="">삭제</a>
+						<a class="btn btn-default" href="javascript:;" role="button">공지등록</a>
+						<a class="btn btn-default" id="" role="button">공지해제</a> 
+						<a class="btn btn-default" role="button" id="noticDelBtn">삭제</a>
 				</div>
 			</div>
 			<div class="row">
@@ -105,7 +116,7 @@ $(document).ready(function() {
 			    <tbody>
 <c:forEach var="article" items="${noticeList}">		    
 			      <tr class="tr" data-seq="${article.seq}">
-			        <td><input type="checkbox" name="" value=""></td>
+			        <td><input id="seqId" type="checkbox" name="" value="${article.seq}">${article.seq}</td>
 			        <td>
 			        	<a  class="subject">${article.subject}
 						</a>

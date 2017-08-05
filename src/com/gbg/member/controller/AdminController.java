@@ -2,6 +2,7 @@ package com.gbg.member.controller;
 
 import java.util.List;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -134,6 +135,27 @@ public class AdminController extends MultiActionController{
 		
 		return mav;
 	}
+	////////////////////inwin 구역 ////////////
+	@RequestMapping("/delete.gbg")
+	public String notidelete(@RequestParam("seq") String valueArr){
+		String notidelete=null;
+		int cnt=0;
+		StringTokenizer st = new StringTokenizer(valueArr, ",");
+		while(st.hasMoreTokens()){
+			notidelete=st.nextToken();
+			cnt += boardService.deleteArticle(notidelete);
+		}
+		System.out.println(cnt);
+		System.out.println("컨트롤 딜리트 까지 정상적으로 옴");
+		return "redirect:/admin/notice.gbg";
+	}
+
+	
+	
+	
+	
+	
+	/////////////////inwin 구역 끝 /////////////
 //	@RequestMapping(value="/list.gbg", method=RequestMethod.GET)
 //	public ModelAndView list(@RequestParam Map<String, String> queryString, HttpSession session, HttpServletRequest request) {
 //		ModelAndView mav = new ModelAndView();
