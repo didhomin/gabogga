@@ -66,7 +66,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         and res.USER_ID=#{userId}
         and g.GUESTHOUSE_ID=#{guesthouseId} 
         ORDER BY res.RESERVATION_ID
-        and order by res.Reservation_date
     </select>  
     
     <select id="ghid" parameterType="String" resultType="houseDto">
@@ -75,9 +74,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where USER_ID = #{userId}
     </select>
     
-    <insert id="oksign" parameterType="String">
+    <!--<insert id="oksign" parameterType="String">
         update reservation
         set oksign = 1
         where user_id=#{userid}
-    </insert>
+    </insert>-->
 </mapper>

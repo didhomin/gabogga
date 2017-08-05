@@ -64,14 +64,9 @@ $(document).ready(function(){
                                        </div>
                                     </td>
                                     <td>
-                                    	<c:choose>
-                                   			 <c:when test="${oksign=0 }">
+                           
                                           		<button type="button" id="oksign" class="btn btn-primary"><i class="fa fa-wrench"></i>승인</button>
-                                           	 </c:when>
-                                           	 <c:when test="${oksign=1 }">
-                                           	 	<button type="button" id="oksign" class="btn btn-primary"><i class="fa fa-wrench"></i>승인</button>
-                                           	 </c:when>
-                                    	</c:choose>
+                                    
                                           <button type="button" id="refuse" class="btn btn-danger"
                                            onclick="javascript:joinGroup();">
                                               <i class="fa fa-remove"></i>거부
