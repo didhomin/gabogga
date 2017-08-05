@@ -4,15 +4,16 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
    <script type="text/javascript">
 $(document).ready(function(){
-   
-   $('#oksign').click(function(){
-      $(location).attr('href', '${root}/house/oksign.gbg').attr('method', 'post').submit();
-   });
-   
+   $(document).on('click', '.oksign', function(){
+	   var oksign = $(this).attr('data-oksign');
+	   alert(oksign);
+	   /* $(location).attr('href', '${root}/house/oksign.gbg?reservationId='+oksign).attr('method', 'post').submit(); */
+       document.location.href="${root}/house/oksign.gbg?reservationId="+oksign;
+	   
+   });   
    $('#deny').click(function(){
       $(location).attr('href', '${root}/house/deny.gbg').attr('method', 'post').submit();
    });
-   
 });
 </script>
    
@@ -38,9 +39,12 @@ $(document).ready(function(){
                            <table class="table table-filter" id="extable">
                               <tbody>
                                  <tr class="primary" align="center">
-                                    <td width="20%"><i class="fa fa-hand-o-right"></i>게스트하우스명</td>
-                                    <td width="20%"><i class="fa fa-group"></i>객실 총원 수 </td>
-                                    <td width="20%"><i class="fa fa-calendar"></i>예약 일자 </td>
+                                    <td width="12%"><i class="fa fa-hand-o-right"></i>게스트하우스명</td>
+                                    <td width="12%"><i class="fa fa-group"></i>객실 총원 수 </td>
+                                    <td width="12%"><i class="fa fa-calendar"></i>예약 일자 </td>
+                                    <td width="12%"><i class="fa fa-calendar"></i>체크 인 </td>
+                                    <td width="12%"><i class="fa fa-calendar"></i>체크 아웃 </td>
+                                    <td width="12%"><i class="fa fa-calendar"></i>예약 번호 </td>
                                     <td width="30%"><i class="fa fa-exclamation-circle"></i></td>
                                  </tr>
                               <c:forEach var="hostresinfo" items="${hostresinfo}">
@@ -63,10 +67,24 @@ $(document).ready(function(){
                                            &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${hostresinfo.reservationDate}
                                        </div>
                                     </td>
+                                      <td>
+                                       <div class="media">
+                                           &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${hostresinfo.checkIn}
+                                       </div>
+                                    </td>
                                     <td>
-                           
-                                          		<button type="button" id="oksign" class="btn btn-primary"><i class="fa fa-wrench"></i>승인</button>
-                                    
+                                       <div class="media">
+                                           &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${hostresinfo.checkOut}
+                                       </div>
+                                    </td>
+                                      <td>
+                                       <div class="media">
+                                           &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${hostresinfo.reservationId}
+                                       </div>
+                                    </td>
+                                    <td>
+                                          <input type="button"  data-oksign="${hostresinfo.reservationId}" class="btn btn-primary oksign">
+                                          <i class="fa fa-handshake-o "></i>승인
                                           <button type="button" id="refuse" class="btn btn-danger"
                                            onclick="javascript:joinGroup();">
                                               <i class="fa fa-remove"></i>거부

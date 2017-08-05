@@ -98,10 +98,10 @@ public class AdminController extends MultiActionController{
 	}
 	
 
-/////////////////////////////////////////////////////////////////////////////	
 	@RequestMapping(value="/notice.gbg", method=RequestMethod.GET)
 	public ModelAndView notice(@RequestParam Map<String, String> queryString) {
 		ModelAndView mav = new ModelAndView();
+		
 		List<BoardDto> list = boardService.listArticle(queryString);
 		mav.addObject("noticeList", list);
 		mav.setViewName("/page/member/noticelist");
@@ -117,13 +117,12 @@ public class AdminController extends MultiActionController{
 	public String write(@RequestParam Map<String, String> queryString, BoardDto boardDto, HttpSession session) {
 		UsersDto usersDto = (UsersDto) session.getAttribute("user");
 			if(usersDto!=null) {
-				
-			int seq = commonService.getNextSeq();
-			boardDto.setSeq(seq);
-			boardDto.setUserId(usersDto.getUserId());
-			boardDto.setName(usersDto.getName());
-			boardDto.setEmail(usersDto.getEmail());
-			boardService.writeArticle(boardDto);
+				int seq = commonService.getNextSeq();
+				boardDto.setSeq(seq);
+				boardDto.setUserId(usersDto.getUserId());
+				boardDto.setName(usersDto.getName());
+				boardDto.setEmail(usersDto.getEmail());
+				boardService.writeArticle(boardDto);
 			} 
 		
 		return "redirect:/admin/notice.gbg";
@@ -131,10 +130,11 @@ public class AdminController extends MultiActionController{
 	@RequestMapping("/delete.gbg")
 	public String notidelete(@RequestParam("seq") String valueArr){
 		String notidelete=null;
+		int cnt=0;
 		StringTokenizer st = new StringTokenizer(valueArr, ",");
 		while(st.hasMoreTokens()){
 			notidelete=st.nextToken();
-			boardService.deleteArticle(notidelete);
+			cnt += boardService.deleteArticle(notidelete);
 		}
 		return "redirect:/admin/notice.gbg";
 	}

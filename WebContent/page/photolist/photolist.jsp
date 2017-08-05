@@ -58,7 +58,7 @@
 					<!-- Wrapper for slides -->
 					<div class="carousel-inner">
 						<div class="item active" id="0">
-							<img src="${root}/img/${listDto.pictureGh}.jpg"
+							<img src="${root}/upload/${listDto.pictureGh}"
 								style="width: 100%; height: 170px; opacity: 1"
 								onmouseover="this.style.opacity='0.5'"
 								onmouseout="this.style.opacity='1'">
@@ -72,7 +72,7 @@
 							<c:if test="${listDto.ghId eq pictureDto.ghId}">
 								<c:set var="count" value="${count + 1}" />
 								<div class="item">
-									<img src="${root}/img/${pictureDto.pictureRoom}.jpg"
+									<img src="${root}/upload/${pictureDto.pictureRoom}"
 										style="width: 100%; height: 170px; opacity: 1"
 										onmouseover="this.style.opacity='0.5'"
 										onmouseout="this.style.opacity='1'">
@@ -147,7 +147,9 @@
 </c:forEach>
 </div>
 
-
+<c:if test="${ii.index%2 != 0}">
+</div>
+</c:if>
 
 
 <div class="col-sm-5">
@@ -193,7 +195,7 @@ var marker = new daum.maps.Marker({
 marker.setMap(map);
 
 <c:forEach var="listDto" items="${houselist}" varStatus="ii">
-markerPosition = new daum.maps.LatLng(${listDto.lat}, ${listDto.lng});
+markerPosition = new daum.maps.LatLng("${listDto.lat}", "${listDto.lng}");
 marker = new daum.maps.Marker({
    position : markerPosition
 });

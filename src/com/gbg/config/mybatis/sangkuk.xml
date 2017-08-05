@@ -24,7 +24,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         select GUESTHOUSE_ID guesthouseId, user_id userId, name, room_count roomCount, hwebsite,
         address1, address2, phone, lat, lng, checkin_start checkinStart, checkin_end checkinend, 
         checkout_start checkoutStart, checkout_end checkoutend, internet, park, child, pet, 
-        room_pay roomPay, introduce
+        room_pay roomPay, introduce, picture
         from GUESTHOUSE
         where GUESTHOUSE_ID = #{guesthouseId}
     </select> 
@@ -55,7 +55,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         g.address1, g.address2, g.phone, g.lat, g.lng, g.checkin_start checkinStart, g.checkin_end checkinend, 
         g.checkout_start checkoutStart, g.checkout_end checkoutend, g.internet, g.park, g.child, g.pet, 
         g.room_pay roomPay, g.introduce,
-        res.RESERVATION_ID, res.user_id, res.ROOM_ID,  res.CHECKIN, res.CHECKOUT, res.PRICE, 
+        res.RESERVATION_ID reservationId, res.user_id, res.ROOM_ID,  res.CHECKIN, res.CHECKOUT, res.PRICE, 
         decode(to_char(res.RESERVATION_DATE, 'yymmdd'), 
         to_char(sysdate, 'yymmdd'), to_char(res.RESERVATION_DATE, 'hh24:mi:ss'), 
         to_char(res.RESERVATION_DATE, 'yy.mm.dd hh24:mi:ss')) 
@@ -74,9 +74,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where USER_ID = #{userId}
     </select>
     
-    <!--<insert id="oksign" parameterType="String">
+    <insert id="oksign" parameterType="String">
         update reservation
         set oksign = 1
-        where user_id=#{userid}
-    </insert>-->
+        where reservation_id=#{reservationId}
+    </insert>
 </mapper>

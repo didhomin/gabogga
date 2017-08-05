@@ -58,7 +58,8 @@ $(document).ready(function() {
 		document.location.href = "${root}/admin/delete.gbg?seq="+ valueArr;
 		
 	});
-
+	
+	
 	$(".tr").click(function() {
 		/*$(this).parent().next("tr").slideDown(500);*/
 		$('.trtr').hide();
@@ -71,7 +72,7 @@ $(document).ready(function() {
 		$('#pg').val('1');
 		$('#key').val($('#skey').val());
 		$('#word').val($('#sword').val());
-		$('#commonForm').attr('action', '${root}/reboard/list.gbg').submit();
+		$('#commonForm').attr('action', '${root}/admin/notice.gbg').submit();
 	});
 	
 });
@@ -114,7 +115,7 @@ function check() {
 					</c:if>
 				</div>
 			</div><br>
-			 <form name="input_form">
+			<form name="input_form">
 			<table class="table table-striped table-hover">
 			    <thead>
 			      <tr>
@@ -125,7 +126,6 @@ function check() {
 			      </tr>
 			    </thead>
 			    <tbody>
-			   
 <c:forEach var="article" items="${noticeList}">		    
 			      <tr class="tr" data-seq="${article.seq}">
 			        <td><input id="seqId" type="checkbox" name="chk" value="${article.seq}"></td>
@@ -143,10 +143,45 @@ function check() {
 			      </tr>
 
 </c:forEach>
-
 			    </tbody>
 			</table>
 			</form>
+<form action="" id="commonForm" name="commonForm" method="get">
+	<input type="hidden" id="bcode" name="bcode">
+	<input type="hidden" id="pg" name="pg">
+	<input type="hidden" id="key" name="key">
+	<input type="hidden" id="word" name="word">
+	<input type="hidden" id="seq" name="seq">
+
+
+</form>
+<table width="100%"   cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td colspan="3" height="10"></td>
+	</tr>
+	<tr>
+		<td width="50%"></td>
+		<td nowrap><select name="skey" id="skey" class="inp"  width="23" >
+				<option value="subject">제목
+				<option value="content">내용
+     
+		</select> <span id="sear1"> <input type="text" name="sword" id="sword"
+				size="22" class="inp" style="margin-top: -19px;"> </span> 
+   
+   <a href="#"><input type="button"
+				id="searchBtn" width="32" height="18" border="0" align="absmiddle"
+				value="검색"></a>
+    
+    <c:if test="${userInfo ==null }">
+   
+   </c:if>
+   <br>
+  </td>
+  <td width="50%" align="right"><a href="#"><input type="button" value="맨위로" width="24" height="11"
+				align="absmiddle" alt="TOP"></a><br>
+  </td>
+ </tr>
+</table>			
 	
 	
 <!-- 여기까지가 우리가 꾸밀부분 -->

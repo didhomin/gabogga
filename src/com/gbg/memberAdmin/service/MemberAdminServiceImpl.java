@@ -28,8 +28,8 @@ public class MemberAdminServiceImpl implements MemberAdminService {
 	public List<UsersDto> listMemberAdmin(Map<String, String> queryString) {
 		// TODO Auto-generated method stub
 		int pg = Integer.parseInt(queryString.get("pg"));
-		int end = pg * BoardConstance.LIST_SIZE;
-		int start = end - BoardConstance.LIST_SIZE;
+		int end = pg * BoardConstance.LISTP_SIZE;
+		int start = end - BoardConstance.LISTP_SIZE;
 		queryString.put("start", start + "");
 		queryString.put("end", end + "");
 		return sqlSession.getMapper(MemberAdminDao.class).listMemberAdmin(queryString);
@@ -50,8 +50,8 @@ public class MemberAdminServiceImpl implements MemberAdminService {
 	@Override
 	public List<UsersDto> blacklist(Map<String, String> queryString) {
 		int pg = Integer.parseInt(queryString.get("pg"));
-		int end = pg * BoardConstance.LIST_SIZE;
-		int start = end - BoardConstance.LIST_SIZE;
+		int end = pg * BoardConstance.LISTP_SIZE;
+		int start = end - BoardConstance.LISTP_SIZE;
 		queryString.put("start", start + "");
 		queryString.put("end", end + "");
 		return sqlSession.getMapper(MemberAdminDao.class).blacklist( queryString);

@@ -14,6 +14,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         select *
         from board
         where bcode=10
+        
+        <if test="key!='' and word!=''">
+            <if test="key == 'content'">
+                and content like '%'||#{word}||'%'
+            </if>
+              <if test="key == 'subject'">
+                and subject like '%'||#{word}||'%'
+            </if>
+            <if test="key == 'seq'">
+                and ${key} = #{word}
+            </if>
+        </if> 
     </select>
     
     <delete id="deleteArticle" parameterType="String">
@@ -21,4 +33,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      where seq=#{seq}
     
     </delete>
+    
+    
 </mapper>
