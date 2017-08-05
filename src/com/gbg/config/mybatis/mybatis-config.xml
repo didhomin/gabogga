@@ -8,34 +8,33 @@
 
         <typeAliases>
                 <typeAlias alias="usersDto" type="com.gbg.member.model.UsersDto"/>
-        <typeAlias alias="guestHouseDto" type="com.gbg.host.model.GuestHouseDto"/>
-        <typeAlias alias="ListDto" type="com.gbg.list.model.ListDto"/>
-        <typeAlias alias="houseDto" type="com.gbg.house.model.HouseDto"/>
-        <typeAlias alias="roomDto" type="com.gbg.host.model.RoomDto"/>
-        <typeAlias alias="boardListDto" type="com.gbg.admin.board.model.BoardListDto"/>
-        <typeAlias alias="reboardDto" type="com.gbg.board.model.ReboardDto" />
-        <typeAlias alias="boardDto" type="com.gbg.board.model.BoardDto" />
-        <typeAlias alias="stopbyDto" type="com.gbg.board.model.StopbyDto" />
-        <typeAlias alias="convenienceDto" type="com.gbg.host.model.ConvenienceDto"/>
-        <typeAlias alias="roomPictureDto" type="com.gbg.host.model.RoomPictureDto"/>
-                <typeAlias alias="memoDto" type="com.gbg.board.model.MemoDto" />
+                <typeAlias alias="guestHouseDto" type="com.gbg.host.model.GuestHouseDto"/>
+                <typeAlias alias="ListDto" type="com.gbg.list.model.ListDto"/>
+                <typeAlias alias="houseDto" type="com.gbg.house.model.HouseDto"/>
+                <typeAlias alias="roomDto" type="com.gbg.host.model.RoomDto"/>
+                <typeAlias alias="boardListDto" type="com.gbg.admin.board.model.BoardListDto"/>
+                <typeAlias alias="reboardDto" type="com.gbg.board.model.ReboardDto"/>
+                <typeAlias alias="boardDto" type="com.gbg.board.model.BoardDto"/>
+                <typeAlias alias="stopbyDto" type="com.gbg.board.model.StopbyDto"/>
+                <typeAlias alias="convenienceDto" type="com.gbg.host.model.ConvenienceDto"/>
+                <typeAlias alias="roomPictureDto" type="com.gbg.host.model.RoomPictureDto"/>
+                <typeAlias alias="memoDto" type="com.gbg.board.model.MemoDto"/>
         </typeAliases>
-        
+
         <mappers>
                 <mapper resource="com/gbg/config/mybatis/users.xml"/>
-        <mapper resource="com/gbg/config/mybatis/sangkuk.xml"/>
-        <mapper resource="com/gbg/config/mybatis/common.xml"/>
-        <mapper resource="com/gbg/config/mybatis/boardadmin.xml"/>
-        <mapper resource="com/gbg/config/mybatis/reboard.xml"/>
-        <mapper resource="com/gbg/config/mybatis/mapboard.xml"/>
-        <mapper resource="com/gbg/config/mybatis/juhee.xml"/>
-        <mapper resource="com/gbg/config/mybatis/insueng.xml"/>
-        <mapper resource="com/gbg/config/mybatis/sungjun.xml"/>
-        <mapper resource="com/gbg/config/mybatis/admin.xml"/>
-        <mapper resource="com/gbg/config/mybatis/board.xml"/>
-        <mapper resource="com/gbg/config/mybatis/commonutil.xml"/>
+                <mapper resource="com/gbg/config/mybatis/sangkuk.xml"/>
+                <mapper resource="com/gbg/config/mybatis/common.xml"/>
+                <mapper resource="com/gbg/config/mybatis/boardadmin.xml"/>
+                <mapper resource="com/gbg/config/mybatis/reboard.xml"/>
+                <mapper resource="com/gbg/config/mybatis/mapboard.xml"/>
                 <mapper resource="com/gbg/config/mybatis/memo.xml"/>
-           
+                <mapper resource="com/gbg/config/mybatis/juhee.xml"/>
+                <mapper resource="com/gbg/config/mybatis/insueng.xml"/>
+                <mapper resource="com/gbg/config/mybatis/sungjun.xml"/>
+                <mapper resource="com/gbg/config/mybatis/admin.xml"/>
+                <mapper resource="com/gbg/config/mybatis/board.xml"/>
+                <mapper resource="com/gbg/config/mybatis/commonutil.xml"/>
+
         </mappers>
 </configuration>
-

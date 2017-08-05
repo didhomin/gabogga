@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.gbg.board.model.BoardDto;
+import com.gbg.board.model.ReboardDto;
 import com.gbg.board.model.StopbyDto;
 
 public interface MapboardDao {
@@ -15,10 +16,11 @@ public interface MapboardDao {
 	
 	List<BoardDto> listArticle(Map<String, String> map);
 	
-	int replyArticle(StopbyDto stopbyDto);
+	int modifyArticle(BoardDto boardDto);
+	int modifyStopby(Map<String, Object> map);
 	
-	int modifyArticle(StopbyDto stopbyDto);
 	int deleteArticle(int seq);
-
+	int deleteStopby(int seq);
+	int deleteMemo(int seq);
 	
 }

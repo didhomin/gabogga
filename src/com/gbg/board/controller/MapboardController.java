@@ -92,7 +92,6 @@ public class MapboardController {
 			map.put("position", slist);
 			
 			int cnt = mapboardService.writeArticle(map);
-			System.out.println("cnt  =================================== " + cnt);
 			mav.addObject("seq", seq);
 			mav.addObject("qs", queryString);
 			//mav.setViewName("/page/community/communitymain");
@@ -157,5 +156,76 @@ public class MapboardController {
 		mav.setViewName("/page/community/map/list");
 		return mav;
 	}
+
+	@RequestMapping(value="/modify.gbg", method=RequestMethod.GET)
+	public ModelAndView modify(@RequestParam Map<String, String> queryString, @RequestParam("seq") int seq, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		List<BoardListDto> adminlist = boardAdminService.boardList();
+		mav.addObject("boardmenu", adminlist);
+		UsersDto usersDto = (UsersDto) session.getAttribute("user");
+		BoardDto boardDto = null;
+		if(usersDto != null) {
+			boardDto = mapboardService.getArticle(seq);
+		}
+		mav.addObject("qs", queryString);
+		mav.addObject("article", boardDto);
+		mav.setViewName("/page/community/map/modify");
+		return mav;
+	}
 	
+	@RequestMapping(value="/modify.gbg", method=RequestMethod.POST)
+	public String modify(@RequestParam Map<String, String> queryString, BoardDto boardDto, MapPositionDto mapPositionDto, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		UsersDto usersDto = (UsersDto) session.getAttribute("user");
+		
+		List<BoardListDto> adminlist = boardAdminService.boardList();
+		mav.addObject("boardmenu", adminlist);
+		
+		int seq = boardDto.getSeq();
+
+		if(usersDto != null) {
+			int len = mapPositionDto.getStep().length;
+			
+			List<StopbyDto> slist = new ArrayList<StopbyDto>();
+			for(int i=0;i<len;i++) {
+				StopbyDto stopbyDto = new StopbyDto();
+				stopbyDto.setSeq(seq);
+				stopbyDto.setStep(mapPositionDto.getStep()[i]);
+				stopbyDto.setX(mapPositionDto.getX()[i]);
+				stopbyDto.setY(mapPositionDto.getY()[i]);
+				
+				slist.add(stopbyDto);
+			}
+			
+			boardDto.setUserId(usersDto.getUserId());
+			boardDto.setName(usersDto.getName());
+			boardDto.setEmail(usersDto.getEmail());
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("board", boardDto);
+			map.put("position", slist);
+			
+			int cnt = mapboardService.modifyArticle(seq, boardDto, map);
+			mav.addObject("qs", queryString);
+			//mav.setViewName("/page/community/communitymain");
+		} else {			
+			mav.setViewName("/index"); //나중ㅇㅔ login page로 이동하게 할것.
+			// /없으면 reboard로 가서 /있어야함 그래야 webcontent 밑으로감
+		}
+		return "redirect:/mapboard/list.gbg?bcode="+queryString.get("bcode")+"&pg="+queryString.get("pg")+"&key="+queryString.get("key")+"&word="+queryString.get("word");
+	}
+	
+
+	@RequestMapping(value="/delete.gbg", method=RequestMethod.GET)
+	public String delete(@RequestParam Map<String, String> queryString, @RequestParam("seq") int seq, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		List<BoardListDto> adminlist = boardAdminService.boardList();
+		mav.addObject("boardmenu", adminlist);
+		UsersDto usersDto = (UsersDto) session.getAttribute("user");
+		if(usersDto != null) {
+			int dok = mapboardService.deleteArticle(seq);
+		}
+		mav.addObject("qs", queryString);
+		return "redirect:/mapboard/list.gbg?bcode="+queryString.get("bcode")+"&pg="+1+"&key="+queryString.get("key")+"&word="+queryString.get("word");
+	}
 }

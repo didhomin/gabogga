@@ -47,21 +47,17 @@ public class MapboardServiceImpl implements MapboardService {
 	}
 
 	@Override
-	public int replyArticle(StopbyDto stopbyDto) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int modifyArticle(StopbyDto stopbyDto) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int modifyArticle(int seq, BoardDto boardDto, Map<String, Object> map) {
+		sqlSession.getMapper(MapboardDao.class).deleteStopby(seq);
+		sqlSession.getMapper(MapboardDao.class).modifyArticle(boardDto);
+		return sqlSession.getMapper(MapboardDao.class).modifyStopby(map);
 	}
 
 	@Override
 	public int deleteArticle(int seq) {
-		// TODO Auto-generated method stub
-		return 0;
+		sqlSession.getMapper(MapboardDao.class).deleteStopby(seq);
+		sqlSession.getMapper(MapboardDao.class).deleteMemo(seq);
+		return sqlSession.getMapper(MapboardDao.class).deleteArticle(seq);
 	}
 
 }

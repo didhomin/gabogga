@@ -43,17 +43,19 @@ public class ReboardServiceImpl implements ReboardService {
 		ReboardDao reboardDao = sqlSession.getMapper(ReboardDao.class);
 		sqlSession.getMapper(ReboardDao.class).updateStep(reboardDto);
 		sqlSession.getMapper(ReboardDao.class).replyArticle(reboardDto);
-		sqlSession.getMapper(ReboardDao.class).updateReply(reboardDto.getSeq());
+		sqlSession.getMapper(ReboardDao.class).updateReply(reboardDto.getPseq());
 	}
 
 	@Override
 	public int modifyArticle(ReboardDto reboardDto) {
-		return 0;
+		return sqlSession.getMapper(ReboardDao.class).modifyArticle(reboardDto);
 	}
 
 	@Override
 	public int deleteArticle(int seq) {
-		return 0;
+		sqlSession.getMapper(ReboardDao.class).deleteReboard(seq);
+		sqlSession.getMapper(ReboardDao.class).deleteMemo(seq);
+		return sqlSession.getMapper(ReboardDao.class).deleteArticle(seq);
 	}
 
 }

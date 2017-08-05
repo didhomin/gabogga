@@ -15,9 +15,8 @@ public interface MapboardService {
 	
 	List<BoardDto> listArticle(Map<String, String> queryString);
 
-	int replyArticle(StopbyDto stopbyDto);
 	
-	int modifyArticle(StopbyDto stopbyDto);
+	int modifyArticle(int seq, BoardDto boardDto, Map<String, Object> map);
 	int deleteArticle(int seq);
 	
 }

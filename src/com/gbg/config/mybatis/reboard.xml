@@ -74,4 +74,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where seq = #{pseq}
     </update>
     
+    <update id="modifyArticle" parameterType="reboardDto">
+        update board
+        set subject = #{subject},
+            content = #{content}
+        where seq = #{seq}
+    </update>
+    
+    <delete id="deleteReboard" parameterType="int">
+        delete reboard
+        where seq = #{seq} and reply = 0
+    </delete>
+    
+    <delete id="deleteMemo" parameterType="int">
+        delete memo
+        where seq = #{seq}
+    </delete>
+    
+    <delete id="deleteArticle" parameterType="int">
+        delete board
+        where seq = #{seq}
+    </delete>
+    
 </mapper>
