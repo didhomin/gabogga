@@ -29,6 +29,10 @@ public interface HostDao {
 	ConvenienceDto conSelect(Map<String, String> map);
 	RoomPictureDto pictrueSelect(Map<String, String> map);
 	int finalUpdate(Map<String, String> map);
+	List<GuestHouseDto> manageList(Map<String, String> map);
+	int deleteGuesthouse(Map<String, String> map);//숙소관리에서 게스트하우스 등록 삭제할떄 게스트하우스 테이블 삭제
+	int deleteRoom(Map<String, String> map);//숙소관리에서 게스트하우스 등록 삭제할떄 룸 테이블 삭제
+	int deleteConvenience(Map<String, String> map);//숙소관리에서 게스트하우스 등록 삭제할떄 편의시설 테이블 삭제
 
 
 }

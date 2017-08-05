@@ -132,4 +132,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where GUESTHOUSE_ID=#{gid}
     </update>
     
+    <select id="manageList" parameterType="java.util.Map" resultType="guestHouseDto">
+        select 
+        GUESTHOUSE_ID guesthouseId, USER_ID userId, NAME, ROOM_COUNT roomCount, HWEBSITE, ADDRESS1, ADDRESS2, PHONE, LAT, LNG, 
+        CHECKIN_START checkinStart, CHECKIN_END checkinEnd, CHECKOUT_START checkoutStart, CHECKOUT_END checkoutEnd, 
+        INTERNET, PARK, CHILD, PET, ROOM_PAY housePay, INTRODUCE, PICTURE
+        from guesthouse where USER_ID = #{id}
+    </select>
+   
+    <delete id="deleteGuesthouse" parameterType="java.util.Map">
+        delete from guesthouse where USER_ID=#{id}
+    </delete>
+    
+    <delete id="deleteRoom" parameterType="java.util.Map">
+        delete from room where GUESTHOUSE_ID=#{gid}
+    </delete>
+    
+    <delete id="deleteConvenience" parameterType="java.util.Map">
+        delete from convenience where GUESTHOUSE_ID=#{gid}
+    </delete>
 </mapper>

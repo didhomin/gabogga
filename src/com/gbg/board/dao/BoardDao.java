@@ -11,6 +11,6 @@ public interface BoardDao {
 	List<BoardDto> listArticle(Map<String, String> queryString);
 
 	int modifyArticle(BoardDto boardDto);
-	int deleteArticle(int seq); 
+	int deleteArticle(String seq); 
 	
 }

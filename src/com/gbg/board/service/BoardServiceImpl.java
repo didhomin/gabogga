@@ -41,9 +41,9 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public int deleteArticle(int seq) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int deleteArticle(String seq) {
+		
+		return sqlSession.getMapper(BoardDao.class).deleteArticle(seq);
 	}
 
 }

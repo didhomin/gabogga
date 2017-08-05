@@ -16,6 +16,10 @@ $(document).ready(function(){
 		$(location).attr('href', '${root}/admin/notice.gbg');
 	});
 	
+	$('#manageBtn').click(function(){
+		$(location).attr('href', '${root}/manage/list.gbg');
+	});
+	
 });
 </script>
 <style>
@@ -45,12 +49,15 @@ body{
 		<div class="leftside">
 			<strong>${user.name}</strong>님 안녕하세요 ! <br> 회원님의 게스트 하우스 등록을 시작하시겠습니까? <br> 기본사항 부터
 			입력해보세요. <br> <br>
-			<button id="startBtn" type="button" class="btn btn-primary btn-lg"><i class="fa fa-smile-o" style="font-size:24px"></i>&nbsp;시작하기</button>
+			<button id="startBtn" type="button" class="btn btn-primary btn-lg"><i class="fa fa-smile-o" style="font-size:24px"></i>&nbsp;시작하기</button><br><br><br>
+			등록된 숙소가 있다면 숙소관리에서 확인하세요.
+			<br><button id="manageBtn" type="button" class="btn btn-default btn-lg"><i class="fa fa-bed" style="font-size:24px"></i></i>&nbsp;숙소관리</button>
 		</div>
 	</div>
 
 	<div class="col-sm-6">
 		<d	iv class="rightside">
+			<br><br><br>
 			<img src="${root}/img/guest.jpg"
 				style="opacity: 0.6; width: 100%; height: 60%;">
 						<br><br>

@@ -78,6 +78,7 @@ $(document).ready(function() {
 		$.ajax({
 			method: 'get',
 			url: '/gabogga/admin/gender.gbg',
+			data : {},
 			dataType: 'json',
 			success: function(data) {
 				myChart.destroy();

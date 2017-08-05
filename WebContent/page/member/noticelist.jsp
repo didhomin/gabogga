@@ -33,19 +33,32 @@ function listArticle(mpg){
 }
 
 $(document).ready(function() {
-	
+	$("#noticDelBtn").click(function() {
+		valueArr = new Array();
+		$("input[name=chk]:checked").each(function() {
+			valueArr.push($(this).val());
+		});
+		if (valueArr == "") {
+			alert("선택하세요");
+		} else {
+			 document.location.href =  "${root}/admin/delete.gbg?seq="+ valueArr;
+		
+		}
+	});
 	$("#writeBtn").click(function() {
 		document.location.href="${root}/admin/write.gbg";
 	});
-	
-	/* $(".newBtn").click(function() {
-		$('#bcode').val('${qs.bcode}');
-		$('#pg').val('1');
-		$('#key').val('');
-		$('#word').val('');
-		$('#commonForm').attr('action', '${root}/reboard/write.gbg').submit();
+	//선택 하고 삭제 하는 구역
+	var valueArr = new Array();
+	$(document).on('click','#seqId', function () {
+		valueArr.push($(this).val());	
+	//	console.log("valueArr는" + valueArr);
 	});
-	 */
+	$('#noticDelBtn').click( function () {
+		document.location.href = "${root}/admin/delete.gbg?seq="+ valueArr;
+		
+	});
+
 	$(".tr").click(function() {
 		/*$(this).parent().next("tr").slideDown(500);*/
 		$('.trtr').hide();
@@ -62,7 +75,16 @@ $(document).ready(function() {
 	});
 	
 });
-
+function check() {
+	cbox = input_form.chk;
+	if (cbox.length) { // 여러 개일 경우
+		for (var i = 0; i < cbox.length; i++) {
+			cbox[i].checked = input_form.all.checked;
+		}
+	} else { // 한 개일 경우
+		cbox.checked = input_form.all.checked;
+	}
+}
 </script>
 
 <!-- 여기서부터 게시판 메인 꾸미기 -->
@@ -75,14 +97,14 @@ $(document).ready(function() {
 	뭐라고쓰지
 	<hr/>
 	</div>
+			<c:if test="${user.type==2 }">
 			<div class="">
 				<div class="pull-right">
 						<a id="writeBtn" role="button" class="btn btn-default">글쓰기</a>
-					<a class="btn btn-default" href="javascript:;" role="button">공지등록</a>
-					<a class="btn btn-default" id="" role="button">공지해제</a> <a
-						class="btn btn-default" role="button" id="">삭제</a>
+						<a class="btn btn-default" role="button" id="noticDelBtn">삭제</a>
 				</div>
 			</div>
+			</c:if>
 			<div class="row">
 			
 				<div class="col-sm-11"></div>
@@ -92,20 +114,21 @@ $(document).ready(function() {
 					</c:if>
 				</div>
 			</div><br>
-			
+			 <form name="input_form">
 			<table class="table table-striped table-hover">
 			    <thead>
 			      <tr>
-			        <th width="5%">순번</th>
+			        <th width="5%"><input id="" type="checkbox" name="all" onclick="javascript:check();" value=""></th>
 			        <th width="65%">제목</th>
 			        <th width="15%">작성자</th>
 			        <th width="15%">날짜</th>
 			      </tr>
 			    </thead>
 			    <tbody>
+			   
 <c:forEach var="article" items="${noticeList}">		    
 			      <tr class="tr" data-seq="${article.seq}">
-			        <td><input type="checkbox" name="" value=""></td>
+			        <td><input id="seqId" type="checkbox" name="chk" value="${article.seq}"></td>
 			        <td>
 			        	<a  class="subject">${article.subject}
 						</a>
@@ -120,9 +143,10 @@ $(document).ready(function() {
 			      </tr>
 
 </c:forEach>
+
 			    </tbody>
 			</table>
-			
+			</form>
 	
 	
 <!-- 여기까지가 우리가 꾸밀부분 -->

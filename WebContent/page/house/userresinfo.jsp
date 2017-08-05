@@ -18,7 +18,7 @@
       </div>
       <br> <br> <br> <br>
 
-
+     <c:forEach var="userresinfo" items="${userresinfo }">
       <h2>예약 정보</h2>
       <div class="col-sm-6">
          	게스트 하우스 이름<input class="form-control" type="text" value="${userresinfo.name }" readonly style="background-color:#fff">
@@ -85,6 +85,7 @@
    </div>
 
 </div>
+</c:forEach>
 
 
 

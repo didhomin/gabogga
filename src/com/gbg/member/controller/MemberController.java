@@ -38,6 +38,7 @@ public class MemberController {
 		}
 		return mav;
 	}
+	
 	@RequestMapping("/emailCheck.gbg")
 	public @ResponseBody String emailCheck(@RequestParam("email") String email) {
 		UsersDto usersDto =memberService.emailCheck(email);

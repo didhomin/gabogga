@@ -54,7 +54,7 @@ body{
 			<div class="row" style="padding-bottom: 50px;">
 				<div class="col-sm-3 col-sm-push-1" style="padding-top:30px;">
 				<form name="hostform" method="post" enctype="multipart/form-data">
-				<input type="hidden" name="userid" value="${user.userId}">
+				<input type="hidden" 	="userid" value="${user.userId}">
 				<h2>기본사항</h2>
 			<br>
 			<c:choose>

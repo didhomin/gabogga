@@ -135,7 +135,7 @@ function searchUser() {
 			<div class="row">
 				<c:forEach items="${main }" var="aa" varStatus="ii">
 					<div class="col-sm-4">
-						<a href="${root }/house/reservation.gbg?guesthouseId=${aa.ghId}"><img style="width:360px; height: 250px;" src="${root }/img/${aa.pictureGh }.jpg"></a>
+						<a href="${root }/house/reservation.gbg?guesthouseId=${aa.ghId}"><img style="width:360px; height: 250px;" src="${root }/upload/${aa.pictureGh }"></a>
 						이름:${aa.gname } 가격:${aa.roomPay }
 					</div>
 					<c:if test="${ii.count%3==0 }"></div><div class="row"></c:if>
@@ -146,7 +146,7 @@ function searchUser() {
 			<div class="row">
 				<c:forEach items="${mainprice }" var="bb" varStatus="i">
 					<div class="col-sm-4">
-						<a href="${root }/house/reservation.gbg?guesthouseId=${aa.ghId}"><img style="width:360px; height: 250px;" src="${root }/img/${bb.pictureGh }.jpg"></a>
+						<a href="${root }/house/reservation.gbg?guesthouseId=${bb.ghId}"><img style="width:360px; height: 250px;" src="${root }/upload/${bb.pictureGh }"></a>
 						<span>이름:${bb.gname } 가격:${bb.roomPay }</span>
 					</div>
 					<c:if test="${i.count%3==0 }"></div><div class="row"></c:if>

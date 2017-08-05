@@ -134,9 +134,8 @@
 		<c:forEach var="userAdminlist1" items="${userAdminlist }">
 			<tbody>
 				<tr>
-					<td><input type="checkbox" id="chBt"
-						value="${userAdminlist1.userId}"> <input id="tt"
-						value="${userAdminlist1.userId}" readonly="readonly"
+					<td><input type="checkbox" id="chBt" value="${userAdminlist1.userId}"> 
+						<input id="tt"	value="${userAdminlist1.userId}" readonly="readonly"
 						style="border: none; background-color: transparent;" width="2">
 					</td>
 					<td>${userAdminlist1.name}</td>

@@ -15,4 +15,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         from board
         where bcode=10
     </select>
+    
+    <delete id="deleteArticle" parameterType="String">
+    	 delete board
+     where seq=#{seq}
+    
+    </delete>
 </mapper>

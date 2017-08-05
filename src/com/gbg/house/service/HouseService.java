@@ -13,7 +13,8 @@ public interface HouseService {
 	GuestHouseDto houseInfo(int guesthouseId);
 	int hostInfo(GuestHouseDto guesthouseDto);
 	List<RoomDto> room(int guesthouseId);
-	List<HouseDto> hostreservationinfo(HouseDto houseDto);
+	List<HouseDto> hostreservationinfo(Map<Object, Object> map);
 	List<HouseDto> userreservationinfo(String userId);
-	
+	HouseDto ghid(String userId);
+	String oksign(String oksign);
 }
