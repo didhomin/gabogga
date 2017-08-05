@@ -31,25 +31,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     
     <select id="userreservationinfo" parameterType="String" resultType="houseDto">
         select r.room_id roomId, r.guesthouse_id guesthouseId, r.room_type roomType, r.room_name roomName, 
-                r.room_num roomNum, r.bed_type bedType, r.bed_num bedNum, r.bed_capacity bedCapacity,
-                g.GUESTHOUSE_ID guesthouseId, g.user_id userId, g.name, g.room_count roomCount, g.hwebsite,
-                g.address1, g.address2, g.phone, g.lat, g.lng, g.checkin_start checkinStart, g.checkin_end checkinend, 
-                g.checkout_start checkoutStart, g.checkout_end checkoutend, g.internet, g.park, g.child, g.pet, 
-                g.room_pay roomPay, g.introduce,
-                res.RESERVATION_ID, res.user_id, res.ROOM_ID,  res.CHECKIN, res.CHECKOUT, res.PRICE, 
-                    decode(to_char(res.RESERVATION_DATE, 'yymmdd'), 
-                    to_char(sysdate, 'yymmdd'), to_char(res.RESERVATION_DATE, 'hh24:mi:ss'), 
-                    to_char(res.RESERVATION_DATE, 'yy.mm.dd')) 
-                    reservationDate, res.PERSON, res.OKSIGN
-                    FROM GUESTHOUSE g, room r, reservation res
-                            where g.guesthouse_Id= r.guesthouse_Id
-                            and r.ROOM_ID = res.room_ID
-                            and res.USER_ID=#{uesrId}
-              ORDER BY res.RESERVATION_ID
-    </select>  
-    
-    <select id="hostreservationinfo" parameterType="String" resultType="houseDto">
-        select r.room_id roomId, r.guesthouse_id guesthouseId, r.room_type roomType, r.room_name roomName, 
         r.room_num roomNum, r.bed_type bedType, r.bed_num bedNum, r.bed_capacity bedCapacity,
         g.GUESTHOUSE_ID guesthouseId, g.user_id userId, g.name, g.room_count roomCount, g.hwebsite,
         g.address1, g.address2, g.phone, g.lat, g.lng, g.checkin_start checkinStart, g.checkin_end checkinend, 
@@ -63,9 +44,40 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         FROM GUESTHOUSE g, room r, reservation res
         where g.guesthouse_Id= r.guesthouse_Id
         and r.ROOM_ID = res.room_ID
-        and res.USER_ID=#{userId}
-        and g.GUESTHOUSE_ID=#{guesthouseId} 
-        ORDER BY res.RESERVATION_ID;
+        and res.USER_ID=#{uesrId}
+        ORDER BY res.RESERVATION_ID
     </select>  
     
+    <select id="hostreservationinfo" parameterType="java.util.Map" resultType="houseDto">
+        select r.room_id roomId, r.guesthouse_id guesthouseId, r.room_type roomType, r.room_name roomName, 
+        r.room_num roomNum, r.bed_type bedType, r.bed_num bedNum, r.bed_capacity bedCapacity,
+        g.GUESTHOUSE_ID guesthouseId, g.user_id userId, g.name, g.room_count roomCount, g.hwebsite,
+        g.address1, g.address2, g.phone, g.lat, g.lng, g.checkin_start checkinStart, g.checkin_end checkinend, 
+        g.checkout_start checkoutStart, g.checkout_end checkoutend, g.internet, g.park, g.child, g.pet, 
+        g.room_pay roomPay, g.introduce,
+        res.RESERVATION_ID, res.user_id, res.ROOM_ID,  res.CHECKIN, res.CHECKOUT, res.PRICE, 
+        decode(to_char(res.RESERVATION_DATE, 'yymmdd'), 
+        to_char(sysdate, 'yymmdd'), to_char(res.RESERVATION_DATE, 'hh24:mi:ss'), 
+        to_char(res.RESERVATION_DATE, 'yy.mm.dd hh24:mi:ss')) 
+        reservationDate, res.PERSON, res.OKSIGN
+        FROM GUESTHOUSE g, room r, reservation res
+        where g.guesthouse_Id= r.guesthouse_Id
+        and r.ROOM_ID = res.room_ID
+        and res.USER_ID=#{userId}
+        and g.GUESTHOUSE_ID=#{guesthouseId} 
+        ORDER BY res.RESERVATION_ID
+        and order by res.Reservation_date
+    </select>  
+    
+    <select id="ghid" parameterType="String" resultType="houseDto">
+        select GUESTHOUSE_ID guesthouseId
+        from GUESTHOUSE
+        where USER_ID = #{userId}
+    </select>
+    
+    <insert id="oksign" parameterType="String">
+        update reservation
+        set oksign = 1
+        where user_id=#{userid}
+    </insert>
 </mapper>

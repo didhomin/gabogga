@@ -7,7 +7,6 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -57,18 +56,36 @@ public class HouseController {
 	public ModelAndView userreservationinfo(@RequestParam("userId") String userId){
 		ModelAndView mav = new ModelAndView();
 		List<HouseDto> list = houseservice.userreservationinfo(userId);
-		mav.addObject("userresinfo", list.get(0));
+		mav.addObject("userresinfo", list);
 		mav.setViewName("/page/house/userresinfo");
 		return mav;
 		
 	}
 	
 	@RequestMapping(value="/hostresinfo.gbg", method=RequestMethod.GET)
-	public ModelAndView hostreservationinfo(HouseDto houseDto, HttpSession session){
+	public ModelAndView hostreservationinfo(HttpSession session){
 		ModelAndView mav = new ModelAndView();
-		List<HouseDto> list = houseservice.hostreservationinfo(houseDto);
-		mav.addObject("hostresinfo", list.get(0));
+		UsersDto usersDto = (UsersDto) session.getAttribute("user");
+		HouseDto houseDto = houseservice.ghid(usersDto.getUserId());
+		
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		map.put("userId", usersDto.getUserId());
+		map.put("guesthouseId", houseDto.getGuesthouseId());
+		
+		List<HouseDto> list = houseservice.hostreservationinfo(map);
+		mav.addObject("hostresinfo", list);
 		mav.setViewName("/page/house/hostresinfo");
 		return mav;
 	}
+	
+	/*@RequestMapping(value="/oksign.gbg", method=RequestMethod.POST)
+	public ModelAndView oksign(HttpSession httpSession){
+		ModelAndView mav = new ModelAndView();
+		String oksign = houseservice.oksign(oksign);
+		mav.addObject("oksign", );
+		mav.setViewName("/page/house/hostresinfo");
+
+		return mav;
+
+	}*/
 }

@@ -22,9 +22,7 @@ public class HouseServiceImpl implements HouseService {
 
 	@Override
 	public int reservation(HouseDto houseDto) {
-		// System.out.println(houseDto);
 		return sqlSession.getMapper(HouseDao.class).reservation(houseDto);
-
 	}
 
 	@Override
@@ -47,11 +45,19 @@ public class HouseServiceImpl implements HouseService {
 		return sqlSession.getMapper(HouseDao.class).userreservationinfo(userId);
 	}
 
-
+	@Override
+	public List<HouseDto> hostreservationinfo(Map<Object, Object> map) {
+		return sqlSession.getMapper(HouseDao.class).hostreservationinfo(map);
+	}
 
 	@Override
-	public List<HouseDto> hostreservationinfo(HouseDto houseDto) {
-		return sqlSession.getMapper(HouseDao.class).hostreservationinfo(houseDto);
+	public HouseDto ghid(String userId) {
+		return sqlSession.getMapper(HouseDao.class).ghid(userId);
+	}
+
+	@Override
+	public String oksign(String oksign) {
+		return sqlSession.getMapper(HouseDao.class).oksign(oksign);
 	}
 
 

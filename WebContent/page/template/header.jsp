@@ -70,7 +70,7 @@
 								<!-- <li class="divider"></li> -->
 								<c:if test="${not empty user.host }">
 								<li class="divider"></li>
-								<li><a href="${root}/house/hostresinfo.gbg?userId=123 & guesthouseId=100">호스트 예약관리</a></li>
+								<li><a href="${root}/house/hostresinfo.gbg">호스트 예약관리</a></li>
 								</c:if>
 								<c:if test="${not empty user }">
 								<li class="divider"></li>
