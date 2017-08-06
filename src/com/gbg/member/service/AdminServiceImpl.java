@@ -97,5 +97,15 @@ public class AdminServiceImpl implements AdminService {
 		return sqlSession.getMapper(AdminDao.class).woman();
 	}
 
+	@Override
+	public List<Map<String, String>> regionSelect() {
+		return sqlSession.getMapper(AdminDao.class).regionSelect();
+	}
+
+	@Override
+	public List<Map<String, String>> reservationSelect() {
+		return sqlSession.getMapper(AdminDao.class).reservationSelect();
+	}
+
 
 }

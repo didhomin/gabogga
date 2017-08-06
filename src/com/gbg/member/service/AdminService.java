@@ -15,5 +15,6 @@ public interface AdminService {
 	List<ListDto> mainprice();
 	List<StatisticsDto> man();
 	List<StatisticsDto> woman();
-
+	List<Map<String, String>> regionSelect();
+	List<Map<String, String>> reservationSelect();
 }

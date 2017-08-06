@@ -23,7 +23,7 @@
                 <typeAlias alias="boardTypeDto" type="com.gbg.admin.board.model.BoardTypeDto"/>
                 <typeAlias alias="categoryDto" type="com.gbg.admin.board.model.CategoryDto"/>
         </typeAliases>
-
+        
         <mappers>
                 <mapper resource="com/gbg/config/mybatis/users.xml"/>
                 <mapper resource="com/gbg/config/mybatis/sangkuk.xml"/>

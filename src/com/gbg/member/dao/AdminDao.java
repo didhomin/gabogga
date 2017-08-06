@@ -12,6 +12,11 @@ public interface AdminDao {
 	List<ListDto> address(String address);
 	List<ListDto> main();
 	List<ListDto> mainprice();
+
+	List<Map<String, String>> regionSelect();
+	List<Map<String, String>> reservationSelect();
+
 	List<StatisticsDto> man();
 	List<StatisticsDto> woman();
+
 }
