@@ -74,6 +74,7 @@ body {
 		<c:if test="${ccode != boardmenu.get(i.index + 1).ccode}">
 		
 </div>
+
 <%-- 
 <div class="board_list" id="boardmenu">
 	
