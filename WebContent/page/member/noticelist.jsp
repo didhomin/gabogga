@@ -102,6 +102,7 @@ function check() {
 				<div class="pull-right">
 						<a id="writeBtn" role="button" class="btn btn-default">글쓰기</a>
 						<a class="btn btn-default" role="button" id="noticDelBtn">삭제</a>
+						
 				</div>
 			</div>
 			</c:if>
@@ -138,7 +139,7 @@ function check() {
 			      <tr class="trtr" id="${article.seq }" style="display: none;">
 			      <td>내용</td>
 			      <td colspan="3">${article.content}</td>
-				  	      
+				  	   
 			      </tr>
 
 </c:forEach>
@@ -183,7 +184,7 @@ function check() {
   <td width="25%" align="right"><a href="#"></a><br>
   </td>
  </tr>
-</table>			
+</table>			 
 	
 	
 <!-- 여기까지가 우리가 꾸밀부분 -->
