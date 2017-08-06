@@ -35,7 +35,7 @@ public class CommonPServiceImpl implements CommonPService {
 		int totalArticleCount = sqlSession.getMapper(CommonPDao.class).totalArticleCount(queryString);
 
 		pageNavigationIn.setTotalArticleCount(totalArticleCount);
-		int totalPageCount = (totalArticleCount - 1) / BoardConstance.LIST_SIZE + 1;
+		int totalPageCount = (totalArticleCount - 1) / BoardConstance.LISTP_SIZE + 1;
 
 		int pg = Integer.parseInt(queryString.get("pg"));
 		

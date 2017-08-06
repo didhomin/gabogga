@@ -88,10 +88,10 @@ $(document).ready(function() {
 	</div>
 			<div class="">
 				<div class="pull-right">
-						<a id="writeBtn" role="button" class="btn btn-default">글쓰기</a>
-						<a class="btn btn-default" href="javascript:;" role="button">공지등록</a>
-						<a class="btn btn-default" id="" role="button">공지해제</a> 
-						<a class="btn btn-default" role="button" id="noticDelBtn">삭제</a>
+						<a id="writeBtn" role="button" class="btn btn-info">글쓰기</a>
+						<a class="btn btn-warning" href="javascript:;" role="button">공지등록</a>
+						<a class="btn btn-warning" id="" role="button">공지해제</a> 
+						<a class="btn btn-danger" role="button" id="noticDelBtn">삭제</a>
 				</div>
 			</div>
 			<div class="row">
@@ -156,7 +156,7 @@ $(document).ready(function() {
 		</select> <span id="sear1"> <input type="text" name="sword" id="sword"
 				size="22" class="inp" style="margin-top: -19px;"> </span> 
    
-   <a href="#"><input type="button"
+   <a href="#"><input type="button" class="btn btn-success"
 				id="searchBtn" width="32" height="18" border="0" align="absmiddle"
 				value="검색"></a>
     
@@ -165,7 +165,7 @@ $(document).ready(function() {
    </c:if>
    <br>
   </td>
-  <td width="50%" align="right"><a href="#"><input type="button" value="맨위로" width="24" height="11"
+  <td width="50%" align="right"><a href="#"><input class="btn btn-success" type="button" value="맨위로" width="24" height="11"
 				align="absmiddle" alt="TOP"></a><br>
   </td>
  </tr>

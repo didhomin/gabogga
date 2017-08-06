@@ -102,7 +102,23 @@
 						//	alert("key와 word값" +$('#key').val() +"========"+$('#word').val());
 							$('#commonForm').attr('action','${root}/memberAdmin/list.gbg').submit();
 						});
-
+						$('#nextpageBtn').click(function () {
+							$('#bcode').val('${qs.bcode}');
+							$('#pg').val('6');
+							//alert("pg "+$(this).text());
+							$('#key').val('${qs.key}');
+							$('#word').val('${qs.word}');
+							$('#commonForm').attr('action','${root}/memberAdmin/list.gbg').submit();
+							
+						});
+						$('#backpageBtn').click(function () {
+							$('#bcode').val('${qs.bcode}');
+							$('#pg').val('1');
+							//alert("pg "+$(this).text());
+							$('#key').val('${qs.key}');
+							$('#word').val('${qs.word}');
+							$('#commonForm').attr('action','${root}/memberAdmin/list.gbg').submit();
+					});
 					});
 </script>
 <div class="container">
@@ -230,7 +246,7 @@
 		</select> <span id="sear1"> <input type="text" name="sword" id="sword"
 				size="22" class="inp" style="margin-top: -19px;"> </span> 
    
-   <a href="#"><input type="button"
+   <a href="#"><input type="button" class="btn btn-success"
 				id="searchBtn" width="32" height="18" border="0" align="absmiddle"
 				value="검색"></a>
     
@@ -239,7 +255,7 @@
    </c:if>
    <br>
   </td>
-  <td width="50%" align="right"><a href="#"><input type="button" value="맨위로" width="24" height="11"
+  <td width="50%" align="right"><a href="#"><input class="btn btn-success" type="button" value="맨위로" width="24" height="11"
 				align="absmiddle" alt="TOP"></a><br>
   </td>
  </tr>

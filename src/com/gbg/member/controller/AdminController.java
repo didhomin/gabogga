@@ -106,7 +106,7 @@ public class AdminController extends MultiActionController{
 		List<BoardDto> list = boardService.listArticle(queryString);
 		mav.addObject("noticeList", list);
 		mav.setViewName("/page/member/noticelist");
-		System.out.println(list);
+		
 		return mav;
 	}
 
