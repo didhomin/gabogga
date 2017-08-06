@@ -5,15 +5,15 @@
    <script type="text/javascript">
 $(document).ready(function(){
    $(document).on('click', '.oksign', function(){
-	   var oksign = $(this).attr('data-oksign');
-	   alert(oksign);
-	   /* $(location).attr('href', '${root}/house/oksign.gbg?reservationId='+oksign).attr('method', 'post').submit(); */
-       document.location.href="${root}/house/oksign.gbg?reservationId="+oksign;
+	   var sign = $(this).attr('data-sign');
+       document.location.href="${root}/house/oksign.gbg?reservationId="+sign;
 	   
    });   
-   $('#deny').click(function(){
-      $(location).attr('href', '${root}/house/deny.gbg').attr('method', 'post').submit();
-   });
+   $(document).on('click', '.nosign', function(){
+	   var sign = $(this).attr('data-sign');
+       document.location.href="${root}/house/nosign.gbg?reservationId="+sign;
+	   
+   });   
 });
 </script>
    
@@ -48,9 +48,6 @@ $(document).ready(function(){
                                     <td width="30%"><i class="fa fa-exclamation-circle"></i></td>
                                  </tr>
                               <c:forEach var="hostresinfo" items="${hostresinfo}">
-                                 <%-- <input type="hidden" id="seq${GusethouseDto.groupId}" value="${GusethouseDto.groupId}">
-                                 <input type="hidden" id="gCount${GusethouseDto.groupId}" value="${GusethouseDto.gCount}">
-                                 <input type="hidden" id="nowCount${GusethouseDto.groupId}" value="${GusethouseDto.nowCount}"> --%>
                                  <tr>
                                     <td>
                                        <div class="media">
@@ -83,12 +80,9 @@ $(document).ready(function(){
                                        </div>
                                     </td>
                                     <td>
-                                          <input type="button"  data-oksign="${hostresinfo.reservationId}" class="btn btn-primary oksign">
-                                          <i class="fa fa-handshake-o "></i>승인
-                                          <button type="button" id="refuse" class="btn btn-danger"
-                                           onclick="javascript:joinGroup();">
-                                              <i class="fa fa-remove"></i>거부
-                                           </button>
+                                          <input type="button"  data-sign="${hostresinfo.reservationId}" class="btn btn-primary oksign" value="승인">
+                                          <input type="button"  data-sign="${hostresinfo.reservationId}" class="btn btn-warning nosign" value="거부">
+                                          
                                      </td>
                                  </tr>
                               </c:forEach>

@@ -92,4 +92,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         set oksign = 1
         where reservation_id=#{reservationId}
     </insert>
+    <insert id="nosign" parameterType="String">
+        update reservation
+        set oksign = 2
+        where reservation_id=#{reservationId}
+    </insert>
 </mapper>

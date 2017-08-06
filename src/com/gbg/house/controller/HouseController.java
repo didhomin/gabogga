@@ -81,11 +81,19 @@ public class HouseController {
 	@RequestMapping(value="/oksign.gbg")
 	public ModelAndView oksign(@RequestParam("reservationId") String reservationId){
 		ModelAndView mav = new ModelAndView();
-//		System.out.println(reservationId);
-		String oksign = houseservice.oksign(reservationId);
-//		mav.addObject("oksign", houseDto);
+		int oksign = houseservice.oksign(reservationId);
 		mav.setViewName("/page/house/hostresok");
 		return mav;
 
+	}
+	@RequestMapping(value="/nosign.gbg")
+	public ModelAndView nosign(@RequestParam("reservationId") String reservationId){
+		ModelAndView mav = new ModelAndView();
+//		System.out.println(reservationId);
+		int oksign = houseservice.nosign(reservationId);
+//		mav.addObject("oksign", houseDto);
+		mav.setViewName("/page/house/hostresok");
+		return mav;
+		
 	}
 }
