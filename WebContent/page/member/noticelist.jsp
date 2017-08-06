@@ -63,7 +63,7 @@ $(document).ready(function() {
 	
 	$(".tr").click(function() {
 		/*$(this).parent().next("tr").slideDown(500);*/
-		$('.trtr').hide();
+		 $('.trtr').hide(); 
 		 var seq= $(this).attr('data-seq'); 
 		$('#'+seq).slideToggle("slow");
 	});
@@ -92,11 +92,10 @@ function check() {
 <!-- 여기서부터 게시판 메인 꾸미기 -->
 <div class="jumbotron" style="">
 	<h3>
-		<i class="glyphicon glyphicon-info-sign"></i>공지사항
+		<span class="glyphicon glyphicon-search"></span>도움말
 	</h3>
 </div>
 	<div>
-	뭐라고쓰지
 	<hr/>
 	</div>
 			<c:if test="${user.type==2 }">
@@ -128,10 +127,10 @@ function check() {
 			    </thead>
 			    <tbody>
 <c:forEach var="article" items="${noticeList}">		    
-			      <tr class="tr" data-seq="${article.seq}">
+			      <tr class="" data-seq="${article.seq}">
 			        <td><input id="seqId" type="checkbox" name="chk" value="${article.seq}"></td>
-			        <td>
-			        	<a  class="subject">${article.subject}
+			        <td>	
+			        	<a  data-seq="${article.seq}" class="tr subject">${article.subject}
 						</a>
 					</td>
 			        <td>[관리자] ${article.name}</td>
