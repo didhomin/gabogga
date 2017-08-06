@@ -34,7 +34,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         g.room_pay housePay, g.introduce, g.picture,
         c.ESSENTIAL, c.WIFI, c.shampo, c.DRAWER, c.TV, c.HEAT, c.AIRCONDI, c.BREAKFAST, c.DESK, c.HAIR_DRY
         from GUESTHOUSE g, CONVENIENCE c
-        where g.GUESTHOUSE_ID = c.GUESTHOUSE_ID
+        where g.GUESTHOUSE_ID = c.GUESTHOUSE_ID and g.GUESTHOUSE_ID = #{guesthouseId}
     </select> 
     
     <select id="userreservationinfo" parameterType="String" resultType="houseDto">
