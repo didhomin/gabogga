@@ -13,4 +13,6 @@ public interface AdminDao {
 	List<ListDto> mainprice();
 	int man();
 	int woman();
+	List<Map<String, String>> regionSelect();
+	List<Map<String, String>> reservationSelect();
 }

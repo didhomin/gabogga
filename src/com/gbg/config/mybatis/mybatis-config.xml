@@ -20,7 +20,7 @@
                 <typeAlias alias="roomPictureDto" type="com.gbg.host.model.RoomPictureDto"/>
                 <typeAlias alias="memoDto" type="com.gbg.board.model.MemoDto"/>
         </typeAliases>
-
+        
         <mappers>
                 <mapper resource="com/gbg/config/mybatis/users.xml"/>
                 <mapper resource="com/gbg/config/mybatis/sangkuk.xml"/>

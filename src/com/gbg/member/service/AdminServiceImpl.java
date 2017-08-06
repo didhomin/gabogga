@@ -1,6 +1,7 @@
 package com.gbg.member.service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import javax.mail.Address;
@@ -93,6 +94,16 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int woman() {
 		return sqlSession.getMapper(AdminDao.class).woman();
+	}
+
+	@Override
+	public List<Map<String, String>> regionSelect() {
+		return sqlSession.getMapper(AdminDao.class).regionSelect();
+	}
+
+	@Override
+	public List<Map<String, String>> reservationSelect() {
+		return sqlSession.getMapper(AdminDao.class).reservationSelect();
 	}
 
 

@@ -55,4 +55,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where gender=2
 	</select>
 	
+	<resultMap id="region" type="java.util.Map">
+		<result javaType="java.lang.String" column="count" property="count"/>
+		<result javaType="java.lang.String" column="addressgroup" property="addressgroup"/>
+	</resultMap>
+	
+	<select id="regionSelect" resultMap="region">
+		select count(address1) as count, substr(address1, 0, instr(address1, ' ')) as addressgroup
+		from guesthouse
+		group by substr(address1, 0, instr(address1, ' '))
+	</select>
+	
+	<resultMap id="reservation" type="java.util.Map">
+		<result javaType="java.lang.String" column="month" property="month"/>
+		<result javaType="java.lang.String" column="count" property="count"/>
+	</resultMap>
+	
+	<select id="reservationSelect" resultMap="reservation">
+		select to_char(reservation_date, 'MM') as month, count(reservation_date) as count
+		from reservation 
+		where to_char(reservation_date, 'YYMM') between '1701' and '1712'
+		group by to_char(reservation_date, 'MM')
+		order by to_char(reservation_date, 'MM') asc
+	</select>
+
+	
 </mapper>

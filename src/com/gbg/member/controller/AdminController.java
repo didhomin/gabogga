@@ -1,5 +1,6 @@
 package com.gbg.member.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
@@ -18,18 +19,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
-import com.gbg.admin.board.model.BoardListDto;
-import com.gbg.admin.board.service.BoardAdminService;
 import com.gbg.board.model.BoardDto;
-import com.gbg.board.model.ReboardDto;
 import com.gbg.board.service.BoardService;
 import com.gbg.board.service.CommonService;
-import com.gbg.board.service.ReboardService;
 import com.gbg.list.model.ListDto;
 import com.gbg.member.model.QnaDto;
 import com.gbg.member.model.UsersDto;
 import com.gbg.member.service.AdminService;
-import com.gbg.util.PageNavigation;
 
 @Controller
 @RequestMapping("/admin")
@@ -137,6 +133,60 @@ public class AdminController extends MultiActionController{
 			boardService.deleteArticle(notidelete);
 		}
 		return "redirect:/admin/notice.gbg";
+	}
+	
+	@RequestMapping(value="/region.gbg")
+	public @ResponseBody String region() {	
+		List<Map<String, String>> list = adminService.regionSelect();		
+		JSONObject json = new JSONObject();
+		JSONArray jarr = new JSONArray();
+		for(Map<String, String> map : list){
+			JSONObject jsonSelect = new JSONObject(); 
+			jsonSelect.put("count", map.get("count"));
+			jsonSelect.put("addressgroup", map.get("addressgroup"));
+			jarr.add(jsonSelect);
+		}
+		json.put("regionlist",jarr);
+		return json.toJSONString();
+	}
+	
+	@RequestMapping(value="/reservation.gbg")
+	public @ResponseBody String reservation() {	
+		List<Map<String, String>> list = adminService.reservationSelect();	
+		JSONObject json = new JSONObject();
+		JSONArray jarr = new JSONArray();
+		for(Map<String, String> map : list){
+			JSONObject jsonSelect = new JSONObject();
+	         if(map.get("month").equals("01")) {
+	        	 jsonSelect.put("month", 1);            
+	          } else if(map.get("month").equals("02")) {
+	        	  jsonSelect.put("month", 2);
+	          }else if(map.get("month").equals("03")) {
+	        	  jsonSelect.put("month", 3);
+	          }else if(map.get("month").equals("04")) {
+	        	  jsonSelect.put("month", 4);
+	          }else if(map.get("month").equals("05")) {
+	        	  jsonSelect.put("month", 5);
+	          }else if(map.get("month").equals("06")) {
+	        	  jsonSelect.put("month", 6);
+	          }else if(map.get("month").equals("07")) {
+	        	  jsonSelect.put("month", 7);
+	          }else if(map.get("month").equals("08")) {
+	        	  jsonSelect.put("month", 8);
+	          }else if(map.get("month").equals("09")) {
+	        	  jsonSelect.put("month", 9);
+	          }else if(map.get("month").equals("10")) {
+	        	  jsonSelect.put("month", 10);
+	          }else if(map.get("month").equals("11")) {
+	        	  jsonSelect.put("month", 11);
+	          }else if(map.get("month").equals("12")) {
+	        	  jsonSelect.put("month", 12);
+	          }
+			jsonSelect.put("count", map.get("count"));
+			jarr.add(jsonSelect);
+		}
+		json.put("reservationlist",jarr);
+		return json.toJSONString();
 	}
 
 }
