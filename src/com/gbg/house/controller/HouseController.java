@@ -36,33 +36,28 @@ public class HouseController {
 		mav.addObject("room",list);
 		mav.addObject("roominfo",infolist);
 		mav.setViewName("/page/house/house");
-		/*mav.setViewName("/page/house/reservatiomModal");*/
 		return mav;
 		
 	}
 
 	@RequestMapping(value="/reservation.gbg", method=RequestMethod.POST)
-	public ModelAndView reservation(HouseDto houseDto, HttpSession session){
-		ModelAndView mav = new ModelAndView();
+	public String reservation(HouseDto houseDto, HttpSession session){
 		UsersDto usersDto = (UsersDto) session.getAttribute("user");
 		if (usersDto != null) {
 			houseDto.setUserId(Integer.parseInt(usersDto.getUserId()));
 			int cnt = houseservice.reservation(houseDto);
-			List<RoomDto> list = houseservice.room(cnt);
-			mav.addObject("house", houseDto);
-			mav.addObject("roominfo",list);
-			mav.setViewName("/index");
 		}
-		return mav;
+		return "redirect:/house/userresinfo.gbg";
 
 	}
 
 	@RequestMapping(value="/userresinfo.gbg", method=RequestMethod.GET)
-	public ModelAndView userreservationinfo(@RequestParam("userId") String userId){
+	public ModelAndView userreservationinfo(HttpSession session){
 		ModelAndView mav = new ModelAndView();
-		/*List<HouseDto> list = houseservice.userreservationinfo(userId);
-		mav.addObject("userresinfo", list);*/
-		mav.setViewName("/page/house/userresinfo");
+		UsersDto usersDto = (UsersDto) session.getAttribute("user");
+		List<HouseDto> list = houseservice.userreservationinfo(usersDto.getUserId());
+		mav.addObject("relist", list);
+		mav.setViewName("/page/house/reservationinfo");
 		return mav;
 		
 	}

@@ -99,7 +99,7 @@
 							</a>
 								<ul class="dropdown-menu">
 									<c:if test="${not empty user }">
-									<li><a href="${root}/myreservation/userresinfo.gbg?userId=${user.userId}">예약확인</a></li>
+									<li><a href="${root}/house/userresinfo.gbg">예약확인</a></li>
 									</c:if>
 									<li class="divider"></li>
 			 						<li><a href="javascript:memberModify();">회원정보수정</a></li>
@@ -127,7 +127,7 @@
 							</a>
 								<ul class="dropdown-menu">
 									<c:if test="${not empty user }">
-									<li><a href="${root}/myreservation/userresinfo.gbg?userId=${user.userId}">예약확인</a></li>
+									<li><a href="${root}/house/userresinfo.gbg">예약확인</a></li>
 									</c:if>
 									<li class="divider"></li>
 	 								<li><a href="javascript:memberModify();">회원정보수정</a></li>
