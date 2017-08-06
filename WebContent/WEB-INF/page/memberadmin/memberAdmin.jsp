@@ -98,6 +98,7 @@
 							$('#bcode').val('${qs.bcode}');
 							$('#pg').val('1');
 							$('#key').val($('#skey').val());
+						//	$('#key').val($('.form-control').val());
 							$('#word').val($('#sword').val());
 						//	alert("key와 word값" +$('#key').val() +"========"+$('#word').val());
 							$('#commonForm').attr('action','${root}/memberAdmin/list.gbg').submit();
@@ -114,11 +115,12 @@
 						$('#backpageBtn').click(function () {
 							$('#bcode').val('${qs.bcode}');
 							$('#pg').val('1');
-							//alert("pg "+$(this).text());
+				//			alert("class 드롭버튼 테스트 "+$('.dropdown-menu').val());
+				//			alert("class 드롭버튼 테스트 "+$('.dropdown-menu').val());
 							$('#key').val('${qs.key}');
 							$('#word').val('${qs.word}');
 							$('#commonForm').attr('action','${root}/memberAdmin/list.gbg').submit();
-					});
+						});
 					});
 </script>
 <div class="container">
@@ -235,31 +237,46 @@
 
 <table width="100%"   cellpadding="0" cellspacing="0" border="0">
 	<tr>
-		<td colspan="3" height="10"></td>
+		<td colspan="10" height="10"></td>
 	</tr>
 	<tr>
-		<td width="50%"></td>
-		<td nowrap><select name="skey" id="skey" class="inp"  width="23" >
-				<option value="name">유저이름
-				<option value="user_Id">유저 번호
-     
-		</select> <span id="sear1"> <input type="text" name="sword" id="sword"
-				size="22" class="inp" style="margin-top: -19px;"> </span> 
-   
-   <a href="#"><input type="button" class="btn btn-success"
-				id="searchBtn" width="32" height="18" border="0" align="absmiddle"
-				value="검색"></a>
-    
+		<td width="25%"></td>
+		<td  nowrap>
+			<select class="form-control" id="skey" size="1">  
+				  <option value="name">유저 이름
+				  <option value="user_Id">유저 번호
+				</select>
+		</td>
+		<td nowrap>
+				
+		 		 <input class="form-control" type="text" name="sword" id="sword"
+				size="20" class="inp" ">
+   		</td>
+   		<td nowrap>
+   			
+				
+				        <a href="#" class="btn btn-info" id="searchBtn">
+				          <span class="glyphicon glyphicon-search"></span> Search 
+				        </a>
+					
+    	
     <c:if test="${userInfo ==null }">
    
    </c:if>
    <br>
   </td>
-  <td width="50%" align="right"><a href="#"><input class="btn btn-success" type="button" value="맨위로" width="24" height="11"
+  <td width="25%" align="right"><a href="#"><input class="btn btn-success" type="button" value="맨위로" width="24" height="11"
 				align="absmiddle" alt="TOP"></a><br>
   </td>
  </tr>
 </table>
+
+<!--여기 임시 드롭다운 -->
+<!--  
+<div class="container"> </div>-->
+
+
+
 
 
 <!-- 여기까지가 우리가 꾸밀부분 -->
