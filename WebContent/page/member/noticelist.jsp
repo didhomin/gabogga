@@ -159,25 +159,28 @@ function check() {
 		<td colspan="3" height="10"></td>
 	</tr>
 	<tr>
-		<td width="50%"></td>
-		<td nowrap><select name="skey" id="skey" class="inp"  width="23" >
+		<td width="25%"></td>
+		<td nowrap>
+		<select class="form-control" name="skey" id="skey" class="inp"  width="23" >
 				<option value="subject">제목
 				<option value="content">내용
-     
-		</select> <span id="sear1"> <input type="text" name="sword" id="sword"
-				size="22" class="inp" style="margin-top: -19px;"> </span> 
-   
-   <a href="#"><input type="button" class="btn btn-success"
-				id="searchBtn" width="32" height="18" border="0" align="absmiddle"
-				value="검색"></a>
+		</select> 
+		</td>
+		<td nowrap> 
+		<input class="form-control" type="text" name="sword" id="sword"
+				size="20" class="inp" >  
+   		</td>
+   		<td nowrap>
+     <a href="#" class="btn btn-info" id="searchBtn">
+				          <span class="glyphicon glyphicon-search"></span> Search 
+				        </a>
     
     <c:if test="${userInfo ==null }">
    
    </c:if>
    <br>
   </td>
-  <td width="50%" align="right"><a href="#"><input class="btn btn-success" type="button" value="맨위로" width="24" height="11"
-				align="absmiddle" alt="TOP"></a><br>
+  <td width="25%" align="right"><a href="#"></a><br>
   </td>
  </tr>
 </table>			
