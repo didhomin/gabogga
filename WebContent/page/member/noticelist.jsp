@@ -63,7 +63,7 @@ $(document).ready(function() {
 	
 	$(".tr").click(function() {
 		/*$(this).parent().next("tr").slideDown(500);*/
-		$('.trtr').hide();
+		 $('.trtr').hide(); 
 		 var seq= $(this).attr('data-seq'); 
 		$('#'+seq).slideToggle("slow");
 	});
@@ -92,11 +92,10 @@ function check() {
 <!-- 여기서부터 게시판 메인 꾸미기 -->
 <div class="jumbotron" style="">
 	<h3>
-		<i class="glyphicon glyphicon-info-sign"></i>공지사항
+		<span class="glyphicon glyphicon-search"></span>도움말
 	</h3>
 </div>
 	<div>
-	뭐라고쓰지
 	<hr/>
 	</div>
 			<c:if test="${user.type==2 }">
@@ -128,10 +127,10 @@ function check() {
 			    </thead>
 			    <tbody>
 <c:forEach var="article" items="${noticeList}">		    
-			      <tr class="tr" data-seq="${article.seq}">
+			      <tr class="" data-seq="${article.seq}">
 			        <td><input id="seqId" type="checkbox" name="chk" value="${article.seq}"></td>
-			        <td>
-			        	<a  class="subject">${article.subject}
+			        <td>	
+			        	<a  data-seq="${article.seq}" class="tr subject">${article.subject}
 						</a>
 					</td>
 			        <td>[관리자] ${article.name}</td>
@@ -161,25 +160,28 @@ function check() {
 		<td colspan="3" height="10"></td>
 	</tr>
 	<tr>
-		<td width="50%"></td>
-		<td nowrap><select name="skey" id="skey" class="inp"  width="23" >
+		<td width="25%"></td>
+		<td nowrap>
+		<select class="form-control" name="skey" id="skey" class="inp"  width="23" >
 				<option value="subject">제목
 				<option value="content">내용
-     
-		</select> <span id="sear1"> <input type="text" name="sword" id="sword"
-				size="22" class="inp" style="margin-top: -19px;"> </span> 
-   
-   <a href="#"><input type="button" class="btn btn-success"
-				id="searchBtn" width="32" height="18" border="0" align="absmiddle"
-				value="검색"></a>
+		</select> 
+		</td>
+		<td nowrap> 
+		<input class="form-control" type="text" name="sword" id="sword"
+				size="20" class="inp" >  
+   		</td>
+   		<td nowrap>
+     <a href="#" class="btn btn-info" id="searchBtn">
+				          <span class="glyphicon glyphicon-search"></span> Search 
+				        </a>
     
     <c:if test="${userInfo ==null }">
    
    </c:if>
    <br>
   </td>
-  <td width="50%" align="right"><a href="#"><input class="btn btn-success" type="button" value="맨위로" width="24" height="11"
-				align="absmiddle" alt="TOP"></a><br>
+  <td width="25%" align="right"><a href="#"></a><br>
   </td>
  </tr>
 </table>			
