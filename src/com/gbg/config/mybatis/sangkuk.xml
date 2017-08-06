@@ -14,19 +14,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="room" parameterType="int" resultType="roomDto">
         select r.room_id roomId, r.guesthouse_id guesthouseId, r.room_type roomType, r.room_name roomName, 
         r.room_num roomNum, r.bed_type bedType, r.bed_num bedNum, r.bed_capacity bedCapacity,
-        rp.picture_id pictureId, rp.picture
+        rp.picture_id pictureId, rp.picture, rp.room_id roomId
         from room r, room_picture rp
         where r.room_id = rp.room_id
         and r.GUESTHOUSE_ID = #{guesthouseId}
-    </select>    
+    </select>
+
+    <!--<select id="room" parameterType="int" resultType="roomDto">
+        select r.room_id roomId, r.guesthouse_id guesthouseId, r.room_type roomType, r.room_name roomName, 
+        r.room_num roomNum, r.bed_type bedType, r.bed_num bedNum, r.bed_capacity bedCapacity
+        from room r
+        where r.GUESTHOUSE_ID = #{guesthouseId}
+    </select>-->
     
-    <select id="houseInfo" parameterType="int" resultType="roomDto">
-        select GUESTHOUSE_ID guesthouseId, user_id userId, name, room_count roomCount, hwebsite,
-        address1, address2, phone, lat, lng, checkin_start checkinStart, checkin_end checkinend, 
-        checkout_start checkoutStart, checkout_end checkoutend, internet, park, child, pet, 
-        room_pay roomPay, introduce, picture
-        from GUESTHOUSE
-        where GUESTHOUSE_ID = #{guesthouseId}
+    <select id="houseInfo" parameterType="int" resultType="ConvenienceDto">
+        select g.GUESTHOUSE_ID guesthouseId, g.user_id userId, g.name, g.room_count roomCount, g.hwebsite,
+        g.address1, g.address2, g.phone, g.lat, g.lng, g.checkin_start checkinStart, g.checkin_end checkinend, 
+        g.checkout_start checkoutStart, g.checkout_end checkoutend, g.internet, g.park, g.child, g.pet, 
+        g.room_pay housePay, g.introduce, g.picture,
+        c.ESSENTIAL, c.WIFI, c.shampo, c.DRAWER, c.TV, c.HEAT, c.AIRCONDI, c.BREAKFAST, c.DESK, c.HAIR_DRY
+        from GUESTHOUSE g, CONVENIENCE c
+        where g.GUESTHOUSE_ID = c.GUESTHOUSE_ID
     </select> 
     
     <select id="userreservationinfo" parameterType="String" resultType="houseDto">

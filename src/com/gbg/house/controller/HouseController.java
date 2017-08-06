@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.gbg.host.model.ConvenienceDto;
 import com.gbg.host.model.GuestHouseDto;
 import com.gbg.host.model.RoomDto;
 import com.gbg.house.model.HouseDto;
@@ -28,25 +30,29 @@ public class HouseController {
 	public ModelAndView room(@RequestParam("guesthouseId") int guesthouseId){
 		ModelAndView mav = new ModelAndView();
 		List<RoomDto> list = houseservice.room(guesthouseId);
-		RoomDto roomDto = (RoomDto) houseservice.houseInfo(guesthouseId);
-		mav.addObject("info", roomDto);
-		mav.addObject("room",list);
+		ConvenienceDto convenienceDto = (ConvenienceDto) houseservice.houseInfo(guesthouseId);
+		mav.addObject("info", convenienceDto);
+		mav.addObject("roominfo",list);
 		mav.setViewName("/page/house/house");
+		/*mav.setViewName("/page/house/reservatiomModal");*/
 		return mav;
 		
 	}
 
 	@RequestMapping(value="/reservation.gbg", method=RequestMethod.POST)
-	public ModelAndView reservation(@RequestParam("reservationId") String reservationId,
-									@RequestParam("oksign") String oksign,
-									@RequestParam("userId") String userId,
+	public ModelAndView reservation(/*@RequestParam("reservationId") String reservationId,*/
+//									@RequestParam("oksign") String oksign,
+//									@RequestParam("userId") String userId,
+//									@RequestParam("guesthouseId") int guesthouseId,
 									HouseDto houseDto, HttpSession session){
 		ModelAndView mav = new ModelAndView();
 		UsersDto usersDto = (UsersDto) session.getAttribute("user");
 		if (usersDto != null) {
 			int cnt = houseservice.reservation(houseDto);
+			List<RoomDto> list = houseservice.room(cnt);
 			mav.addObject("house", houseDto);
-			mav.setViewName("/page/house/reservationok");
+			mav.addObject("roominfo",list);
+			mav.setViewName("/index");
 		}
 		return mav;
 
