@@ -15,7 +15,10 @@ public interface ReboardDao {
 	void updateReply(int pseq);
 	
 	int modifyArticle(ReboardDto reboardDto);
+	
 	int deleteArticle(int seq);
+	int deleteMemo(int seq);
+	int deleteReboard(int seq);
 
 	
 }

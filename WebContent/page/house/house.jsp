@@ -54,8 +54,10 @@ function reservationmodal() {
 			<hr>
 	  <!-- 2. Add images to <div class="fotorama"></div>. -->
 		<div class='fotorama' data-click='false' data-swipe='false'  data-autoplay="true">
-		  <img src="http://s.fotorama.io/1.jpg">
-		  <img src="http://s.fotorama.io/2.jpg">
+		  <img src="${root }/upload/${info.picture}">
+		   <c:forEach var="room" items="${room }">
+		            <img src="${root }/upload/${room.picture}">
+		         	 </c:forEach>
 		</div>
         <hr>
         <!-- Post Content -->
@@ -122,7 +124,6 @@ function reservationmodal() {
           <!-- 	<div class="input-group"> -->
                 <select name="roominfo" id="roominfo" class="form-control" >
 			    <c:forEach var="room" items="${room }">
-		            <option value="---">------</option>
 		            <option value="${room.roomName }">${room.roomName }</option>
 		         	 </c:forEach>
 	    		     </select>
@@ -132,7 +133,6 @@ function reservationmodal() {
           <!-- 	<div class="input-group"> -->
             <select name="person" id="person" class="form-control">
             <c:forEach var="room" items="${room }">
-	            <option value="---">------</option>
 	            <option value="${room.roomNum }">${room.roomNum }</option>
 	             </c:forEach>
 	         </select>

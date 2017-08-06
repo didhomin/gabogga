@@ -153,4 +153,56 @@ public class ReboardController {
 		return "redirect:/reboard/list.gbg?bcode="+queryString.get("bcode")+"&pg="+queryString.get("pg")+"&key="+queryString.get("key")+"&word="+queryString.get("word");
 	}
 	
+	@RequestMapping(value="/modify.gbg", method=RequestMethod.GET)
+	public ModelAndView modify(@RequestParam Map<String, String> queryString, @RequestParam("seq") int seq, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		List<BoardListDto> adminlist = boardAdminService.boardList();
+		mav.addObject("boardmenu", adminlist);
+		UsersDto usersDto = (UsersDto) session.getAttribute("user");
+		ReboardDto reboardDto = null;
+		if(usersDto != null) {
+			reboardDto = reboardService.getArticle(seq);
+		}
+		mav.addObject("qs", queryString);
+		mav.addObject("article", reboardDto);
+		mav.setViewName("/page/community/board/modify");
+		return mav;
+	}
+	
+	@RequestMapping(value="/modify.gbg", method=RequestMethod.POST)
+	public String modify(@RequestParam Map<String, String> queryString, ReboardDto reboardDto, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		UsersDto usersDto = (UsersDto) session.getAttribute("user");
+		
+		List<BoardListDto> adminlist = boardAdminService.boardList();
+		mav.addObject("boardmenu", adminlist);
+		
+		if(usersDto != null) {
+			reboardDto.setUserId(usersDto.getUserId());
+			reboardDto.setName(usersDto.getName());
+			reboardDto.setEmail(usersDto.getEmail());
+			reboardService.modifyArticle(reboardDto);
+			mav.addObject("qs", queryString);
+		} else {			
+			mav.setViewName("/index"); //나중ㅇㅔ login page로 이동하게 할것.
+			// /없으면 reboard로 가서 /있어야함 그래야 webcontent 밑으로감
+		}
+		return "redirect:/reboard/list.gbg?bcode="+queryString.get("bcode")+"&pg="+queryString.get("pg")+"&key="+queryString.get("key")+"&word="+queryString.get("word");
+	}
+	
+
+	@RequestMapping(value="/delete.gbg", method=RequestMethod.GET)
+	public String delete(@RequestParam Map<String, String> queryString, @RequestParam("seq") int seq, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		List<BoardListDto> adminlist = boardAdminService.boardList();
+		mav.addObject("boardmenu", adminlist);
+		UsersDto usersDto = (UsersDto) session.getAttribute("user");
+		if(usersDto != null) {
+			int dok = reboardService.deleteArticle(seq);
+		}
+		mav.addObject("qs", queryString);
+		mav.setViewName("/page/community/board/modify");
+		return "redirect:/reboard/list.gbg?bcode="+queryString.get("bcode")+"&pg="+1+"&key="+queryString.get("key")+"&word="+queryString.get("word");
+	}
+	
 }

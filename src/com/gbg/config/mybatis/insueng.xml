@@ -65,7 +65,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			) c
 		where rownum &lt;= #{end} 
 		) d
-	where rn &gt; #{start} 
+	where rn &gt;= #{start} 
     </select>
     
     <select id="searchMemberAdmin" parameterType="String" resultType="com.gbg.member.model.UsersDto">

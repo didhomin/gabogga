@@ -19,8 +19,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </insert>
     
     <select id="getArticle" parameterType="int" resultType="boardDto">
-        select b.seq, b.name, b.email, b.subject,
-        b.content, b.hit, b.logtime, b.bcode
+        select b.seq, b.user_id userId, b.bcode, b.name, b.email, 
+        b.subject, b.content, b.hit, b.logtime
         from board b
         where
         b.seq = #{seq}
@@ -37,7 +37,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         from(
         select rownum rn, a.*, (select count(mseq) from memo where seq = a.seq) memocnt
         from(
-        select b.seq, b.user_id, b.bcode, b.name, b.email, b.subject, b.content , b.hit,
+        select b.seq, b.user_id userId, b.bcode, b.name, b.email, 
+        b.subject, b.content , b.hit,
         decode(to_char(sysdate,'yymmdd'), to_char(b.logtime, 'yymmdd'), 
         to_char(b.logtime, 'hh24:mi:ss'), to_char(b.logtime, 'yy.mm.dd')) logtime
         from board b
@@ -57,5 +58,36 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         ) b
         where b.rn &gt; #{start}
     </select>
+    
+    <update id="modifyArticle" parameterType="boardDto">
+        update board
+        set subject = #{subject},
+        content = #{content}
+        where seq = #{seq}
+    </update>
+    
+    <insert id="modifyStopby" parameterType="java.util.Map">
+        insert all
+        <foreach item="item" collection="position">
+            into stopby (seq, step, x, y)
+            values (#{item.seq}, #{item.step}, #{item.x}, #{item.y})
+        </foreach>
+        select * from dual
+    </insert>
+    
+    <delete id="deleteStopby" parameterType="int">
+        delete stopby
+        where seq = #{seq}
+    </delete>
+    
+    <delete id="deleteMemo" parameterType="int">
+        delete memo
+        where seq = #{seq}
+    </delete>
+    
+    <delete id="deleteArticle" parameterType="int">
+        delete board
+        where seq = #{seq}
+    </delete>
     
 </mapper>

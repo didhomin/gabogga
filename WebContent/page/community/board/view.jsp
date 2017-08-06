@@ -40,6 +40,24 @@ $(document).ready(function() {
 		$('#commonForm').attr('action', '${root}/reboard/list.gbg').submit();
 	});
 	
+	$(".modifyBtn").click(function() {
+		$('#bcode').val('${qs.bcode}');
+		$('#pg').val('${qs.pg}');
+		$('#key').val('');
+		$('#word').val('');
+		$('#seq').val('${article.seq}');
+		$('#commonForm').attr('action', '${root}/reboard/modify.gbg').submit();
+	});
+	
+	$(".deleteBtn").click(function() {
+		$('#bcode').val('${qs.bcode}');
+		$('#pg').val('');
+		$('#key').val('');
+		$('#word').val('');
+		$('#seq').val('${article.seq}');
+		$('#commonForm').attr('action', '${root}/reboard/delete.gbg').submit();
+	});
+	
 	$('#memoWriteBtn').click(function() {
 		var content = $.trim($('#mcontent').val());
 		var check = document.memoForm.scheck.checked;
@@ -229,7 +247,7 @@ function makeMemoList(data) {
 					<div class="checkbox">
 					  <label><input type="checkbox" value="" id="scheck" name="scheck">비밀로하기</label>
 					</div>	
-					<button type="button" class="btn btn-warning btn-sm" id="memoWriteBtn">댓글쓰기</button>
+					<button type="button" class="btn btn-primary btn-sm" id="memoWriteBtn">댓글쓰기</button>
 				</div>
 			</div><br>
 			</form>
@@ -245,12 +263,22 @@ function makeMemoList(data) {
 				<div class="col-sm-10">
 					<button type="button" class="btn btn-success btn-sm listArticle">목록</button>
 				</div>
+<c:if test="${user.userId == article.userId}">
+				<div class="col-sm-2 input-group-btn">	
+					<a href="#" class="btn btn-warning btn-sm">
+			          <span class="glyphicon glyphicon-pencil modifyBtn">수정</span>
+			        </a>
+			        <button type="button" class="btn btn-danger btn-sm deleteBtn">삭제</button>
+				</div>
+</c:if>
+<c:if test="${user.userId != article.userId}">
 				<div class="col-sm-2 input-group-btn">	
 					<a href="#" class="btn btn-primary btn-sm">
 			          <span class="glyphicon glyphicon-pencil newBtn">글쓰기</span>
 			        </a>
 			        <button type="button" class="btn btn-info btn-sm replyBtn">답글</button>
 				</div>
+</c:if>
 			</div>
 		</div>
 

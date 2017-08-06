@@ -4,9 +4,7 @@ import com.gbg.host.model.RoomDto;
 
 public class HouseDto extends RoomDto{
 	
-//	private String reservationId;
-//	private int roomId;
-//	private String userId;
+	private String reservationId;
 	private String checkIn;
 	private String checkOut;
 	private String price;
@@ -18,6 +16,13 @@ public class HouseDto extends RoomDto{
 	
 	
 	
+	
+	public String getReservationId() {
+		return reservationId;
+	}
+	public void setReservationId(String reservationId) {
+		this.reservationId = reservationId;
+	}
 	public String getPictureId() {
 		return pictureId;
 	}

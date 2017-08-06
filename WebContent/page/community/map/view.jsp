@@ -31,6 +31,24 @@ $(document).ready(function() {
 		$('#commonForm').attr('action', '${root}/mapboard/list.gbg').submit();
 	});
 	
+	$(".modifyBtn").click(function() {
+		$('#bcode').val('${qs.bcode}');
+		$('#pg').val('${qs.pg}');
+		$('#key').val('');
+		$('#word').val('');
+		$('#seq').val('${article.seq}');
+		$('#commonForm').attr('action', '${root}/mapboard/modify.gbg').submit();
+	});
+	
+	$(".deleteBtn").click(function() {
+		$('#bcode').val('${qs.bcode}');
+		$('#pg').val('');
+		$('#key').val('');
+		$('#word').val('');
+		$('#seq').val('${article.seq}');
+		$('#commonForm').attr('action', '${root}/mapboard/delete.gbg').submit();
+	});
+	
 	$('#memoWriteBtn').click(function() {
 		var content = $.trim($('#mcontent').val());
 		var check = document.memoForm.scheck.checked;
@@ -180,10 +198,10 @@ function makeMemoList(data) {
 <!-- 여기서부터 게시판 메인 꾸미기 -->
 		<div class="col-sm-9 main">			
 			<div class="row">
-				<div class="col-sm-11">
+				<div class="col-sm-10">
 					<button type="button" class="btn btn-success btn-sm listArticle">목록</button>
 				</div>
-				<div class="col-sm-1">	
+				<div class="col-sm-2">	
 					<a href="#" class="btn btn-primary btn-sm">
 			          <span class="glyphicon glyphicon-pencil newBtn">글쓰기</span>
 			        </a>
@@ -228,7 +246,7 @@ function makeMemoList(data) {
 					<div class="checkbox">
 					  <label><input type="checkbox" value="" id="scheck" name="scheck">비밀로하기</label>
 					</div>	
-					<button type="button" class="btn btn-warning btn-sm" id="memoWriteBtn">댓글쓰기</button>
+					<button type="button" class="btn btn-primary btn-sm" id="memoWriteBtn">댓글쓰기</button>
 				</div>
 			</div><br>
 			</form>
@@ -239,18 +257,29 @@ function makeMemoList(data) {
 				<tbody id="memobody"></tbody>
 			</table>
 <!-- 글쓰기, 목록 -->
+로그인 한애 >> ${user.userId}
+글주인 >> ${article.userId}
 			<div class="row">
-				<div class="col-sm-11">
+				<div class="col-sm-10">
 					<button type="button" class="btn btn-success btn-sm listArticle">목록</button>
 				</div>
-				<div class="col-sm-1">	
+<c:if test="${user.userId == article.userId}">
+				<div class="col-sm-2 input-group-btn">	
+					<a href="#" class="btn btn-warning btn-sm">
+			          <span class="glyphicon glyphicon-pencil modifyBtn">수정</span>
+			        </a>
+			        <button type="button" class="btn btn-danger btn-sm deleteBtn">삭제</button>
+				</div>
+</c:if>
+<c:if test="${user.userId != article.userId}">
+				<div class="col-sm-2">	
 					<a href="#" class="btn btn-primary btn-sm">
 			          <span class="glyphicon glyphicon-pencil newBtn">글쓰기</span>
 			        </a>
 				</div>
+</c:if>
 			</div>
 		</div>
-
 	
 	
 	

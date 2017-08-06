@@ -24,6 +24,7 @@ import com.gbg.board.service.BoardService;
 import com.gbg.board.service.CommonService;
 import com.gbg.list.model.ListDto;
 import com.gbg.member.model.QnaDto;
+import com.gbg.member.model.StatisticsDto;
 import com.gbg.member.model.UsersDto;
 import com.gbg.member.service.AdminService;
 
@@ -75,6 +76,7 @@ public class AdminController extends MultiActionController{
 		for(ListDto listDto : list) {
 			JSONObject jsonaddr = new JSONObject();
 			jsonaddr.put("address", listDto.getAddress1());
+			jsonaddr.put("name", listDto.getGname());
 			
 			jarr.add(jsonaddr);
 		}
@@ -84,20 +86,82 @@ public class AdminController extends MultiActionController{
 	}
 	@RequestMapping(value="/gender.gbg")
 	public @ResponseBody String gender() {
-		String man = adminService.man()+"";
-		String woman = adminService.woman()+"";
+		List<StatisticsDto> man = adminService.man();
+		List<StatisticsDto> woman = adminService.woman();
 		
 		JSONObject json = new JSONObject();
-		json.put("woman", woman);
-		json.put("man", man);
+		JSONArray jaman = new JSONArray();
+		JSONArray jawoman = new JSONArray();
+		for(StatisticsDto ssDto : man) {
+			JSONObject jsonaddr = new JSONObject();
+			if(ssDto.getMon().equals("01")) {
+				jsonaddr.put("mon", 1);				
+			} else if(ssDto.getMon().equals("02")) {
+				jsonaddr.put("mon", 2);
+			}else if(ssDto.getMon().equals("03")) {
+				jsonaddr.put("mon", 3);
+			}else if(ssDto.getMon().equals("04")) {
+				jsonaddr.put("mon", 4);
+			}else if(ssDto.getMon().equals("05")) {
+				jsonaddr.put("mon", 5);
+			}else if(ssDto.getMon().equals("06")) {
+				jsonaddr.put("mon", 6);
+			}else if(ssDto.getMon().equals("07")) {
+				jsonaddr.put("mon", 7);
+			}else if(ssDto.getMon().equals("08")) {
+				jsonaddr.put("mon", 8);
+			}else if(ssDto.getMon().equals("09")) {
+				jsonaddr.put("mon", 9);
+			}else if(ssDto.getMon().equals("10")) {
+				jsonaddr.put("mon", 10);
+			}else if(ssDto.getMon().equals("11")) {
+				jsonaddr.put("mon", 11);
+			}else if(ssDto.getMon().equals("12")) {
+				jsonaddr.put("mon", 12);
+			}
+			jsonaddr.put("cnt", ssDto.getCnt());
+			jaman.add(jsonaddr);
+		}
+		for(StatisticsDto ssDto : woman) {
+			JSONObject jsonaddr = new JSONObject();
+			if(ssDto.getMon().equals("01")) {
+				jsonaddr.put("mon", 1);				
+			} else if(ssDto.getMon().equals("02")) {
+				jsonaddr.put("mon", 2);
+			}else if(ssDto.getMon().equals("03")) {
+				jsonaddr.put("mon", 3);
+			}else if(ssDto.getMon().equals("04")) {
+				jsonaddr.put("mon", 4);
+			}else if(ssDto.getMon().equals("05")) {
+				jsonaddr.put("mon", 5);
+			}else if(ssDto.getMon().equals("06")) {
+				jsonaddr.put("mon", 6);
+			}else if(ssDto.getMon().equals("07")) {
+				jsonaddr.put("mon", 7);
+			}else if(ssDto.getMon().equals("08")) {
+				jsonaddr.put("mon", 8);
+			}else if(ssDto.getMon().equals("09")) {
+				jsonaddr.put("mon", 9);
+			}else if(ssDto.getMon().equals("10")) {
+				jsonaddr.put("mon", 10);
+			}else if(ssDto.getMon().equals("11")) {
+				jsonaddr.put("mon", 11);
+			}else if(ssDto.getMon().equals("12")) {
+				jsonaddr.put("mon", 12);
+			}
+			jsonaddr.put("cnt", ssDto.getCnt());
+			jawoman.add(jsonaddr);
+		}
+		json.put("man", jaman);
+		json.put("woman", jawoman);
 		return json.toJSONString();
 	}
 	
 
-/////////////////////////////////////////////////////////////////////////////	
 	@RequestMapping(value="/notice.gbg", method=RequestMethod.GET)
 	public ModelAndView notice(@RequestParam Map<String, String> queryString) {
 		ModelAndView mav = new ModelAndView();
+		
 		List<BoardDto> list = boardService.listArticle(queryString);
 		mav.addObject("noticeList", list);
 		mav.setViewName("/page/member/noticelist");
@@ -113,13 +177,12 @@ public class AdminController extends MultiActionController{
 	public String write(@RequestParam Map<String, String> queryString, BoardDto boardDto, HttpSession session) {
 		UsersDto usersDto = (UsersDto) session.getAttribute("user");
 			if(usersDto!=null) {
-				
-			int seq = commonService.getNextSeq();
-			boardDto.setSeq(seq);
-			boardDto.setUserId(usersDto.getUserId());
-			boardDto.setName(usersDto.getName());
-			boardDto.setEmail(usersDto.getEmail());
-			boardService.writeArticle(boardDto);
+				int seq = commonService.getNextSeq();
+				boardDto.setSeq(seq);
+				boardDto.setUserId(usersDto.getUserId());
+				boardDto.setName(usersDto.getName());
+				boardDto.setEmail(usersDto.getEmail());
+				boardService.writeArticle(boardDto);
 			} 
 		
 		return "redirect:/admin/notice.gbg";
@@ -127,10 +190,11 @@ public class AdminController extends MultiActionController{
 	@RequestMapping("/delete.gbg")
 	public String notidelete(@RequestParam("seq") String valueArr){
 		String notidelete=null;
+		int cnt=0;
 		StringTokenizer st = new StringTokenizer(valueArr, ",");
 		while(st.hasMoreTokens()){
 			notidelete=st.nextToken();
-			boardService.deleteArticle(notidelete);
+			cnt += boardService.deleteArticle(notidelete);
 		}
 		return "redirect:/admin/notice.gbg";
 	}

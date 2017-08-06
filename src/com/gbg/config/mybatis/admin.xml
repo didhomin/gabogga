@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.gbg.member.dao.AdminDao">
     <select id="address" parameterType="String" resultType="ListDto">
-        select address1
+        select address1,name gname
         from guesthouse
         where case	 
         <![CDATA[when address1 < 'ㄱ' then upper(substr(address1, 1, 1))  
@@ -44,15 +44,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		group by guesthouse_id) a on a.guesthouse_id=gh.guesthouse_id
 		order by room_pay
 	</select>
-	<select id="man"  resultType="int">
-		select count(gender)
+	<select id="man"  resultType="com.gbg.member.model.StatisticsDto">
+		select substr(reg_date,4,2) as mon,count(*) cnt
 		from users
 		where gender=1
+		group by substr(reg_date,4,2)
+		order by 1
 	</select>
-	<select id="woman"  resultType="int">
-		select count(gender)
+	<select id="woman"  resultType="com.gbg.member.model.StatisticsDto">
+		select substr(reg_date,4,2) as mon,count(*) cnt
 		from users
 		where gender=2
+		group by substr(reg_date,4,2)
+		order by 1
 	</select>
 	
 	<resultMap id="region" type="java.util.Map">
