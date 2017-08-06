@@ -48,7 +48,6 @@ public class BoardAdminController {
 	
 	@RequestMapping(value="/makecategory.gbg", method=RequestMethod.GET)
 	public String makeCategory(@RequestParam("cname") String cname) {
-		System.out.println("cname >> " + cname);
 		
 		boardAdminService.categoryMake(cname);
 		
@@ -57,7 +56,6 @@ public class BoardAdminController {
 	
 	@RequestMapping(value="/makeboard.gbg", method=RequestMethod.GET)
 	public String makeBoard(BoardListDto boardListDto) {
-		System.out.println("boardListDto >> " + boardListDto.getBname());
 		
 		boardAdminService.boardMake(boardListDto);
 		
