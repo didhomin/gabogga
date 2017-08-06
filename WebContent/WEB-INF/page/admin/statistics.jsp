@@ -19,7 +19,7 @@
 	<button id="aaa"  class="btn btn-default">가입 회원 성별</button>
   </div>
   
-<div class="col-sm-6 col-sm-offset-2"><canvas id="myChart" width="" height=""></canvas></div>
+<!-- <div class="col-sm-6 col-sm-offset-2"></div>
             <div class="col-sm-3" style="padding-top: 30px; padding-left: 10px;">
                 <div class="input-group form-group" >
 	                <div>
@@ -41,39 +41,80 @@
 	        		<input class="btn btn-default btn-block" type="submit"
 											value="조회">
 				</div>
-            </div>
-          
+            </div> -->
+            <canvas id="myChart" width="" height=""></canvas>
 <script>
+var barChartData = {
+        labels: ["1월", "2월", "3월", "4월", "5월", "6월", "7월","8월","9월","10월","11월","12월"]	,
+        datasets: [{
+            label: '남성',
+            backgroundColor:'rgba(54, 162, 235, 0.2)',
+            data: [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+                
+               
+            ]
+        }, {
+            label: '여성',
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            data: [
+            	0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+               
+            ]
+        }]
+		
+    };
 $(document).ready(function() {
-	var ctx = document.getElementById("myChart").getContext('2d');
-	var myChart = new Chart(ctx, {
-	    type: 'bar',
-	    data: {
-	    	labels: ["여성", "남성"],
-	        datasets: [{	
-	            label: '가입 회원 성별',
-	            data: ["", ""],
-	            backgroundColor: [
-	                'rgba(255, 99, 132, 0.2)',
-	                'rgba(54, 162, 235, 0.2)',
-	            ],
-	            borderColor: [
-	                'rgba(255,99,132,1)',
-	                'rgba(54, 162, 235, 1)',
-	            ],
-	            borderWidth: 1
-	        }]
-	    },
-	    options: {
-	        scales: {
-	            yAxes: [{
-	                ticks: {
-	                    beginAtZero:true
-	                }
-	            }]
-	        }
-	    }
-	});
+	var ctx = document.getElementById("myChart").getContext("2d");
+    window.myBar = new Chart(ctx, {
+        type: 'bar',
+        data: barChartData,
+        options: {
+            title:{
+                display:true,
+                text:"남녀 월별 가입 통계"
+            },
+            tooltips: {
+                mode: 'index',
+                intersect: false
+            },
+            responsive: true,
+            scales: {
+                xAxes: [{
+                    stacked: true,
+                }],
+                yAxes: [{
+                    stacked: true
+                }]
+            }
+        }
+    
+    });
+});
+
+
 	$("#aaa").click(function() {
 		$.ajax({
 			method: 'get',
@@ -81,42 +122,43 @@ $(document).ready(function() {
 			data : {},
 			dataType: 'json',
 			success: function(data) {
-				myChart.destroy();
+				window.myBar.destroy();
 				ctx = document.getElementById("myChart").getContext('2d');
-				myChart = new Chart(ctx, {
-				    type: 'bar',
-				    data: {
-				    	labels: ["여성", "남성"],
-				        datasets: [{	
-				            label: '가입 회원 성별',
-				            data: [data.woman, data.man],
-				            backgroundColor: [
-				                'rgba(255, 99, 132, 0.2)',
-				                'rgba(54, 162, 235, 0.2)',
-				            ],
-				            borderColor: [
-				                'rgba(255,99,132,1)',
-				                'rgba(54, 162, 235, 1)',
-				            ],
-				            borderWidth: 1
-				        }]
-				    },
-				    options: {
-				        scales: {
-				            yAxes: [{
-				                ticks: {
-				                    beginAtZero:true
-				                }
-				            }]
-				        }
-				    }
-				});
-					myChart.update();
+				window.myBar = new Chart(ctx, {
+			        type: 'bar',
+			        data: barChartData,
+			        options: {
+			            title:{
+			                display:true,
+			                text:"남녀 월별 가입 통계"
+			            },
+			            tooltips: {
+			                mode: 'index',
+			                intersect: false
+			            },
+			            responsive: true,
+			            scales: {
+			                xAxes: [{
+			                    stacked: true,
+			                }],
+			                yAxes: [{
+			                    stacked: true
+			                }]
+			            }
+			        }
+			    
+			    });
+				for (var i = 0; i <data.man.length; i++) {
+					barChartData.datasets[0].data[data.man[i].mon-1]=data.man[i].cnt;	
+				}
+				for (var i = 0; i <data.woman.length; i++) {
+					barChartData.datasets[1].data[data.woman[i].mon-1]=data.woman[i].cnt;	
+				}
+				window.myBar.update();
 			}
 		});
 	});
 	
-});
 
 
 </script>
