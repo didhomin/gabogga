@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gbg.host.dao.HostDao;
+import com.gbg.host.model.ConvenienceDto;
 import com.gbg.host.model.GuestHouseDto;
 import com.gbg.host.model.RoomDto;
 import com.gbg.house.dao.HouseDao;
@@ -36,7 +37,7 @@ public class HouseServiceImpl implements HouseService {
 	}
 
 	@Override
-	public GuestHouseDto houseInfo(int guesthouseId) {
+	public ConvenienceDto houseInfo(int guesthouseId) {
 		return sqlSession.getMapper(HouseDao.class).houseInfo(guesthouseId);
 	}
 	

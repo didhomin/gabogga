@@ -45,7 +45,6 @@ public class ListController {
 		int ig; //insertgood
 		if(result == null){
 			ig = listService.insertgood(map);
-			System.out.println("ig" + ig);
 		}
 		else {
 			int goodd = -1;

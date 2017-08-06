@@ -55,22 +55,14 @@ public class MapboardController {
 		UsersDto usersDto = (UsersDto) session.getAttribute("user");
 		List<BoardListDto> adminlist = boardAdminService.boardList();
 		mav.addObject("boardmenu", adminlist);
-		//List<StopbyDto> list = mapboardService.listArticle(queryString);
-		//mav.addObject("articleList", list);
 		
 		
-//		for(int i=0; i<stopbyDto.getX().length; i++)
-//			System.out.println("queryString >> " + stopbyDto.getStep()[i] + "   " + stopbyDto.getX()[i] + "    " + stopbyDto.getY()[i]);
-
-		/*x[i]=queryString.get("x");
-		y[i]=queryString.get("y");*/
 		
 		if(usersDto != null) {
 			int seq = commonService.getNextSeq();
 			
 			int len = mapPositionDto.getStep().length;
 			
-//			System.out.println(" >>>>>>>>>>>>>>>>> " + len);
 			List<StopbyDto> slist = new ArrayList<StopbyDto>();
 			for(int i=0;i<len;i++) {
 				StopbyDto stopbyDto = new StopbyDto();

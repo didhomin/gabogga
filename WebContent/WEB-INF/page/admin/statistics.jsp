@@ -14,34 +14,13 @@
 	</h3>
 </div>
   <div align="center">
-	<button id="ccc" class="btn btn-default">지역별 게스트하우스 수</button>
-	<button id="bbb"  class="btn btn-default">월별 예약 수</button>
 	<button id="aaa"  class="btn btn-default">가입 회원 성별</button>
+	<button id="bbb"  class="btn btn-default">월별 예약 수</button>
+	<button id="ccc" class="btn btn-default">지역별 게스트하우스 수</button>
   </div>
   
-<div class="col-sm-6 col-sm-offset-2"><canvas id="myChart" width="" height=""></canvas></div>
-            <div class="col-sm-3" style="padding-top: 30px; padding-left: 10px;">
-                <div class="input-group form-group" >
-	                <div>
-		                <span class="">From</span>
-	                </div>
-	                <div>
-    	       			<input type="date" class="form-control" style="background-color:#fff"/>
-	                </div>
-        		</div>
-              	<div class="input-group form-group">
-					<div>
-	          			<span class="">To</span>
-					</div>
-					<div>
-	           			<input type="date"  class="form-control" style="background-color:#fff"/>
-					</div>
-        		</div>
-        		<div class="input-group form-group col-sm-offset-5">
-	        		<input class="btn btn-default btn-block" type="submit"
-											value="조회">
-				</div>
-            </div>
+<div id="chart" class="col-sm-9 col-sm-offset-1"><canvas id="myChart" width="" height=""></canvas></div>
+         
           
 <script>
 var barChartData = {  
@@ -111,7 +90,7 @@ var lineChartData = {
     };
     
 $(document).ready(function() {
-	 var ctx = document.getElementById("myChart").getContext("2d");
+	  var ctx = document.getElementById("myChart").getContext("2d");
 	    window.myBar = new Chart(ctx, {
 	        type: 'bar',
 	        data: barChartData,
@@ -136,7 +115,7 @@ $(document).ready(function() {
 	        }
 	    
 	    });
-	});
+	}); 
 
 $("#aaa").click(function() {
     $.ajax({
@@ -177,6 +156,7 @@ $("#aaa").click(function() {
           for (var i = 0; i <data.woman.length; i++) {
              barChartData.datasets[1].data[data.woman[i].mon-1]=data.woman[i].cnt;   
           }
+          $('#chart').attr('class','col-sm-9 col-sm-offset-1');
           window.myBar.update();
        }
     });
@@ -221,6 +201,7 @@ $("#aaa").click(function() {
                 for(var i=0;i<data.reservationlist.length;i++) {
                 	lineChartData.datasets[0].data[data.reservationlist[i].month-1]=data.reservationlist[i].count;
                 }
+                $('#chart').attr('class','col-sm-9 col-sm-offset-1');
 				window.myBar.update();
 			}
 		});
@@ -262,6 +243,7 @@ $("#aaa").click(function() {
 				        }]
 				    }
 				});
+				$('#chart').attr('class','col-sm-6 col-sm-offset-3');
 				window.myBar.update();
 			}
 		});
