@@ -17,7 +17,7 @@
 			<br><br><br><br><br>
 			<br><br><br><br><br>
 			<center>
-			커뮤니티 임시 메인 페이지 입니다.
+			커뮤니티 임시 메인 페이지 입니다.<br>
 			여기다가 뭐 넣지...?
 			</center>
 			<br><br><br><br><br>

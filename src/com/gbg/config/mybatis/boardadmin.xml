@@ -14,4 +14,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where bl.ccode = c.ccode 
     </select>
     
+    <select id="categoryList" resultType="categoryDto">
+        select ccode, cname
+        from category
+        order by ccode
+    </select>
+    
+    <select id="boardTypeList" resultType="boardTypeDto">
+        select btype, btype_name btypeName
+        from board_type
+        order by btype
+    </select>
+    
+    <insert id="categoryMake" parameterType="String">
+        insert into category (ccode,cname)
+        values (seq_category_ccode.nextval, #{cname})
+    </insert>
+    
+    <insert id="boardMake" parameterType="boardListDto">
+        insert into board_list (bcode, bname, ccode, btype)
+        values (seq_board_list_bcode.nextval, #{bname}, #{ccode}, #{btype})
+    </insert>
+    
 </mapper>
