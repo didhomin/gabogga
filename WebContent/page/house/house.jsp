@@ -24,6 +24,8 @@ function reservationmodal() {
 	$("#checkOut").val($("#to").val());
 	$("#modalReservation").modal();
 }
+
+
 /* $(document).ready(function() {
 	$("#reservationBtn").on('submit', funtion(e) {
 		 alert("예약되었습니다.");
@@ -55,9 +57,9 @@ function reservationmodal() {
 	  <!-- 2. Add images to <div class="fotorama"></div>. -->
 		<div class='fotorama' data-click='false' data-swipe='false'  data-autoplay="true">
 		  <img src="${root }/upload/${info.picture}">
-		   <c:forEach var="room" items="${room }">
-		            <img src="${root }/upload/${room.picture}">
-		         	 </c:forEach>
+		   <c:forEach var="roominfo" items="${roominfo }">
+		    <img src="${root }/upload/${roominfo.picture}">
+		     </c:forEach>
 		</div>
         <hr>
         <!-- Post Content -->
@@ -85,7 +87,7 @@ function reservationmodal() {
           <h4><label>시설</label></h4>
         </div>
         <div class="col-sm-5">
-          <li>인터넷 : ${info.internet }</li>
+          <li class="internet">인터넷 : ${info.internet }</li>
           <li>주차유무 : ${info.park }</li>
           <hr>
         </div>
@@ -94,13 +96,26 @@ function reservationmodal() {
           <li>반려동물 동반: ${info.pet }</li>
           <hr>
         </div>
+         <div class="col-sm-2">
+          <h4><label>편의시설</label></h4>
+        </div>
+        <div class="col-sm-5">
+          <li>와이파이 : ${info.wifi }</li>
+          <li>샴푸 : ${info.shampo }</li>
+          <hr>
+        </div>
+        <div class="col-sm-5">
+          <li>서랍장 : ${info.drawer }</li>
+          <li>TV: ${info.tv }</li>
+          <hr>
+        </div>
         <div class="col-sm-2">
           <h4><label>가격</label></h4>
         </div>
-        <div class="col-sm-10">
-          <li>가격 : ${info.roomPay }</li>
+         <div class="col-sm-10">
+          <li>기본 가격 : ${info.housePay }</li>
           <hr>
-        </div>
+        </div> 
         <div class = "col-sm-12" style="text-align:center;">
         	<h2> -  소  개  글 - </h2><br>
         	${info.introduce }
@@ -123,8 +138,8 @@ function reservationmodal() {
           <h4>[객실선택]</h4>
           <!-- 	<div class="input-group"> -->
                 <select name="roominfo" id="roominfo" class="form-control" >
-			    <c:forEach var="room" items="${room }">
-		            <option value="${room.roomName }">${room.roomName }</option>
+			    <c:forEach var="roominfo" items="${roominfo }">
+		            <option value="${roominfo.roomName }">${roominfo.roomName }</option>
 		         	 </c:forEach>
 	    		     </select>
           </div>
@@ -132,8 +147,8 @@ function reservationmodal() {
           <h4>[객실인원]</h4>
           <!-- 	<div class="input-group"> -->
             <select name="person" id="person" class="form-control">
-            <c:forEach var="room" items="${room }">
-	            <option value="${room.roomNum }">${room.roomNum }</option>
+            <c:forEach var="roominfo" items="${roominfo }">
+	            <option value="${roominfo.roomNum }">${roominfo.roomName} - 인원(${roominfo.roomNum })</option>
 	             </c:forEach>
 	         </select>
           </div>
