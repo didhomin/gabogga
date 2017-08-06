@@ -11,20 +11,7 @@
 </div>
 <!-- 여기서부터 게시판 메인 꾸미기 -->
 	<div class="col-sm-9 main">			
-		<div class="row">
-		
-			<br><br><br><br><br>
-			<br><br><br><br><br>
-			<br><br><br><br><br>
-			<center>
-			커뮤니티 임시 메인 페이지 입니다.<br>
-			여기다가 뭐 넣지...?
-			</center>
-			<br><br><br><br><br>
-			<br><br><br><br><br>
-			<br><br><br><br><br>
-				
-		</div>
+			<img src="${root}/page/community/communitymain.png" width="100%">	
 	</div>
 	
 	
