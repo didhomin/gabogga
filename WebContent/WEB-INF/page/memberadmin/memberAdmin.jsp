@@ -106,7 +106,7 @@
 						$('#nextpageBtn').click(function () {
 							$('#bcode').val('${qs.bcode}');
 							$('#pg').val('6');
-							//alert("pg "+$(this).text());
+							
 							$('#key').val('${qs.key}');
 							$('#word').val('${qs.word}');
 							$('#commonForm').attr('action','${root}/memberAdmin/list.gbg').submit();

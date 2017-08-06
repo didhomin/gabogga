@@ -34,7 +34,6 @@ public class MemberAdminController {
 	public ModelAndView listMemberAdmin(@RequestParam Map<String, String> queryString ,HttpServletRequest request,HttpSession session){
 		ModelAndView mav = new ModelAndView();
 		List<UsersDto> list = memberAdminService.listMemberAdmin(queryString);
-
 		PageNavigationIn navigationIn = commonPService.makePageNavigation(queryString);
 		navigationIn.setRoot(request.getContextPath());
 		navigationIn.setNavigator();
