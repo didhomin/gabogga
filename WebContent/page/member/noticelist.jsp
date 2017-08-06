@@ -99,12 +99,14 @@ function check() {
 	뭐라고쓰지
 	<hr/>
 	</div>
+			<c:if test="${user.type==2 }">
 			<div class="">
 				<div class="pull-right">
 						<a id="writeBtn" role="button" class="btn btn-default">글쓰기</a>
 						<a class="btn btn-default" role="button" id="noticDelBtn">삭제</a>
 				</div>
 			</div>
+			</c:if>
 			<div class="row">
 			
 				<div class="col-sm-11"></div>

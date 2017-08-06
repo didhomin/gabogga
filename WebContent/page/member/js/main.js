@@ -24,7 +24,7 @@ $(document).ready(function() {
 		for(var i=0;i<zsize;i++) {
 			output += '<tr>';		
 			output += 	'<td class="address">';
-			output += '<span>'+data.ziplist[i].address+'</span>';
+			output += '<span>'+data.ziplist[i].address+"</span><span>("+data.ziplist[i].name+')</span>';
 			output += 	'</td>';		
 			output += '</tr>';
 		}
@@ -34,7 +34,7 @@ $(document).ready(function() {
 		$('#resultaddress').append(output);
 	}
 	$(document).on('click','.address',function() {
-		$('#address').val($(this).children('span').text());
+		$('#address').val($(this).children('span').eq(0).text());
 		$('#resultaddress').empty();
 		$('#resultaddress').hide();
 	});

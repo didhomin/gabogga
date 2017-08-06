@@ -1,6 +1,7 @@
 package com.gbg.member.service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import javax.mail.Address;
@@ -20,6 +21,7 @@ import com.gbg.list.model.ListDto;
 import com.gbg.member.dao.AdminDao;
 import com.gbg.member.mail.SMTPAuthenticatior;
 import com.gbg.member.model.QnaDto;
+import com.gbg.member.model.StatisticsDto;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -86,12 +88,12 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public int man() {
+	public List<StatisticsDto> man() {
 		return sqlSession.getMapper(AdminDao.class).man();
 	}
 
 	@Override
-	public int woman() {
+	public List<StatisticsDto> woman() {
 		return sqlSession.getMapper(AdminDao.class).woman();
 	}
 

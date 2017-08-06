@@ -1,9 +1,11 @@
 package com.gbg.member.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.gbg.list.model.ListDto;
 import com.gbg.member.model.QnaDto;
+import com.gbg.member.model.StatisticsDto;
 
 public interface AdminService {
 
@@ -11,7 +13,7 @@ public interface AdminService {
 	List<ListDto> address(String address);
 	List<ListDto> main();
 	List<ListDto> mainprice();
-	int man();
-	int woman();
+	List<StatisticsDto> man();
+	List<StatisticsDto> woman();
 
 }
