@@ -61,5 +61,10 @@ public class HouseServiceImpl implements HouseService {
 		return sqlSession.getMapper(HouseDao.class).oksign(reservationId);
 	}
 
+	@Override
+	public List<RoomDto> roomInfo(int guesthouseId) {
+		return sqlSession.getMapper(HouseDao.class).roomInfo(guesthouseId);
+	}
+
 
 }

@@ -12,6 +12,7 @@ public interface HouseDao {
 
 	int reservation(HouseDto houseDto);
 	List<RoomDto> room(int guesthouseId);
+	List<RoomDto> roomInfo(int guesthouseId);
 	ConvenienceDto houseInfo(int guesthouseId);
 	int hostInfo(GuestHouseDto guesthouseDto);
 	List<HouseDto> hostreservationinfo(Map<Object, Object> map);

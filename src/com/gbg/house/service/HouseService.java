@@ -14,6 +14,7 @@ public interface HouseService {
 	ConvenienceDto houseInfo(int guesthouseId);
 	int hostInfo(GuestHouseDto guesthouseDto);
 	List<RoomDto> room(int guesthouseId);
+	List<RoomDto> roomInfo(int guesthouseId);
 	List<HouseDto> hostreservationinfo(Map<Object, Object> map);
 	List<HouseDto> userreservationinfo(String userId);
 	HouseDto ghid(String userId);

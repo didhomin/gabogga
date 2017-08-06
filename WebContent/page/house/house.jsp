@@ -16,38 +16,40 @@
 <c:if test="${not empty user }">
 <script type="text/javascript">
 function reservationmodal() {
+	var id =$("select[name=roominfo]").val();
+	var price = $('#'+id).attr('data-price');
+	var id = $('#'+id).attr('data-id');
+	
 	$("#user").val("${user.email}");
 	$("#Tel").val("${user.tel}");
-	$("#Person").val($("#person").val());
-	$("#roomInfo").val($("#roominfo").val());
+	$("#Person").val($("select[name=person]").val());
+	$("#roomInfo").val($("select[name=roominfo]").val());
 	$("#checkIn").val($("#from").val());
 	$("#checkOut").val($("#to").val());
+	$("#price").val(price+'원/1인당');
+	$("#roomId").val(id);
 	$("#modalReservation").modal();
 }
-
-
-/* $(document).ready(function() {
-	$("#reservationBtn").on('submit', funtion(e) {
-		 alert("예약되었습니다.");
-		$(location).attr('href', "${root}/index.jsp"); 
-		if ($('#tel').val()== "") {
-			alert("휴대전화번호를 입력해주세요");
-			return
-		} else {
-			$("#resrervationform").attr('action', '${root}/house/reservation.gbg').submit();
+function select() {
+	var id =$("select[name=roominfo]").val();
+	var cnt = $('#'+id).attr('data-num');
+	
+	
+	var output='';
+		for(var i=1;i<=cnt;i++) {
+	output +='<option value="'+i+'">';
+	output +=i
+	output +='</option>';
 		}
-	});
-});  */
-/* $('#addTag').click(function(e) {
-    e.preventDefault();
-    $('#mymodal').modal();
-}); */
+	$('#person').empty();
+	$('#person').append(output);
+	
+}
+
 
 
 </script>
 </c:if>
-<%-- <input type="hidden" name="roomId" id="roomId" value="${room.roomId }" > --%>
-<!-- <input type="hidden" name="guesthouseId" value="150" id="guesthouseId"> -->
 	<!-- Blog Post Content Column -->
     <div class="col-sm-9">
        <!-- Blog Post -->
@@ -57,7 +59,7 @@ function reservationmodal() {
 	  <!-- 2. Add images to <div class="fotorama"></div>. -->
 		<div class='fotorama' data-click='false' data-swipe='false'  data-autoplay="true">
 		  <img src="${root }/upload/${info.picture}">
-		   <c:forEach var="roominfo" items="${roominfo }">
+		   <c:forEach var="roominfo" items="${room }">
 		    <img src="${root }/upload/${roominfo.picture}">
 		     </c:forEach>
 		</div>
@@ -87,26 +89,97 @@ function reservationmodal() {
           <h4><label>시설</label></h4>
         </div>
         <div class="col-sm-5">
-          <li class="internet">인터넷 : ${info.internet }</li>
-          <li>주차유무 : ${info.park }</li>
+          <li class="internet">인터넷 : 
+          <c:choose>
+          <c:when test="${info.internet eq 1}">
+          	있음
+          </c:when>
+          <c:otherwise>
+          	없음
+          </c:otherwise>
+          </c:choose>
+          </li>
+          <li>주차유무 : 
+          <c:choose>
+          <c:when test="${info.park eq 1}">
+          	가능
+          </c:when>
+          <c:otherwise>
+          	불가능
+          </c:otherwise>
+          </c:choose>
           <hr>
         </div>
         <div class="col-sm-5">
-          <li>어린이 동반 : ${info.child }</li>
-          <li>반려동물 동반: ${info.pet }</li>
+          <li>어린이 동반 : 
+           <c:choose>
+          <c:when test="${info.child eq 1}">
+           	가능
+          </c:when>
+          <c:otherwise>
+          	불가능
+          </c:otherwise>
+          </c:choose>
+          </li>
+          <li>반려동물 동반: 
+          <c:choose>
+          <c:when test="${info.pet eq 1}">
+           	가능
+          </c:when>
+          <c:otherwise>
+          	불가능
+          </c:otherwise>
+          </c:choose>
+          </li>
           <hr>
         </div>
          <div class="col-sm-2">
           <h4><label>편의시설</label></h4>
         </div>
         <div class="col-sm-5">
-          <li>와이파이 : ${info.wifi }</li>
-          <li>샴푸 : ${info.shampo }</li>
+          <li>와이파이 : 
+          <c:choose>
+          <c:when test="${info.wifi eq 1 }">
+          	있음
+          </c:when>
+          <c:otherwise>
+          	없음
+          </c:otherwise>
+          </c:choose>
+          </li>
+          <li>샴푸 : 
+          <c:choose>
+          <c:when test="${info.shampo eq 1 }">
+          	있음
+          </c:when>
+          <c:otherwise>
+          	없음
+          </c:otherwise>
+          </c:choose>
+          </li>
           <hr>
         </div>
         <div class="col-sm-5">
-          <li>서랍장 : ${info.drawer }</li>
-          <li>TV: ${info.tv }</li>
+          <li>서랍장 : 
+          <c:choose>
+          <c:when test="${info.drawer eq 1 }">
+          	있음
+          </c:when>
+          <c:otherwise>
+          	없음
+          </c:otherwise>
+          </c:choose>
+          </li>
+          <li>TV: 
+          <c:choose>
+          <c:when test="${info.tv eq 1 }">
+          	있음
+          </c:when>
+          <c:otherwise>
+          	없음
+          </c:otherwise>
+          </c:choose>
+          </li>
           <hr>
         </div>
         <div class="col-sm-2">
@@ -137,9 +210,12 @@ function reservationmodal() {
          <div class="well" >
           <h4>[객실선택]</h4>
           <!-- 	<div class="input-group"> -->
-                <select name="roominfo" id="roominfo" class="form-control" >
+          <c:forEach var="roominfo" items="${roominfo }">
+			    	<input type="hidden" id="${roominfo.roomName }" value="${roominfo.roomName }" data-id="${roominfo.roomId }"data-num="${roominfo.roomNum }" data-price="${roominfo.roomPay }">
+		         	 </c:forEach>
+                <select name="roominfo" id="roominfo" onchange="select()" class="form-control" >
 			    <c:forEach var="roominfo" items="${roominfo }">
-		            <option value="${roominfo.roomName }">${roominfo.roomName }</option>
+		            <option id="op${roominfo.roomName }" value="${roominfo.roomName }">${roominfo.roomName }</option>
 		         	 </c:forEach>
 	    		     </select>
           </div>
@@ -147,8 +223,12 @@ function reservationmodal() {
           <h4>[객실인원]</h4>
           <!-- 	<div class="input-group"> -->
             <select name="person" id="person" class="form-control">
-            <c:forEach var="roominfo" items="${roominfo }">
-	            <option value="${roominfo.roomNum }">${roominfo.roomName} - 인원(${roominfo.roomNum })</option>
+            <c:forEach var="roominfo" varStatus="cnt" items="${roominfo }">
+            	<c:forEach var="i" begin="1" end="${roominfo.roomNum }" step="1">
+            	<c:if test="${cnt.count eq 1}">
+	            <option value="${roominfo.roomNum }">${i}</option>
+            	</c:if>
+            	</c:forEach>
 	             </c:forEach>
 	         </select>
           </div>

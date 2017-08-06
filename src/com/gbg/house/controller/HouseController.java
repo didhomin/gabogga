@@ -30,9 +30,11 @@ public class HouseController {
 	public ModelAndView room(@RequestParam("guesthouseId") int guesthouseId){
 		ModelAndView mav = new ModelAndView();
 		List<RoomDto> list = houseservice.room(guesthouseId);
+		List<RoomDto> infolist = houseservice.roomInfo(guesthouseId);
 		ConvenienceDto convenienceDto = (ConvenienceDto) houseservice.houseInfo(guesthouseId);
 		mav.addObject("info", convenienceDto);
-		mav.addObject("roominfo",list);
+		mav.addObject("room",list);
+		mav.addObject("roominfo",infolist);
 		mav.setViewName("/page/house/house");
 		/*mav.setViewName("/page/house/reservatiomModal");*/
 		return mav;
@@ -40,14 +42,11 @@ public class HouseController {
 	}
 
 	@RequestMapping(value="/reservation.gbg", method=RequestMethod.POST)
-	public ModelAndView reservation(/*@RequestParam("reservationId") String reservationId,*/
-//									@RequestParam("oksign") String oksign,
-//									@RequestParam("userId") String userId,
-//									@RequestParam("guesthouseId") int guesthouseId,
-									HouseDto houseDto, HttpSession session){
+	public ModelAndView reservation(HouseDto houseDto, HttpSession session){
 		ModelAndView mav = new ModelAndView();
 		UsersDto usersDto = (UsersDto) session.getAttribute("user");
 		if (usersDto != null) {
+			houseDto.setUserId(Integer.parseInt(usersDto.getUserId()));
 			int cnt = houseservice.reservation(houseDto);
 			List<RoomDto> list = houseservice.room(cnt);
 			mav.addObject("house", houseDto);
@@ -61,8 +60,8 @@ public class HouseController {
 	@RequestMapping(value="/userresinfo.gbg", method=RequestMethod.GET)
 	public ModelAndView userreservationinfo(@RequestParam("userId") String userId){
 		ModelAndView mav = new ModelAndView();
-		List<HouseDto> list = houseservice.userreservationinfo(userId);
-		mav.addObject("userresinfo", list);
+		/*List<HouseDto> list = houseservice.userreservationinfo(userId);
+		mav.addObject("userresinfo", list);*/
 		mav.setViewName("/page/house/userresinfo");
 		return mav;
 		

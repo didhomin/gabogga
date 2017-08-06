@@ -19,7 +19,7 @@
       <br> <br> <br> <br>
       <h2>예약 정보</h2>
       <div class="col-sm-6">
-         	게스트 하우스 이름<input class="form-control" type="text" value="${userresinfo.name }" readonly style="background-color:#fff">
+         	게스트 하우스 이름<input class="form-control" type="text" value="" readonly style="background-color:#fff">
       </div>
       <br> <br> <br> <br>
       <div class="col-sm-6">
