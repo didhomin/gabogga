@@ -44,20 +44,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where g.GUESTHOUSE_ID = c.GUESTHOUSE_ID and g.GUESTHOUSE_ID = #{guesthouseId} 
     </select> 
     
-    <select id="userreservationinfo" parameterType="String" resultType="houseDto">
+    <select id="userreservationinfo" parameterType="java.util.Map" resultType="houseDto">
         select r.room_type roomType, r.room_name roomName,r.bed_type bedType,
         g.name, g.address1, g.address2, g.phone, g.lat, g.lng, g.checkin_start checkinStart, g.checkin_end checkinend, 
         g.checkout_start checkoutStart, g.checkout_end checkoutend, g.internet, g.park, g.child, g.pet, 
         g.room_pay roomPay, g.introduce,
         res.CHECKIN, res.CHECKOUT,
-        decode(to_char(res.RESERVATION_DATE, 'yymmdd'), 
-        to_char(sysdate, 'yymmdd'), to_char(res.RESERVATION_DATE, 'hh24:mi:ss'), 
-        to_char(res.RESERVATION_DATE, 'yy.mm.dd')) 
-        reservationDate, res.PERSON, res.OKSIGN
+        to_char(res.RESERVATION_DATE,'yyyy-mm-dd') reservationDate, res.PERSON, res.OKSIGN
         FROM GUESTHOUSE g, room r, reservation res
         where g.guesthouse_Id= r.guesthouse_Id
         and r.ROOM_ID = res.room_ID
-        and res.USER_ID=#{uesrId}
+        and res.USER_ID=#{userId}
+        <if test="from!='' and to!=''">
+            and to_char(checkin,'yyyy/mm/dd') &gt;=#{from} and to_char(checkout,'yyyy/mm/dd') &lt;=#{to}
+        </if> 
         ORDER BY res.RESERVATION_ID
     </select>  
     
@@ -69,10 +69,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         g.checkout_start checkoutStart, g.checkout_end checkoutend, g.internet, g.park, g.child, g.pet, 
         g.room_pay roomPay, g.introduce,
         res.RESERVATION_ID reservationId, res.user_id, res.ROOM_ID,  res.CHECKIN, res.CHECKOUT, res.PRICE, 
-        decode(to_char(res.RESERVATION_DATE, 'yymmdd'),
-        to_char(sysdate, 'yymmdd'), to_char(res.RESERVATION_DATE, 'hh24:mi:ss'), 
-        to_char(res.RESERVATION_DATE, 'yy.mm.dd hh24:mi:ss')) 
-        reservationDate, res.PERSON, res.OKSIGN,  u.email email,u.name username 
+        to_char(res.RESERVATION_DATE,'yyyy-mm-dd') reservationDate, res.PERSON, res.OKSIGN,  u.email email,u.name username 
         FROM GUESTHOUSE g, room r, reservation res,users u
         where g.guesthouse_Id= r.guesthouse_Id
         and r.ROOM_ID = res.room_ID
@@ -80,7 +77,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         and res.USER_ID=#{userId}
         and g.GUESTHOUSE_ID=#{guesthouseId}
         <if test="from!='' and to!=''">
-            and checkin &gt;=#{from} and checkout &lt;=#{to}
+            and to_char(checkin,'yyyy/mm/dd') &gt;=#{from} and to_char(checkout,'yyyy/mm/dd') &lt;=#{to}
         </if> 
         ORDER BY res.RESERVATION_ID desc
     </select>  

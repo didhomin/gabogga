@@ -52,12 +52,24 @@ public class HouseController {
 	}
 
 	@RequestMapping(value="/userresinfo.gbg", method=RequestMethod.GET)
-	public ModelAndView userreservationinfo(HttpSession session){
+	public ModelAndView userreservationinfo(@RequestParam(value="from",defaultValue="0000-00-00" ) String from,@RequestParam(value="to",defaultValue="9999-99-99") String to,HttpSession session){
 		ModelAndView mav = new ModelAndView();
 		UsersDto usersDto = (UsersDto) session.getAttribute("user");
-		List<HouseDto> list = houseservice.userreservationinfo(usersDto.getUserId());
-		mav.addObject("relist", list);
-		mav.setViewName("/page/house/reservationinfo");
+		if(usersDto !=null) {
+			Map<String,String> map = new HashMap<String,String>();
+			String fromArr[] =from.split("-");
+			String fromformat= fromArr[0]+"/"+fromArr[1]+"/"+fromArr[2];
+			String toArr[] =to.split("-");
+			String toformat= toArr[0]+"/"+toArr[1]+"/"+toArr[2];
+			map.put("from", fromformat);
+			map.put("to", toformat);
+			map.put("userId", usersDto.getUserId());
+			List<HouseDto> list = houseservice.userreservationinfo(map);
+			mav.addObject("relist", list);
+			mav.setViewName("/page/house/reservationinfo");
+		} else {
+			mav.setViewName("/index");
+		}    
 		return mav;
 		
 	}

@@ -164,13 +164,13 @@ public class AdminController extends MultiActionController{
 		
 		List<BoardDto> list = boardService.listArticle(queryString);
 		mav.addObject("noticeList", list);
-		mav.setViewName("/page/member/noticelist");
+		mav.setViewName("/WEB-INF/page/admin/noticelist");
 		return mav;
 	}
 
 	@RequestMapping(value="/write.gbg", method=RequestMethod.GET)
 	public String write() {
-		return "/page/member/noticewrite";
+		return "/WEB-INF/page/admin/noticewrite";
 	}
 	
 	@RequestMapping(value="/write.gbg", method=RequestMethod.POST)

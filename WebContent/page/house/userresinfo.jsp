@@ -3,7 +3,33 @@
 
 <!-- 헤더 -->
 <%@ include file="/page/template/header.jsp"%>
-
+<div class="jumbotron" style="">
+	<h3>
+		예약관리
+	</h3>
+</div>
+<div class="row">
+	<div class="input-group-sm" align="right">
+		<form class="form-inline" role="form" name="searchForm" method="get">
+        <div class="form-group input-group-sm">
+        	 <span class="">From</span>
+          <input id="from" type="date" class="form-control" style="background-color:#fff"/>
+        </div>
+        <div class="form-group input-group-sm">
+          	<span class="">To</span>
+	      	<input id="to" type="date"  class="form-control" style="background-color:#fff"/>
+        </div>
+      	<div class="form-group input-group-sm">
+        </div>
+        <div class="form-group input-group-sm">
+      		 <a href="#" id="search" class="btn btn-info">
+             	<span class="glyphicon glyphicon-search"></span> Search 
+             </a>
+             
+        </div>
+		</form>
+	</div>
+</div>     
 
 <div class="row">
    <h2>예약자 정보</h2>

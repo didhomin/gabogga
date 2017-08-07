@@ -178,6 +178,10 @@ DROP TABLE house_picture
 DROP TABLE house_check 
 	CASCADE CONSTRAINTS;
 
+/* 새 테이블 */
+DROP TABLE room_reservation 
+	CASCADE CONSTRAINTS;
+
 /* guesthouse */
 CREATE TABLE guesthouse (
 	guesthouse_id NUMBER NOT NULL, /* guesthouse_id */
@@ -203,7 +207,11 @@ CREATE TABLE guesthouse (
 	picture CLOB /* picture */
 );
 
+COMMENT ON TABLE guesthouse IS 'guesthouse';
+
 COMMENT ON COLUMN guesthouse.guesthouse_id IS '숙박시설 고유번호';
+
+COMMENT ON COLUMN guesthouse.user_id IS '회원 고유 번호';
 
 COMMENT ON COLUMN guesthouse.name IS '숙박 시설 이름';
 
@@ -268,6 +276,8 @@ CREATE TABLE room (
 	bed_capacity NUMBER /* bed_capacity */
 );
 
+COMMENT ON TABLE room IS 'room';
+
 COMMENT ON COLUMN room.room_id IS '객실 고유번호';
 
 COMMENT ON COLUMN room.guesthouse_id IS '숙박시설 고유번호';
@@ -313,6 +323,8 @@ CREATE TABLE convenience (
 	hair_dry NUMBER /* hair_dry */
 );
 
+COMMENT ON TABLE convenience IS 'convenience';
+
 COMMENT ON COLUMN convenience.guesthouse_id IS '숙박시설 고유번호';
 
 COMMENT ON COLUMN convenience.essential IS '필수품목';
@@ -343,7 +355,11 @@ CREATE TABLE room_picture (
 	guesthouse_id NUMBER /* 새 컬럼 */
 );
 
+COMMENT ON TABLE room_picture IS 'room_picture';
+
 COMMENT ON COLUMN room_picture.picture_id IS '사진 번호';
+
+COMMENT ON COLUMN room_picture.room_id IS '객실 고유번호';
 
 COMMENT ON COLUMN room_picture.picture IS '숙소사진';
 
@@ -366,17 +382,21 @@ CREATE TABLE reservation (
 	reservation_id NUMBER NOT NULL, /* reservation_id */
 	user_id NUMBER, /* user_id */
 	room_id NUMBER, /* room_id */
-	checkin VARCHAR2(30), /* checkin */
-	checkout VARCHAR2(30), /* checkout */
+	checkin DATE, /* checkin */
+	checkout DATE, /* checkout */
 	price VARCHAR2(30), /* price */
 	reservation_date DATE, /* reservation_date */
 	person NUMBER, /* person */
 	oksign VARCHAR2(30) /* oksign */
 );
 
+COMMENT ON TABLE reservation IS 'reservation';
+
 COMMENT ON COLUMN reservation.reservation_id IS '예약 고유 번호';
 
 COMMENT ON COLUMN reservation.user_id IS '회원 고유 번호';
+
+COMMENT ON COLUMN reservation.room_id IS '객실 고유 번호';
 
 COMMENT ON COLUMN reservation.checkin IS '체크인';
 
@@ -414,6 +434,8 @@ CREATE TABLE users (
 	reg_date DATE, /* reg_date */
 	state number(1) /* state */
 );
+
+COMMENT ON TABLE users IS 'users';
 
 COMMENT ON COLUMN users.user_id IS '회원 고유번호';
 
@@ -454,6 +476,8 @@ CREATE TABLE reply (
 	content varchar2(3000) /* content */
 );
 
+COMMENT ON TABLE reply IS 'reply';
+
 COMMENT ON COLUMN reply.reply_id IS '리뷰 댓글 고유번호';
 
 COMMENT ON COLUMN reply.guesthouse_id IS '객실 고유번호';
@@ -489,9 +513,25 @@ CREATE TABLE board (
 	logtime DATE /* logtime */
 );
 
+COMMENT ON TABLE board IS 'board';
+
 COMMENT ON COLUMN board.seq IS '글번호';
 
+COMMENT ON COLUMN board.user_id IS '회원 고유번호';
+
+COMMENT ON COLUMN board.bcode IS '게시판 번호';
+
 COMMENT ON COLUMN board.name IS '작성자이름';
+
+COMMENT ON COLUMN board.email IS '이메일';
+
+COMMENT ON COLUMN board.subject IS '제목';
+
+COMMENT ON COLUMN board.content IS '내용';
+
+COMMENT ON COLUMN board.hit IS '조회수';
+
+COMMENT ON COLUMN board.logtime IS '작성일';
 
 CREATE UNIQUE INDEX PK_board
 	ON board (
@@ -510,6 +550,12 @@ CREATE TABLE board_type (
 	btype NUMBER NOT NULL, /* btype */
 	btype_name VARCHAR2(100) /* btype_name */
 );
+
+COMMENT ON TABLE board_type IS 'board_type';
+
+COMMENT ON COLUMN board_type.btype IS '게시판형식번호';
+
+COMMENT ON COLUMN board_type.btype_name IS '게시판형식이름';
 
 CREATE UNIQUE INDEX PK_board_type
 	ON board_type (
@@ -531,6 +577,16 @@ CREATE TABLE board_list (
 	ccode NUMBER /* ccode */
 );
 
+COMMENT ON TABLE board_list IS 'board_list';
+
+COMMENT ON COLUMN board_list.bcode IS '게시판번호';
+
+COMMENT ON COLUMN board_list.bname IS '게시판이름';
+
+COMMENT ON COLUMN board_list.btype IS '게시판형식번호';
+
+COMMENT ON COLUMN board_list.ccode IS '카테고리번호';
+
 CREATE UNIQUE INDEX PK_board_list
 	ON board_list (
 		bcode ASC
@@ -548,6 +604,12 @@ CREATE TABLE category (
 	ccode NUMBER NOT NULL, /* ccode */
 	cname VARCHAR(100) /* cname */
 );
+
+COMMENT ON TABLE category IS 'category';
+
+COMMENT ON COLUMN category.ccode IS '카테고리번호';
+
+COMMENT ON COLUMN category.cname IS '카테고리이름';
 
 CREATE UNIQUE INDEX PK_category
 	ON category (
@@ -572,6 +634,22 @@ CREATE TABLE reboard (
 	reply NUMBER /* reply */
 );
 
+COMMENT ON TABLE reboard IS 'reboard';
+
+COMMENT ON COLUMN reboard.rseq IS '답글 고유 번호';
+
+COMMENT ON COLUMN reboard.seq IS '글번호';
+
+COMMENT ON COLUMN reboard.ref IS '그룹번호';
+
+COMMENT ON COLUMN reboard.lev IS '답변정렬';
+
+COMMENT ON COLUMN reboard.step IS '들여쓰기';
+
+COMMENT ON COLUMN reboard.pseq IS '원글번호';
+
+COMMENT ON COLUMN reboard.reply IS '답글수';
+
 CREATE UNIQUE INDEX PK_reboard
 	ON reboard (
 		rseq ASC
@@ -593,6 +671,20 @@ CREATE TABLE album (
 	savefolder VARCHAR2(30), /* savefolder */
 	type NUMBER(1) /* type */
 );
+
+COMMENT ON TABLE album IS 'album';
+
+COMMENT ON COLUMN album.aseq IS 'aseq';
+
+COMMENT ON COLUMN album.seq IS 'seq';
+
+COMMENT ON COLUMN album.origin_picture IS 'origin_picture';
+
+COMMENT ON COLUMN album.save_picture IS 'save_picture';
+
+COMMENT ON COLUMN album.savefolder IS 'savefolder';
+
+COMMENT ON COLUMN album.type IS 'type';
 
 CREATE UNIQUE INDEX PK_album
 	ON album (
@@ -617,6 +709,22 @@ CREATE TABLE memo (
 	secret NUMBER /* secret */
 );
 
+COMMENT ON TABLE memo IS 'memo';
+
+COMMENT ON COLUMN memo.mseq IS 'mseq';
+
+COMMENT ON COLUMN memo.seq IS 'seq';
+
+COMMENT ON COLUMN memo.user_id IS 'user_id';
+
+COMMENT ON COLUMN memo.name IS 'name';
+
+COMMENT ON COLUMN memo.mcontent IS 'mcontent';
+
+COMMENT ON COLUMN memo.mtime IS 'mtime';
+
+COMMENT ON COLUMN memo.secret IS 'secret';
+
 CREATE UNIQUE INDEX PK_memo
 	ON memo (
 		mseq ASC
@@ -637,6 +745,8 @@ CREATE TABLE stopby (
 	y VARCHAR2(50) /* loc_y */
 );
 
+COMMENT ON TABLE stopby IS 'stopby';
+
 COMMENT ON COLUMN stopby.seq IS '글번호';
 
 COMMENT ON COLUMN stopby.step IS '경유지순서';
@@ -653,7 +763,11 @@ CREATE TABLE house_picture (
 	guesthouse_id NUMBER /* guesthouse_id */
 );
 
+COMMENT ON TABLE house_picture IS 'room_picture2';
+
 COMMENT ON COLUMN house_picture.house_id IS '사진 번호';
+
+COMMENT ON COLUMN house_picture.room_id IS 'room_id';
 
 COMMENT ON COLUMN house_picture.picture IS '숙소사진';
 
@@ -678,12 +792,28 @@ CREATE TABLE house_check (
 	GOOD_OR_BAD NUMBER(1) NOT NULL /* good_or_bad */
 );
 
+COMMENT ON TABLE house_check IS 'house_check';
+
 COMMENT ON COLUMN house_check.guesthouse_id IS '숙박시설 고유번호';
 
 COMMENT ON COLUMN house_check.user_id IS '회원 고유번호';
 
 COMMENT ON COLUMN house_check.GOOD_OR_BAD IS '좋아요/싫어요';
 
+/* 새 테이블 */
+CREATE TABLE room_reservation (
+	room_id NUMBER, /* reservation_id */
+	date DATE, /* 새 컬럼 */
+	person NUMBER /* 새 컬럼2 */
+);
+
+COMMENT ON TABLE room_reservation IS '새 테이블';
+
+COMMENT ON COLUMN room_reservation.room_id IS '객실 고유 번호';
+
+COMMENT ON COLUMN room_reservation.date IS '날짜';
+
+COMMENT ON COLUMN room_reservation.person IS '인원';
 DROP SEQUENCE SEQ_USERS_USERS_ID;
 CREATE SEQUENCE SEQ_USERS_USERS_ID start with 100;
 

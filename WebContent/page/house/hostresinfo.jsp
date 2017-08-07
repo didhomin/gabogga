@@ -65,12 +65,12 @@ $(document).ready(function(){
 	}); 
 });
 </script>
-   <div class="jumbotron" style="">
+<div class="jumbotron" style="">
 	<h3>
 		예약관리
 	</h3>
 </div>
-<div class="row">
+<div class="row col-sm-12">
 	<div class="input-group-sm" align="right">
 		<form class="form-inline" role="form" name="searchForm" method="get">
         <div class="form-group input-group-sm">

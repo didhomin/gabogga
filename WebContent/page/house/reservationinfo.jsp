@@ -15,21 +15,87 @@
 <!-- 16 KB -->
 <script
 	src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
-
+<script type="text/javascript">
+$(document).ready(function(){
+   $(document).on('click', '#search', function(){
+	   if($('#from').val()=='') {
+		   var from='0000-00-00';
+	   } else {
+			var from = $('#from').val();
+	   }
+	   if($('#to').val()=='') {
+			var to='9999-99-99';
+	   } else {
+			var to = $('#to').val();
+	   }
+		document.location.href="${root}/house/userresinfo.gbg?from="+from+"&to="+to;
+   });   
+});
+</script>
 <c:if test="${not empty user }">
+<div class="jumbotron" style="">
+	<h3>
+		예약관리
+	</h3>
+</div>
+<div class="row col-sm-12">
+	<div class="input-group-sm" align="right">
+		<form class="form-inline" role="form" name="searchForm" method="get">
+        <div class="form-group input-group-sm">
+        	 <span class="">From</span>
+          <input id="from" type="date" class="form-control" style="background-color:#fff"/>
+        </div>
+        <div class="form-group input-group-sm">
+          	<span class="">To</span>
+	      	<input id="to" type="date"  class="form-control" style="background-color:#fff"/>
+        </div>
+      	<div class="form-group input-group-sm">
+        </div>
+        <div class="form-group input-group-sm">
+      		 <a href="#" id="search" class="btn btn-info">
+             	<span class="glyphicon glyphicon-search"></span> Search 
+             </a>
+             
+        </div>
+		</form>
+	</div>
+</div>     
 	<input type="hidden" name="userId" value="${user.userId }" id="userId">
 	<div class="container-fluid">
-		<div class="row">
+		<div class="row" style="">
 			<div class="col-md-12">
-
+				<div class="row" align="center" style="font-size: 20px; padding-top: 20px; padding-bottom: 20px;">
+					<div class="col-sm-2 col-sm-offset-1" style="padding-left: 40px;">게스트하우스</div>
+						<div class="col-sm-9">
+							<div class="col-sm-2">체크인</div>
+							<div class="col-sm-2">체크아웃</div>
+							<div class="col-sm-2">예약인원</div>
+							<div class="col-sm-2">예약상태</div>
+							<div class="col-sm-2" style="padding-right: 40px;">예약날짜</div>
+						</div>
+				</div>  
 				<c:forEach var="re" items="${relist }" varStatus="i">
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<a class="panel-title" data-toggle="collapse"
 								data-parent="#panel-${i.count }"
-								href="#panel-element-${i.count }">${re.name }
-								체크인:${re.checkIn } 체크아웃:${re.checkOut } 예약인원: ${re.person }
-								예약상태: ${re.oksign } 예약날짜: ${re.reservationDate }</a>
+								href="#panel-element-${i.count }">
+							<div class="row" align="center">
+								<div class="col-sm-2 col-sm-offset-1">${re.name }</div>
+								<div class="col-sm-9">
+									<div class="col-sm-2">${re.checkIn }</div>
+									<div class="col-sm-2">${re.checkOut }</div>
+									<div class="col-sm-2">${re.person }</div>
+									<div class="col-sm-2">
+										<c:choose>
+											<c:when test="${re.oksign eq 0}">대기	</c:when>
+											<c:when test="${re.oksign eq 1}">승인</c:when>
+											<c:when test="${re.oksign eq 2}">거절</c:when>
+										</c:choose></div>
+									<div class="col-sm-2">${re.reservationDate }</div>
+								</div>
+							</div>
+								</a>
 						</div>
 						<div id="panel-element-${i.count }"
 							class="panel-collapse collapse">
@@ -56,11 +122,6 @@
 									<hr>
 								</div>
 
-								<%-- <div class="col-sm-2">
-									<h4>
-										<label>시설</label>
-									</h4>
-								</div>
 								<div class="col-sm-5">
 									<li class="internet">인터넷 : <c:choose>
 											<c:when test="${re.internet eq 1}">
@@ -103,53 +164,6 @@
 									<hr>
 								</div>
 								
-								<div class="col-sm-2">
-									<h4>
-										<label>편의시설</label>
-									</h4>
-								</div>
-								<div class="col-sm-5">
-									<li>와이파이 : <c:choose>
-											<c:when test="${re.wifi eq 1 }">
-									          	있음
-									          </c:when>
-											<c:otherwise>
-									          	없음
-									          </c:otherwise>
-										</c:choose>
-									</li>
-									<li>샴푸 : <c:choose>
-											<c:when test="${re.shampo eq 1 }">
-									          	있음
-									          </c:when>
-											<c:otherwise>
-									          	없음
-									          </c:otherwise>
-										</c:choose>
-									</li>
-									<hr>
-								</div>
-								<div class="col-sm-5">
-									<li>서랍장 : <c:choose>
-											<c:when test="${re.drawer eq 1 }">
-									          	있음
-									          </c:when>
-											<c:otherwise>
-									          	없음
-									          </c:otherwise>
-										</c:choose>
-									</li>
-									<li>TV: <c:choose>
-											<c:when test="${re.tv eq 1 }">
-									          	있음
-									          </c:when>
-											<c:otherwise>
-									          	없음
-									          </c:otherwise>
-										</c:choose>
-									</li>
-									<hr>
-								</div> --%>
 								
 							</div>
 						</div>

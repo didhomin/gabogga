@@ -52,8 +52,8 @@ public class HouseServiceImpl implements HouseService {
 	}
 	
 	@Override
-	public List<HouseDto> userreservationinfo(String userId) {
-		return sqlSession.getMapper(HouseDao.class).userreservationinfo(userId);
+	public List<HouseDto> userreservationinfo(Map<String, String> map) {
+		return sqlSession.getMapper(HouseDao.class).userreservationinfo(map);
 	}
 
 	@Override
