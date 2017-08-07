@@ -363,7 +363,7 @@ function makeMemoList(data) {
           <h4>[객실선택]</h4>
           <!-- 	<div class="input-group"> -->
           <c:forEach var="roominfo" items="${roominfo }">
-			    	<input type="hidden" id="${roominfo.roomName }" value="${roominfo.roomName }" data-id="${roominfo.roomId }"data-num="${roominfo.roomNum }" data-price="${roominfo.roomPay }">
+			    	<input type="hidden" id="${roominfo.roomName }" value="${roominfo.roomName }" data-id="${roominfo.roomId }"data-num="${roominfo.bedCapacity }" data-price="${roominfo.roomPay }">
 		         	 </c:forEach>
                 <select name="roominfo" id="roominfo" onchange="select()" class="form-control" >
 			    <c:forEach var="roominfo" items="${roominfo }">
@@ -376,7 +376,7 @@ function makeMemoList(data) {
           <!-- 	<div class="input-group"> -->
             <select name="person" id="person" class="form-control">
             <c:forEach var="roominfo" varStatus="cnt" items="${roominfo }">
-            	<c:forEach var="i" begin="1" end="${roominfo.roomNum }" step="1">
+            	<c:forEach var="i" begin="1" end="${roominfo.bedCapacity }" step="1">
             	<c:if test="${cnt.count eq 1}">
 	            <option value="${i }">${i}</option>
             	</c:if>
