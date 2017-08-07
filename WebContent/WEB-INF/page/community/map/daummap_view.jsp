@@ -46,10 +46,6 @@ window.onload = function() {
 	<c:forEach var="stopby" items="${stopbyXY}">
 		searchAddress("${stopby.y}", "${stopby.x}", "${stopby.step}");
 	</c:forEach>
-	/* searchAddress(35.179820052333426, 129.07508749216157, 0);
-	searchAddress(33.48891070818818, 126.4982334867384, 1);
-	searchAddress(35.82407315091001, 127.14814380062145, 2);
-	searchAddress(35.8562220628394, 129.2247818137997, 3); */
 }
 
 function searchAddress(y, x, step) {
