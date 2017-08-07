@@ -6,6 +6,7 @@
 <!-- 여기서부터 우리가 꾸미기 -->
   	<%@ include file="/page/template/header.jsp" %>
  	<%@ include file="/page/house/reservationModal.jsp" %>
+
   
   	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
   	<link rel='stylesheet prefetch' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
@@ -46,8 +47,128 @@ function select() {
 	
 }
 
+/* 여기서 부터 댓글 */
+$(document).ready(function() {
+$('#memoWriteBtn').click(function() {
+		var content = $.trim($('#mcontent').val());
+		
+		if(content != '') {
+			$.ajax({
+				type : 'POST', //get이냐 post냐
+				dataType : 'json',//넘어오는 datatype
+				url : '${root}/memo/write.gbg',//어디로 넘어갈껀지
+				data : {'seq' : '${info.guesthouseId}', 'mcontent' : content},//호출할 data
+				success : function(data) {
+					$('#mcontent').val('');
+					makeMemoList(data);
+				}//callback 설정 성공시? 에러시?(에러는 걍 안함)
+			}); //ajax 쓰겟다.
+		}
+	});
+	
+	$(document).on('click', '.memoModifyViewBtn', function() { //click되는 시점에서의  document
+		$('#modifyDiv'+$(this).attr('data-mseq')).css('display', '');
+	});
+	
+	$(document).on('click', '.memoModifyBtn', function() { //click되는 시점에서의  document
+		var mseq = $(this).attr('data-mseq');
+		var content = $.trim($('#mcontent' + mseq).val());
+		if(content != '') {
+			$.ajax({
+				type : 'POST', //get이냐 post냐
+				dataType : 'json',//넘어오는 datatype
+				url : '${root}/memo/modify.gbg',//어디로 넘어갈껀지
+				data : {'mseq' : mseq, 'mcontent' : content, 'seq' : '${info.guesthouseId}'},//호출할 data
+				success : function(data) {
+					//$('#mcontent').val('');
+					makeMemoList(data);
+				}//callback 설정 성공시? 에러시?(에러는 걍 안함)
+			}); //ajax 쓰겟다.
+		}
+	});
+	
+	$(document).on('click', '.memoCancelBtn', function() { //click되는 시점에서의  document
+		$('#modifyDiv'+$(this).attr('data-mseq')).css('display', 'none');
+	});
+	
+	$(document).on('click', '.memoDeleteBtn', function() { //click되는 시점에서의  document
+		var mseq = $(this).attr('data-mseq');
+		$.ajax({
+			type : 'GET', //get이냐 post냐
+			dataType : 'json',//넘어오는 datatype
+			url : '${root}/memo/delete.gbg',//어디로 넘어갈껀지
+			data : {'mseq' : mseq, 'seq' : '${info.guesthouseId}'},//호출할 data
+			success : function(data) {
+				//$('#mcontent').val('');
+				makeMemoList(data);
+			}//callback 설정 성공시? 에러시?(에러는 걍 안함)
+		}); //ajax 쓰겟다.
+	});
+});	
 
+$.ajax({
+	type : 'GET', //get이냐 post냐
+	dataType : 'json',//넘어오는 datatype
+	url : '${root}/memo/list.gbg',//어디로 넘어갈껀지
+	data : {'seq' : '${info.guesthouseId}'},//호출할 data
+	success : function(data) {
+		makeMemoList(data);
+	}//callback 설정 성공시? 에러시?(에러는 걍 안함)
+}); //ajax 쓰겟다.
 
+function makeMemoList(data) {
+	var output = '';
+	var len = data.memolist.length;
+	for(var i=0; i<len; i++) {
+		output += '<tr>';
+		output += '	<td>';
+		output += '		<table>';
+		output += '			<tr>';
+		output += '				<td width="20%"><b>'+ data.memolist[i].name +'</b>&nbsp;&nbsp;</td>';
+		output += '    			<td width="20%">'+ data.memolist[i].mtime +'</td>';
+		output += '    			<td width="50%"></td>';
+		output += '   			<td class="pull-right">';
+		if('${user.userId}' == data.memolist[i].userId) {
+		output += '        			<a href="#" class="memoModifyViewBtn" data-mseq="'+ data.memolist[i].mseq +'">수정</a>&nbsp;&nbsp;';
+		output += '        			<a href="#" class="memoDeleteBtn" data-mseq="'+ data.memolist[i].mseq +'">삭제</a>';
+		}
+		output += '    			</td>';
+		output += '			</tr>';
+		output += '			<tr>';
+		output += '				<td colspan="4" class="viewcontent">';
+		output += '				<br>';
+		output += ''+ data.memolist[i].mcontent +'';
+		output += '				</td>';
+		output += '			</tr>';
+		output += '		</table>';
+		output += '	</td>';
+		output += '</tr>';
+		output += '<tr>';
+		output += '	<td>';
+		output += '	<div id="modifyDiv'+ data.memolist[i].mseq +'" style="display: none;">';
+		output += '		<div class="row input-group-form">';
+		output += '			<div class="row col-sm-1">&nbsp&nbsp&nbsp&nbsp&nbsp';
+		output += '				<span class="glyphicon glyphicon-arrow-right"></span>';
+		output += '			</div>';
+		output += '			<div class="col-sm-9">';
+		output += '				<textarea class="form-control" rows="3" name="mcontent" id="mcontent'+ data.memolist[i].mseq +'">';
+		output += ''+ data.memolist[i].mcontent +'</textarea>';
+		output += '			</div>';
+		output += '			<div class="col-sm-2">';
+		output += '				<div>';
+		output += '				  <label></label>';
+		output += '				</div>';	
+		output += '				<button type="button" class="btn btn-warning btn-sm memoModifyBtn" data-mseq="'+ data.memolist[i].mseq +'">수정</button>';
+		output += '				<button type="button" class="btn btn-danger btn-sm memoCancelBtn" data-mseq="'+ data.memolist[i].mseq +'">취소</button>';
+		output += '			</div>';
+		output += '		</div><br>';
+		output += '	</div>';
+		output += '	</td>';
+		output += '</tr>';
+	}
+	$('#memobody').empty();
+	$('#memobody').append(output);
+}
 </script>
 </c:if>
 	<!-- Blog Post Content Column -->
@@ -193,11 +314,40 @@ function select() {
         	<h2> -  소  개  글 - </h2><br>
         	${info.introduce }
         </div>
+        <br><hr>
+        
+        <!-- 여기서 부터 댓글 서비스 --> 
         <hr>
-		<!-- 라이브리 시티 설치 코드 -->
+        <div class="col-sm-2">
+          <h4>댓글</h4>
+        </div>
+        <form name="memoForm" id="memoForm" action="">
+				<input type="hidden" id="seq" name="seq">
+			<div class="row input-group-form">
+				<div class="col-sm-10">
+					<textarea class="form-control" rows="3" name="mcontent" id="mcontent"></textarea>
+				</div>
+				<div class="col-sm-2">
+					<button type="button" class="btn btn-primary btn-sm" id="memoWriteBtn">댓글쓰기</button>
+				</div>
+			</div><br>
+			</form>
+			<table class="table table-striped">
+<!-- 댓글 리스트 -->
+				
+<!-- 댓글 리스트 끝 -->
+				<tbody id="memobody"></tbody>
+			</table>
+        
+        
+        
+        
+		<%-- <!-- 라이브리 시티 설치 코드 -->
+		
 	    <div id="lv-container" data-id="city" data-uid="MTAyMC8yOTY4Ny82MjU1">
 	    <script src="${root }/page/house/js/reply.js"></script>
-	    </div>
+	   
+	    </div> --%>
         <hr>
 		<h3>Guset 하우스 위치</h3>
 		<div id=map></div>
@@ -333,7 +483,6 @@ function select() {
 		}
 		</script>
 		</div>
-	</div>
 
 
 <!-- 여기까지가 우리가 꾸밀부분 -->
