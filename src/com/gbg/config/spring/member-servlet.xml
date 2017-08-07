@@ -7,6 +7,11 @@
 	
 	<context:annotation-config />
 	<context:component-scan base-package="com.gbg.member.controller"/>
-	
+	<context:component-scan base-package="com.gbg.host.controller"/>
+	<context:component-scan base-package="com.gbg.house.controller"/>
+	<context:component-scan base-package="com.gbg.list.controller"/>
+	<context:component-scan base-package="com.gbg.admin.board.controller"/>
+	<context:component-scan base-package="com.gbg.board.controller"/>
+	<context:component-scan base-package="com.gbg.memberAdmin.controller"/>
 	
 </beans>
