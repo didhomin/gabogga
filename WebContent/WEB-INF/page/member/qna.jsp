@@ -35,7 +35,7 @@
 	                     <textarea class="form-control" id="content" name="content" placeholder="Content" rows="10"></textarea> 
 	                    </div>
 	                    <button type="submit" class="btn btn-default btn-lg pull-right">Send Mail</button>
-	                  </form>
+	                  </form>   
                   </c:when>
                   <c:otherwise>
                   <h3>로그인 후 이용가능합니다.</h3>

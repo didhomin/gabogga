@@ -63,37 +63,47 @@ public class HouseController {
 	}
 	
 	@RequestMapping(value="/hostresinfo.gbg", method=RequestMethod.GET)
-	public ModelAndView hostreservationinfo(HttpSession session){
+	public ModelAndView hostreservationinfo(@RequestParam(value="from",defaultValue="0000-00-00" ) String from,@RequestParam(value="to",defaultValue="9999-99-99") String to
+	,HttpSession session){
 		ModelAndView mav = new ModelAndView();
 		UsersDto usersDto = (UsersDto) session.getAttribute("user");
+		if(usersDto !=null) {
 		HouseDto houseDto = houseservice.ghid(usersDto.getUserId());
-		
-		Map<Object, Object> map = new HashMap<Object, Object>();
+		String fromArr[] =from.split("-");
+		String fromformat= fromArr[0]+"/"+fromArr[1]+"/"+fromArr[2];
+		String toArr[] =to.split("-");
+		String toformat= toArr[0]+"/"+toArr[1]+"/"+toArr[2];
+		Map<String,String> map = new HashMap<String,String>();
 		map.put("userId", usersDto.getUserId());
-		map.put("guesthouseId", houseDto.getGuesthouseId());
-		
+		map.put("guesthouseId", houseDto.getGuesthouseId()+"");
+		map.put("from", fromformat);
+		map.put("to", toformat);
 		List<HouseDto> list = houseservice.hostreservationinfo(map);
 		mav.addObject("hostresinfo", list);
 		mav.setViewName("/page/house/hostresinfo");
+		} else {
+			mav.setViewName("/index");
+		}    
 		return mav;
 	}
 	
 	@RequestMapping(value="/oksign.gbg")
-	public ModelAndView oksign(@RequestParam("reservationId") String reservationId){
-		ModelAndView mav = new ModelAndView();
-		int oksign = houseservice.oksign(reservationId);
-		mav.setViewName("/page/house/hostresok");
-		return mav;
+	public String oksign(@RequestParam("reservationId") String reservationId){
+			houseservice.oksign(reservationId);
+		return "redirect:/house/hostresinfo.gbg";
 
 	}
 	@RequestMapping(value="/nosign.gbg")
-	public ModelAndView nosign(@RequestParam("reservationId") String reservationId){
-		ModelAndView mav = new ModelAndView();
-//		System.out.println(reservationId);
-		int oksign = houseservice.nosign(reservationId);
-//		mav.addObject("oksign", houseDto);
-		mav.setViewName("/page/house/hostresok");
-		return mav;
+	public String nosign(@RequestParam("reservationId") String reservationId){
+			houseservice.nosign(reservationId);
+		return "redirect:/house/hostresinfo.gbg";
+		
+	}
+	@RequestMapping(value="/hostqna.gbg")
+	public String hostqna(@RequestParam Map<String,String> map){
+		houseservice.hostqna(map);
+		
+		return "redirect:/house/"+map.get("sign")+"sign.gbg?reservationId="+map.get("reid");
 		
 	}
 }
