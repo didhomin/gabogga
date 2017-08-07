@@ -20,4 +20,5 @@ public interface HouseService {
 	HouseDto ghid(String userId);
 	int oksign(String reservationId);
 	int nosign(String reservationId);
+	void hostqna(Map<String,String> map);
 }

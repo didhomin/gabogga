@@ -69,19 +69,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         g.checkout_start checkoutStart, g.checkout_end checkoutend, g.internet, g.park, g.child, g.pet, 
         g.room_pay roomPay, g.introduce,
         res.RESERVATION_ID reservationId, res.user_id, res.ROOM_ID,  res.CHECKIN, res.CHECKOUT, res.PRICE, 
-        decode(to_char(res.RESERVATION_DATE, 'yymmdd'), 
+        decode(to_char(res.RESERVATION_DATE, 'yymmdd'),
         to_char(sysdate, 'yymmdd'), to_char(res.RESERVATION_DATE, 'hh24:mi:ss'), 
         to_char(res.RESERVATION_DATE, 'yy.mm.dd hh24:mi:ss')) 
-        reservationDate, res.PERSON, res.OKSIGN
-        FROM GUESTHOUSE g, room r, reservation res
+        reservationDate, res.PERSON, res.OKSIGN,  u.email email,u.name username 
+        FROM GUESTHOUSE g, room r, reservation res,users u
         where g.guesthouse_Id= r.guesthouse_Id
         and r.ROOM_ID = res.room_ID
+        and u.user_id = res.user_id
         and res.USER_ID=#{userId}
         and g.GUESTHOUSE_ID=#{guesthouseId}
         <if test="from!='' and to!=''">
             and checkin &gt;=#{from} and checkout &lt;=#{to}
         </if> 
-        ORDER BY res.RESERVATION_ID
+        ORDER BY res.RESERVATION_ID desc
     </select>  
     
     <select id="ghid" parameterType="String" resultType="houseDto">
