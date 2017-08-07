@@ -7,7 +7,7 @@
 
 
 <link rel="stylesheet"
-	href="${root }/page/member/css/main.css">
+	href="${root }/css/main.css">
 <!-- 여기서부터 우리가 꾸미기 -->
 
 <div class="jumbotron" style="background-color: #f5f5f5;">
@@ -26,11 +26,11 @@
 		감사합니다. 처음 화면으로 돌아가고 싶으시다면 라이언을 눌러주세요!!</h4>
 	</div>
 	<div class="col-sm-5">
-		<a href="${root }/index.jsp"><img src="${root }/page/member/img/error404.gif"></a>
+		<a href="${root }/index.jsp"><img src="${root }/img/error404.gif"></a>
 	</div>
 	</div>
 </div>
-<script src="${root }/page/house/js/index.js"></script>
+<script src="${root }/js/index.js"></script>
 
 <!-- 여기까지가 우리가 꾸밀부분 -->
 <!-- 푸터 -->

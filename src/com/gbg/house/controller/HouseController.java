@@ -45,6 +45,8 @@ public class HouseController {
 		UsersDto usersDto = (UsersDto) session.getAttribute("user");
 		if (usersDto != null) {
 			houseDto.setUserId(Integer.parseInt(usersDto.getUserId()));
+			int reservationId= houseservice.reid();
+			houseDto.setReservationId(reservationId+"");
 			int cnt = houseservice.reservation(houseDto);
 			String fromArr[] =houseDto.getCheckIn().split("/");
 			String toArr[] =houseDto.getCheckOut().split("/");
@@ -55,6 +57,7 @@ public class HouseController {
 			Map<String,String> map = new HashMap<String,String>();
 			map.put("person", houseDto.getPerson());
 			map.put("roomId", houseDto.getRoomId()+"");
+			map.put("reservationId", reservationId+"");
 			for(int i=start;i<end;i++) {
 				map.put("redate", i+"");
 				houseservice.reservationroom(map);

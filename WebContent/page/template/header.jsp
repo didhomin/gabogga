@@ -19,8 +19,8 @@
 
 <body>
  <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
- <script src="${root }/page/member/js/kakao.js"></script>
- <script src="${root }/page/member/js/facebook.js"></script>
+ <script src="${root }/js/kakao.js"></script>
+ <script src="${root }/js/facebook.js"></script>
  <%@ include file="/WEB-INF/page/member/registerModal.jsp" %>	
  <%@ include file="/WEB-INF/page/member/loginModal.jsp" %>	
  <%@ include file="/WEB-INF/page/member/passReset.jsp" %>	

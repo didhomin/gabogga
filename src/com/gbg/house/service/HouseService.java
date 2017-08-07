@@ -22,4 +22,5 @@ public interface HouseService {
 	int nosign(String reservationId);
 	void hostqna(Map<String,String> map);
 	void reservationroom(Map<String, String> map);
+	int reid();
 }

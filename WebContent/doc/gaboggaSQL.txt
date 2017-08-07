@@ -740,6 +740,7 @@ COMMENT ON COLUMN house_check.GOOD_OR_BAD IS '좋아요/싫어요';
 
 /* 새 테이블 */
 CREATE TABLE room_reservation (
+	reservation_id NUMBER, /* reservation_id2 */
 	room_id NUMBER, /* reservation_id */
 	redate DATE, /* 새 컬럼 */
 	person NUMBER /* 새 컬럼2 */

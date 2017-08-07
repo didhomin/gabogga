@@ -8,13 +8,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <insert id="reservation" parameterType="houseDto">
         insert into reservation
         (RESERVATION_ID, user_id, ROOM_ID,  CHECKIN, CHECKOUT, PRICE, RESERVATION_DATE, PERSON, OKSIGN)
-        values (SEQ_reservation_RESERVATION_ID.nextval, #{userId}, #{roomId}, #{checkIn}, #{checkOut}, #{price}, sysdate, #{person}, 0)
+        values (#{reservationId}, #{userId}, #{roomId}, #{checkIn}, #{checkOut}, #{price}, sysdate, #{person}, 0)
     </insert>
      
     <insert id="reservationroom" parameterType="java.util.Map">
         insert into room_reservation
-        (room_id,redate,person)
-        values (#{roomId},#{redate},#{person})
+        (reservation_id,room_id,redate,person)
+        values (#{reservationId},#{roomId},#{redate},#{person})
     </insert>
     
     <select id="room" parameterType="int" resultType="roomDto">
@@ -104,4 +104,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         set oksign = 2
         where reservation_id=#{reservationId}
     </insert>
+    <select id="reid" resultType="int">
+        select seq_reservation_reservation_id.nextval
+        from dual
+    </select>
 </mapper>

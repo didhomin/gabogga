@@ -128,4 +128,9 @@ public class HouseServiceImpl implements HouseService {
 		sqlSession.getMapper(HouseDao.class).reservationroom(map);
 	}
 
+	@Override
+	public int reid() {
+		return 	sqlSession.getMapper(HouseDao.class).reid();
+	}
+
 }
