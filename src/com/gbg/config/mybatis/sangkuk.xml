@@ -77,7 +77,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where g.guesthouse_Id= r.guesthouse_Id
         and r.ROOM_ID = res.room_ID
         and res.USER_ID=#{userId}
-        and g.GUESTHOUSE_ID=#{guesthouseId} 
+        and g.GUESTHOUSE_ID=#{guesthouseId}
+        <if test="from!='' and to!=''">
+            and checkin &gt;=#{from} and checkout &lt;=#{to}
+        </if> 
         ORDER BY res.RESERVATION_ID
     </select>  
     

@@ -57,11 +57,13 @@ function select() {
        		<h1>${info.name }</h1>
 			<hr>
 	  <!-- 2. Add images to <div class="fotorama"></div>. -->
+		<div align="center">
 		<div class='fotorama' data-click='false' data-swipe='false'  data-autoplay="true">
 		  <img src="${root }/upload/${info.picture}">
 		   <c:forEach var="roominfo" items="${room }">
-		    <img src="${root }/upload/${roominfo.picture}">
+		    <img width="" src="${root }/upload/${roominfo.picture}">
 		     </c:forEach>
+		</div>
 		</div>
         <hr>
         <!-- Post Content -->
