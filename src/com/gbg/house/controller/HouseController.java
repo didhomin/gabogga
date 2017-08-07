@@ -46,6 +46,19 @@ public class HouseController {
 		if (usersDto != null) {
 			houseDto.setUserId(Integer.parseInt(usersDto.getUserId()));
 			int cnt = houseservice.reservation(houseDto);
+			String fromArr[] =houseDto.getCheckIn().split("/");
+			String toArr[] =houseDto.getCheckOut().split("/");
+			String from=fromArr[0]+fromArr[1]+fromArr[2];
+			String to=toArr[0]+toArr[1]+toArr[2];
+			int start = Integer.parseInt(from);
+			int end= Integer.parseInt(to);
+			Map<String,String> map = new HashMap<String,String>();
+			map.put("person", houseDto.getPerson());
+			map.put("roomId", houseDto.getRoomId()+"");
+			for(int i=start;i<end;i++) {
+				map.put("redate", i+"");
+				houseservice.reservationroom(map);
+			}
 		}
 		return "redirect:/house/userresinfo.gbg";
 

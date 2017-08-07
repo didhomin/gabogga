@@ -123,4 +123,9 @@ public class HouseServiceImpl implements HouseService {
 		
 	}
 
+	@Override
+	public void reservationroom(Map<String, String> map) {
+		sqlSession.getMapper(HouseDao.class).reservationroom(map);
+	}
+
 }
