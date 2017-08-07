@@ -228,7 +228,7 @@ function select() {
             <c:forEach var="roominfo" varStatus="cnt" items="${roominfo }">
             	<c:forEach var="i" begin="1" end="${roominfo.roomNum }" step="1">
             	<c:if test="${cnt.count eq 1}">
-	            <option value="${roominfo.roomNum }">${i}</option>
+	            <option value="${i }">${i}</option>
             	</c:if>
             	</c:forEach>
 	             </c:forEach>
