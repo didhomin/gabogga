@@ -212,7 +212,6 @@
 				class="btn btn-primary btn-lg btn-block">진행</button>
 		</div>
 	</div>
-	</div>
 	<br>
 	<br>
 	<br>

@@ -4,7 +4,13 @@
 <%@ include file="/page/community/logincheck.jsp" %>
 <%@ include file="/WEB-INF/page/member/hostqna.jsp" %>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-   <script type="text/javascript">
+<link href='${root}/css/fullcalendar.css' rel='stylesheet' />
+<link href='${root}/css/fullcalendar.print.css' rel='stylesheet' media='print' />
+<script src='${root}/js/moment.min.js' charset="utf-8"></script>
+<script src='${root}/js/jquery.min.js' charset="utf-8"></script>
+<script src='${root}/js/jquery-ui.min.js' charset="utf-8"></script>
+<script src='${root}/js/fullcalendar.js' charset="utf-8"></script>   
+<script type="text/javascript">
 $(document).ready(function(){
    $(document).on('click', '#search', function(){
 	   if($('#from').val()=='') {
@@ -63,6 +69,45 @@ $(document).ready(function(){
 		$('#content').val(out);
 		$('#modalhostqna').modal("show");
 	}); 
+	
+	
+	$('#calendar').fullCalendar({
+		header: {
+			left: 'prev,next today',
+			center: 'title',
+			right: 'month'
+		},
+		defaultDate:  new Date().getTime(),
+		navLinks: false, // can click day/week names to navigate views
+		selectable: true,
+		selectHelper: true,
+		select: function(start, end) {
+			var title = prompt('Event Title:');
+			var content = prompt('Event Content');
+			var eventData;
+			if (title) {
+				eventData = {
+					title: title,
+					start: start,
+					end: end
+				};
+				$('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
+			}
+			$('#calendar').fullCalendar('unselect');
+		},
+		allDay: false,
+		editable: false,
+		eventLimit: true, // allow "more" link when too many events
+		events: [
+			{
+				title: 'All Day Event',
+				start: '2017-05-01',
+				end: '2013-01-03',
+				allDay: false // will make the time show
+			}
+		]
+	});
+	
 });
 </script>
 <div class="jumbotron" style="">
@@ -70,6 +115,11 @@ $(document).ready(function(){
 		예약관리
 	</h3>
 </div>
+         <br><br>
+         <div class="form-group input-group-sm">
+         <button id="reservationCalendar" name="reservationCalendar" type="button" class="btn btn-danger btn-lg" 
+         data-toggle="modal" data-target="#myModal"><i class="fa fa-calendar"></i>&nbsp;예약상세확인</button>
+        </div>
 <div class="row col-sm-12">
 	<div class="input-group-sm" align="right">
 		<form class="form-inline" role="form" name="searchForm" method="get">
@@ -156,7 +206,27 @@ $(document).ready(function(){
       </tbody>
    </table>
 </div>
-                        
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"><strong>게스트하우스의 예약 현황을 한 눈에 확인하세요.</strong></h4>
+        </div>
+        <div class="modal-body">
+			<div id='calendar'></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>                        
                   
                      
 <%@ include file="/page/template/footer.jsp" %>
