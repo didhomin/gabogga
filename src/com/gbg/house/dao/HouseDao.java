@@ -19,5 +19,6 @@ public interface HouseDao {
 	List<HouseDto> userreservationinfo(Map<String, String> map);
 	HouseDto ghid(String userId);
 	int oksign(String reservationId);
-	int nosign(String reservationId); 
+	int nosign(String reservationId);
+	void reservationroom(Map<String, String> map); 
 }

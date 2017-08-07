@@ -21,4 +21,5 @@ public interface HouseService {
 	int oksign(String reservationId);
 	int nosign(String reservationId);
 	void hostqna(Map<String,String> map);
+	void reservationroom(Map<String, String> map);
 }

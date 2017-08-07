@@ -10,6 +10,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         (RESERVATION_ID, user_id, ROOM_ID,  CHECKIN, CHECKOUT, PRICE, RESERVATION_DATE, PERSON, OKSIGN)
         values (SEQ_reservation_RESERVATION_ID.nextval, #{userId}, #{roomId}, #{checkIn}, #{checkOut}, #{price}, sysdate, #{person}, 0)
     </insert>
+     
+    <insert id="reservationroom" parameterType="java.util.Map">
+        insert into room_reservation
+        (room_id,redate,person)
+        values (#{roomId},#{redate},#{person})
+    </insert>
     
     <select id="room" parameterType="int" resultType="roomDto">
         select r.room_id roomId, r.guesthouse_id guesthouseId, r.room_type roomType, r.room_name roomName, 
