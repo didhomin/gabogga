@@ -40,7 +40,7 @@ public class ReboardController {
 		List<BoardListDto> adminlist = boardAdminService.boardList();
 		mav.addObject("boardmenu", adminlist);
 		mav.addObject("qs", queryString);
-		mav.setViewName("/page/community/board/write");
+		mav.setViewName("/WEB-INF/page/community/board/write");
 		return mav;
 	}
 	
@@ -85,7 +85,7 @@ public class ReboardController {
 		}
 		mav.addObject("qs", queryString);
 		mav.addObject("article", reboardDto);
-		mav.setViewName("/page/community/board/view");
+		mav.setViewName("/WEB-INF/page/community/board/view");
 		return mav;
 	}
 	
@@ -109,7 +109,7 @@ public class ReboardController {
 		pageNavigation.setNavigator();
 		mav.addObject("navigator", pageNavigation);
 		
-		mav.setViewName("/page/community/board/list");
+		mav.setViewName("/WEB-INF/page/community/board/list");
 		return mav;
 	}
 	
@@ -125,7 +125,7 @@ public class ReboardController {
 		}
 		mav.addObject("qs", queryString);
 		mav.addObject("article", reboardDto);
-		mav.setViewName("/page/community/board/reply");
+		mav.setViewName("/WEB-INF/page/community/board/reply");
 		return mav;
 	}
 	
@@ -165,7 +165,7 @@ public class ReboardController {
 		}
 		mav.addObject("qs", queryString);
 		mav.addObject("article", reboardDto);
-		mav.setViewName("/page/community/board/modify");
+		mav.setViewName("/WEB-INF/page/community/board/modify");
 		return mav;
 	}
 	

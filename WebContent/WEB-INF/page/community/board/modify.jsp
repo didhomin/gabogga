@@ -3,12 +3,11 @@
 
 <!-- 헤더 -->
 <%@ include file="/page/template/header.jsp" %>	
-<%@ include file="/page/community/logincheck.jsp" %>
+<%@ include file="/WEB-INF/page/community/logincheck.jsp" %>
 <!-- 여기서부터 우리가 꾸미기-->
 <div class="row">
 <div class="col-sm-3 sidenav">
-<%@ include file="/page/community/boardmenu.jsp" %>
-</div>
+<%@ include file="/WEB-INF/page/community/boardmenu.jsp" %></div>
 </div>
 <!-- 여기서부터 게시판 메인 꾸미기 -->
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.6/summernote.css" rel="stylesheet">

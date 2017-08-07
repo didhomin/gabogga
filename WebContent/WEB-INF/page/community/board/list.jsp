@@ -6,7 +6,7 @@
 <!-- 여기서부터 우리가 꾸미기-->
 <div class="row">
 <div class="col-sm-3 sidenav">
-<%@ include file="/page/community/boardmenu.jsp" %>
+<%@ include file="/WEB-INF/page/community/boardmenu.jsp" %>
 </div>
 </div>
 
