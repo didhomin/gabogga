@@ -50,7 +50,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         g.checkout_start checkoutStart, g.checkout_end checkoutend, g.internet, g.park, g.child, g.pet, 
         g.room_pay roomPay, g.introduce,
         res.CHECKIN, res.CHECKOUT,
-        to_char(res.RESERVATION_DATE,'yyyy-mm-dd') reservationDate, res.PERSON, res.OKSIGN
+        to_char(res.RESERVATION_DATE,'yyyy-mm-dd') reservationDate, res.PERSON, res.OKSIGN,res.reservation_id reservationId
         FROM GUESTHOUSE g, room r, reservation res
         where g.guesthouse_Id= r.guesthouse_Id
         and r.ROOM_ID = res.room_ID

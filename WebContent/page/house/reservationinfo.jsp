@@ -161,7 +161,12 @@ $(document).ready(function(){
 									          </c:otherwise>
 										</c:choose>
 									</li>
-									<hr>
+									<hr/>
+									<div class="form-group input-group-sm">
+      									 <a href="#" id="" class="btn btn-info" data-reid=" ${re.reservationId }">
+             								결제
+          								   </a>
+        							</div>
 								</div>
 								
 								
