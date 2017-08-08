@@ -1,11 +1,9 @@
 package com.gbg.member.controller;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
@@ -41,7 +39,6 @@ public class AdminController extends MultiActionController{
 	@Autowired
 	private AdminService adminService;
 	
-	
 	@RequestMapping(value="/qna.gbg", method=RequestMethod.GET)
 	public String qna() {
 		return "/WEB-INF/page/member/qna";
@@ -67,6 +64,7 @@ public class AdminController extends MultiActionController{
 	public String exhibition() {
 		return "/WEB-INF/page/admin/statistics";
 	}
+	
 	@RequestMapping(value="/address.gbg")
 	public @ResponseBody String address(@RequestParam("address") String address) {
 		List<ListDto> list = adminService.address(address);
@@ -84,6 +82,7 @@ public class AdminController extends MultiActionController{
 		json.put("size", list.size());
 		return json.toJSONString();
 	}
+	
 	@RequestMapping(value="/gender.gbg")
 	public @ResponseBody String gender() {
 		List<StatisticsDto> man = adminService.man();
@@ -157,7 +156,6 @@ public class AdminController extends MultiActionController{
 		return json.toJSONString();
 	}
 	
-
 	@RequestMapping(value="/notice.gbg", method=RequestMethod.GET)
 	public ModelAndView notice(@RequestParam Map<String, String> queryString) {
 		ModelAndView mav = new ModelAndView();
@@ -187,6 +185,7 @@ public class AdminController extends MultiActionController{
 		
 		return "redirect:/admin/notice.gbg";
 	}
+	
 	@RequestMapping("/delete.gbg")
 	public String notidelete(@RequestParam("seq") String valueArr){
 		String notidelete=null;

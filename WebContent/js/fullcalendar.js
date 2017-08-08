@@ -7434,8 +7434,8 @@
 				'>' +
 				'<div class="fc-content">' +
 				(this.isRTL ?
-					'객실명 : ' + titleHtml +  ' <br>남은방 : ' + contentHtml + schedule_seq: // put a natural space in between
-					'객실명 : ' + titleHtml + '<br>남은방 : ' + contentHtml + schedule_seq
+					'객실명 : ' + titleHtml +  ' <br>남은인원 : ' + contentHtml + schedule_seq: // put a natural space in between
+					'객실명 : ' + titleHtml + '<br>남은인원 : ' + contentHtml + schedule_seq
 				//
 				) +
 				'</div>' +

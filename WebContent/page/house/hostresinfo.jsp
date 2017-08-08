@@ -5,13 +5,12 @@
 <%@ include file="/page/template/header.jsp" %>
 <%@ include file="/WEB-INF/page/community/logincheck.jsp" %>
 <%@ include file="/WEB-INF/page/member/hostqna.jsp" %>
+<%@ include file="/page/house/reservationModal.jsp" %>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href='${root}/css/fullcalendar.css' rel='stylesheet' />
 <link href='${root}/css/fullcalendar.print.css' rel='stylesheet' media='print' />
 <script src='${root}/js/moment.min.js' charset="utf-8"></script>
-<script src='${root}/js/jquery.min.js' charset="utf-8"></script>
-<script src='${root}/js/jquery-ui.min.js' charset="utf-8"></script>
 <script src='${root}/js/fullcalendar.js' charset="utf-8"></script>   
 <script type="text/javascript">
 var obj;
@@ -63,7 +62,7 @@ $(document).ready(function(){
 		$('#reid').val(reid);
 		$('#sign').val('ok');
 		$('#content').val(out);
-		$('#modalhostqna').modal("show");
+		$('#modalhostqna').modal();
 	}); 
 	$(document).on('click', '#cancel', function(){
 		var reid = $(this).attr('data-sign');
@@ -85,7 +84,7 @@ $(document).ready(function(){
 		$('#reid').val(reid);
 		$('#sign').val('no');
 		$('#content').val(out);
-		$('#modalhostqna').modal("show");
+		$('#modalhostqna').modal();
 	}); 
 	
 	
