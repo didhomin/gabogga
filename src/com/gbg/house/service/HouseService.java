@@ -14,8 +14,13 @@ public interface HouseService {
 	ConvenienceDto houseInfo(int guesthouseId);
 	int hostInfo(GuestHouseDto guesthouseDto);
 	List<RoomDto> room(int guesthouseId);
-	List<HouseDto> hostreservationinfo(Map<Object, Object> map);
-	List<HouseDto> userreservationinfo(String userId);
+	List<RoomDto> roomInfo(int guesthouseId);
+	List<HouseDto> hostreservationinfo(Map<String, String> map);
+	List<HouseDto> userreservationinfo(Map<String, String> map);
 	HouseDto ghid(String userId);
-	String oksign(String reservationId);
+	int oksign(String reservationId);
+	int nosign(String reservationId);
+	void hostqna(Map<String,String> map);
+	void reservationroom(Map<String, String> map);
+	int reid();
 }

@@ -26,7 +26,7 @@ public class BoardAdminController {
 		ModelAndView mav = new ModelAndView();
 		List<BoardListDto> list = boardAdminService.boardList();
 		mav.addObject("boardmenu", list);
-		mav.setViewName("/page/community/communitymain");
+		mav.setViewName("/WEB-INF/page/community/communitymain");
 		return mav;
 	}
 	
@@ -42,7 +42,7 @@ public class BoardAdminController {
 		mav.addObject("clist", clist);
 		mav.addObject("btlist", btlist);
 		
-		mav.setViewName("/page/community/communityadmin");
+		mav.setViewName("/WEB-INF/page/community/communityadmin");
 		return mav;
 	}
 	

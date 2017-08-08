@@ -8,6 +8,17 @@
 	<context:annotation-config/>
 	<context:component-scan base-package="com.gbg.member.service"/>
 	<context:component-scan base-package="com.gbg.member.dao"/>
+	<context:component-scan base-package="com.gbg.memberAdmin.service"/>
+	<context:component-scan base-package="com.gbg.util.service"/>
+	<context:component-scan base-package="com.gbg.memberAdmin.dao"/>
+	<context:component-scan base-package="com.gbg.admin.board.service"/>
+	<context:component-scan base-package="com.gbg.board.service"/>
+	<context:component-scan base-package="com.gbg.list.service"/>
+	<context:component-scan base-package="com.gbg.list.dao"/>
+	<context:component-scan base-package="com.gbg.house.service"/>
+	<context:component-scan base-package="com.gbg.house.dao"/>
+	<context:component-scan base-package="com.gbg.host.service"/>
+	<context:component-scan base-package="com.gbg.host.dao"/>
 
 
 </beans>

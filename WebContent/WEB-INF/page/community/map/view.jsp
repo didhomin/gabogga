@@ -3,11 +3,11 @@
 
 <!-- 헤더 -->
 <%@ include file="/page/template/header.jsp" %>	
-<%@ include file="/page/community/logincheck.jsp" %>
+<%@ include file="/WEB-INF/page/community/logincheck.jsp" %>
  <!-- 여기서부터 우리가 꾸미기-->
 <div class="row">
 <div class="col-sm-3 sidenav">
-<%@ include file="/page/community/boardmenu.jsp" %>
+<%@ include file="/WEB-INF/page/community/boardmenu.jsp" %>
 </div>
 </div>
 
@@ -224,7 +224,7 @@ function makeMemoList(data) {
 			    <tbody>
 					<tr>
 					   <td colspan="2">
-					   <%@ include file="/page/community/map/daummap_view.jsp" %>
+					   <%@ include file="/WEB-INF/page/community/map/daummap_view.jsp" %>
 						<!-- <div class="newMap" style="width: 100%; height: 270px;"
 						data-xy="[[33.450701, 126.570667, 0],[33.480701, 126.580667,1],[33.431701, 126.511667,2]]"> -->
 						</div>
@@ -257,8 +257,6 @@ function makeMemoList(data) {
 				<tbody id="memobody"></tbody>
 			</table>
 <!-- 글쓰기, 목록 -->
-로그인 한애 >> ${user.userId}
-글주인 >> ${article.userId}
 			<div class="row">
 				<div class="col-sm-10">
 					<button type="button" class="btn btn-success btn-sm listArticle">목록</button>

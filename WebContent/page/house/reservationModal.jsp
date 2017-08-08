@@ -18,31 +18,25 @@
 			</div>
 			<div class="modal-body">
 				<form name="resrervationform" role="form"  method="post" action="${root}/house/reservation.gbg">					
-					 <c:forEach var="roominfo" items="${roominfo }">
-					<input type="hidden" name="userId" value="${user.userId }" id="userId">
-					<input type="hidden" name="reservationId" value="${house.reservationId }" id="reservationId">
-					<input type="hidden" name="oksign" value="0" id="oksign"> -->
-					<input type="hidden" name="guesthouseId" value="${roominfo.guesthouseId }" id="guesthouseId">
-					<input type="hidden" name="roomId" id="roomId" value="${roominfo.roomId }" > 
-					</c:forEach>
+					<input type="hidden" name="roomId" id="roomId" value="0" > 
 					<!-- Sign Form -->
 					<div class="form-group">
-						<label> 이용자 정보 </label> <input type="text" class="form-control"
+						<label> 이용자 정보 </label> <input type="text" class="form-control" readonly="readonly"
 							name="user" id="user" placeholder="E-mail" >
 					</div>
 					<label> 휴대폰 </label>
 					<div class="form-group">
-						<input type="tel" class="form-control" placeholder="연락처"
+						<input type="tel" class="form-control" placeholder="연락처" 
 							name="Tel" id="Tel" value="" maxlength="20">
 					</div>
 					<label> 객실정보확인 </label>
 					<div class="form-group">
 						<input type="text" class="form-control" placeholder="객실정보확인"
-							name="roomInfo" id="roomInfo" value="" maxlength="20" readonly="readonly" class="form-control" style="background-color:#fff">
+							name="room" id="roomInfo" value="" maxlength="20" readonly="readonly" class="form-control" style="background-color:#fff">
 					</div>
 					<label> 객실인원확인 </label>
 					<div class="form-group">
-						<input type="text" class="form-control" placeholder="객실정보확인"
+						<input type="text" class="form-control" placeholder="객실인원확인"
 							name="Person" id="Person" value="" maxlength="20" readonly="readonly" class="form-control" style="background-color:#fff">
 					</div>
 					<div class="form-group">

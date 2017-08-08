@@ -3,11 +3,11 @@
 
 <!-- 헤더 -->
 <%@ include file="/page/template/header.jsp" %>	
-<%@ include file="/page/community/logincheck.jsp" %>
+<%@ include file="/WEB-INF/page/community/logincheck.jsp" %>
 <!-- 여기서부터 우리가 꾸미기-->
 <div class="row">
 <div class="col-sm-3 sidenav">
-<%@ include file="/page/community/boardmenu.jsp" %>
+<%@ include file="/WEB-INF/page/community/boardmenu.jsp" %>
 </div>
 </div>
 <!-- 여기서부터 게시판 메인 꾸미기 -->
@@ -25,7 +25,7 @@ $(function() {
 });
  
 $(document).ready(function() {
-	$("#replyWriteBtn").click(function() {
+	$('#writeBtn').click(function() {
 		if($('#subject').val() == "") {
 			alert("제목입력!");
 			return;
@@ -33,37 +33,30 @@ $(document).ready(function() {
 			alert("내용입력!");
 			return;
 		} else {
-			$('#writeForm').attr('method', 'post').attr('action', '${root}/reboard/reply.gbg').submit();
+			$('#writeForm').attr('method', 'post').attr('action', '${root}/reboard/write.gbg').submit();
 		}
 	});
-})
+});
 
 </script>
 	<div class="col-sm-9 main">
-	<form id="writeForm" name="writeForm" method="post" >
+	<form id="writeForm" name="writeForm">
 	<input type="hidden" name="bcode" value="${qs.bcode}">
 	<input type="hidden" name="pg" value="1">
 	<input type="hidden" name="key" value="">
 	<input type="hidden" name="word" value="">
-	<input type="hidden" name="ref" value="${article.ref}">
-	<input type="hidden" name="lev" value="${article.lev}">
-	<input type="hidden" name="step" value="${article.step}">
-	<input type="hidden" name="pseq" value="${article.seq}">
 	
 		<div class="col-sm-11 row">
 			<label for="subject">제목 :</label>
 		</div>
-		<input type="subject" class="form-control" id="subject" name="subject" value="Re : ${article.subject}"><br>
+		<input type="subject" class="form-control" id="subject" name="subject" placeholder="제목을 입력해주세요."><br>
 		
 		<label for="content">내용</label>
-		<textarea class="form-control summernote" id="content" name="content">
-		${article.content}
-		--------------------------------------------------------------------------------------------------------[원글]  
-		</textarea>
+		<textarea class="form-control summernote" id="content" name="content"></textarea>
 
 		<div class="col-sm-11"></div>
 		<div class="col-sm-1"> 
-			<button type="button" class="btn btn-primary" id="replyWriteBtn">확인</button>
+			<button type="button" class="btn btn-primary" id="writeBtn">확인</button>
 		</div>
 	</form>		
 	</div>

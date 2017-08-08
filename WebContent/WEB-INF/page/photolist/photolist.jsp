@@ -45,7 +45,7 @@
 		</c:if>
 		<div class="col-sm-6 col-md-6">
 			<div class="thumbnail" data-x="${listDto.lat}"
-				data-y="${listDto.lng}" data-title="${listDto.gname}"
+				data-y="${listDto.lng}" data-title="${listDto.gname}" data-ghpic="${listDto.pictureGh}"
 				data-ghId="${listDto.ghId}" data-userId="${user.userId}"
 				data-good="${listDto.good}">
 				<c:set var="myCarousel" value="${myCarousel + 1}" />
@@ -210,6 +210,7 @@ $('.thumbnail').on('mouseover', function() {
   var y = $(this).data('y');
   var title = $(this).data('title');
   var index = $(this).data('index');
+  var ghpic = $(this).data('ghpic');
   if (infowindow) {
      infowindow.close();
   }
@@ -220,8 +221,7 @@ $('.thumbnail').on('mouseover', function() {
   infowindow = new daum.maps.InfoWindow({
       position : markerPosition, 
       content : //'<div style="padding:5px;">' + title + '<br><a href="naver.com/' + x + ',' + y + '">지도보기</a></div>'
-      '<div style="padding:5px;">' + title + '<br><a href="http://map.daum.net/link/map/' + x + ',' + y + '" style="color:blue" target="_blank">큰지도보기</a> <a href="http://map.daum.net/link/to/'+title +',' + x + ',' + y + '" style="color:blue" target="_blank">길찾기</a></div>'
-  });
+    	  '<center><div style="padding:5px;"><img src="${root}/upload/' + ghpic + '" width="250px"><h4>' + title + '</h4><a href="http://map.daum.net/link/map/' + x + ',' + y + '" style="color:blue" target="_blank">큰지도보기</a> <a href="http://map.daum.net/link/to/'+title +',' + x + ',' + y + '" style="color:blue" target="_blank">길찾기</a></div></center>'  });
 
   // 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
   infowindow.open(map, markers[index]);

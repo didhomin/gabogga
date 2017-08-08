@@ -71,9 +71,9 @@ function searchUser() {
 }
 
 </script>
-<script src="${root }/page/member/js/main.js"></script>
+<script src="${root }/js/main.js"></script>
 <link rel="stylesheet"
-	href="${root }/page/member/css/main.css">
+	href="${root }/css/main.css">
 <!-- 여기서부터 우리가 꾸미기 -->
 
 <div class="jumbotron" style="">
@@ -100,15 +100,15 @@ function searchUser() {
              <div id="resultperson" class="">
              	<div class="col-sm-6">성인</div>
              	<div class="col-sm-6">
-             		<input type="image" src="${root }/page/member/img/minus.png"  id="adultminus" width="30px;" onclick="adultminus();return false;" >
+             		<input type="image" src="${root }/img/minus.png"  id="adultminus" width="30px;" onclick="adultminus();return false;" >
              		<span>1</span> 
-             		<input type="image" src="${root }/page/member/img/plus.png" id="adultplus" width="30px;" onclick="adultplus();return false;" >
+             		<input type="image" src="${root }/img/plus.png" id="adultplus" width="30px;" onclick="adultplus();return false;" >
              	</div>
              	<div class="col-sm-6">어린이</div>
              	<div class="col-sm-6">
-             		<input type="image" src="${root }/page/member/img/minus.png"  id="childminus"  width="30px;" onclick="childminus();return false;">
+             		<input type="image" src="${root }/img/minus.png"  id="childminus"  width="30px;" onclick="childminus();return false;">
              		<span>0</span>
-             		<input type="image" src="${root }/page/member/img/plus.png" id="childplus" width="30px;" onclick="childplus();return false;" >
+             		<input type="image" src="${root }/img/plus.png" id="childplus" width="30px;" onclick="childplus();return false;" >
              	</div>
              	<div class="col-sm-6"><a href="javascript:personcancel();">취소</a></div>
              	<div class="col-sm-offset-8"><a href="javascript:personok();">적용</a></div>

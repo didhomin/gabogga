@@ -178,6 +178,10 @@ DROP TABLE house_picture
 DROP TABLE house_check 
 	CASCADE CONSTRAINTS;
 
+/* 새 테이블 */
+DROP TABLE room_reservation 
+	CASCADE CONSTRAINTS;
+
 /* guesthouse */
 CREATE TABLE guesthouse (
 	guesthouse_id NUMBER NOT NULL, /* guesthouse_id */
@@ -204,6 +208,8 @@ CREATE TABLE guesthouse (
 );
 
 COMMENT ON COLUMN guesthouse.guesthouse_id IS '숙박시설 고유번호';
+
+COMMENT ON COLUMN guesthouse.user_id IS '회원 고유 번호';
 
 COMMENT ON COLUMN guesthouse.name IS '숙박 시설 이름';
 
@@ -345,6 +351,8 @@ CREATE TABLE room_picture (
 
 COMMENT ON COLUMN room_picture.picture_id IS '사진 번호';
 
+COMMENT ON COLUMN room_picture.room_id IS '객실 고유번호';
+
 COMMENT ON COLUMN room_picture.picture IS '숙소사진';
 
 COMMENT ON COLUMN room_picture.guesthouse_id IS '숙박시설 고유번호';
@@ -366,8 +374,8 @@ CREATE TABLE reservation (
 	reservation_id NUMBER NOT NULL, /* reservation_id */
 	user_id NUMBER, /* user_id */
 	room_id NUMBER, /* room_id */
-	checkin VARCHAR2(30), /* checkin */
-	checkout VARCHAR2(30), /* checkout */
+	checkin DATE, /* checkin */
+	checkout DATE, /* checkout */
 	price VARCHAR2(30), /* price */
 	reservation_date DATE, /* reservation_date */
 	person NUMBER, /* person */
@@ -377,6 +385,8 @@ CREATE TABLE reservation (
 COMMENT ON COLUMN reservation.reservation_id IS '예약 고유 번호';
 
 COMMENT ON COLUMN reservation.user_id IS '회원 고유 번호';
+
+COMMENT ON COLUMN reservation.room_id IS '객실 고유 번호';
 
 COMMENT ON COLUMN reservation.checkin IS '체크인';
 
@@ -491,7 +501,21 @@ CREATE TABLE board (
 
 COMMENT ON COLUMN board.seq IS '글번호';
 
+COMMENT ON COLUMN board.user_id IS '회원 고유번호';
+
+COMMENT ON COLUMN board.bcode IS '게시판 번호';
+
 COMMENT ON COLUMN board.name IS '작성자이름';
+
+COMMENT ON COLUMN board.email IS '이메일';
+
+COMMENT ON COLUMN board.subject IS '제목';
+
+COMMENT ON COLUMN board.content IS '내용';
+
+COMMENT ON COLUMN board.hit IS '조회수';
+
+COMMENT ON COLUMN board.logtime IS '작성일';
 
 CREATE UNIQUE INDEX PK_board
 	ON board (
@@ -510,6 +534,10 @@ CREATE TABLE board_type (
 	btype NUMBER NOT NULL, /* btype */
 	btype_name VARCHAR2(100) /* btype_name */
 );
+
+COMMENT ON COLUMN board_type.btype IS '게시판형식번호';
+
+COMMENT ON COLUMN board_type.btype_name IS '게시판형식이름';
 
 CREATE UNIQUE INDEX PK_board_type
 	ON board_type (
@@ -531,6 +559,14 @@ CREATE TABLE board_list (
 	ccode NUMBER /* ccode */
 );
 
+COMMENT ON COLUMN board_list.bcode IS '게시판번호';
+
+COMMENT ON COLUMN board_list.bname IS '게시판이름';
+
+COMMENT ON COLUMN board_list.btype IS '게시판형식번호';
+
+COMMENT ON COLUMN board_list.ccode IS '카테고리번호';
+
 CREATE UNIQUE INDEX PK_board_list
 	ON board_list (
 		bcode ASC
@@ -548,6 +584,10 @@ CREATE TABLE category (
 	ccode NUMBER NOT NULL, /* ccode */
 	cname VARCHAR(100) /* cname */
 );
+
+COMMENT ON COLUMN category.ccode IS '카테고리번호';
+
+COMMENT ON COLUMN category.cname IS '카테고리이름';
 
 CREATE UNIQUE INDEX PK_category
 	ON category (
@@ -571,6 +611,20 @@ CREATE TABLE reboard (
 	pseq NUMBER, /* pseq */
 	reply NUMBER /* reply */
 );
+
+COMMENT ON COLUMN reboard.rseq IS '답글 고유 번호';
+
+COMMENT ON COLUMN reboard.seq IS '글번호';
+
+COMMENT ON COLUMN reboard.ref IS '그룹번호';
+
+COMMENT ON COLUMN reboard.lev IS '답변정렬';
+
+COMMENT ON COLUMN reboard.step IS '들여쓰기';
+
+COMMENT ON COLUMN reboard.pseq IS '원글번호';
+
+COMMENT ON COLUMN reboard.reply IS '답글수';
 
 CREATE UNIQUE INDEX PK_reboard
 	ON reboard (
@@ -684,6 +738,19 @@ COMMENT ON COLUMN house_check.user_id IS '회원 고유번호';
 
 COMMENT ON COLUMN house_check.GOOD_OR_BAD IS '좋아요/싫어요';
 
+/* 새 테이블 */
+CREATE TABLE room_reservation (
+	reservation_id NUMBER, /* reservation_id2 */
+	room_id NUMBER, /* reservation_id */
+	redate DATE, /* 새 컬럼 */
+	person NUMBER /* 새 컬럼2 */
+);
+
+COMMENT ON COLUMN room_reservation.room_id IS '객실 고유 번호';
+
+COMMENT ON COLUMN room_reservation.redate IS '날짜';
+
+COMMENT ON COLUMN room_reservation.person IS '인원';
 DROP SEQUENCE SEQ_USERS_USERS_ID;
 CREATE SEQUENCE SEQ_USERS_USERS_ID start with 100;
 

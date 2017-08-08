@@ -12,10 +12,14 @@ public interface HouseDao {
 
 	int reservation(HouseDto houseDto);
 	List<RoomDto> room(int guesthouseId);
+	List<RoomDto> roomInfo(int guesthouseId);
 	ConvenienceDto houseInfo(int guesthouseId);
 	int hostInfo(GuestHouseDto guesthouseDto);
-	List<HouseDto> hostreservationinfo(Map<Object, Object> map);
-	List<HouseDto> userreservationinfo(String userId);
+	List<HouseDto> hostreservationinfo(Map<String, String> map);
+	List<HouseDto> userreservationinfo(Map<String, String> map);
 	HouseDto ghid(String userId);
-	String oksign(String reservationId); 
+	int oksign(String reservationId);
+	int nosign(String reservationId);
+	void reservationroom(Map<String, String> map);
+	int reid(); 
 }

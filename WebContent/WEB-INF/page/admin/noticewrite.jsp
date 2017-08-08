@@ -6,7 +6,6 @@
 <!-- 여기서부터 우리가 꾸미기-->
 <div class="row">
 <div class="col-sm-3 sidenav">
-<%@ include file="/page/community/boardmenu.jsp" %>
 </div>
 </div>
 <!-- 여기서부터 게시판 메인 꾸미기 -->

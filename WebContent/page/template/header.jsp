@@ -19,8 +19,8 @@
 
 <body>
  <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
- <script src="${root }/page/member/js/kakao.js"></script>
- <script src="${root }/page/member/js/facebook.js"></script>
+ <script src="${root }/js/kakao.js"></script>
+ <script src="${root }/js/facebook.js"></script>
  <%@ include file="/WEB-INF/page/member/registerModal.jsp" %>	
  <%@ include file="/WEB-INF/page/member/loginModal.jsp" %>	
  <%@ include file="/WEB-INF/page/member/passReset.jsp" %>	
@@ -99,7 +99,7 @@
 							</a>
 								<ul class="dropdown-menu">
 									<c:if test="${not empty user }">
-									<li><a href="${root}/myreservation/userresinfo.gbg?userId=${user.userId}">예약확인</a></li>
+									<li><a href="${root}/house/userresinfo.gbg">예약확인</a></li>
 									</c:if>
 									<li class="divider"></li>
 			 						<li><a href="javascript:memberModify();">회원정보수정</a></li>
@@ -127,7 +127,7 @@
 							</a>
 								<ul class="dropdown-menu">
 									<c:if test="${not empty user }">
-									<li><a href="${root}/myreservation/userresinfo.gbg?userId=${user.userId}">예약확인</a></li>
+									<li><a href="${root}/house/userresinfo.gbg">예약확인</a></li>
 									</c:if>
 									<li class="divider"></li>
 	 								<li><a href="javascript:memberModify();">회원정보수정</a></li>

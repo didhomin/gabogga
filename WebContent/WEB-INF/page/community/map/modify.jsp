@@ -7,7 +7,7 @@
 <!-- 여기서부터 우리가 꾸미기-->
 <div class="row">
 <div class="col-sm-3 sidenav">
-<%@ include file="/page/community/boardmenu.jsp" %>
+<%@ include file="/WEB-INF/page/community/boardmenu.jsp" %>
 </div>
 </div>
 <!-- 여기서부터 게시판 메인 꾸미기 -->
@@ -27,7 +27,6 @@ $(function() {
 var step = 0;  
   
 $(document).ready(function() {
-	
 	$('#plusBtn').click(function() {
 		if(step < 4){
 			step++;
@@ -46,7 +45,7 @@ $(document).ready(function() {
 		}
 	});
 	
-	$('#writeBtn').click(function() {
+	$('#modifyWriteBtn').click(function() {
 		if($('#subject').val() == "") {
 			alert("제목입력!");
 			return;
@@ -60,7 +59,7 @@ $(document).ready(function() {
 				$('#step'+i).val(i);
 			}
 			
-			$('#writeForm').attr('method', 'post').attr('action', '${root}/mapboard/write.gbg').submit();
+			$('#writeForm').attr('method', 'post').attr('action', '${root}/mapboard/modify.gbg').submit();
 		}
 	})
 })
@@ -69,9 +68,10 @@ $(document).ready(function() {
 	<div class="col-sm-9 main">
 	<form id="writeForm" name="writeForm">
 	<input type="hidden" name="bcode" value="${qs.bcode}">
-	<input type="hidden" name="pg" value="1">
+	<input type="hidden" name="pg" value="${qs.pg}">
 	<input type="hidden" name="key" value="">
 	<input type="hidden" name="word" value="">
+	<input type="hidden" name="seq" value="${article.seq}">
 	<input type="hidden" id="step0" name="step" value="">
 	<input type="hidden" id="x0" name="x" value="">
 	<input type="hidden" id="y0" name="y" value="">
@@ -83,7 +83,7 @@ $(document).ready(function() {
 			<div class="col-sm-6">
 				
 				<label for="subject">제목 :</label>
-				<input type="subject" class="form-control" id="subject" name="subject" placeholder="제목을 입력해주세요."><br>
+				<input type="subject" class="form-control" id="subject" name="subject" value="${article.subject}"><br>
 				
 				<div class="row">
 					<div class="col-sm-7">
@@ -107,57 +107,19 @@ $(document).ready(function() {
 						</div>
 					</div>
 				</div>
-				<!-- <div class="row">
-					<div class="col-sm-10">
-						<input type="subject" class="form-control start" id="start" name="start">
-					</div>
-					<div class="col-sm-2">
-						<button type="button" class="btn btn-warning btn-sm startBtn">+</button>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-10">
-						<input type="subject" class="form-control stopby1" id="stopby1" name="stopby1">
-					</div>
-					<div class="col-sm-2">
-						<button type="button" class="btn btn-warning btn-sm stopby1Btn">+</button>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-10">
-						<input type="subject" class="form-control stopby2" id="stopby2" name="stopby2">
-					</div>
-					<div class="col-sm-2">
-						<button type="button" class="btn btn-warning btn-sm stopby2Btn">+</button>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-10">
-						<input type="subject" class="form-control stopby3" id="stopby3" name="stopby3">
-					</div>
-					<div class="col-sm-2">
-						<button type="button" class="btn btn-warning btn-sm stopby3Btn">+</button>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-10">
-						<input type="subject" class="form-control finish" id="finish" name="finish">
-					</div>
-					<div class="col-sm-2">
-						<button type="button" class="btn btn-warning btn-sm finishBtn">+</button>
-					</div>
-				</div> -->
 			</div>
 			<div class="col-sm-6">
-				<%@ include file="/page/community/map/daummap_write.jsp" %>
+				<%@ include file="/WEB-INF/page/community/map/daummap_write.jsp" %>
 			</div>
 			<div class="form-group">
 			  <label for="content"></label>
-			  <textarea class="form-control summernote" id="content" name="content"></textarea>
+			  <textarea class="form-control summernote" id="content" name="content">
+			  ${article.content}
+			  </textarea>
 			</div>
 			<div class="col-sm-11"></div>
 			<div class="col-sm-1"> 
-				<button type="button" class="btn btn-primary" id="writeBtn">확인</button>
+				<button type="button" class="btn btn-primary" id="modifyWriteBtn">확인</button>
 			</div>
 		</div>
 	</form>	

@@ -45,7 +45,7 @@ public class MapboardController {
 		List<BoardListDto> list = boardAdminService.boardList();
 		mav.addObject("boardmenu", list);
 		mav.addObject("qs", queryString);
-		mav.setViewName("/page/community/map/write");
+		mav.setViewName("/WEB-INF/page/community/map/write");
 		return mav;
 	}
 	
@@ -112,7 +112,7 @@ public class MapboardController {
 		mav.addObject("qs", queryString);
 		mav.addObject("article", boardDto);
 		mav.addObject("stopbyXY", xylist);
-		mav.setViewName("/page/community/map/view");
+		mav.setViewName("/WEB-INF/page/community/map/view");
 		return mav;
 	}
 	
@@ -145,7 +145,7 @@ public class MapboardController {
 		pageNavigation.setNavigator();
 		mav.addObject("navigator", pageNavigation);
 		
-		mav.setViewName("/page/community/map/list");
+		mav.setViewName("/WEB-INF/page/community/map/list");
 		return mav;
 	}
 
@@ -161,7 +161,7 @@ public class MapboardController {
 		}
 		mav.addObject("qs", queryString);
 		mav.addObject("article", boardDto);
-		mav.setViewName("/page/community/map/modify");
+		mav.setViewName("/WEB-INF/page/community/map/modify");
 		return mav;
 	}
 	
