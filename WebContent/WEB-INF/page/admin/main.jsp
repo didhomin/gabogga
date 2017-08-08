@@ -77,10 +77,18 @@ function searchUser() {
 <!-- 여기서부터 우리가 꾸미기 -->
 
 <div class="jumbotron" style="">
-	<h1>
-		<font color="red"><b>가보까?</b></font> 에서
-	</h1>
-	<h2>게스트하우스를 예약해보세요.</h2>
+	<div class="row">
+	<div class="col-sm-5">
+		<img src="${root}/img/mainlogo.png" style="width:400px;">
+		<br><br><br>
+	</div>
+	<div class="col-sm-7">
+		<br>
+		<font size="9px;" style="padding-bottom: 5px;">에서</font><font size="6px;"><br>게스트하우스를 예약해보세요.</font>
+		<br>
+	</div>
+	
+	</div>
 	<div class="input-group-lg">
 	 <form class="form-inline" role="form" name="searchForm" method="get">
         <div class="form-group input-group-lg">

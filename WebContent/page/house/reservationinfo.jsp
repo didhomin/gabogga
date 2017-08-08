@@ -35,7 +35,7 @@ $(document).ready(function(){
 <c:if test="${not empty user }">
 <div class="jumbotron" style="">
 	<h3>
-		예약관리
+		<i class="fa fa-check-square-o" style="font-size:24px"></i>&nbsp;예약관리
 	</h3>
 </div>
 <div class="row col-sm-12">
