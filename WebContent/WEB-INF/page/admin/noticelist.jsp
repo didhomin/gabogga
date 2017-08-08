@@ -16,7 +16,6 @@ function firstArticle(){
    document.commonForm.pg.value= "1"; 
    document.commonForm.key.value= "";
    document.commonForm.word.value= "";
-   
    document.commonForm.action ="${root}/reboard/list.gbg";
    document.commonForm.submit();
 }
@@ -26,7 +25,6 @@ function listArticle(mpg){
    document.commonForm.pg.value= mpg;
    document.commonForm.key.value= "${qs.key}";
    document.commonForm.word.value= "${qs.word}";
-   
    document.commonForm.action = "${root}/reboard/list.gbg";
    document.commonForm.submit();
 }
@@ -41,27 +39,20 @@ $(document).ready(function() {
 			alert("선택하세요");
 		} else {
 			 document.location.href =  "${root}/admin/delete.gbg?seq="+ valueArr;
-		
 		}
 	});
 	$("#writeBtn").click(function() {
 		document.location.href="${root}/admin/write.gbg";
 	});
-	//선택 하고 삭제 하는 구역
 	var valueArr = new Array();
 	$(document).on('click','#seqId', function () {
 		valueArr.push($(this).val());	
-	//	console.log("valueArr는" + valueArr);
 	});
 	$('#noticDelBtn').click( function () {
 		document.location.href = "${root}/admin/delete.gbg?seq="+ valueArr;
-		
 	});
 	
-	
-	
 	$(".tr").click(function() {
-		/*$(this).parent().next("tr").slideDown(500);*/
 		 $('.trtr').hide(); 
 		 var seq= $(this).attr('data-seq'); 
 		$('#'+seq).slideToggle("slow");
@@ -78,17 +69,16 @@ $(document).ready(function() {
 });
 function check() {
 	cbox = input_form.chk;
-	if (cbox.length) { // 여러 개일 경우
+	if (cbox.length) { 
 		for (var i = 0; i < cbox.length; i++) {
 			cbox[i].checked = input_form.all.checked;
 		}
-	} else { // 한 개일 경우
+	} else {
 		cbox.checked = input_form.all.checked;
 	}
 }
 </script>
 
-<!-- 여기서부터 게시판 메인 꾸미기 -->
 <div class="jumbotron" style="">
 	<h3>
 		<span class="glyphicon glyphicon-search"></span>도움말
@@ -152,8 +142,6 @@ function check() {
 	<input type="hidden" id="key" name="key">
 	<input type="hidden" id="word" name="word">
 	<input type="hidden" id="seq" name="seq">
-
-
 </form>
 <table width="100%"   cellpadding="0" cellspacing="0" border="0">
 	<tr>

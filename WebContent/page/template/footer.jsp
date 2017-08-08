@@ -4,7 +4,7 @@
 	</div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<footer>
-		<br><br>
+		<br><br><br><br><br><br><br><br><br><br>
 		
   			<p>Copyright © 2017 - Gabogga.com, All Rights Reserved.</p>
   			<p>Made by : 상국, 인승, 성준, 호민, 지은, 주희</p>
@@ -13,11 +13,12 @@
   			
   				<div class="pull-right">
   					<a href="${root }/admin/qna.gbg">문의하기</a>
-  					<i class="fa fa-facebook-square" style="font-size:24px;color:black"></i>
-  					<i class="fa fa fa-instagram" style="font-size:24px;color:black"></i>
-  					<i class="fa fa-twitter-square" style="font-size:24px;color:black"></i>
+  					<a href="https://www.facebook.com/sungjun.gwon?fref=ts"><i class="fa fa-facebook-square" style="font-size:24px;color:black"></i></a>
+  					<a href="https://www.instagram.com/annnjjji/?hl=ko"><i class="fa fa fa-instagram" style="font-size:24px;color:black"></i></a>
+  					<a href="https://twitter.com/?lang=ko"><i class="fa fa-twitter-square" style="font-size:24px;color:black"></i></a>
   				</div>
   				<!-- <div class="pull-left"><a href="reservation.gbg?gusethouseId=1">house</a></div> -->
+  		<br><br><br>
 		</footer>
 		
 </div>
