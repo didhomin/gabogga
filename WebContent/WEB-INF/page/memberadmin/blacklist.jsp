@@ -64,7 +64,7 @@ $(document).ready(function(){
 		});
     $(document).on('click','#delBt', function () {
 		var delet =$('#mid').val();
-		document.location.href = "${root}/memberAdmin/delete.gbg?id="+delet+"&bcode=3&key=&word=";
+		document.location.href = "${root}/admin/delete.gbg?id="+delet+"&bcode=3&key=&word=";
 		
     } );
     var valueArr= new Array();
@@ -75,11 +75,11 @@ $(document).ready(function(){
 	});
     $(document).on('click','#sosoBt', function() {
     	console.log("버튼 클릭 했을 때 "+valueArr);
-    	document.location.href = "${root}/memberAdmin/soso.gbg?id="+valueArr+"&bcode=3&key=&word=";
+    	document.location.href = "${root}/admin/soso.gbg?id="+valueArr+"&bcode=3&key=&word=";
     	
 	});
 	$(document).on('click','#sosolistBt', function () {
-		document.location.href = "${root}/memberAdmin/list.gbg?pg=1&bcode=1&key=&word=";
+		document.location.href = "${root}/admin/list.gbg?pg=1&bcode=1&key=&word=";
 	});
 	$('.listselect').click( function () {
 	
@@ -87,7 +87,7 @@ $(document).ready(function(){
 		$('#pg').val($(this).text());
 		$('#key').val('${qs.key}');
 		$('#word').val('${qs.word}');
-		$('#commonForm').attr('action','${root}/memberAdmin/blacklist.gbg').submit();
+		$('#commonForm').attr('action','${root}/admin/blacklist.gbg').submit();
 	});
 	$('#searchBtn').click(function () {
 		$('#bcode').val('${qs.bcode}');
@@ -95,7 +95,7 @@ $(document).ready(function(){
 		$('#key').val($('#skey').val());
 		$('#word').val($('#sword').val());
 	//	alert("key와 word값" +$('#key').val() +"========"+$('#word').val());
-		$('#commonForm').attr('action','${root}/memberAdmin/blacklist.gbg').submit();
+		$('#commonForm').attr('action','${root}/admin/blacklist.gbg').submit();
 	});
 	
 });

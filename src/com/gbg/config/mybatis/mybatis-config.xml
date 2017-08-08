@@ -26,7 +26,6 @@
         <mappers>
                 <mapper resource="com/gbg/config/mybatis/users.xml"/>
                 <mapper resource="com/gbg/config/mybatis/admin.xml"/>
-                <mapper resource="com/gbg/config/mybatis/memberadmin.xml"/>
                 <mapper resource="com/gbg/config/mybatis/host.xml"/>
                 <mapper resource="com/gbg/config/mybatis/house.xml"/>
                 <mapper resource="com/gbg/config/mybatis/photolist.xml"/>
@@ -35,7 +34,6 @@
                 <mapper resource="com/gbg/config/mybatis/mapboard.xml"/>
                 <mapper resource="com/gbg/config/mybatis/memo.xml"/>
                 <mapper resource="com/gbg/config/mybatis/common.xml"/>
-                <mapper resource="com/gbg/config/mybatis/commonutil.xml"/>
                 <mapper resource="com/gbg/config/mybatis/boardadmin.xml"/>
 
         </mappers>
