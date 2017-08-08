@@ -134,4 +134,12 @@ public class HouseController {
 		return "redirect:/house/"+map.get("sign")+"sign.gbg?reservationId="+map.get("reid");
 		
 	}
+	
+	@RequestMapping(value="/calSelect.gbg")
+	public String calSelect(@RequestParam Map<String,String> map){
+		houseservice.hostqna(map);
+		
+		return "redirect:/house/"+map.get("sign")+"sign.gbg?reservationId="+map.get("reid");
+		
+	}
 }

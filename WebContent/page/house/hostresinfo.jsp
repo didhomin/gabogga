@@ -108,6 +108,13 @@ $(document).ready(function(){
 		]
 	});
 	
+	$(document).on('click', '#reservationCalendar', function(){
+
+		document.location.href="${root}/house/calSelect.gbg";
+		$("#myModal").modal();
+		
+	   });   
+	
 });
 </script>
 <div class="jumbotron" style="">
