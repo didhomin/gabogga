@@ -5,8 +5,8 @@ public class PageNavigationIn {
       private String root;
       private boolean nowFirst;// 이전관리
       private boolean nowEnd;// 다음관리
-      private int newArticleCount;// 새글수
-      private int totalArticleCount;// 전체글수
+      private int newArticleAdCount;// 새글수
+      private int totalArticleAdCount;// 전체글수
       private int totalPageCount;// 전체페이지수
       private int pageNo;// 현재페이지
       private String navigator;// 페이징
@@ -35,20 +35,20 @@ public class PageNavigationIn {
          this.nowEnd = nowEnd;
       }
 
-      public int getNewArticleCount() {
-         return newArticleCount;
+      public int getnewArticleAdCount() {
+         return newArticleAdCount;
       }
 
-      public void setNewArticleCount(int newArticleCount) {
-         this.newArticleCount = newArticleCount;
+      public void setnewArticleAdCount(int newArticleAdCount) {
+         this.newArticleAdCount = newArticleAdCount;
       }
 
-      public int getTotalArticleCount() {
-         return totalArticleCount;
+      public int gettotalArticleAdCount() {
+         return totalArticleAdCount;
       }
 
-      public void setTotalArticleCount(int totalArticleCount) {
-         this.totalArticleCount = totalArticleCount;
+      public void settotalArticleAdCount(int totalArticleAdCount) {
+         this.totalArticleAdCount = totalArticleAdCount;
       }
 
       public int getTotalPageCount() {
