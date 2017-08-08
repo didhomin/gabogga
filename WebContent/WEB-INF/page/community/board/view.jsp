@@ -281,9 +281,6 @@ function makeMemoList(data) {
 </c:if>
 			</div>
 		</div>
-
-	
-	
 	
 <!-- 여기까지가 우리가 꾸밀부분 -->
 <!-- 푸터 -->

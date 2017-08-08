@@ -56,8 +56,6 @@ public class MapboardController {
 		List<BoardListDto> adminlist = boardAdminService.boardList();
 		mav.addObject("boardmenu", adminlist);
 		
-		
-		
 		if(usersDto != null) {
 			int seq = commonService.getNextSeq();
 			
@@ -86,10 +84,8 @@ public class MapboardController {
 			int cnt = mapboardService.writeArticle(map);
 			mav.addObject("seq", seq);
 			mav.addObject("qs", queryString);
-			//mav.setViewName("/page/community/communitymain");
 		} else {			
 			mav.setViewName("/index"); //나중ㅇㅔ login page로 이동하게 할것.
-			// /없으면 reboard로 가서 /있어야함 그래야 webcontent 밑으로감
 		}
 		return "redirect:/mapboard/list.gbg?bcode="+queryString.get("bcode")+"&pg="+queryString.get("pg")+"&key="+queryString.get("key")+"&word="+queryString.get("word");
 	}
@@ -199,10 +195,8 @@ public class MapboardController {
 			
 			int cnt = mapboardService.modifyArticle(seq, boardDto, map);
 			mav.addObject("qs", queryString);
-			//mav.setViewName("/page/community/communitymain");
 		} else {			
 			mav.setViewName("/index"); //나중ㅇㅔ login page로 이동하게 할것.
-			// /없으면 reboard로 가서 /있어야함 그래야 webcontent 밑으로감
 		}
 		return "redirect:/mapboard/list.gbg?bcode="+queryString.get("bcode")+"&pg="+queryString.get("pg")+"&key="+queryString.get("key")+"&word="+queryString.get("word");
 	}

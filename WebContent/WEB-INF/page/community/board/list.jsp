@@ -88,7 +88,7 @@ $(document).ready(function() {
 			        <td>${article.seq}</td>
 			        <td>
 			        	<a href="#" data-seq="${article.seq}" class="subject">
-			        	<img src="${root}/page/community/board/blank.gif" height="1" width="${article.lev * 15}">
+			        	<img src="${root}/img/blank.gif" height="1" width="${article.lev * 15}">
 			        	${article.subject}&nbsp;&nbsp;
 			        	<c:if test="${article.memocnt != 0}">
 						<b>[${article.memocnt}]</b></a>
@@ -105,29 +105,10 @@ $(document).ready(function() {
 			<!-- 하단 페이징 -->
 			<div class="row">
 			<div align="center">${navigator.navigator}</div>
-				<!-- <div class="col-sm-3">	
-					<ul class="pager">
-					</ul>
-				</div>
-				<div class="col-sm-6">
-					<ul class="pagination">
-					  <li><a href="#">Previous</a></li>
-					  <li><a href="#">1</a></li>
-					  <li class="active"><a href="#">2</a></li>
-					  <li><a href="#">3</a></li>
-					  <li><a href="#">4</a></li>
-					  <li><a href="#">5</a></li>
-					  <li><a href="#">Next</a></li>
-					</ul>
-				</div> -->
+			<!-- 하단 페이징 끝 -->
 			</div>
 			
 			<!-- 검색영역  -->
-		<!-- 	<form name="ulSearchForm" method="get" action="" onsubmit="return false;" style="margin: 0px">
-				<input type="hidden" name="" value="">
-				<input type="hidden" name="act" value="list">
-				<input type="hidden" name="id" value="">
-				<input type="hidden" name="pg" value="1"> -->
 				<div class="row" style="margin:auto;">	
 					<div class="col-sm-2"></div>
 					<div class="col-sm-2">
@@ -145,7 +126,7 @@ $(document).ready(function() {
 				        </a>
 					</div>
 				</div>
-			<!-- </form> -->
+			<!-- 검색영역 끝 -->
 		</div>
 	
 	
