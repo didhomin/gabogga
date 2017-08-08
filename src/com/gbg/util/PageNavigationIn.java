@@ -113,7 +113,8 @@ public class PageNavigationIn {
          } else {
             int nextPage = prePage + BoardConstance.PAGE_SIZE + 1;
             tmpNavigator.append("  <li class="+"page-item"+">\n");
-            tmpNavigator.append("    <a id=nextpageBtn class="+"page-link"+" href='#' aria-label="+"Next"+">\n");
+//            tmpNavigator.append("    <a id=nextpageBtn  class="+"page-link"+" href='#' aria-label="+"Next"+">\n");
+            tmpNavigator.append("    <a id=nextpageBtn  class='nextpageBtncc' href='#' aria-label="+"Next"+">\n");
             tmpNavigator.append("   <span aria-hidden="+true+">&raquo;</span>\n");
             tmpNavigator.append("   </a>\n");
             tmpNavigator.append("  </li>\n");
