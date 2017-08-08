@@ -6,7 +6,7 @@
 <%@ include file="/page/template/header.jsp" %>	
 <div class="jumbotron" style="">
 	<h3>
-		<i class="glyphicon glyphicon-bell"></i>문의사항
+		<i class="glyphicon glyphicon-bell"></i>&nbsp; 문의사항
 	</h3>
 </div>
 	<div>

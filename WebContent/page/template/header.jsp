@@ -37,7 +37,7 @@
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-						<a class="navbar-brand" href="${root }/index.jsp">
+						<a class="navbar-brand" style="padding-top: 6px;" href="${root }/index.jsp">
 							<img src="${root}/img/gbglogo.png" style="width:120px;">
 							<!-- <strong><font color="black"><b>가보까?</b></font></strong> -->
 						</a>

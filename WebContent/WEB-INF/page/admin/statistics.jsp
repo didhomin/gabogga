@@ -10,7 +10,7 @@
 </script>
 <div class="jumbotron" style="">
 	<h3>
-		<i class="glyphicon glyphicon-stats"></i> 통계
+		<i class="glyphicon glyphicon-stats"></i>&nbsp;통계
 	</h3>
 </div>
   <div align="center">
