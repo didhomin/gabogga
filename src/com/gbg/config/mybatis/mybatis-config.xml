@@ -33,7 +33,6 @@
                 <mapper resource="com/gbg/config/mybatis/reboard.xml"/>
                 <mapper resource="com/gbg/config/mybatis/mapboard.xml"/>
                 <mapper resource="com/gbg/config/mybatis/memo.xml"/>
-
                 <mapper resource="com/gbg/config/mybatis/juhee.xml"/>
                 <mapper resource="com/gbg/config/mybatis/insueng.xml"/>
                 <mapper resource="com/gbg/config/mybatis/sungjun.xml"/>
