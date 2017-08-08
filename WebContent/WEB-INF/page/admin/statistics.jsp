@@ -243,7 +243,7 @@ $("#aaa").click(function() {
 				        }]
 				    }
 				});
-				$('#chart').attr('class','col-sm-6 col-sm-offset-3');
+				$('#chart').attr('class','col-sm-5 col-sm-offset-3');
 				window.myBar.update();
 			}
 		});

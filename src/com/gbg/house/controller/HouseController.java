@@ -161,7 +161,6 @@ public class HouseController {
 			jsonSelect.put("end", map.get("ridate"));
 			jsonSelect.put("content", map.get("ps"));
 			jsonSelect.put("color", "#FF6347");
-			
 			jarr.add(jsonSelect);
 		}
 		json.put("calList",jarr);

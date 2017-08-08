@@ -70,7 +70,7 @@
 						});
 						$(document).on(	'click','#delBt',function() {
 											var delet = $('#mid').val();
-											document.location.href = "${root}/memberAdmin/delete.gbg?id="+ delet+"&bcode=1&key=&word=";
+											document.location.href = "${root}/admin/delete.gbg?id="+ delet+"&bcode=1&key=&word=";
 
 										});
 						var valueArr = new Array();
@@ -81,10 +81,10 @@
 						});
 						$(document).on('click','#blackBt',function() {
 											console.log("버튼 클릭 했을 때 "+ valueArr);
-											document.location.href = "${root}/memberAdmin/black.gbg?id="+ valueArr+"&bcode=1&key=&word=";
+											document.location.href = "${root}/admin/black.gbg?id="+ valueArr+"&bcode=1&key=&word=";
 											});
 						$(document).on(	'click','#blacklistBt',function() {
-											document.location.href = "${root}/memberAdmin/blacklist.gbg?pg=1&bcode=3&key=&word=";
+											document.location.href = "${root}/admin/blacklist.gbg?pg=1&bcode=3&key=&word=";
 										});
 						$('.listselect').click( function () {
 							$('#bcode').val('${qs.bcode}');
@@ -92,7 +92,7 @@
 							//alert("pg "+$(this).text());
 							$('#key').val('${qs.key}');
 							$('#word').val('${qs.word}');
-							$('#commonForm').attr('action','${root}/memberAdmin/list.gbg').submit();
+							$('#commonForm').attr('action','${root}/admin/list.gbg').submit();
 						});
 						$('#searchBtn').click(function () {
 							$('#bcode').val('${qs.bcode}');
@@ -101,7 +101,7 @@
 						//	$('#key').val($('.form-control').val());
 							$('#word').val($('#sword').val());
 						//	alert("key와 word값" +$('#key').val() +"========"+$('#word').val());
-							$('#commonForm').attr('action','${root}/memberAdmin/list.gbg').submit();
+							$('#commonForm').attr('action','${root}/admin/list.gbg').submit();
 						});
 						$('#nextpageBtn').click(function () {
 							$('#bcode').val('${qs.bcode}');
@@ -109,7 +109,7 @@
 							
 							$('#key').val('${qs.key}');
 							$('#word').val('${qs.word}');
-							$('#commonForm').attr('action','${root}/memberAdmin/list.gbg').submit();
+							$('#commonForm').attr('action','${root}/admin/list.gbg').submit();
 							
 						});
 						$('#backpageBtn').click(function () {
@@ -119,7 +119,7 @@
 				//			alert("class 드롭버튼 테스트 "+$('.dropdown-menu').val());
 							$('#key').val('${qs.key}');
 							$('#word').val('${qs.word}');
-							$('#commonForm').attr('action','${root}/memberAdmin/list.gbg').submit();
+							$('#commonForm').attr('action','${root}/admin/list.gbg').submit();
 						});
 					});
 </script>

@@ -16,12 +16,16 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.gbg.board.dao.CommonDao;
 import com.gbg.list.dao.ListDao;
 import com.gbg.list.model.ListDto;
 import com.gbg.member.dao.AdminDao;
 import com.gbg.member.mail.SMTPAuthenticatior;
 import com.gbg.member.model.QnaDto;
 import com.gbg.member.model.StatisticsDto;
+import com.gbg.member.model.UsersDto;
+import com.gbg.util.BoardConstance;
+import com.gbg.util.PageNavigationIn;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -105,6 +109,84 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<Map<String, String>> reservationSelect() {
 		return sqlSession.getMapper(AdminDao.class).reservationSelect();
+	}
+
+	@Override
+	public int memberAdminDelete(String userId) {
+		return sqlSession.getMapper(AdminDao.class).memberAdmindelete(userId);
+		
+	}
+
+	@Override
+	public List<UsersDto> listMemberAdmin(Map<String, String> queryString) {
+		// TODO Auto-generated method stub
+		int pg = Integer.parseInt(queryString.get("pg"));
+		int end = pg * BoardConstance.LISTP_SIZE;
+		int start = end - BoardConstance.LISTP_SIZE;
+		queryString.put("start", start + "");
+		queryString.put("end", end + "");
+		return sqlSession.getMapper(AdminDao.class).listMemberAdmin(queryString);
+	}
+
+	@Override
+	public UsersDto searchMemberAdmin(String userId) {
+		// TODO Auto-generated method stub
+		return sqlSession.getMapper(AdminDao.class).searchMemberAdmin(userId);
+	}
+
+	@Override
+	public int memberAdminBlack(String userId) {
+		
+		return sqlSession.getMapper(AdminDao.class).memberAdminBlack(userId);
+	}
+
+	@Override
+	public List<UsersDto> blacklist(Map<String, String> queryString) {
+		int pg = Integer.parseInt(queryString.get("pg"));
+		int end = pg * BoardConstance.LISTP_SIZE;
+		int start = end - BoardConstance.LISTP_SIZE;
+		queryString.put("start", start + "");
+		queryString.put("end", end + "");
+		return sqlSession.getMapper(AdminDao.class).blacklist( queryString);
+	}
+
+	@Override
+	public int memberAdminSoso(String userId) {
+		// TODO Auto-generated method stub
+		return sqlSession.getMapper(AdminDao.class).memberAdminSoso(userId);
+	}
+
+	@Override
+	public int memberAdmindelete(String id) {
+		// TODO Auto-generated method stub
+		return sqlSession.getMapper(AdminDao.class).memberAdmindelete(id);
+	}
+
+	@Override
+	public int getNextSeq() {
+		return sqlSession.getMapper(CommonDao.class).getNextSeq();
+	}
+
+	@Override
+	public PageNavigationIn makePageNavigation(Map<String, String> queryString) {
+		PageNavigationIn pageNavigationIn = new PageNavigationIn();
+		
+
+		int newArticleAdCount = sqlSession.getMapper(AdminDao.class).newArticleAdCount(Integer.parseInt(queryString.get("pg")));
+		pageNavigationIn.setnewArticleAdCount(newArticleAdCount);
+
+		int totalArticleAdCount = sqlSession.getMapper(AdminDao.class).totalArticleAdCount(queryString);
+
+		pageNavigationIn.settotalArticleAdCount(totalArticleAdCount);
+		int totalPageCount = (totalArticleAdCount - 1) / BoardConstance.LISTP_SIZE + 1;
+
+		int pg = Integer.parseInt(queryString.get("pg"));
+		
+		pageNavigationIn.setTotalPageCount(totalPageCount);
+		pageNavigationIn.setNowFirst(pg <= BoardConstance.PAGE_SIZE);
+		pageNavigationIn.setNowEnd((totalPageCount - 1) / BoardConstance.PAGE_SIZE * BoardConstance.PAGE_SIZE < pg);
+		pageNavigationIn.setPageNo(pg);
+		return pageNavigationIn;
 	}
 
 

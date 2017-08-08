@@ -18,5 +18,21 @@ public interface AdminDao {
 
 	List<StatisticsDto> man();
 	List<StatisticsDto> woman();
+	
+int memberAdmindelete(String id);
+	
+	List<UsersDto> listMemberAdmin(Map<String, String> questString);
+	
+	UsersDto searchMemberAdmin(String id);
+	
+	int memberAdminBlack(String id);
+	int memberAdminSoso(String id);
+	
+	List<UsersDto> blacklist(Map<String, String> questString);
+	
+	int getNextSeq();
+	void updateHit(int seq);
+	int newArticleAdCount(int bcode);
+	int totalArticleAdCount(Map<String, String> map);
 
 }
