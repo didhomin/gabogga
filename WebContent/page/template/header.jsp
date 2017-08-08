@@ -29,7 +29,6 @@
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
 			<div class="container-fluid">
-			<div class="row">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse"
 						data-target="#bs-example-navbar-collapse-1">
@@ -37,10 +36,14 @@
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
+<<<<<<< HEAD
 						<a class="navbar-brand" style="padding-top: 6px;" href="${root }/index.jsp">
 							<img src="${root}/img/gbglogo.png" style="width:120px;">
 							<!-- <strong><font color="black"><b>가보까?</b></font></strong> -->
 						</a>
+=======
+					<a class="navbar-brand" href="${root }/index.jsp"><strong><font color="black"><b>가보까?</b></font></strong></a>
+>>>>>>> branch 'master' of https://github.com/didhomin/gabogga.git
 				</div>
 				
 				<ul class="nav navbar-nav">
