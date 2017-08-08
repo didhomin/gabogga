@@ -22,4 +22,5 @@ public interface HouseDao {
 	int nosign(String reservationId);
 	void reservationroom(Map<String, String> map);
 	int reid(); 
+	List<Map<String, String>> calSelect(Map<String, String> map);
 }

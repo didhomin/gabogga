@@ -23,4 +23,5 @@ public interface HouseService {
 	void hostqna(Map<String,String> map);
 	void reservationroom(Map<String, String> map);
 	int reid();
+	List<Map<String, String>> calSelect(Map<String, String> map);
 }

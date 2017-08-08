@@ -5,16 +5,21 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.gbg.host.model.ConvenienceDto;
 import com.gbg.host.model.GuestHouseDto;
 import com.gbg.host.model.RoomDto;
+import com.gbg.host.service.HostService;
 import com.gbg.house.model.HouseDto;
 import com.gbg.house.service.HouseService;
 import com.gbg.member.model.UsersDto;
@@ -25,6 +30,9 @@ public class HouseController {
 
 	@Autowired
 	private HouseService houseservice;
+	
+	@Autowired
+	private HostService hostrService;
 	
 	@RequestMapping(value="/reservation.gbg", method=RequestMethod.GET)
 	public ModelAndView room(@RequestParam("guesthouseId") int guesthouseId){
@@ -136,10 +144,27 @@ public class HouseController {
 	}
 	
 	@RequestMapping(value="/calSelect.gbg")
-	public String calSelect(@RequestParam Map<String,String> map){
-		houseservice.hostqna(map);
-		
-		return "redirect:/house/"+map.get("sign")+"sign.gbg?reservationId="+map.get("reid");
-		
+	public @ResponseBody String calSelect(HttpSession session){
+		ModelAndView mav = new ModelAndView();
+		UsersDto usersDto = (UsersDto) session.getAttribute("user");
+		Map<String, String> maps = new HashMap<String, String>();
+		maps.put("id", usersDto.getUserId());
+		GuestHouseDto guestHouseDto = hostrService.first(maps);
+		maps.put("gid", guestHouseDto.getGuesthouseId()+"");
+		List<Map<String, String>> list = houseservice.calSelect(maps);
+		JSONObject json = new JSONObject();
+		JSONArray jarr = new JSONArray();
+		for(Map<String, String> map : list){
+			JSONObject jsonSelect = new JSONObject(); 
+			jsonSelect.put("title", map.get("roomname"));
+			jsonSelect.put("start", map.get("ridate"));
+			jsonSelect.put("end", map.get("ridate"));
+			jsonSelect.put("content", map.get("ps"));
+			jsonSelect.put("color", "#FF6347");
+			
+			jarr.add(jsonSelect);
+		}
+		json.put("calList",jarr);
+		return json.toJSONString();
 	}
 }

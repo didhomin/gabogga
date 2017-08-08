@@ -133,4 +133,9 @@ public class HouseServiceImpl implements HouseService {
 		return 	sqlSession.getMapper(HouseDao.class).reid();
 	}
 
+	@Override
+	public List<Map<String, String>> calSelect(Map<String, String> map) {
+		return sqlSession.getMapper(HouseDao.class).calSelect(map);
+	}
+
 }

@@ -7399,18 +7399,19 @@
 			var timeText;
 			var titleHtml;
 			var contentHtml;
+			var schedule_seq;
 
 			classes.unshift('fc-day-grid-event', 'fc-h-event');
 
 			// Only display a timed events time if it is the starting segment
-			if (seg.isStart) {
+/*			if (seg.isStart) {
 				timeText = this.getEventTimeText(event);
 				if (timeText) {
 				 
 					timeHtml = '<span class="fc-time">' + htmlEscape(timeText) + '</span>';
 				} else 
 					timeHtml = '<span class="fc-time"> all day </span>';
-			}
+			}*/
 
 			titleHtml = '<span class="fc-title">' +
 				(htmlEscape(event.title || '') || '&nbsp;') + // we always want one line of height
@@ -7418,6 +7419,9 @@
 			contentHtml = '<span class="fc-title">' +
 				(htmlEscape(event.content || '') || '&nbsp;') + // we always want one line of height
 				'</span>';
+			schedule_seq = '<span class="fc-title">' +
+			(htmlEscape(event.seq || '') || '&nbsp;') + // we always want one line of height
+			'</span>';
 			return '<a class="' + classes.join(' ') + '"' +
 				(event.url ?
 					' href="' + htmlEscape(event.url) + '"' :
@@ -7430,8 +7434,8 @@
 				'>' +
 				'<div class="fc-content">' +
 				(this.isRTL ?
-					'제목 : ' + titleHtml + '<br>시간 : ' + timeHtml + ' <br>내용 : ' + contentHtml : // put a natural space in between
-					'시간 : ' + timeHtml + '<br>제목 : ' + titleHtml + '<br>내용 : ' + contentHtml
+					'객실명 : ' + titleHtml +  ' <br>남은인원 : ' + contentHtml + schedule_seq: // put a natural space in between
+					'객실명 : ' + titleHtml + '<br>남은인원 : ' + contentHtml + schedule_seq
 				//
 				) +
 				'</div>' +
@@ -7913,6 +7917,9 @@
 				'</span>' +
 				'<span class="fc-title">' +
 				htmlEscape(content) +
+				'</span>' +
+				'<span class="fc-title">' +
+				htmlEscape(schedule_seq) +
 				'</span>' +
 				'<div class="fc-clear"/>' +
 				'</div>' +
@@ -8812,15 +8819,15 @@
 				) +
 				'>' +
 				'<div class="fc-content">' +
-				(timeText ?
-					'<div class="fc-time"' +
-					' data-start="' + htmlEscape(startTimeText) + '"' +
-					' data-full="' + htmlEscape(fullTimeText) + '"' +
-					'>시간 : ' +
-					'<span>' + htmlEscape(timeText) + '</span>' +
-					'</div>' :
-					''
-				) +
+				/*(timeText ?
+				'<div class="fc-time"' +
+				' data-start="' + htmlEscape(startTimeText) + '"' +
+				' data-full="' + htmlEscape(fullTimeText) + '"' +
+				'>시간 : ' +
+				'<span>' + htmlEscape(timeText) + '</span>' +
+				'</div>' :
+				''
+			) +*/
 				(event.title ?
 					'<div class="fc-title">제목 : ' +
 					htmlEscape(event.title) +
