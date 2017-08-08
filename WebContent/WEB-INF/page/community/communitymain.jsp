@@ -10,10 +10,11 @@
 </div>
 </div>
 <!-- 여기서부터 게시판 메인 꾸미기 -->
-	<div class="col-sm-9 main">			
-			<img src="${root}/page/community/communitymain.png" width="100%">	
+	<div class="col-sm-9 main">
+		<div class="col-sm-10 col-sm-offset-2">			
+			<img src="${root}/img/communitymain.png" width="80%">	
+		</div>
 	</div>
-	
 	
 <!-- 여기까지가 우리가 꾸밀부분 -->
 <!-- 푸터 -->
