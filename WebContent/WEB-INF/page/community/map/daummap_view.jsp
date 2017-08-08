@@ -33,11 +33,6 @@ var dots = {}; // 선이 그려지고 있을때 클릭할 때마다 클릭 지�
 
 var geocoder = new daum.maps.services.Geocoder();
 
-/* var starty, stopby1y, stopby2y, stopby3y, finishy;
-var startx, stopby1x, stopby2x, stopby3x, finishx;  	
-var start, stopby1, stopby2, stopby3, finish;  	 */
-var pathline = new Array();
-
 var stopbyx = new Array();
 var stopbyy = new Array();
 var stopby = new Array();
@@ -49,21 +44,9 @@ window.onload = function() {
 }
 
 function searchAddress(y, x, step) {
-
  	 
-     /* var coords = new daum.maps.LatLng(result[0].y, result[0].x);
-     console.log(coords);
-     // 결과값으로 받은 위치를 마커로 표시합니다
-     var marker = new daum.maps.Marker({
-         map: map,
-         position: coords
-     }); */
-   	
-    	/* stopbyy[step] = result[0].y;
-    	stopbyx[step] = result[0].x; */
     	stopby[step] = new daum.maps.LatLng(y, x);
-    	//alert("searchAddress stopbyx[0] "+stopbyx[0]);
-    	//alert("searchAddress stopbyx[1] "+stopbyx[1]);
+
     	var marker = new daum.maps.Marker({
 			 map: map,
 			 position: stopby[step]
@@ -87,46 +70,13 @@ function searchAddress(y, x, step) {
 	      infowindow.open(map, marker);
 	      mapfinish();
     	}
-	     
 
 }
 
-/* var sCnt=0;
-$(document).on('click','.searchBtn', function() {
-	var sAddr = $(this).parents('#mapPlusD').children('div').siblings().first().children().val();
-	searchAddress(sAddr, sCnt++);
-}) */
-
-/* $('.stopby1Btn').on('click', function(){
-	searchAddress($('.stopby1').val(), 1);
-});
-
-$('.stopby2Btn').on('click', function(){
-	searchAddress($('.stopby2').val(), 2);
-});
-
-$('.stopby3Btn').on('click', function(){
-	searchAddress($('.stopby3').val(), 3);
-});
-
-$('.finishBtn').on('click', function(){
-	searchAddress($('.finish').val(), 4);
-}); */
-
 function mapfinish(){
-	// 버튼을 클릭하면 아래 배열의 좌표들이 모두 보이게 지도 범위를 재설정합니다 
-/* 	var points = [
-		new daum.maps.LatLng(starty, startx),
-	    new daum.maps.LatLng(stopby1y, stopby1x),
-	    new daum.maps.LatLng(stopby2y, stopby2x),
-	    new daum.maps.LatLng(stopby3y, stopby3x),
-	    new daum.maps.LatLng(finishy, finishx)
-	]; */
 	
 	var points = stopby;
 
-	//alert("mapfinish stopbyx[0] "+stopbyx[0]);
-	//alert("mapfinish stopbyx[1] "+stopbyx[1]);
 	// 지도를 재설정할 범위정보를 가지고 있을 LatLngBounds 객체를 생성합니다
 	var bounds = new daum.maps.LatLngBounds();    
 
@@ -209,37 +159,7 @@ function drawLine(addDraw) {
         displayCircleDot(addDraw, distance);
     }
     
-    /* if(addDraw == finish) {
-    	drawLineEnd(finish);
-    } */
-    
 };
-    
-/* // 지도에 마우스무브 이벤트를 등록합니다
-// 선을 그리고있는 상태에서 마우스무브 이벤트가 발생하면 그려질 선의 위치를 동적으로 보여주도록 합니다
-daum.maps.event.addListener(map, 'mousemove', function (mouseEvent) {
-
-    // 지도 마우스무브 이벤트가 발생했는데 선을 그리고있는 상태이면
-    if (drawingFlag){
-        
-        // 마우스 커서의 현재 위치를 얻어옵니다 
-        var mousePosition = mouseEvent.latLng; 
-
-        // 마우스 클릭으로 그려진 선의 좌표 배열을 얻어옵니다
-        var path = clickLine.getPath();
-        
-        // 마우스 클릭으로 그려진 마지막 좌표와 마우스 커서 위치의 좌표로 선을 표시합니다
-        var movepath = [path[path.length-1], mousePosition];
-        moveLine.setPath(movepath);    
-        moveLine.setMap(map);
-        
-        var distance = Math.round(clickLine.getLength() + moveLine.getLength()), // 선의 총 거리를 계산합니다
-            content = '<div class="dotOverlay distanceInfo">총거리 <span class="number">' + distance + '</span>m</div>'; // 커스텀오버레이에 추가될 내용입니다
-        
-        // 거리정보를 지도에 표시합니다
-        //showDistance(content, mousePosition);   
-    }             
-});   */               
 
 // 지도에 마우스 오른쪽 클릭 이벤트를 등록합니다
 // 선을 그리고있는 상태에서 마우스 오른쪽 클릭 이벤트가 발생하면 선 그리기를 종료합니다
@@ -264,9 +184,6 @@ function drawLineEnd(endDraw) {
                 dots[dots.length-1].distance.setMap(null);
                 dots[dots.length-1].distance = null;    
             }
-
-            //var distance = Math.round(clickLine.getLength()), // 선의 총 거리를 계산합니다
-            //    content = getTimeHTML(distance); // 커스텀오버레이에 추가될 내용입니다
                 
             // 그려진 선의 거리정보를 지도에 표시합니다
             showDistance(content, path[path.length-1]);  
@@ -375,45 +292,4 @@ function deleteCircleDot() {
     dots = [];
 }
 
-// 마우스 우클릭 하여 선 그리기가 종료됐을 때 호출하여 
-// 그려진 선의 총거리 정보와 거리에 대한 도보, 자전거 시간을 계산하여
-// HTML Content를 만들어 리턴하는 함수입니다
-/* function getTimeHTML(distance) {
-
-    // 도보의 시속은 평균 4km/h 이고 도보의 분속은 67m/min입니다
-    var walkkTime = distance / 67 | 0;
-    var walkHour = '', walkMin = '';
-
-    // 계산한 도보 시간이 60분 보다 크면 시간으로 표시합니다
-    if (walkkTime > 60) {
-        walkHour = '<span class="number">' + Math.floor(walkkTime / 60) + '</span>시간 '
-    }
-    walkMin = '<span class="number">' + walkkTime % 60 + '</span>분'
-
-    // 자전거의 평균 시속은 16km/h 이고 이것을 기준으로 자전거의 분속은 267m/min입니다
-    var bycicleTime = distance / 227 | 0;
-    var bycicleHour = '', bycicleMin = '';
-
-    // 계산한 자전거 시간이 60분 보다 크면 시간으로 표출합니다
-    if (bycicleTime > 60) {
-        bycicleHour = '<span class="number">' + Math.floor(bycicleTime / 60) + '</span>시간 '
-    }
-    bycicleMin = '<span class="number">' + bycicleTime % 60 + '</span>분'
-
-    // 거리와 도보 시간, 자전거 시간을 가지고 HTML Content를 만들어 리턴합니다
-    var content = '<ul class="dotOverlay distanceInfo">';
-    content += '    <li>';
-    content += '        <span class="label">총거리</span><span class="number">' + distance + '</span>m';
-    content += '    </li>';
-    content += '    <li>';
-    content += '        <span class="label">도보</span>' + walkHour + walkMin;
-    content += '    </li>';
-    content += '    <li>';
-    content += '        <span class="label">자전거</span>' + bycicleHour + bycicleMin;
-    content += '    </li>';
-    content += '</ul>' 
-
-    return content;
-} */
-    
 </script>

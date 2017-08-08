@@ -138,11 +138,6 @@ $(document).ready(function() {
 			</div>
 			
 			<!-- 검색영역  -->
-		<!-- 	<form name="ulSearchForm" method="get" action="" onsubmit="return false;" style="margin: 0px">
-				<input type="hidden" name="" value="">
-				<input type="hidden" name="act" value="list">
-				<input type="hidden" name="id" value="">
-				<input type="hidden" name="pg" value="1"> -->
 				<div class="row" style="margin:auto;">	
 					<div class="col-sm-2"></div>
 					<div class="col-sm-2">
@@ -160,7 +155,7 @@ $(document).ready(function() {
 				        </a>
 					</div>
 				</div>
-			<!-- </form> -->
+			<!-- 검색영역 끝 -->
 		</div>
 	
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a10b55340969923033a4eb61fd837e6e&libraries=services"></script>

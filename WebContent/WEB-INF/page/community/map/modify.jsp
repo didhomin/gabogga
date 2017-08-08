@@ -34,7 +34,6 @@ $(document).ready(function() {
 			var btn = $('<div class="col-sm-2">').append('<button type="button" class="btn btn-info btn-sm searchBtn">검색</button>').append('<input type="hidden" id="y'+step+'" name="y" value="">');
 			$('<div id="mapPlusD">').append(inp).append(btn).appendTo('#mapPlusDiv');
 			$('.searchBtn').val(step);
-			
 		}
 	});
 	
@@ -75,10 +74,7 @@ $(document).ready(function() {
 	<input type="hidden" id="step0" name="step" value="">
 	<input type="hidden" id="x0" name="x" value="">
 	<input type="hidden" id="y0" name="y" value="">
-<%-- <c:forEach var="i" begin="0" end="4" step="1">
-	<input type="hidden" id="stopbyx${i}" name="stopbyx${i}" value="">
-	<input type="hidden" id="stopbyy${i}" name="stopbyy${i}" value="">
-</c:forEach> --%>
+
 		<div class="row">
 			<div class="col-sm-6">
 				
@@ -124,7 +120,6 @@ $(document).ready(function() {
 		</div>
 	</form>	
 	</div>
-	
 	
 <!-- 여기까지가 우리가 꾸밀부분 -->
 <!-- 푸터 -->

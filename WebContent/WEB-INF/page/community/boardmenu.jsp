@@ -48,7 +48,6 @@ body {
     
 </style>
 
-
 <div class="list-group" id="boardmenu">
 	
 <c:set var="ccode" value="0"/>
@@ -75,24 +74,6 @@ body {
 		
 </div>
 
-<%-- 
-<div class="board_list" id="boardmenu">
-	
-<c:set var="ccode" value="0"/>
-<c:forEach varStatus="i" var="boardListDto" items="${boardmenu}">
-	<c:if test="${ccode != boardListDto.ccode}">
-		<c:set var="ccode" value="${boardListDto.ccode}"/>
-		<p class="category_name">${boardListDto.cname}</p>
-		<div class="board_name">
-	</c:if>
-	<a href="${root}/${boardListDto.control}/list.gbg?bcode=${boardListDto.bcode}&pg=1&key=&word=">
-		${boardListDto.bname}
-	</a>
-	<c:if test="${i.index < boardmenu.size() -1 }">
-		<c:if test="${ccode != boardmenu.get(i.index + 1).ccode}">
-		
-</div> --%>
-	
 		</c:if>
 	</c:if>
 </c:forEach>
@@ -100,7 +81,7 @@ body {
 </div>
 
 <div>
-<img src="${root}/page/community/kakaoimg.jpg" width="100%">
+<img src="${root}/img/kakaoimg.jpg" width="100%">
 </div>
 
 <form id="commonForm" name="commonForm" method="get" action="">
