@@ -96,8 +96,8 @@ $(document).ready(function(){
 		},
 		defaultDate:  new Date().getTime(),
 		navLinks: false, // can click day/week names to navigate views
-		selectable: true,
-		selectHelper: true,
+		selectable: false,
+		selectHelper: false,
 		select: function(start, end) {
 			var title = prompt('Event Title:');
 			var content = prompt('Event Content');
@@ -112,8 +112,8 @@ $(document).ready(function(){
 			}
 			$('#calendar').fullCalendar('unselect');
 		},
-		editable: true,
-		eventLimit: true, // allow "more" link when too many events
+		editable: false,
+		eventLimit: false, // allow "more" link when too many events
 		events:
 			JSON.parse(obj)
 	});
@@ -125,7 +125,7 @@ $(document).ready(function(){
 </script>
 <div class="jumbotron" style="">
 	<h3>
-		예약관리
+		<i class="fa fa-check-square-o" style="font-size:24px"></i>&nbsp;예약관리
 	</h3>
 </div>
          <br><br>

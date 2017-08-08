@@ -32,8 +32,12 @@ function viewS(a){
 </script>
    
       <section class="content page-top row">
+      <div class="jumbotron" style="">
+	<h3>
+		<i class="fa fa-wrench" style="font-size:24px"></i>&nbsp;숙소관리
+	</h3>
+		</div>
          <div class="col-sm-10 col-sm-push-1">
-         <h2>숙소 관리</h2>
             <div class="panel panel-default">
                <div class="panel-body">
                   <div class="row" style="padding-bottom:10px;">
