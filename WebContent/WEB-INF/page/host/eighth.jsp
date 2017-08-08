@@ -42,7 +42,7 @@ $(document).ready(function(){
 </style>
 </head>
 <body>
-	<div class="container">
+	<div class="container">	
 		<div class="progress">
 			<div class="progress-bar progress-bar-striped active"
 				role="progressbar" aria-valuenow="100" aria-valuemin="0"
@@ -81,6 +81,7 @@ $(document).ready(function(){
 					</div>
 				</div>
 			</div>
+		</div>
 		</div>
 		<br><br><br>
 <%@ include file="/page/template/footer.jsp" %>	
