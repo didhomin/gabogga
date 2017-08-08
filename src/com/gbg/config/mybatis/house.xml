@@ -108,4 +108,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         select seq_reservation_reservation_id.nextval
         from dual
     </select>
+    
+    <resultMap id="calendar" type="java.util.Map">
+        <result javaType="java.lang.String" column="roomname" property="roomname"/>
+        <result javaType="java.lang.String" column="ridate" property="ridate"/>
+        <result javaType="java.lang.String" column="rcapacity" property="rcapacity"/>
+        <result javaType="java.lang.String" column="rperson" property="rperson"/>
+        <result javaType="java.lang.String" column="ps" property="ps"/>
+    </resultMap>
+    
+    <select id="calSelect" parameterType="java.util.Map" resultMap="calendar">
+        select distinct a.room_name as roomname, a.redate as ridate, a.bed_capacity as rcapacity, b.sp as rperson, (a.bed_capacity - b.sp)as ps
+        from (
+        select r. guesthouse_id, r.room_name,r.room_id,  rs.redate, r.bed_capacity, rv.oksign
+        from room r, room_reservation rs, reservation rv
+        where rs.room_id =r.room_id and rs.room_id=rv.room_id )a inner join
+        (select rs.room_id, sum(person) sp, redate
+        from room_reservation rs, room r 
+        where rs.room_id=r.room_id 
+        group by redate, rs.room_id )
+        b on a.redate = b.redate
+        and a.room_id = b.room_id and a.oksign=0 and a.guesthouse_id=#{gid}
+        order by a.redate
+    </select>
+    
 </mapper>

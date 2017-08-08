@@ -1,8 +1,11 @@
+<%@page import="java.util.Map"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/page/template/header.jsp" %>
 <%@ include file="/WEB-INF/page/community/logincheck.jsp" %>
 <%@ include file="/WEB-INF/page/member/hostqna.jsp" %>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href='${root}/css/fullcalendar.css' rel='stylesheet' />
 <link href='${root}/css/fullcalendar.print.css' rel='stylesheet' media='print' />
@@ -11,7 +14,22 @@
 <script src='${root}/js/jquery-ui.min.js' charset="utf-8"></script>
 <script src='${root}/js/fullcalendar.js' charset="utf-8"></script>   
 <script type="text/javascript">
+var obj;
+
+$.ajax({
+    method: 'get',
+    url: '${root}/house/calSelect.gbg',
+    data : {},
+    dataType: 'json',
+    success: function(data) {
+    	obj = JSON.stringify(data.calList);
+    }
+ });
+
 $(document).ready(function(){
+	
+
+	
    $(document).on('click', '#search', function(){
 	   if($('#from').val()=='') {
 		   var from='0000-00-00';
@@ -95,26 +113,15 @@ $(document).ready(function(){
 			}
 			$('#calendar').fullCalendar('unselect');
 		},
-		allDay: false,
-		editable: false,
+		editable: true,
 		eventLimit: true, // allow "more" link when too many events
-		events: [
-			{
-				title: 'All Day Event',
-				start: '2017-05-01',
-				end: '2013-01-03',
-				allDay: false // will make the time show
-			}
-		]
+		events:
+			JSON.parse(obj)
 	});
 	
 	$(document).on('click', '#reservationCalendar', function(){
-
-		document.location.href="${root}/house/calSelect.gbg";
 		$("#myModal").modal();
-		
-	   });   
-	
+	   });
 });
 </script>
 <div class="jumbotron" style="">
