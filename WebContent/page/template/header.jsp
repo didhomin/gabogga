@@ -29,6 +29,7 @@
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
 			<div class="container-fluid">
+			<div class="row">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse"
 						data-target="#bs-example-navbar-collapse-1">
@@ -36,7 +37,12 @@
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="${root }/index.jsp"><strong><font color="black"><b>가보까?</b></font></strong></a>
+					<!-- <div class="row"> -->
+						<a class="navbar-brand" href="${root }/index.jsp">
+							<img src="${root}/img/gbglogo.png" style="width:120px;">
+							<!-- <strong><font color="black"><b>가보까?</b></font></strong> -->
+						</a>
+					<!-- </div> -->
 				</div>
 				
 				<ul class="nav navbar-nav">
@@ -50,7 +56,7 @@
 									data-toggle="dropdown">관리자 <strong class="caret"></strong></a>
 								<ul class="dropdown-menu">
 									<li><a href="${root}/boardadmin/boardmenuadmin.gbg">커뮤니티관리</a></li>
-									<li><a href="${root}/memberAdmin/list.gbg?pg=1&bcode=1&key=&word=">회원관리</a></li>
+									<li><a href="${root}/admin/list.gbg?pg=1&bcode=1&key=&word=">회원관리</a></li>
 									<li><a href="${root}/admin/statistics.gbg">통계</a></li>
 								</ul>
 							</li>
