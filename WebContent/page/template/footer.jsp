@@ -24,6 +24,7 @@
   					<a href="https://twitter.com/?lang=ko"><i class="fa fa-twitter-square" style="font-size:24px;color:black"></i></a>
   				</div>
   				<!-- <div class="pull-left"><a href="reservation.gbg?gusethouseId=1">house</a></div> -->
+  				
   		<br><br><br>
 		</div>
 	</div>
