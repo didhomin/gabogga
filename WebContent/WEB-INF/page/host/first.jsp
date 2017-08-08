@@ -68,7 +68,7 @@ body{
 		호스트 등록 이용 방법이 궁금하다면 도움말을 클릭 해주세요.
 		<button id="helpBtn" type="button" class="btn btn-info"><i class="fa fa-warning"></i>&nbsp;도움말</button>
 						
-					<br><br>
+					<br><br><br><br><br><br>
 		</div>
 
 <%@ include file="/page/template/footer.jsp" %>	

@@ -113,5 +113,4 @@ function viewS(a){
             </div>
          </div>
       </section>
-</body>
-</html>
+<%@ include file="/page/template/footer.jsp" %>
