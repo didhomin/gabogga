@@ -15,7 +15,7 @@
 			<img src="${root}/img/communitymain.png" width="80%">	
 		</div>
 	</div>
-	
 <!-- 여기까지가 우리가 꾸밀부분 -->
 <!-- 푸터 -->
+</div>	
 <%@ include file="/page/template/footer.jsp" %>	
