@@ -308,7 +308,7 @@ public class AdminController extends MultiActionController{
 		return json.toJSONString();
 	}
 	
-	@RequestMapping("/delete.gbg")
+	@RequestMapping("/memberdelete.gbg")
 	public String delete(@RequestParam Map<String, String> queryString){
 		int cnt=0;
 		cnt = adminService.memberAdminDelete(queryString.get("id"));

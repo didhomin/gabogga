@@ -31,6 +31,9 @@ $(document).ready(function(){
 		document.location.href="${root}/house/userresinfo.gbg?from="+from+"&to="+to;
    });   
 });
+function page(i) {
+	document.location.href="${root}/house/userresinfo.gbg?pg="+i;
+}
 </script>
 <c:if test="${not empty user }">
 <div class="jumbotron" style="">
@@ -175,6 +178,9 @@ $(document).ready(function(){
 					</div>
 				</c:forEach>
 			</div>
+		</div>
+		<div class="row">
+			<div align="center">${navigator.navigator}</div>
 		</div>
 	</div>
 </c:if>

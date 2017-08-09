@@ -19,7 +19,7 @@
 	<button id="ccc" class="btn btn-default">지역별 게스트하우스 수</button>
   </div>
   
-<div id="chart" class="col-sm-9 col-sm-offset-1"><canvas id="myChart" width="" height=""></canvas></div>
+<div id="chart" class="col-sm-9 col-sm-offset-1"><canvas id="myChart" width="" height=""></canvas><br><br><br></div>
          
           
 <script>
@@ -256,5 +256,5 @@ $("#aaa").click(function() {
 
 </script>
   
-
+<br><br><br>
 <%@ include file="/page/template/footer.jsp" %>	

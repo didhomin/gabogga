@@ -17,6 +17,10 @@
 <c:if test="${not empty user }">
 <script type="text/javascript">
 function reservationmodal() {
+	if($("#to").val()=="") {
+		alert("날짜를 선택하세요");
+		return;
+	}
 	var id =$("select[name=roominfo]").val();
 	var price = $('#'+id).attr('data-price');
 	var id = $('#'+id).attr('data-id');
@@ -434,7 +438,7 @@ function makeMemoList(data) {
         </style>
         <!-- <h3>Guset 하우스 위치</h3> -->
         <div id="map">
-        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a10b55340969923033a4eb61fd837e6e"></script>
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a10b55340969923033a4eb61fd837e6e&libraries=services"></script>
 		<script>
 		var locx = ${info.lat};
 		var locy = ${info.lng};

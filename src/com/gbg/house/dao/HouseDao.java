@@ -23,4 +23,6 @@ public interface HouseDao {
 	void reservationroom(Map<String, String> map);
 	int reid(); 
 	List<Map<String, String>> calSelect(Map<String, String> map);
+	int hostreservationCount(Map<String, String> map);
+	int myreservationCount(Map<String, String> map);
 }
