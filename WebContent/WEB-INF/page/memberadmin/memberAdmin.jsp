@@ -49,7 +49,7 @@
 							$.ajax({
 								type : 'GET',
 								dataType : 'json',
-								url : '${root}/memberAdmin/idcheck.gbg',
+								url : '${root}/admin/idcheck.gbg',
 								data : {
 									'namemodel' : namemodel
 								},

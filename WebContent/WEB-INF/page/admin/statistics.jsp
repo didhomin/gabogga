@@ -256,5 +256,5 @@ $("#aaa").click(function() {
 
 </script>
   
-
+<br><br><br>
 <%@ include file="/page/template/footer.jsp" %>	

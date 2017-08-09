@@ -64,7 +64,7 @@ $(document).ready(function(){
 		});
     $(document).on('click','#delBt', function () {
 		var delet =$('#mid').val();
-		document.location.href = "${root}/admin/delete.gbg?id="+delet+"&bcode=3&key=&word=";
+		document.location.href = "${root}/admin/memberdelete.gbg?id="+delet+"&bcode=3&key=&word=";
 		
     } );
     var valueArr= new Array();
