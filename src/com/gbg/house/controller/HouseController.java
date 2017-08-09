@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
@@ -23,6 +24,8 @@ import com.gbg.host.service.HostService;
 import com.gbg.house.model.HouseDto;
 import com.gbg.house.service.HouseService;
 import com.gbg.member.model.UsersDto;
+import com.gbg.util.HostPageNavigation;
+import com.gbg.util.MyPageNavigation;
 
 @Controller
 @RequestMapping("/house")
@@ -76,7 +79,9 @@ public class HouseController {
 	}
 
 	@RequestMapping(value="/userresinfo.gbg", method=RequestMethod.GET)
-	public ModelAndView userreservationinfo(@RequestParam(value="from",defaultValue="0000-00-00" ) String from,@RequestParam(value="to",defaultValue="9999-99-99") String to,HttpSession session){
+	public ModelAndView userreservationinfo(@RequestParam(value="from",defaultValue="0000-00-00" ) String from,
+			@RequestParam(value="to",defaultValue="9999-99-99") String to,HttpSession session,HttpServletRequest request,
+			@RequestParam(value="pg",defaultValue="1" ) String pg){
 		ModelAndView mav = new ModelAndView();
 		UsersDto usersDto = (UsersDto) session.getAttribute("user");
 		if(usersDto !=null) {
@@ -88,7 +93,14 @@ public class HouseController {
 			map.put("from", fromformat);
 			map.put("to", toformat);
 			map.put("userId", usersDto.getUserId());
+			map.put("pg", pg);
 			List<HouseDto> list = houseservice.userreservationinfo(map);
+
+			MyPageNavigation pageNavigation = houseservice.myPageNavigation(map);
+			pageNavigation.setRoot(request.getContextPath());
+			pageNavigation.setNavigator();
+			mav.addObject("navigator", pageNavigation);
+			
 			mav.addObject("relist", list);
 			mav.setViewName("/page/house/reservationinfo");
 		} else {
@@ -99,8 +111,9 @@ public class HouseController {
 	}
 	
 	@RequestMapping(value="/hostresinfo.gbg", method=RequestMethod.GET)
-	public ModelAndView hostreservationinfo(@RequestParam(value="from",defaultValue="0000-00-00" ) String from,@RequestParam(value="to",defaultValue="9999-99-99") String to
-	,HttpSession session){
+	public ModelAndView hostreservationinfo(@RequestParam(value="from",defaultValue="0000-00-00" ) String from,
+			@RequestParam(value="to",defaultValue="9999-99-99") String to ,HttpSession session, HttpServletRequest request,
+			@RequestParam(value="pg",defaultValue="1") String pg){
 		ModelAndView mav = new ModelAndView();
 		UsersDto usersDto = (UsersDto) session.getAttribute("user");
 		if(usersDto !=null) {
@@ -114,7 +127,14 @@ public class HouseController {
 		map.put("guesthouseId", houseDto.getGuesthouseId()+"");
 		map.put("from", fromformat);
 		map.put("to", toformat);
+		map.put("pg", pg);
 		List<HouseDto> list = houseservice.hostreservationinfo(map);
+		
+		HostPageNavigation pageNavigation = houseservice.hostPageNavigation(map);
+		pageNavigation.setRoot(request.getContextPath());
+		pageNavigation.setNavigator();
+		mav.addObject("navigator", pageNavigation);
+		
 		mav.addObject("hostresinfo", list);
 		mav.setViewName("/page/house/hostresinfo");
 		} else {

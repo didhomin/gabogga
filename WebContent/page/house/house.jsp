@@ -17,6 +17,10 @@
 <c:if test="${not empty user }">
 <script type="text/javascript">
 function reservationmodal() {
+	if($("#to").val()=="") {
+		alert("날짜를 선택하세요");
+		return;
+	}
 	var id =$("select[name=roominfo]").val();
 	var price = $('#'+id).attr('data-price');
 	var id = $('#'+id).attr('data-id');
