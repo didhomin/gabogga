@@ -144,7 +144,8 @@ function searchUser() {
 				<c:forEach items="${main }" var="aa" varStatus="ii">
 					<div class="col-sm-4">
 						<a href="${root }/house/reservation.gbg?guesthouseId=${aa.ghId}"><img style="width:360px; height: 250px;" src="${root }/upload/${aa.pictureGh }"></a>
-						이름:${aa.gname } 가격:${aa.roomPay }
+						<font size="5"><b>${aa.gname }</b></font> &nbsp;&nbsp;<img src="${root}/img/heart.png" width="25px">${aa.good}
+						<br>평균가격 : <font size="5"><b>${aa.roomPay }</b></font>
 					</div>
 					<c:if test="${ii.count%3==0 }"></div><div class="row"></c:if>
 				</c:forEach>
