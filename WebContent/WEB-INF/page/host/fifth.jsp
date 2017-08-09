@@ -244,5 +244,6 @@ $(document).ready(function(){
 				</div>
 			</div>
 		</div>
+		</div>
 		<br><br><br>
 <%@ include file="/page/template/footer.jsp" %>	

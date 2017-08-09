@@ -16,14 +16,15 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.gbg.host.dao.HostDao;
 import com.gbg.host.model.ConvenienceDto;
 import com.gbg.host.model.GuestHouseDto;
 import com.gbg.host.model.RoomDto;
 import com.gbg.house.dao.HouseDao;
 import com.gbg.house.model.HouseDto;
 import com.gbg.member.mail.SMTPAuthenticatior;
-import com.gbg.member.model.UsersDto;
+import com.gbg.util.BoardConstance;
+import com.gbg.util.HostPageNavigation;
+import com.gbg.util.MyPageNavigation;
 
 @Service
 public class HouseServiceImpl implements HouseService {
@@ -53,11 +54,21 @@ public class HouseServiceImpl implements HouseService {
 	
 	@Override
 	public List<HouseDto> userreservationinfo(Map<String, String> map) {
+		int pg = Integer.parseInt(map.get("pg"));
+		int end = pg * 10;
+		int start = end - 10;
+		map.put("start", start+"");
+		map.put("end", end+"");
 		return sqlSession.getMapper(HouseDao.class).userreservationinfo(map);
 	}
 
 	@Override
 	public List<HouseDto> hostreservationinfo(Map<String, String> map) {
+		int pg = Integer.parseInt(map.get("pg"));
+		int end = pg * 10;
+		int start = end - 10;
+		map.put("start", start+"");
+		map.put("end", end+"");
 		return sqlSession.getMapper(HouseDao.class).hostreservationinfo(map);
 	}
 
@@ -136,6 +147,38 @@ public class HouseServiceImpl implements HouseService {
 	@Override
 	public List<Map<String, String>> calSelect(Map<String, String> map) {
 		return sqlSession.getMapper(HouseDao.class).calSelect(map);
+	}
+
+	@Override
+	public MyPageNavigation myPageNavigation(Map<String, String> map) {
+		MyPageNavigation pageNavigation = new MyPageNavigation();
+		
+		int totalArticleCount = sqlSession.getMapper(HouseDao.class).myreservationCount(map);
+		pageNavigation.setTotalArticleCount(totalArticleCount);
+		int totalPageCount = (totalArticleCount - 1) / 10 + 1;
+		
+		int pg = Integer.parseInt(map.get("pg"));
+		pageNavigation.setTotalPageCount(totalPageCount);
+		pageNavigation.setNowFirst(pg <= 10);
+		pageNavigation.setNowEnd((totalPageCount - 1) / 10 * 10 < pg);
+		pageNavigation.setPageNo(pg);
+		return pageNavigation;
+	}
+
+	@Override
+	public HostPageNavigation hostPageNavigation(Map<String, String> map) {
+		HostPageNavigation pageNavigation = new HostPageNavigation();
+		
+		int totalArticleCount = sqlSession.getMapper(HouseDao.class).hostreservationCount(map);
+		pageNavigation.setTotalArticleCount(totalArticleCount);
+		int totalPageCount = (totalArticleCount - 1) / 10 + 1;
+		
+		int pg = Integer.parseInt(map.get("pg"));
+		pageNavigation.setTotalPageCount(totalPageCount);
+		pageNavigation.setNowFirst(pg <= 10);
+		pageNavigation.setNowEnd((totalPageCount - 1) / 10 * 10 < pg);
+		pageNavigation.setPageNo(pg);
+		return pageNavigation;
 	}
 
 }

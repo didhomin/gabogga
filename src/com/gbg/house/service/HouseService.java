@@ -7,6 +7,8 @@ import com.gbg.host.model.ConvenienceDto;
 import com.gbg.host.model.GuestHouseDto;
 import com.gbg.host.model.RoomDto;
 import com.gbg.house.model.HouseDto;
+import com.gbg.util.HostPageNavigation;
+import com.gbg.util.MyPageNavigation;
 
 public interface HouseService {
 
@@ -24,4 +26,6 @@ public interface HouseService {
 	void reservationroom(Map<String, String> map);
 	int reid();
 	List<Map<String, String>> calSelect(Map<String, String> map);
+	MyPageNavigation myPageNavigation(Map<String, String> map);
+	HostPageNavigation hostPageNavigation(Map<String, String> map);
 }

@@ -31,11 +31,14 @@ $(document).ready(function(){
 		document.location.href="${root}/house/userresinfo.gbg?from="+from+"&to="+to;
    });   
 });
+function page(i) {
+	document.location.href="${root}/house/userresinfo.gbg?pg="+i;
+}
 </script>
 <c:if test="${not empty user }">
 <div class="jumbotron" style="">
 	<h3>
-		예약관리
+		<i class="fa fa-check-square-o" style="font-size:24px"></i>&nbsp;예약관리
 	</h3>
 </div>
 <div class="row col-sm-12">
@@ -175,6 +178,9 @@ $(document).ready(function(){
 					</div>
 				</c:forEach>
 			</div>
+		</div>
+		<div class="row">
+			<div align="center">${navigator.navigator}</div>
 		</div>
 	</div>
 </c:if>

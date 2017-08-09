@@ -158,7 +158,7 @@
 
 
 <script type="text/javascript"
-	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=818df75cf4e5cfe689af559e691f113d"></script>
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a10b55340969923033a4eb61fd837e6e&libraries=services"></script>
 
 <script>
 var markers = [];

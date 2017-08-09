@@ -70,5 +70,5 @@ body{
 						
 					<br><br><br><br><br><br>
 		</div>
-
+</div>
 <%@ include file="/page/template/footer.jsp" %>	

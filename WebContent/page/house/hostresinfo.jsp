@@ -122,6 +122,9 @@ $(document).ready(function(){
 		$("#myModal").modal();
 	   });
 });
+function page(i) {
+	document.location.href="${root}/house/hostresinfo.gbg?pg="+i;
+}
 </script>
 <div class="jumbotron" style="">
 	<h3>
@@ -219,7 +222,9 @@ $(document).ready(function(){
       </tbody>
    </table>
 </div>
-
+<div class="row">
+			<div align="center">${navigator.navigator}</div>
+			</div>
   <!-- Modal -->
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

@@ -3,7 +3,7 @@
 <%@ include file="/page/template/header.jsp"%>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script type="text/javascript"
-	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0cc58507d96bb54372ac861c953ed175&libraries=services"></script>
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a10b55340969923033a4eb61fd837e6e&libraries=services"></script>
 <script>
 	$(document)
 			.ready(

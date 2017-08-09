@@ -7,9 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.gbg.list.dao.ListDao">
     
     <select id="photoList" parameterType="String" resultType="ListDto">
-        <!--    select gh.guesthouse_id ghId, name gname, room_count roomCount, room_pay roomPay, introduce, lat, lng, picture pictureGh
-        from guesthouse gh
-        where address1 like '%' || #{address1} || '%'-->
+        
         select address1, gh.guesthouse_id ghId, name gname, room_count roomCount, room_pay roomPay, introduce, lat, lng, picture pictureGh,a.good
         from guesthouse gh
         left outer join (select guesthouse_id,count(*) good

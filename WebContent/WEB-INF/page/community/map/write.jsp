@@ -118,8 +118,9 @@ $(document).ready(function() {
 			</div>
 		</div>
 	</form>	
-	</div>
+	</div><br><br>
 	
 <!-- 여기까지가 우리가 꾸밀부분 -->
 <!-- 푸터 -->
+</div>	
 <%@ include file="/page/template/footer.jsp" %>	

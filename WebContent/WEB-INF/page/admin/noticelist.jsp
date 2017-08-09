@@ -81,7 +81,7 @@ function check() {
 
 <div class="jumbotron" style="">
 	<h3>
-		<span class="glyphicon glyphicon-search"></span>도움말
+		<span class="glyphicon glyphicon-search"></span>&nbsp;도움말
 	</h3>
 </div>
 	<div>
