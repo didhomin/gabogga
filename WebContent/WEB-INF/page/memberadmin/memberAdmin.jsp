@@ -135,7 +135,7 @@
 
 		<thead>
 			<tr>
-				<input type="button" value="블랙리스트" id="blackBt"
+				<input type="button"  value="블랙리스트" id="blackBt"
 					class="btn btn-danger" width="3">
 			</tr>
 			<tr>

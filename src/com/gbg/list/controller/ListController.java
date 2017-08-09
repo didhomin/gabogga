@@ -2,14 +2,21 @@ package com.gbg.list.controller;
 
 import java.util.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.gbg.admin.board.model.BoardListDto;
+import com.gbg.board.model.ReboardDto;
 import com.gbg.list.model.ListDto;
 import com.gbg.list.service.ListService;
+import com.gbg.list.service.PageService;
+import com.gbg.util.PageNavigation;
 
 @Controller
 @RequestMapping("/list")
@@ -18,6 +25,9 @@ public class ListController {
 	@Autowired
 	private ListService listService;
 	
+	@Autowired
+	private PageService pageService;
+	
 	@RequestMapping("/list.gbg")
 	public ModelAndView photoList(@RequestParam("address1") String address1) {
 		
@@ -25,6 +35,9 @@ public class ListController {
 		List<ListDto> list = listService.photoList(address1);
 		List<ListDto> list2 = listService.roomPicture(address1);
 		
+		int size = list.size();
+		
+		mav.addObject("listsize", size);
 		mav.addObject("houselist", list);
 		mav.addObject("roomPictures", list2);
 
@@ -63,5 +76,21 @@ public class ListController {
 		json.put("result", gnumber);
 		
 		return json.toJSONString();
+	}
+	
+	@RequestMapping(value="/listt.gbg", method=RequestMethod.GET)
+	public ModelAndView list(@RequestParam("pg") String pg, HttpSession session, HttpServletRequest request) {
+		System.out.println(pg);
+		ModelAndView mav = new ModelAndView();
+		
+	
+		//페이징처리
+		PageNavigation pageNavi = pageService.makePage(pg);
+		pageNavi.setRoot(request.getContextPath());
+		pageNavi.setNavigator();
+		mav.addObject("navigator", pageNavi);
+		
+		mav.setViewName("/page/photolist/photolist");
+		return mav;
 	}
 }

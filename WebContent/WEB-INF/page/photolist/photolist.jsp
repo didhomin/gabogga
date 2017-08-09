@@ -5,6 +5,48 @@
 <%@ include file="/page/template/header.jsp"%>
 <!-- 여기서부터 우리가 꾸미기 -->
 <script type="text/javascript">
+
+ function firstArticle(){
+   document.commonForm.pg.value= "1"; 
+   document.commonForm.action ="${root}/list/listt.gbg";
+   document.commonForm.submit();
+}
+
+function listArticle(mpg){
+   document.commonForm.pg.value= mpg;
+   document.commonForm.action = "${root}/list/listt.gbg";
+   document.commonForm.submit();
+}
+$(document).ready(function() {
+	
+	$(".newBtn").click(function() {
+		$('#bcode').val('${qs.bcode}');
+		$('#pg').val('1');
+		$('#key').val('');
+		$('#word').val('');
+		$('#commonForm').attr('action', '${root}/reboard/write.gbg').submit();
+	});
+	
+	$(".subject").click(function() {
+		$('#bcode').val('${qs.bcode}');
+		$('#pg').val('${qs.pg}');
+		$('#key').val('${qs.key}');
+		$('#word').val('${qs.word}');
+		$('#seq').val($(this).attr('data-seq'));
+		$('#commonForm').attr('action', '${root}/reboard/view.gbg').submit();
+	});
+	
+	$("#searchBtn").click(function() {
+		$('#bcode').val('${qs.bcode}');
+		$('#pg').val('1');
+		$('#key').val($('#skey').val());
+		$('#word').val($('#sword').val());
+		$('#commonForm').attr('action', '${root}/reboard/list.gbg').submit();
+	});
+	
+});
+
+
  $(document).ready(function(){
     $(document).on("click",'.goodBtn',function(){
          var ghId = $(this).attr('data-ghId');
@@ -34,7 +76,7 @@
  
 </script>
 
-
+<div>
 <div class="col-sm-7">
 	<c:set var="myCarousel" value="0" />
 
@@ -142,18 +184,23 @@
 		</div>
 
 		<c:if test="${ii.index%2 != 0}">
+			</div>
+		</c:if>
+		<c:if test="${ii.index%2 == 0 && ii.index == listsize-1}">
+			</div>
+		</c:if>
+	</c:forEach>
+ 	<div align="center"><h3>asdfasdfasdf</h3></div>
+<!--  ${navigator.navigator} -->
 </div>
-</c:if>
-</c:forEach>
 </div>
 
-<c:if test="${ii.index%2 != 0}">
-</div>
-</c:if>
+  
 
 
-<div class="col-sm-5">
+<div class="col-sm-5"> 
 	<div id="map" style="width: 400px; height: 650px; position: fixed"></div>
+	
 </div>
 
 
@@ -161,16 +208,18 @@
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a10b55340969923033a4eb61fd837e6e&libraries=services"></script>
 
 <script>
+var x = $('.thumbnail').attr('data-x');
+var y = $('.thumbnail').attr('data-y');
 var markers = [];
 var container = document.getElementById('map');
 var options = {
-   center : new daum.maps.LatLng(33.376412, 126.544647),
+   center : new daum.maps.LatLng(x, y),
    level : 10
 };
 
 
 var map = new daum.maps.Map(container, options);
-var markerPosition = new daum.maps.LatLng(33.376412, 126.544647);
+var markerPosition = new daum.maps.LatLng(x, y);
 
 //일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
 var mapTypeControl = new daum.maps.MapTypeControl();
@@ -205,7 +254,6 @@ markers.push(marker);
 
 var infowindow;
 $('.thumbnail').on('mouseover', function() {
-   console.log($(this).index());
   var x = $(this).data('x');
   var y = $(this).data('y');
   var title = $(this).data('title');
@@ -255,6 +303,8 @@ function zoomOut() {
 
 </script>
 
+			
 
 
-<%@ include file="/page/template/footer.jsp"%>
+
+<%@ include file="/page/template/footer.jsp"%> 	
