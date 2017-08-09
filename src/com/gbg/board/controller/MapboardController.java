@@ -45,7 +45,7 @@ public class MapboardController {
 		List<BoardListDto> list = boardAdminService.boardList();
 		mav.addObject("boardmenu", list);
 		mav.addObject("qs", queryString);
-		mav.setViewName("/page/community/map/write");
+		mav.setViewName("/WEB-INF/page/community/map/write");
 		return mav;
 	}
 	
@@ -55,8 +55,6 @@ public class MapboardController {
 		UsersDto usersDto = (UsersDto) session.getAttribute("user");
 		List<BoardListDto> adminlist = boardAdminService.boardList();
 		mav.addObject("boardmenu", adminlist);
-		
-		
 		
 		if(usersDto != null) {
 			int seq = commonService.getNextSeq();
@@ -86,10 +84,8 @@ public class MapboardController {
 			int cnt = mapboardService.writeArticle(map);
 			mav.addObject("seq", seq);
 			mav.addObject("qs", queryString);
-			//mav.setViewName("/page/community/communitymain");
 		} else {			
 			mav.setViewName("/index"); //나중ㅇㅔ login page로 이동하게 할것.
-			// /없으면 reboard로 가서 /있어야함 그래야 webcontent 밑으로감
 		}
 		return "redirect:/mapboard/list.gbg?bcode="+queryString.get("bcode")+"&pg="+queryString.get("pg")+"&key="+queryString.get("key")+"&word="+queryString.get("word");
 	}
@@ -112,7 +108,7 @@ public class MapboardController {
 		mav.addObject("qs", queryString);
 		mav.addObject("article", boardDto);
 		mav.addObject("stopbyXY", xylist);
-		mav.setViewName("/page/community/map/view");
+		mav.setViewName("/WEB-INF/page/community/map/view");
 		return mav;
 	}
 	
@@ -145,7 +141,7 @@ public class MapboardController {
 		pageNavigation.setNavigator();
 		mav.addObject("navigator", pageNavigation);
 		
-		mav.setViewName("/page/community/map/list");
+		mav.setViewName("/WEB-INF/page/community/map/list");
 		return mav;
 	}
 
@@ -161,7 +157,7 @@ public class MapboardController {
 		}
 		mav.addObject("qs", queryString);
 		mav.addObject("article", boardDto);
-		mav.setViewName("/page/community/map/modify");
+		mav.setViewName("/WEB-INF/page/community/map/modify");
 		return mav;
 	}
 	
@@ -199,10 +195,8 @@ public class MapboardController {
 			
 			int cnt = mapboardService.modifyArticle(seq, boardDto, map);
 			mav.addObject("qs", queryString);
-			//mav.setViewName("/page/community/communitymain");
 		} else {			
 			mav.setViewName("/index"); //나중ㅇㅔ login page로 이동하게 할것.
-			// /없으면 reboard로 가서 /있어야함 그래야 webcontent 밑으로감
 		}
 		return "redirect:/mapboard/list.gbg?bcode="+queryString.get("bcode")+"&pg="+queryString.get("pg")+"&key="+queryString.get("key")+"&word="+queryString.get("word");
 	}

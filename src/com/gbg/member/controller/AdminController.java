@@ -1,6 +1,5 @@
 package com.gbg.member.controller;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
@@ -27,6 +26,7 @@ import com.gbg.member.model.QnaDto;
 import com.gbg.member.model.StatisticsDto;
 import com.gbg.member.model.UsersDto;
 import com.gbg.member.service.AdminService;
+import com.gbg.util.PageNavigationIn;
 
 @Controller
 @RequestMapping("/admin")
@@ -40,7 +40,6 @@ public class AdminController extends MultiActionController{
 	
 	@Autowired
 	private AdminService adminService;
-	
 	
 	@RequestMapping(value="/qna.gbg", method=RequestMethod.GET)
 	public String qna() {
@@ -67,6 +66,7 @@ public class AdminController extends MultiActionController{
 	public String exhibition() {
 		return "/WEB-INF/page/admin/statistics";
 	}
+	
 	@RequestMapping(value="/address.gbg")
 	public @ResponseBody String address(@RequestParam("address") String address) {
 		List<ListDto> list = adminService.address(address);
@@ -84,6 +84,7 @@ public class AdminController extends MultiActionController{
 		json.put("size", list.size());
 		return json.toJSONString();
 	}
+	
 	@RequestMapping(value="/gender.gbg")
 	public @ResponseBody String gender() {
 		List<StatisticsDto> man = adminService.man();
@@ -157,20 +158,19 @@ public class AdminController extends MultiActionController{
 		return json.toJSONString();
 	}
 	
-
 	@RequestMapping(value="/notice.gbg", method=RequestMethod.GET)
 	public ModelAndView notice(@RequestParam Map<String, String> queryString) {
 		ModelAndView mav = new ModelAndView();
 		
 		List<BoardDto> list = boardService.listArticle(queryString);
 		mav.addObject("noticeList", list);
-		mav.setViewName("/page/member/noticelist");
+		mav.setViewName("/WEB-INF/page/admin/noticelist");
 		return mav;
 	}
 
 	@RequestMapping(value="/write.gbg", method=RequestMethod.GET)
 	public String write() {
-		return "/page/member/noticewrite";
+		return "/WEB-INF/page/admin/noticewrite";
 	}
 	
 	@RequestMapping(value="/write.gbg", method=RequestMethod.POST)
@@ -187,6 +187,7 @@ public class AdminController extends MultiActionController{
 		
 		return "redirect:/admin/notice.gbg";
 	}
+	
 	@RequestMapping("/delete.gbg")
 	public String notidelete(@RequestParam("seq") String valueArr){
 		String notidelete=null;
@@ -251,6 +252,98 @@ public class AdminController extends MultiActionController{
 		}
 		json.put("reservationlist",jarr);
 		return json.toJSONString();
+	}
+	
+	
+	
+	
+	
+	@RequestMapping("/list.gbg")
+	public ModelAndView listMemberAdmin(@RequestParam Map<String, String> queryString ,HttpServletRequest request,HttpSession session){
+		ModelAndView mav = new ModelAndView();
+		List<UsersDto> list = adminService.listMemberAdmin(queryString);
+		PageNavigationIn navigationIn = adminService.makePageNavigation(queryString);
+		navigationIn.setRoot(request.getContextPath());
+		navigationIn.setNavigator();
+		
+		mav.addObject("qs",queryString);
+		mav.addObject("navigationIn",navigationIn);
+		mav.addObject("userAdminlist", list);
+		mav.setViewName("/WEB-INF/page/memberadmin/memberAdmin");
+		return mav;
+	}
+	@RequestMapping("/blacklist.gbg")
+	public ModelAndView blacklist(@RequestParam Map<String, String> queryString ,HttpServletRequest request,HttpSession session){
+		ModelAndView mav = new ModelAndView();
+		
+		PageNavigationIn navigationIn = adminService.makePageNavigation(queryString);
+		navigationIn.setRoot(request.getContextPath());
+		navigationIn.setNavigator();
+		
+		List<UsersDto> list = adminService.blacklist(queryString);
+		
+		mav.addObject("qs",queryString);
+		mav.addObject("navigationIn",navigationIn);
+		mav.addObject("userAdminlist", list);
+		mav.setViewName("/WEB-INF/page/memberadmin/blacklist");
+		
+		return mav;
+	}
+	@RequestMapping("/idcheck.gbg")
+	public @ResponseBody String searchMemberAdmin(@RequestParam("namemodel") String userId){
+		String genderr="0";
+		UsersDto usersDto = adminService.searchMemberAdmin(userId);
+		JSONObject json = new JSONObject();
+		json.put("tel", usersDto.getTel());
+		json.put("gemail", usersDto.getEmail());
+		if(usersDto.getGender().equals("1")){
+			genderr="남자";
+		}else{
+			genderr="여자";
+		}
+		json.put("name",usersDto.getName());
+		json.put("gender", genderr);
+		json.put("regDate", usersDto.getRegDate());
+		json.put("userId", userId);
+		return json.toJSONString();
+	}
+	
+	@RequestMapping("/delete.gbg")
+	public String delete(@RequestParam Map<String, String> queryString){
+		int cnt=0;
+		cnt = adminService.memberAdminDelete(queryString.get("id"));
+		
+		if(queryString.get("bcode").equals("1")){
+			return "redirect:/admin/list.gbg?pg=1&bcode=1&key=&word=";
+		}
+		else
+		return "redirect:/admin/blacklist.gbg?pg=1&bcode=3&key=&word=";
+	}
+	@RequestMapping("/black.gbg")
+	public String black(@RequestParam("id") String valueArr){
+		String blackck = null;
+		int cnt=0;
+		//여기 Tokenizer 을 이용해서 배열에 있는 것을 분리 시킬 예정 입니다
+		StringTokenizer st = new StringTokenizer(valueArr, ",");
+		while(st.hasMoreTokens()){
+			blackck= st.nextToken();
+		  cnt +=adminService.memberAdminBlack( blackck);
+			
+		}
+		
+		return "redirect:/admin/list.gbg?pg=1&bcode=1&key=&word=";
+	}
+	@RequestMapping("/soso.gbg")
+	public String soso(@RequestParam("id") String valueArr){
+		String soso = null;
+		int cnt=0;
+		//여기 Tokenizer 을 이용해서 배열에 있는 것을 분리 시킬 예정 입니다
+		StringTokenizer st = new StringTokenizer(valueArr, ",");
+		while(st.hasMoreTokens()){
+			soso= st.nextToken();
+		  cnt +=adminService.memberAdminSoso(soso);
+		}
+		return "redirect:/admin/blacklist.gbg?pg=1&bcode=3&key=&word=";
 	}
 
 }

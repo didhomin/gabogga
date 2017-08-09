@@ -41,7 +41,7 @@ public class ListController {
 		mav.addObject("houselist", list);
 		mav.addObject("roomPictures", list2);
 
-		mav.setViewName("/page/photolist/photolist");
+		mav.setViewName("/WEB-INF/page/photolist/photolist");
 		return mav;
 	}
 	

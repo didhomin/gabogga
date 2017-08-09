@@ -19,8 +19,8 @@
 
 <body>
  <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
- <script src="${root }/page/member/js/kakao.js"></script>
- <script src="${root }/page/member/js/facebook.js"></script>
+ <script src="${root }/js/kakao.js"></script>
+ <script src="${root }/js/facebook.js"></script>
  <%@ include file="/WEB-INF/page/member/registerModal.jsp" %>	
  <%@ include file="/WEB-INF/page/member/loginModal.jsp" %>	
  <%@ include file="/WEB-INF/page/member/passReset.jsp" %>	
@@ -36,7 +36,9 @@
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="${root }/index.jsp"><strong><font color="black"><b>가보까?</b></font></strong></a>
+						<a class="navbar-brand" style="padding-top: 6px;" href="${root }/index.jsp">
+							<img src="${root}/img/gbglogo.png" style="width:120px;">
+						</a>
 				</div>
 				
 				<ul class="nav navbar-nav">
@@ -50,7 +52,7 @@
 									data-toggle="dropdown">관리자 <strong class="caret"></strong></a>
 								<ul class="dropdown-menu">
 									<li><a href="${root}/boardadmin/boardmenuadmin.gbg">커뮤니티관리</a></li>
-									<li><a href="${root}/memberAdmin/list.gbg?pg=1&bcode=1&key=&word=">회원관리</a></li>
+									<li><a href="${root}/admin/list.gbg?pg=1&bcode=1&key=&word=">회원관리</a></li>
 									<li><a href="${root}/admin/statistics.gbg">통계</a></li>
 								</ul>
 							</li>

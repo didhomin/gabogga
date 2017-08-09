@@ -10,7 +10,7 @@
 </script>
 <div class="jumbotron" style="">
 	<h3>
-		<i class="glyphicon glyphicon-stats"></i> 통계
+		<i class="glyphicon glyphicon-stats"></i>&nbsp;통계
 	</h3>
 </div>
   <div align="center">
@@ -19,7 +19,7 @@
 	<button id="ccc" class="btn btn-default">지역별 게스트하우스 수</button>
   </div>
   
-<div id="chart" class="col-sm-9 col-sm-offset-1"><canvas id="myChart" width="" height=""></canvas></div>
+<div id="chart" class="col-sm-9 col-sm-offset-1"><canvas id="myChart" width="" height=""></canvas><br><br><br></div>
          
           
 <script>
@@ -243,7 +243,7 @@ $("#aaa").click(function() {
 				        }]
 				    }
 				});
-				$('#chart').attr('class','col-sm-6 col-sm-offset-3');
+				$('#chart').attr('class','col-sm-5 col-sm-offset-3');
 				window.myBar.update();
 			}
 		});

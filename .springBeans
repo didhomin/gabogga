@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beansProjectDescription>
+	<version>1</version>
+	<pluginVersion><![CDATA[3.8.4.201703310634-RELEASE]]></pluginVersion>
+	<configSuffixes>
+		<configSuffix><![CDATA[xml]]></configSuffix>
+	</configSuffixes>
+	<enableImports><![CDATA[false]]></enableImports>
+	<configs>
+<<<<<<< HEAD
+	</configs>
+	<autoconfigs>
+		<config>src/com/gbg/config/spring/common-app.xml</config>
+		<config>src/com/gbg/config/spring/juhee-servlet.xml</config>
+		<config>src/com/gbg/config/spring/sungjun-app.xml</config>
+		<config>src/com/gbg/config/spring/member-app.xml</config>
+		<config>src/com/gbg/config/spring/common-servlet.xml</config>
+		<config>src/com/gbg/config/spring/sangkuk-app.xml</config>
+		<config>src/com/gbg/config/spring/inwin-servlet.xml</config>
+		<config>src/com/gbg/config/spring/jieun-servlet.xml</config>
+		<config>src/com/gbg/config/spring/member-servlet.xml</config>
+		<config>src/com/gbg/config/spring/juhee-app.xml</config>
+		<config>src/com/gbg/config/spring/sangkuk-servlet.xml</config>
+		<config>src/com/gbg/config/spring/jieun-app.xml</config>
+		<config>src/com/gbg/config/spring/sungjun-servlet.xml</config>
+=======
+<<<<<<< HEAD
+	</configs>
+	<autoconfigs>
+		<config>src/com/gbg/config/spring/common-app.xml</config>
+		<config>src/com/gbg/config/spring/member-app.xml</config>
+		<config>src/com/gbg/config/spring/common-servlet.xml</config>
+		<config>src/com/gbg/config/spring/member-servlet.xml</config>
+=======
+		<config>src/com/gbg/config/spring/gbg-app.xml</config>
+		<config>src/com/gbg/config/spring/gbg-servlet.xml</config>
+	</configs>
+	<autoconfigs>
+		<config>src/com/gbg/config/spring/common-app.xml</config>
+		<config>src/com/gbg/config/spring/common-servlet.xml</config>
+>>>>>>> branch 'master' of https://github.com/didhomin/gabogga.git
+>>>>>>> branch 'master' of https://github.com/didhomin/gabogga.git
+	</autoconfigs>
+	<configSets>
+	</configSets>
+</beansProjectDescription>

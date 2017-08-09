@@ -6,7 +6,7 @@
 <%@ include file="/page/template/header.jsp" %>	
 <div class="jumbotron" style="">
 	<h3>
-		<i class="glyphicon glyphicon-bell"></i>문의사항
+		<i class="glyphicon glyphicon-bell"></i>&nbsp; 문의사항
 	</h3>
 </div>
 	<div>
@@ -35,7 +35,7 @@
 	                     <textarea class="form-control" id="content" name="content" placeholder="Content" rows="10"></textarea> 
 	                    </div>
 	                    <button type="submit" class="btn btn-default btn-lg pull-right">Send Mail</button>
-	                  </form>
+	                  </form>   
                   </c:when>
                   <c:otherwise>
                   <h3>로그인 후 이용가능합니다.</h3>

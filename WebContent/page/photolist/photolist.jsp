@@ -191,7 +191,7 @@ $(document).ready(function() {
 		</c:if>
 	</c:forEach>
  	<div align="center"><h3>asdfasdfasdf</h3></div>
-
+<!--  ${navigator.navigator} -->
 </div>
 </div>
 

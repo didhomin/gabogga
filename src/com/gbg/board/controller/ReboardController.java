@@ -40,7 +40,7 @@ public class ReboardController {
 		List<BoardListDto> adminlist = boardAdminService.boardList();
 		mav.addObject("boardmenu", adminlist);
 		mav.addObject("qs", queryString);
-		mav.setViewName("/page/community/board/write");
+		mav.setViewName("/WEB-INF/page/community/board/write");
 		return mav;
 	}
 	
@@ -62,10 +62,8 @@ public class ReboardController {
 			int cnt = reboardService.writeArticle(reboardDto);
 			mav.addObject("seq", seq);
 			mav.addObject("qs", queryString);
-			//mav.setViewName("/page/community/board/list");
 		} else {			
 			mav.setViewName("/index"); //나중ㅇㅔ login page로 이동하게 할것.
-			// /없으면 reboard로 가서 /있어야함 그래야 webcontent 밑으로감
 		}
 		return "redirect:/reboard/list.gbg?bcode="+queryString.get("bcode")+"&pg="+queryString.get("pg")+"&key="+queryString.get("key")+"&word="+queryString.get("word");
 	}
@@ -85,7 +83,7 @@ public class ReboardController {
 		}
 		mav.addObject("qs", queryString);
 		mav.addObject("article", reboardDto);
-		mav.setViewName("/page/community/board/view");
+		mav.setViewName("/WEB-INF/page/community/board/view");
 		return mav;
 	}
 	
@@ -109,7 +107,7 @@ public class ReboardController {
 		pageNavigation.setNavigator();
 		mav.addObject("navigator", pageNavigation);
 		
-		mav.setViewName("/page/community/board/list");
+		mav.setViewName("/WEB-INF/page/community/board/list");
 		return mav;
 	}
 	
@@ -125,7 +123,7 @@ public class ReboardController {
 		}
 		mav.addObject("qs", queryString);
 		mav.addObject("article", reboardDto);
-		mav.setViewName("/page/community/board/reply");
+		mav.setViewName("/WEB-INF/page/community/board/reply");
 		return mav;
 	}
 	
@@ -165,7 +163,7 @@ public class ReboardController {
 		}
 		mav.addObject("qs", queryString);
 		mav.addObject("article", reboardDto);
-		mav.setViewName("/page/community/board/modify");
+		mav.setViewName("/WEB-INF/page/community/board/modify");
 		return mav;
 	}
 	
