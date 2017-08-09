@@ -144,7 +144,7 @@ function searchUser() {
 				<c:forEach items="${main }" var="aa" varStatus="ii">
 					<div class="col-sm-4">
 						<a href="${root }/house/reservation.gbg?guesthouseId=${aa.ghId}"><img style="width:360px; height: 250px;" src="${root }/upload/${aa.pictureGh }"></a>
-						<font size="5"><b>${aa.gname }</b></font> &nbsp;&nbsp;<img src="${root}/img/heart.png" width="25px">${aa.good}
+						<font size="5"><b>${aa.gname }</b></font> &nbsp;&nbsp;<c:if test="${aa.good != null}"><img src="${root}/img/heart.png" width="25px"> <b> ${aa.good}</b>개</c:if>
 						<br>평균가격 : <font size="5"><b>${aa.roomPay }</b></font>
 					</div>
 					<c:if test="${ii.count%3==0 }"></div><div class="row"></c:if>
@@ -156,7 +156,8 @@ function searchUser() {
 				<c:forEach items="${mainprice }" var="bb" varStatus="i">
 					<div class="col-sm-4">
 						<a href="${root }/house/reservation.gbg?guesthouseId=${bb.ghId}"><img style="width:360px; height: 250px;" src="${root }/upload/${bb.pictureGh }"></a>
-						<span>이름:${bb.gname } 가격:${bb.roomPay }</span>
+						<font size="5"><b>${bb.gname }</b></font> &nbsp;&nbsp;<c:if test="${bb.good != null}"><img src="${root}/img/heart.png" width="25px"> <b> ${bb.good}</b>개</c:if>
+						<br>평균가격 : <font size="5"><b>${bb.roomPay }</b></font>
 					</div>
 					<c:if test="${i.count%3==0 }"></div><div class="row"></c:if>
 				</c:forEach>

@@ -178,7 +178,7 @@ function page(i) {
             </td>
             <td align="center">
                <div class="media">
-                  ${hostresinfo.roomCount}
+                  ${hostresinfo.person}
                </div>
             </td>
             <td align="center">
