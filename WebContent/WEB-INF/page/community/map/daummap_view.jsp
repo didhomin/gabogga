@@ -103,10 +103,6 @@ function mapfinish(){
 // 지도를 클릭하면 선 그리기가 시작됩니다 그려진 선이 있으면 지우고 다시 그립니다
 function drawLine(addDraw) {
 
-    // 마우스로 클릭한 위치입니다 
-    //var clickPosition = mouseEvent.latLng;
-    console.log(addDraw);
-
     // 지도 클릭이벤트가 발생했는데 선을 그리고있는 상태가 아니면
     if (!drawingFlag) {
 
