@@ -7,7 +7,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.gbg.list.dao.ListDao">
     
     <select id="photoList" parameterType="String" resultType="ListDto">
-        
+        select b.*
+        from(
+        select rownum rn, a.*
+        from(
+       
+      
         select address1, gh.guesthouse_id ghId, name gname, room_count roomCount, room_pay roomPay, introduce, lat, lng, picture pictureGh,a.good
         from guesthouse gh
         left outer join (select guesthouse_id,count(*) good
@@ -15,6 +20,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where good_or_bad = '1'
         group by guesthouse_id) a on a.guesthouse_id=gh.guesthouse_id
         where address1 like '%' || #{address1} || '%'
+       
+       ) a
+       where rownum &lt;= #{end}
+       ) b
+       where b.rn &gt; #{start}
         
         
     </select>
@@ -47,5 +57,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         insert into house_check (guesthouse_id, user_id, good_or_bad)
         values (#{ghId}, #{userId}, 1)
     </insert>
+    
+    <select id="totalArticleCount" parameterType="java.util.Map" resultType="int">
+     select count(guesthouse_id)
+        from guesthouse
+        where address1 like '%' || #{address1} || '%'
+       
+        
+    </select>
     
 </mapper>

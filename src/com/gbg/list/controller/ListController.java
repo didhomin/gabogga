@@ -15,8 +15,7 @@ import com.gbg.admin.board.model.BoardListDto;
 import com.gbg.board.model.ReboardDto;
 import com.gbg.list.model.ListDto;
 import com.gbg.list.service.ListService;
-import com.gbg.list.service.PageService;
-import com.gbg.util.PageNavigation;
+import com.gbg.util.PageNavigations;
 
 @Controller
 @RequestMapping("/list")
@@ -25,21 +24,28 @@ public class ListController {
 	@Autowired
 	private ListService listService;
 	
-	@Autowired
-	private PageService pageService;
-	
 	@RequestMapping("/list.gbg")
-	public ModelAndView photoList(@RequestParam("address1") String address1) {
+	public ModelAndView photoList(@RequestParam("address1") String address1, @RequestParam(value="pg",defaultValue="1") String pg, HttpSession session, HttpServletRequest request) {
 		
 		ModelAndView mav = new ModelAndView();
-		List<ListDto> list = listService.photoList(address1);
+		Map<String,String> map = new HashMap<String, String>();
+		map.put("address1", address1);
+		map.put("pg", pg);
+		List<ListDto> list = listService.photoList(map);
 		List<ListDto> list2 = listService.roomPicture(address1);
+		
+		//페이징처리
+		PageNavigations pageNavi = listService.makePage(map);
+		pageNavi.setRoot(request.getContextPath());
+		pageNavi.setNavigator();
+		mav.addObject("navigator", pageNavi);
 		
 		int size = list.size();
 		
 		mav.addObject("listsize", size);
 		mav.addObject("houselist", list);
 		mav.addObject("roomPictures", list2);
+		mav.addObject("addr", address1);
 
 		mav.setViewName("/WEB-INF/page/photolist/photolist");
 		return mav;
@@ -78,19 +84,19 @@ public class ListController {
 		return json.toJSONString();
 	}
 	
-	@RequestMapping(value="/listt.gbg", method=RequestMethod.GET)
-	public ModelAndView list(@RequestParam("pg") String pg, HttpSession session, HttpServletRequest request) {
-		System.out.println(pg);
-		ModelAndView mav = new ModelAndView();
-		
-	
-		//페이징처리
-		PageNavigation pageNavi = pageService.makePage(pg);
-		pageNavi.setRoot(request.getContextPath());
-		pageNavi.setNavigator();
-		mav.addObject("navigator", pageNavi);
-		
-		mav.setViewName("/page/photolist/photolist");
-		return mav;
-	}
+//	@RequestMapping(value="/listt.gbg", method=RequestMethod.GET)
+//	public ModelAndView list(@RequestParam("pg") String pg, HttpSession session, HttpServletRequest request) {
+//		System.out.println(pg);
+//		ModelAndView mav = new ModelAndView();
+//		
+//	
+//		//페이징처리
+//		PageNavigation pageNavi = pageService.makePage(pg);
+//		pageNavi.setRoot(request.getContextPath());
+//		pageNavi.setNavigator();
+//		mav.addObject("navigator", pageNavi);
+//		
+//		mav.setViewName("/page/photolist/photolist");
+//		return mav;
+//	}
 }

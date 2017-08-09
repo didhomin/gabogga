@@ -8,43 +8,15 @@
 
  function firstArticle(){
    document.commonForm.pg.value= "1"; 
-   document.commonForm.action ="${root}/list/listt.gbg";
+   document.commonForm.action ="${root}/list/list.gbg";
    document.commonForm.submit();
 }
 
 function listArticle(mpg){
    document.commonForm.pg.value= mpg;
-   document.commonForm.action = "${root}/list/listt.gbg";
+   document.commonForm.action = "${root}/list/list.gbg";
    document.commonForm.submit();
 }
-$(document).ready(function() {
-	
-	$(".newBtn").click(function() {
-		$('#bcode').val('${qs.bcode}');
-		$('#pg').val('1');
-		$('#key').val('');
-		$('#word').val('');
-		$('#commonForm').attr('action', '${root}/reboard/write.gbg').submit();
-	});
-	
-	$(".subject").click(function() {
-		$('#bcode').val('${qs.bcode}');
-		$('#pg').val('${qs.pg}');
-		$('#key').val('${qs.key}');
-		$('#word').val('${qs.word}');
-		$('#seq').val($(this).attr('data-seq'));
-		$('#commonForm').attr('action', '${root}/reboard/view.gbg').submit();
-	});
-	
-	$("#searchBtn").click(function() {
-		$('#bcode').val('${qs.bcode}');
-		$('#pg').val('1');
-		$('#key').val($('#skey').val());
-		$('#word').val($('#sword').val());
-		$('#commonForm').attr('action', '${root}/reboard/list.gbg').submit();
-	});
-	
-});
 
 
  $(document).ready(function(){
@@ -190,11 +162,15 @@ $(document).ready(function() {
 			</div>
 		</c:if>
 	</c:forEach>
- 	<div align="center"><h3>asdfasdfasdf</h3></div>
-<!--  ${navigator.navigator} -->
+ 	<div align="center"><h3>${navigator.navigator}</h3></div>
+
 </div>
 </div>
 
+<form id="commonForm" name="commonForm" method="post" action="">
+	<input type="hidden" id="pg" name="pg" value="">
+	<input type="hidden" id="address1" name="address1" value="${addr}">
+</form>
   
 
 
