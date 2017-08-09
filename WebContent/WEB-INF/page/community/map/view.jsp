@@ -128,7 +128,8 @@ function makeMemoList(data) {
 	var output = '';
 	var len = data.memolist.length;
 	for(var i=0; i<len; i++) {
-		if((data.memolist[i].secret == 1 && '${user.userId}' != data.memolist[i].userId) || (data.memolist[i].secret == 1 && '${user.userId}' != '${article.userId}')) {
+		if((data.memolist[i].secret == 1 && '${user.userId}' != data.memolist[i].userId) || ('${user.userId}' != '${article.userId}')) {
+			alert('${user.userId}' != '${article.userId}');
 			output += '<tr>';
 			output += '	<td>';
 			output += '		<table>';
