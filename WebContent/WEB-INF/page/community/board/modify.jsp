@@ -61,7 +61,7 @@ $(document).ready(function() {
 			<button type="button" class="btn btn-primary" id="modifyWriteBtn">확인</button>
 		</div>
 	</form>		
-	</div>
+	</div><br><br>
 	
 <!-- 여기까지가 우리가 꾸밀부분 -->
 <!-- 푸터 -->

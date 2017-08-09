@@ -74,7 +74,15 @@ $(document).ready(function() {
 
 <!-- 여기서부터 게시판 메인 꾸미기 -->
 		
-		<div class="col-sm-9 main">			
+		<div class="col-sm-9 main">		
+			<div class="jumbotron" style="">
+				<h3>
+					<i class="fa fa-quote-left"></i>
+					&nbsp;<b>지도게시판</b>
+					<i class="	fa fa-quote-right"></i>
+				</h3>
+			</div>
+				
 			<div class="row">
 			
 				<div class="col-sm-11"></div>
@@ -154,7 +162,7 @@ $(document).ready(function() {
 				          <span class="glyphicon glyphicon-search"></span> Search 
 				        </a>
 					</div>
-				</div>
+				</div><br><br>
 			<!-- 검색영역 끝 -->
 		</div>
 	
