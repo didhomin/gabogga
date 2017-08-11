@@ -75,8 +75,22 @@
 										});
 						var valueArr = new Array();
 						$(document).on('click', '#chBt', function() {
-							valueArr.push($(this).val());
-							console.log("valueArr는" + valueArr);
+							var tt= valueArr.length+1;
+							var ii=0;
+							var overlapOK=0;
+						
+							for(ii=0;ii<tt;ii++){
+								if(valueArr[ii]==$(this).val()){
+									valueArr.splice(ii);
+									overlapOK++;
+								}
+							}
+							if(overlapOK==0){
+								valueArr.push($(this).val());
+							}
+							overlapOK=0;
+						//	alert("여기 클릭함"+valueArr);
+						//	console.log("valueArr는" + valueArr);
 
 						});
 						$(document).on('click','#blackBt',function() {
