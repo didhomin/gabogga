@@ -20,7 +20,7 @@ public interface AdminService {
 	List<Map<String, String>> regionSelect();
 	List<Map<String, String>> reservationSelect();
 	
-int memberAdmindelete(String id);
+	int memberAdmindelete(Map<String, String> queryString);
 	
 	List<UsersDto> listMemberAdmin(Map<String, String> questString);
 	int  memberAdminDelete(String userId);
