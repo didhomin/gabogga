@@ -48,7 +48,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </update>
     
     <select id="goodnumber" parameterType="java.util.Map" resultType="String">
-        select count(*) good
+        select nvl(count(*),'0') good
         from guesthouse gh, house_check hc
         where gh.GUESTHOUSE_ID = hc.GUESTHOUSE_ID and hc.GOOD_OR_BAD = '1' and gh.guesthouse_id = #{ghId}
     </select>

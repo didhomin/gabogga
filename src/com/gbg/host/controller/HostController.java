@@ -245,7 +245,7 @@ public class HostController {
 			if (!list.isEmpty()) {
 				RoomDto roomDto = new RoomDto();
 				RoomDto roomDto2 = hostrService.roomSelect(map);
-				roomDto.setRoomId(roomDto2.getRoomId());
+				roomDto.setRoomId(Integer.parseInt(map.get("roomId")));
 				roomDto.setRoomType(map.get("roomType"));
 				roomDto.setRoomName(map.get("roomAlias"));
 				roomDto.setRoomNum(Integer.parseInt(map.get("roomNum")));
