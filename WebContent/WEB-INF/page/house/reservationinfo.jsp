@@ -3,9 +3,9 @@
 
 <!-- 헤더 -->
 
-<!-- 여기서부터 우리가 꾸미기 -->
 <%@ include file="/page/template/header.jsp"%>
-<%@ include file="/WEB-INF/page/house/reservationModal.jsp"%>
+<%@ include file="/page/house/reservationModal.jsp"%>
+
 <link
 	href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css"
 	rel="stylesheet">
@@ -17,6 +17,35 @@
 	src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
 <script type="text/javascript">
 $(document).ready(function(){
+	var settings = {
+			  "url": "https://kapi.kakao.com/v1/payment/ready",
+			  "method": "POST",
+			  "dataType": "json",
+			  "mimeType":"application/javascript",
+			  "headers": {
+			    "authorization": "KakaoAK 74e1b61a455e1b4e8e2f35a8b5f9f0ca",
+			    "content-type": "application/x-www-form-urlencoded",
+			    "cache-control": "no-cache"
+			  },
+			  "data": {
+			    "cid": "TC0ONETIME",
+			    "partner_order_id": "partner_order_id",
+			    "partner_user_id": "partner_user_id",
+			    "item_name": "양호민",
+			    "quantity": "1",
+			    "total_amount": "100000",
+			    "vat_amount": "200",
+			    "tax_free_amount": "0",
+			    "approval_url": "http://localhost/gabogga/success",
+			    "fail_url": "https://127.0.0.1/gabogga/fail",
+			    "cancel_url": "https://127.0.0.1/gabogga/cancel"
+			  }
+			}
+	$(".money").click(function() {
+		$.ajax(settings).done(function (response) {
+		  console.log(response);
+		});
+	});
    $(document).on('click', '#search', function(){
 	   if($('#from').val()=='') {
 		   var from='0000-00-00';
@@ -33,7 +62,7 @@ $(document).ready(function(){
 });
 function page(i) {
 	document.location.href="${root}/house/userresinfo.gbg?pg="+i;
-}
+};
 </script>
 <c:if test="${not empty user }">
 <div class="jumbotron" style="">
@@ -166,7 +195,7 @@ function page(i) {
 									</li>
 									<hr/>
 									<div class="form-group input-group-sm">
-      									 <a href="#" id="" class="btn btn-info" data-reid=" ${re.reservationId }">
+      									 <a href="https://mockup-pg-web.kakao.com/v1/12095248062218ef5859287e3579c5253c7e161a707277ba3dff2a51d8f8b992/info" class="btn btn-info " data-reid=" ${re.reservationId }">
              								결제
           								   </a>
         							</div>
