@@ -323,7 +323,7 @@ public class AdminController extends MultiActionController{
 	@RequestMapping("/deleteM.gbg")
 	public String delete(@RequestParam Map<String, String> queryString){
 		int cnt=0;
-		System.out.println("여기 왔니??");
+		
 		cnt = adminService.memberAdminDelete(queryString.get("id"));
 		
 		if(queryString.get("bcode").equals("1")){
