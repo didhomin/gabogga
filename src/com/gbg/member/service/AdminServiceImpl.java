@@ -157,9 +157,9 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public int memberAdmindelete(String id) {
+	public int memberAdmindelete(Map<String, String> queryString) {
 		// TODO Auto-generated method stub
-		return sqlSession.getMapper(AdminDao.class).memberAdmindelete(id);
+		return sqlSession.getMapper(AdminDao.class).memberAdmindelete(queryString);
 	}
 
 	@Override

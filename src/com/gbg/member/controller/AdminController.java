@@ -200,6 +200,18 @@ public class AdminController extends MultiActionController{
 		return "redirect:/admin/notice.gbg";
 	}
 	
+	@RequestMapping("/edelete.gbg")
+	public String deletey(@RequestParam Map<String, String> queryString){
+		int cnt=0;
+		cnt = adminService.memberAdminDelete(queryString.get("id"));
+		
+		if(queryString.get("bcode").equals("1")){
+			return "redirect:/memberAdmin/list.gbg?pg=1&bcode=1&key=&word=";
+		}
+		else
+		return "redirect:/memberAdmin/blacklist.gbg?pg=1&bcode=3&key=&word=";
+	}
+	
 	@RequestMapping(value="/region.gbg")
 	public @ResponseBody String region() {	
 		List<Map<String, String>> list = adminService.regionSelect();		
@@ -308,9 +320,10 @@ public class AdminController extends MultiActionController{
 		return json.toJSONString();
 	}
 	
-	@RequestMapping("/memberdelete.gbg")
+	@RequestMapping("/deleteM.gbg")
 	public String delete(@RequestParam Map<String, String> queryString){
 		int cnt=0;
+		System.out.println("여기 왔니??");
 		cnt = adminService.memberAdminDelete(queryString.get("id"));
 		
 		if(queryString.get("bcode").equals("1")){
