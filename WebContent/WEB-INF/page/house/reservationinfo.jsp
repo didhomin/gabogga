@@ -3,10 +3,11 @@
 
 <!-- 헤더 -->
 
-<!-- 여기서부터 우리가 꾸미기 -->
 <%@ include file="/page/template/header.jsp"%>
 <%@ include file="/page/house/reservationModal.jsp"%>
-
+<%response.addHeader( "Access-Control-Allow-Origin", "*" ); 
+response.addHeader( "Access-Control-Allow-Methods", "POST" ); 
+response.addHeader( "Access-Control-Max-Age", "1000" ); %>
 <link
 	href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css"
 	rel="stylesheet">
@@ -18,15 +19,21 @@
 	src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
 <script type="text/javascript">
 $(document).ready(function(){
+	var aa= Kakao.Auth.getAccessToken();
+	alert(aa);
 	var settings = {
-			  "async": true,
+			 "async": false,
 			  "crossDomain": true,
+			  "type": "POST",
 			  "url": "https://kapi.kakao.com/v1/payment/ready",
-			  "method": "POST",
-			  "headers": {
+			  "dataType" : "json",
+			  "contentType": "application/json",
+			     "mimeType": 'application/json',
+			    "headers": {
 			    "authorization": "KakaoAK 74e1b61a455e1b4e8e2f35a8b5f9f0ca",
 			    "content-type": "application/x-www-form-urlencoded",
-			    "cache-control": "no-cache"
+			    "cache-control": "no-cache",
+			    "postman-token": "8c178c30-d61a-114e-722a-2493e69c9a32"
 			  },
 			  "data": {
 			    "cid": "TC0ONETIME",
@@ -37,10 +44,10 @@ $(document).ready(function(){
 			    "total_amount": "100000",
 			    "vat_amount": "200",
 			    "tax_free_amount": "0",
-			    "approval_url": "https://127.0.0.1/gabogga/success",
+			    "approval_url": "http://localhost/gabogga/success",
 			    "fail_url": "https://127.0.0.1/gabogga/fail",
 			    "cancel_url": "https://127.0.0.1/gabogga/cancel"
-			  }
+			  } 
 			}
 	$(".money").click(function() {
 		$.ajax(settings).done(function (response) {
@@ -196,7 +203,7 @@ function page(i) {
 									</li>
 									<hr/>
 									<div class="form-group input-group-sm">
-      									 <a href="#" class="btn btn-info money" data-reid=" ${re.reservationId }">
+      									 <a href="https://mockup-pg-web.kakao.com/v1/01b7f40d8260bd6fa4327b7c58f12e9d809d283c1fb4b98f66d387da321f86cb/info" class="btn btn-info" data-reid=" ${re.reservationId }">
              								결제
           								   </a>
         							</div>

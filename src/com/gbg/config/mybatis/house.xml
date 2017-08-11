@@ -52,7 +52,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                     g.name, g.address1, g.address2, g.phone, g.lat, g.lng, g.checkin_start checkinStart, g.checkin_end checkinend, 
                     g.checkout_start checkoutStart, g.checkout_end checkoutend, g.internet, g.park, g.child, g.pet, 
                     g.room_pay roomPay, g.introduce,
-                    res.CHECKIN, res.CHECKOUT,
+                    to_char(res.CHECKIN,'yyyy-mm-dd') checkin, to_char(res.CHECKOUT,'yyyy-mm-dd') checkout,
                     to_char(res.RESERVATION_DATE,'yyyy-mm-dd') reservationDate, res.PERSON, res.OKSIGN,res.reservation_id reservationId
                     FROM GUESTHOUSE g, room r, reservation res
                     where g.guesthouse_Id= r.guesthouse_Id
@@ -79,13 +79,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                     g.address1, g.address2, g.phone, g.lat, g.lng, g.checkin_start checkinStart, g.checkin_end checkinend, 
                     g.checkout_start checkoutStart, g.checkout_end checkoutend, g.internet, g.park, g.child, g.pet, 
                     g.room_pay roomPay, g.introduce,
-                    res.RESERVATION_ID reservationId, res.user_id, res.ROOM_ID,  res.CHECKIN, res.CHECKOUT, res.PRICE, 
+                    res.RESERVATION_ID reservationId, res.user_id, res.ROOM_ID,  
+                    to_char(res.CHECKIN,'yyyy-mm-dd') checkin, to_char(res.CHECKOUT,'yyyy-mm-dd') checkout
+                    , res.PRICE, 
                     to_char(res.RESERVATION_DATE,'yyyy-mm-dd') reservationDate, res.PERSON, res.OKSIGN,  u.email email,u.name username 
                     FROM GUESTHOUSE g, room r, reservation res,users u
                     where g.guesthouse_Id= r.guesthouse_Id
                     and r.ROOM_ID = res.room_ID
                     and u.user_id = res.user_id
-                    and res.USER_ID=#{userId}
+                    
                     and g.GUESTHOUSE_ID=#{guesthouseId}
                     <if test="from!='' and to!=''">
                         and to_char(checkin,'yyyy/mm/dd') &gt;=#{from} and to_char(checkout,'yyyy/mm/dd') &lt;=#{to}

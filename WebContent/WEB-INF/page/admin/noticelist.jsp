@@ -53,7 +53,6 @@ $(document).ready(function() {
 	});
 	
 	$(".tr").click(function() {
-		 $('.trtr').hide(); 
 		 var seq= $(this).attr('data-seq'); 
 		$('#'+seq).slideToggle("slow");
 	});

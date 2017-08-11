@@ -22,7 +22,7 @@ public interface AdminDao {
 int memberAdmindelete(String id);
 	
 	List<UsersDto> listMemberAdmin(Map<String, String> questString);
-	
+	int memberAdmindelete(Map<String, String> queryString);
 	UsersDto searchMemberAdmin(String id);
 	
 	int memberAdminBlack(String id);

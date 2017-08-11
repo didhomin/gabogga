@@ -46,7 +46,7 @@ public class HouseController {
 		mav.addObject("info", convenienceDto);
 		mav.addObject("room",list);
 		mav.addObject("roominfo",infolist);
-		mav.setViewName("/page/house/house");
+		mav.setViewName("/WEB-INF/page/house/house");
 		return mav;
 		
 	}
@@ -102,7 +102,7 @@ public class HouseController {
 			mav.addObject("navigator", pageNavigation);
 			
 			mav.addObject("relist", list);
-			mav.setViewName("/page/house/reservationinfo");
+			mav.setViewName("/WEB-INF/page/house/reservationinfo");
 		} else {
 			mav.setViewName("/index");
 		}    
@@ -136,7 +136,7 @@ public class HouseController {
 		mav.addObject("navigator", pageNavigation);
 		
 		mav.addObject("hostresinfo", list);
-		mav.setViewName("/page/house/hostresinfo");
+		mav.setViewName("/WEB-INF/page/house/hostresinfo");
 		} else {
 			mav.setViewName("/index");
 		}    

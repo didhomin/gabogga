@@ -70,7 +70,7 @@
 						});
 						$(document).on(	'click','#delBt',function() {
 											var delet = $('#mid').val();
-											document.location.href = "${root}/admin/delete.gbg?id="+ delet+"&bcode=1&key=&word=";
+											document.location.href = "${root}/admin/deleteM.gbg?id="+ delet+"&bcode=1&key=&word=";
 
 										});
 						var valueArr = new Array();

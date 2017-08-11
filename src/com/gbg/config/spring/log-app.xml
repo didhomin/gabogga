@@ -7,60 +7,35 @@
     xmlns:log4j="http://jakarta.apache.org/log4j/">
     
     <appender name="file" class="org.apache.log4j.DailyRollingFileAppender">
-        
         <param name="file" value="C:/log/application.log"/>
-        
         <param name="Append" value="true"/>
-        
         <param name="DatePattern" value="'.'yyyy-MM-dd"/>
-        
         <layout class="org.apache.log4j.PatternLayout">
-            
             <param name="ConversionPattern" value="%n%d%n\%p : %l%n%m%n%n"/>
-            
         </layout>
-        
     </appender>
     
     
     
     <logger name="egovframework" additivity="false">
-        
         <level value="DEBUG"/>
-        
         <appender-ref ref="file"/>
-        
     </logger>
-    
-    
-    <!-- log SQL with timing information, post execution -->
     
     <logger name="jdbc.sqltiming" additivity="false">
-        
         <level value="ERROR" />
-        
         <appender-ref ref="file" />
-        
     </logger>
-    
-    
     
     <logger name="org.springframework" additivity="false">
-        
         <level value="ERROR" />
-        
         <appender-ref ref="file" />
-        
     </logger>
     
-    
-    
     <root>
-        
         <level value="ERROR" />
-        
         <appender-ref ref="file" />
-        
     </root>
+    
     
 </log4j:configuration>

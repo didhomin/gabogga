@@ -34,7 +34,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		left outer join (select guesthouse_id,count(*) good
 		from house_check hc
 		group by guesthouse_id) a on a.guesthouse_id=gh.guesthouse_id
-		order by a.good
+		order by a.good desc
 	</select>
 	<select id="mainprice"  resultType="ListDto">
 		select gh.guesthouse_id ghId, name gname, room_count roomCount, room_pay roomPay, introduce, lat, lng, picture pictureGh,a.good,room_pay
@@ -149,12 +149,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      select tel , user_Id,name, email,gender,reg_Date regDate from users
      where user_Id=#{id}
     </select>
-    
-      <select id="getNextSeq" resultType="int">
+
+    <select id="getNextSeq" resultType="int">
         select seq_board_seq.nextval
         from dual
     </select>
-    
     
     <select id="newArticleAdCount" parameterType="int" resultType="int">
         select count(user_id)
