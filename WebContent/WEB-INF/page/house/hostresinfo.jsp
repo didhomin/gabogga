@@ -5,7 +5,7 @@
 <%@ include file="/page/template/header.jsp" %>
 <%@ include file="/WEB-INF/page/community/logincheck.jsp" %>
 <%@ include file="/WEB-INF/page/member/hostqna.jsp" %>
-<%@ include file="/page/house/reservationModal.jsp" %>
+<%@ include file="/WEB-INF/page/house/reservationModal.jsp" %>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href='${root}/css/fullcalendar.css' rel='stylesheet' />
