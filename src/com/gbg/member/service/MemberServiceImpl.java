@@ -43,7 +43,7 @@ public class MemberServiceImpl implements MemberService {
 		String to = email;
 		String from = "didhomin@gmail.com";
 		String subject = "가보까!에서 보낸 인증 메일입니다.";
-		String content = "오른쪽 버튼을 클릭하면 인증이 완료됩니다.<a href='http://localhost/gabogga/member/mail.gbg?email="+to+"'>인증</a>";
+		String content = "오른쪽 버튼을 클릭하면 인증이 완료됩니다.<a href='http://192.168.18.25/gabogga/member/mail.gbg?email="+to+"'>인증</a>";
 		Properties p = new Properties();
 
 		p.put("mail.smtp.host", "smtp.gmail.com"); 
