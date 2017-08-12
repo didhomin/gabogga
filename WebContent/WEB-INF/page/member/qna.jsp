@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!-- 헤더 -->
-<%@ include file="/page/template/header.jsp" %>	
+<%@ include file="/WEB-INF/page/template/header.jsp" %>	
 <div class="jumbotron" style="">
 	<h3>
 		<i class="glyphicon glyphicon-bell"></i>&nbsp; 문의사항
@@ -46,4 +46,4 @@
 
 <!-- 여기까지가 우리가 꾸밀부분 -->
 <!-- 푸터 -->
-<%@ include file="/page/template/footer.jsp" %>	
+<%@ include file="/WEB-INF/page/template/footer.jsp" %>	

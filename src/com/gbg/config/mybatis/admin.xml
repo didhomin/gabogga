@@ -31,7 +31,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="main"  resultType="ListDto">
 		select address1, gh.guesthouse_id ghId, name gname, room_count roomCount, room_pay roomPay, introduce, lat, lng, picture pictureGh,a.good
 		from guesthouse gh
-		left outer join (select guesthouse_id,count(*) good
+		left outer join (select guesthouse_id,nvl(count(*),'0') good
 		from house_check hc
 		group by guesthouse_id) a on a.guesthouse_id=gh.guesthouse_id
 		order by a.good desc

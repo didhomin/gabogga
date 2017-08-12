@@ -2,7 +2,7 @@
    pageEncoding="UTF-8"%>
 
 <!-- 헤더 -->
-<%@ include file="/page/template/header.jsp"%>
+<%@ include file="/WEB-INF/page/template/header.jsp"%>
 <!-- 여기서부터 우리가 꾸미기 -->
 <script type="text/javascript">
 
@@ -294,4 +294,4 @@ $(markers).each(function(i, v){
 
 
 
-<%@ include file="/page/template/footer.jsp"%>    
+<%@ include file="/WEB-INF/page/template/footer.jsp"%>    

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <!-- 헤더 -->
-<%@ include file="/page/template/header.jsp" %>	
+<%@ include file="/WEB-INF/page/template/header.jsp" %>	
 <%@ include file="/WEB-INF/page/community/logincheck.jsp" %>
 <!-- 여기서부터 우리가 꾸미기-->
 <div class="row">
@@ -285,4 +285,4 @@ function makeMemoList(data) {
 <!-- 여기까지가 우리가 꾸밀부분 -->
 <!-- 푸터 -->
 </div>	
-<%@ include file="/page/template/footer.jsp" %>	
+<%@ include file="/WEB-INF/page/template/footer.jsp" %>	

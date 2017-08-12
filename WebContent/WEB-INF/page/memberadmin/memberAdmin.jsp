@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <!-- 헤더 -->
-<%@ include file="/page/template/header.jsp"%>
+<%@ include file="/WEB-INF/page/template/header.jsp"%>
 
 <c:if test="${not empty emailAuth }">
 	<script type="text/javascript">
@@ -281,4 +281,4 @@
 
 <!-- 여기까지가 우리가 꾸밀부분 -->
 					<!-- 푸터 -->
-					<%@ include file="/page/template/footer.jsp"%>
+					<%@ include file="/WEB-INF/page/template/footer.jsp"%>

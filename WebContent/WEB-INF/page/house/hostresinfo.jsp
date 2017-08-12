@@ -2,7 +2,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="/page/template/header.jsp" %>
+<%@ include file="/WEB-INF/page/template/header.jsp" %>
 <%@ include file="/WEB-INF/page/community/logincheck.jsp" %>
 <%@ include file="/WEB-INF/page/member/hostqna.jsp" %>
 <%@ include file="/WEB-INF/page/house/reservationModal.jsp" %>
@@ -247,4 +247,4 @@ function page(i) {
   </div>                        
                   
                      
-<%@ include file="/page/template/footer.jsp" %>
+<%@ include file="/WEB-INF/page/template/footer.jsp" %>

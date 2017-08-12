@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <!-- 헤더 -->
-<%@ include file="/page/template/header.jsp" %>	
+<%@ include file="/WEB-INF/page/template/header.jsp" %>	
   <link rel='stylesheet prefetch' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
   <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
 <c:if test="${not empty emailAuth }">
@@ -169,4 +169,4 @@ function searchUser() {
 <script src="${root }/page/house/js/index.js"></script>
 <!-- 여기까지가 우리가 꾸밀부분 -->
 <!-- 푸터 -->
-<%@ include file="/page/template/footer.jsp" %>	
+<%@ include file="/WEB-INF/page/template/footer.jsp" %>	

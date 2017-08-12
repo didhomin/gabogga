@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!-- 헤더 -->
-<%@ include file="/page/template/header.jsp" %>	
+<%@ include file="/WEB-INF/page/template/header.jsp" %>	
 <!-- 여기서부터 우리가 꾸미기 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
@@ -257,4 +257,4 @@ $("#aaa").click(function() {
 </script>
   
 <br><br><br>
-<%@ include file="/page/template/footer.jsp" %>	
+<%@ include file="/WEB-INF/page/template/footer.jsp" %>	

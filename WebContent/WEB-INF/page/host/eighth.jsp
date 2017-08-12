@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="/page/template/header.jsp" %>
+<%@ include file="/WEB-INF/page/template/header.jsp" %>
 <script type="text/javascript">
 $(document).ready(function(){
 	
@@ -84,4 +84,4 @@ $(document).ready(function(){
 		</div>
 		</div>
 		<br><br><br>
-<%@ include file="/page/template/footer.jsp" %>	
+<%@ include file="/WEB-INF/page/template/footer.jsp" %>	

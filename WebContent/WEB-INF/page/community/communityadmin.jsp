@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <!-- 헤더 -->
-<%@ include file="/page/template/header.jsp" %>	
+<%@ include file="/WEB-INF/page/template/header.jsp" %>	
 <!-- 여기서부터 우리가 꾸미기-->
 <div class="row">
 <div class="col-sm-3 sidenav">
@@ -86,4 +86,4 @@ $(document).ready(function() {
 <!-- 여기까지가 우리가 꾸밀부분 -->
 <!-- 푸터 -->
 </div>	
-<%@ include file="/page/template/footer.jsp" %>	
+<%@ include file="/WEB-INF/page/template/footer.jsp" %>	

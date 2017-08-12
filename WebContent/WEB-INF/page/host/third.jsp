@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="/page/template/header.jsp"%>
+<%@ include file="/WEB-INF/page/template/header.jsp"%>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a10b55340969923033a4eb61fd837e6e&libraries=services"></script>
@@ -215,4 +215,4 @@
 	<br>
 	<br>
 	<br>
-	<%@ include file="/page/template/footer.jsp"%>
+	<%@ include file="/WEB-INF/page/template/footer.jsp"%>

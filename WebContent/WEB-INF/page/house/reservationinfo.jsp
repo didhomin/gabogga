@@ -3,8 +3,8 @@
 
 <!-- 헤더 -->
 
-<%@ include file="/page/template/header.jsp"%>
-<%@ include file="/page/house/reservationModal.jsp"%>
+<%@ include file="/WEB-INF/page/template/header.jsp"%>
+<%@ include file="/WEB-INF/page/house/reservationModal.jsp"%>
 <%response.addHeader( "Access-Control-Allow-Origin", "*" ); 
 response.addHeader( "Access-Control-Allow-Methods", "POST" ); 
 response.addHeader( "Access-Control-Max-Age", "1000" ); %>
@@ -19,39 +19,16 @@ response.addHeader( "Access-Control-Max-Age", "1000" ); %>
 	src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	var aa= Kakao.Auth.getAccessToken();
-	alert(aa);
-	var settings = {
-			 "async": false,
-			  "crossDomain": true,
-			  "type": "POST",
-			  "url": "https://kapi.kakao.com/v1/payment/ready",
-			  "dataType" : "json",
-			  "contentType": "application/json",
-			     "mimeType": 'application/json',
-			    "headers": {
-			    "authorization": "KakaoAK 74e1b61a455e1b4e8e2f35a8b5f9f0ca",
-			    "content-type": "application/x-www-form-urlencoded",
-			    "cache-control": "no-cache",
-			    "postman-token": "8c178c30-d61a-114e-722a-2493e69c9a32"
-			  },
-			  "data": {
-			    "cid": "TC0ONETIME",
-			    "partner_order_id": "partner_order_id",
-			    "partner_user_id": "partner_user_id",
-			    "item_name": "양호민",
-			    "quantity": "1",
-			    "total_amount": "100000",
-			    "vat_amount": "200",
-			    "tax_free_amount": "0",
-			    "approval_url": "http://localhost/gabogga/success",
-			    "fail_url": "https://127.0.0.1/gabogga/fail",
-			    "cancel_url": "https://127.0.0.1/gabogga/cancel"
-			  } 
-			}
+	
 	$(".money").click(function() {
-		$.ajax(settings).done(function (response) {
-		  console.log(response);
+		$.ajax({
+			type : 'get',
+			dataType : 'json',
+			url : '${root}/admin/money.gbg',
+			success : function(data) {
+				console.log(data.next_redirect_pc_url);
+				document.location.href=data.next_redirect_pc_url;
+			}
 		});
 	});
    $(document).on('click', '#search', function(){
@@ -203,7 +180,7 @@ function page(i) {
 									</li>
 									<hr/>
 									<div class="form-group input-group-sm">
-      									 <a href="https://mockup-pg-web.kakao.com/v1/01b7f40d8260bd6fa4327b7c58f12e9d809d283c1fb4b98f66d387da321f86cb/info" class="btn btn-info" data-reid=" ${re.reservationId }">
+      									 <a href="#" class="btn btn-info money" data-reid=" ${re.reservationId }">
              								결제
           								   </a>
         							</div>
@@ -224,4 +201,4 @@ function page(i) {
 
 <!-- 여기까지가 우리가 꾸밀부분 -->
 <!-- 푸터 -->
-<%@ include file="/page/template/footer.jsp"%>
+<%@ include file="/WEB-INF/page/template/footer.jsp"%>

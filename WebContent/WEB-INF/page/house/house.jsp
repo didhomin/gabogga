@@ -4,7 +4,7 @@
 <!-- 헤더 -->
 
 <!-- 여기서부터 우리가 꾸미기 -->
-  	<%@ include file="/page/template/header.jsp" %>
+  	<%@ include file="/WEB-INF/page/template/header.jsp" %>
  	<%@ include file="/WEB-INF/page/house/reservationModal.jsp" %>
   	
   	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
@@ -493,4 +493,4 @@ function makeMemoList(data) {
 
 <!-- 여기까지가 우리가 꾸밀부분 -->
 <!-- 푸터 -->
-<%@ include file="/page/template/footer.jsp" %>
+<%@ include file="/WEB-INF/page/template/footer.jsp" %>
