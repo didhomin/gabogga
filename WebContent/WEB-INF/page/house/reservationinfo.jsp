@@ -25,8 +25,8 @@ $(document).ready(function(){
 			type : 'get',
 			dataType : 'json',
 			url : '${root}/admin/money.gbg',
+			data : {'ghname' : $(this).attr("data-reid")},
 			success : function(data) {
-				console.log(data.next_redirect_pc_url);
 				document.location.href=data.next_redirect_pc_url;
 			}
 		});
@@ -180,9 +180,9 @@ function page(i) {
 									</li>
 									<hr/>
 									<div class="form-group input-group-sm">
-      									 <a href="#" class="btn btn-info money" data-reid=" ${re.reservationId }">
-             								결제
-          								   </a>
+      									 <c:if test="${re.oksign eq 1}">
+	      									 <a href="#" class="btn btn-info money" data-reid="${re.name }">결제 </a>
+      									 </c:if>
         							</div>
 								</div>
 								

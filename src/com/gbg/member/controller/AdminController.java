@@ -348,6 +348,7 @@ public class AdminController extends MultiActionController {
 	public String black(@RequestParam("id") String valueArr) {
 		String blackck = null;
 		int cnt = 0;
+		// 여기 Tokenizer 을 이용해서 배열에 있는 것을 분리 시킬 예정 입니다
 		StringTokenizer st = new StringTokenizer(valueArr, ",");
 		while (st.hasMoreTokens()) {
 			blackck = st.nextToken();
@@ -362,6 +363,7 @@ public class AdminController extends MultiActionController {
 	public String soso(@RequestParam("id") String valueArr) {
 		String soso = null;
 		int cnt = 0;
+		// 여기 Tokenizer 을 이용해서 배열에 있는 것을 분리 시킬 예정 입니다
 		StringTokenizer st = new StringTokenizer(valueArr, ",");
 		while (st.hasMoreTokens()) {
 			soso = st.nextToken();
@@ -372,13 +374,13 @@ public class AdminController extends MultiActionController {
 
 	@RequestMapping(value = "/money.gbg")
 	@ResponseBody
-	public String test() throws MalformedURLException, ParseException {
+	public String test(@RequestParam("ghname") String ghname) throws MalformedURLException {
 		String url = "https://kapi.kakao.com/v1/payment/ready";
 		MultiValueMap<String, String> map = new LinkedMultiValueMap<String, String>();
 		map.add("cid", "TC0ONETIME");
 		map.add("partner_order_id", "partner_order_id");
 		map.add("partner_user_id", "partner_user_id");
-		map.add("item_name", "양호민");
+		map.add("item_name", ghname);
 		map.add("quantity", "1");
 		map.add("total_amount", "100");
 		map.add("vat_amount", "1");
@@ -386,18 +388,32 @@ public class AdminController extends MultiActionController {
 		map.add("approval_url", "http://localhost/gabogga/house/userresinfo.gbg");
 		map.add("fail_url", "https://localhost/gabogga/fail");
 		map.add("cancel_url", "https://localhost/gabogga/cancel");
-		
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 		headers.add("Authorization", "KakaoAK 74e1b61a455e1b4e8e2f35a8b5f9f0ca");
-		
 		HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map, headers);
 		RestTemplate restTemplate = new RestTemplate();
 
-		String response = (String) restTemplate.postForObject(url, request, String.class);
+		String response = "";
+		try {
+
+			response = (String) restTemplate.postForObject(url, request, String.class);
+		} catch (RestClientException e) {
+			e.printStackTrace();
+			response = "Socket read timed out";
+		} catch (Exception e) {
+			e.printStackTrace();
+			response = "I/O Error";
+		}
 		JSONParser parser = new JSONParser();
-		Object obj= parser.parse(response);
-		JSONObject jsonObj = (JSONObject) obj;
+		Object obj;
+		JSONObject jsonObj = null;
+		try {
+			obj = parser.parse(response);
+			jsonObj = (JSONObject) obj;
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		return jsonObj.toJSONString();
 	}
 }
