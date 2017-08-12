@@ -69,9 +69,20 @@ $(document).ready(function(){
     } );
     var valueArr= new Array();
     $(document).on('click','#chBt', function () {
-    	 valueArr.push($(this).val());
-		console.log("valueArr는"+valueArr);
-		
+    	var tt= valueArr.length+1;
+		var ii=0;
+		var overlapOK=0;
+	
+		for(ii=0;ii<tt;ii++){
+			if(valueArr[ii]==$(this).val()){
+				valueArr.splice(ii);
+				overlapOK++;
+			}
+		}
+		if(overlapOK==0){
+			valueArr.push($(this).val());
+		}
+		overlapOK=0;
 	});
     $(document).on('click','#sosoBt', function() {
     	console.log("버튼 클릭 했을 때 "+valueArr);
